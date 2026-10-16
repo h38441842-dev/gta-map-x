@@ -1,0 +1,40 @@
+{
+    "id": "RickRick",
+    "name": "RickRick",
+    "author": "",
+    "logoUrl": "assets/pic/rickrick.png",
+    "backgroundUrl": "assets/backgrounds/rickrick.png",
+    "visible": true,
+    "enabled": false,
+    "opacity": 1,
+    "maxZoom": 8,
+    "maxNativeZoom": 6,
+    "minZoom": 0,
+    "currentVersion": "v3",
+    "versions": [
+        {
+            "id": "v1",
+            "name": "V1",
+            "tileUrl": "tiles/rickrick/v1/{z}/{x}/{y}.png",
+            "date": "2025-03-02",
+            "originalSize": { "width": 11250, "height": 13750 },
+            "bounds": [[-2500, -2000], [3000, 2500]]
+        },
+        {
+            "id": "v2",
+            "name": "V2",
+            "tileUrl": "tiles/rickrick/v2/{z}/{x}/{y}.png",
+            "date": "2025-05-26",
+            "originalSize": { "width": 11250, "height": 13750 },
+            "bounds": [[-2500, -2000], [3000, 2500]]
+        },
+        {
+            "id": "v3",
+            "name": "V3",
+            "tileUrl": "tiles/rickrick/v3/{z}/{x}/{y}.png",
+            "date": "2025-10-31",
+            "originalSize": { "width": 16250, "height": 17500 },
+            "bounds": [[-4000, -4000], [3000, 2500]]
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+  "countdownDate": "2026-11-19T00:00",
+  "countdownEnabled": true,
+  "announcement": "",
+  "discordUrl": "https://discord.gg/JeTPhnHuxm",
+  "headerBanner": {
+    "enabled": true,
+    "imageUrl": "assets/logos/mappingcool2.gif",
+    "targetUrl": "https://discord.gg/JeTPhnHuxm",
+    "altText": "Mapping Discord"
+  },
+  "watermarks": {
+    "preloaderAffiliatedEnabled": true,
+    "preloaderAffiliatedImage": "assets/logos/affiliated with.png",
+    "partner1": {
+      "enabled": true,
+      "name": "MAP.GTADB.ORG",
+      "subtitle": "USE DATABASE",
+      "url": "https://map.gtadb.org",
+      "logo": "assets/pic/gtamaplib.png"
+    },
+    "partner2": {
+      "enabled": true,
+      "name": "GTA.WIKI",
+      "subtitle": "FIND ON MARKERS",
+      "url": "https://gta.wiki",
+      "logo": "assets/logos/Wiki.png"
+    }
+  },
+  "footer": {
+    "showDiscord": true,
+    "showGtadb": true,
+    "showGtaWiki": true,
+    "customLinkText": "",
+    "customLinkUrl": ""
+  },
+  "disclaimers": {
+    "preloaderDisclaimer": "Rockstar Games and Grand Theft Auto are registered trademarks of Take-Two Interactive Software Inc. State of Leonida is not affiliated with the aforementioned companies.",
+    "footerDisclaimer": "Rockstar Games and Grand Theft Auto VI are registered trademarks of Take-Two Interactive Software, Inc. State of Leonida is a non-commercial, fan-made interactive mapping and GIS research project created by the GTA mapping community and is not affiliated with, endorsed, or sponsored by Rockstar Games or Take-Two Interactive in any way."
+  },
+  "externalWiki": {
+    "enabled": true,
+    "customBaseUrl": "https://gta.wiki"
+  }
+}

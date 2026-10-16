@@ -1,0 +1,1012 @@
+[
+    {
+        "name": "Leonida Keys",
+        "position": {
+            "lat": -7041,
+            "lng": -6740
+        },
+        "tags": [
+            "Trailer 1",
+            "Gator Keys",
+            "T1/19"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame18.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=36",
+        "motion": {
+            "v": 1,
+            "heading": 69,
+            "fov": {
+                "angle": 63,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_001"
+    },
+    {
+        "name": "Grassrivers",
+        "position": {
+            "lat": -5026,
+            "lng": -3115.5
+        },
+        "tags": [
+            "Trailer 1",
+            "Grass Rivers",
+            "T1/09"
+        ],
+        "uncertain": true,
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame8.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=21",
+        "motion": {
+            "v": 1,
+            "heading": 0,
+            "fov": {
+                "angle": 70,
+                "range": 1100
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_002"
+    },
+    {
+        "name": "Trailer 1 Opening Scene",
+        "position": {
+            "lat": -2816.5,
+            "lng": -3406.75
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/01"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame1.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=3",
+        "motion": {
+            "v": 1,
+            "heading": 81,
+            "fov": {
+                "angle": 84,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_003"
+    },
+    {
+        "name": "Prison",
+        "position": {
+            "lat": -2731,
+            "lng": -2727
+        },
+        "tags": [
+            "Trailer 1",
+            "Prison"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame2.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=5",
+        "id": "trailer1_004"
+    },
+    {
+        "name": "Lucia's Cell",
+        "position": {
+            "lat": -2778,
+            "lng": -2708
+        },
+        "tags": [
+            "Trailer 1",
+            "Prison"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame3.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=7",
+        "id": "trailer1_005"
+    },
+    {
+        "name": "Vice City Sign",
+        "position": {
+            "lat": -422.5,
+            "lng": -3823
+        },
+        "tags": [
+            "Trailer 1",
+            "Vice City",
+            "T1/21"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame20.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=40",
+        "motion": {
+            "v": 1,
+            "heading": 104,
+            "fov": {
+                "angle": 34,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_006"
+    },
+    {
+        "name": "Tequesta Condos",
+        "position": {
+            "lat": -798.5,
+            "lng": -780.25
+        },
+        "tags": [
+            "Trailer 1",
+            "Residential",
+            "T1/07"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame6.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=18",
+        "motion": {
+            "v": 1,
+            "heading": 59,
+            "fov": {
+                "angle": 81,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_007"
+    },
+    {
+        "name": "Port Vice City",
+        "position": {
+            "lat": -790.75,
+            "lng": 1531.25
+        },
+        "tags": [
+            "Trailer 1",
+            "Port",
+            "T1/11"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame10.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=24",
+        "motion": {
+            "v": 1,
+            "heading": 260,
+            "fov": {
+                "angle": 70,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": -790.75,
+                    "lng": 1531.25
+                },
+                {
+                    "lat": -799.25,
+                    "lng": 1498.75
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_008"
+    },
+    {
+        "name": "Ocean Beach",
+        "position": {
+            "lat": -119.5,
+            "lng": 2145.5
+        },
+        "tags": [
+            "Trailer 1",
+            "Vice Beach",
+            "T1/10"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame9.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=22",
+        "motion": {
+            "v": 1,
+            "heading": 344,
+            "fov": {
+                "angle": 48,
+                "range": 250
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_009"
+    },
+    {
+        "name": "Girl on Car",
+        "position": {
+            "lat": 390.75,
+            "lng": 1720.75
+        },
+        "tags": [
+            "Trailer 1",
+            "Vice Beach",
+            "T1/24"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame23.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=44",
+        "motion": {
+            "v": 1,
+            "heading": 64,
+            "fov": {
+                "angle": 37,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_010"
+    },
+    {
+        "name": "Shore Drive",
+        "position": {
+            "lat": 523.25,
+            "lng": 1974.5
+        },
+        "tags": [
+            "Trailer 1",
+            "Vice Beach",
+            "T1/17"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame16.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=33",
+        "id": "trailer1_011"
+    },
+    {
+        "name": "Rockstar Games Presents",
+        "position": {
+            "lat": 1152.25,
+            "lng": 2476.5
+        },
+        "tags": [
+            "Trailer 1",
+            "Vice Beach",
+            "T1/06"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame5.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_1.mp4",
+            "poster": "assets/photos/thumbnails/GTAVI_Trailer_1.jpg"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 0,
+            "fov": {
+                "angle": 70,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 1152.25,
+                    "lng": 2476.5
+                },
+                {
+                    "lat": 1076,
+                    "lng": 2263
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 11,
+                "out": 17
+            }
+        },
+        "id": "trailer1_012"
+    },
+    {
+        "name": "Sugar Daddy Boat",
+        "position": {
+            "lat": 872,
+            "lng": 1067
+        },
+        "tags": [
+            "Trailer 1",
+            "Vice Beach",
+            "T1/22"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame21.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=42",
+        "motion": {
+            "v": 1,
+            "heading": 264,
+            "fov": {
+                "angle": 32,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_013"
+    },
+    {
+        "name": "Girl in Bikini",
+        "position": {
+            "lat": 1942,
+            "lng": 1912.25
+        },
+        "tags": [
+            "Trailer 1",
+            "Vice Beach",
+            "T1/20"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame19.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=38",
+        "motion": {
+            "v": 1,
+            "heading": 189,
+            "fov": {
+                "angle": 70,
+                "range": 400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_014"
+    },
+    {
+        "name": "Lucia on Interstate 404",
+        "position": {
+            "lat": 551.25,
+            "lng": -175.75
+        },
+        "tags": [
+            "Trailer 1",
+            "Vice City",
+            "T1/12"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame11.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=25",
+        "motion": {
+            "v": 1,
+            "heading": 267,
+            "fov": {
+                "angle": 70,
+                "range": 200
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 551.25,
+                    "lng": -175.75
+                },
+                {
+                    "lat": 571,
+                    "lng": -238.75
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_015"
+    },
+    {
+        "name": "Hammer Old Lady",
+        "position": {
+            "lat": -3186.25,
+            "lng": -2702.75
+        },
+        "tags": [
+            "Trailer 1"
+        ],
+        "uncertain": true,
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame33.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=58",
+        "id": "trailer1_016"
+    },
+    {
+        "name": "Jason in Waning Sands",
+        "position": {
+            "lat": 4083.25,
+            "lng": -614.75
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/36"
+        ],
+        "uncertain": true,
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame35.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=61",
+        "motion": {
+            "v": 1,
+            "heading": 74,
+            "fov": {
+                "angle": 70,
+                "range": 200
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 4083.25,
+                    "lng": -614.75
+                },
+                {
+                    "lat": 4100.5,
+                    "lng": -541.5
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_017"
+    },
+    {
+        "name": "PlanetLeonidaMan",
+        "position": {
+            "lat": 2869.25,
+            "lng": -777.75
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/29"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame28.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=61",
+        "motion": {
+            "v": 1,
+            "heading": 155,
+            "fov": {
+                "angle": 70,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_018"
+    },
+    {
+        "name": "Gang Ride",
+        "position": {
+            "lat": 1611,
+            "lng": -861
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/40"
+        ],
+        "uncertain": true,
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame38.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=66",
+        "motion": {
+            "v": 1,
+            "heading": 206,
+            "fov": {
+                "angle": 53,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_019"
+    },
+    {
+        "name": "High Rollerz Magazine",
+        "position": {
+            "lat": 1404,
+            "lng": -1023.25
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/42"
+        ],
+        "uncertain": true,
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame40.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=68",
+        "motion": {
+            "v": 1,
+            "heading": 0,
+            "fov": {
+                "angle": 70,
+                "range": 200
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_020"
+    },
+    {
+        "name": "Jason & Lucia in Car",
+        "position": {
+            "lat": 3342.75,
+            "lng": -6285
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/44"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame42.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=51",
+        "motion": {
+            "v": 1,
+            "heading": 331,
+            "fov": {
+                "angle": 70,
+                "range": 150
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_021"
+    },
+    {
+        "name": "Jason & Lucia Robbery",
+        "position": {
+            "lat": 3871.25,
+            "lng": -6365
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/46"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame44.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=51",
+        "motion": {
+            "v": 1,
+            "heading": 93,
+            "fov": {
+                "angle": 70,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_022"
+    },
+    {
+        "name": "Nine1Nine",
+        "position": {
+            "lat": 461,
+            "lng": -721.25
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/18"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame17.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=51",
+        "motion": {
+            "v": 1,
+            "heading": 179,
+            "fov": {
+                "angle": 70,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_023"
+    },
+    {
+        "name": "Crosstown Street Takeover",
+        "position": {
+            "lat": 1241.25,
+            "lng": -710.75
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/25"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame24.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=51",
+        "motion": {
+            "v": 1,
+            "heading": 52,
+            "fov": {
+                "angle": 82,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_024"
+    },
+    {
+        "name": "Real Dimez Livestream",
+        "position": {
+            "lat": 1259.5,
+            "lng": -687.25
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/26"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame25.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=51",
+        "motion": {
+            "v": 1,
+            "heading": 137,
+            "fov": {
+                "angle": 45,
+                "range": 100
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_025"
+    },
+    {
+        "name": "Stockyard Car Meet",
+        "position": {
+            "lat": 1697.5,
+            "lng": -417.5
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/13"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame12.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=51",
+        "motion": {
+            "v": 1,
+            "heading": 42,
+            "fov": {
+                "angle": 70,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_026"
+    },
+    {
+        "name": "Leonida Man - Interstate 97",
+        "position": {
+            "lat": 797.25,
+            "lng": -962
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/30"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame29.png",
+            "credit": "Rockstar Games - Trailer 1"
+        },
+        "videoLink": "https://localhost/VI/screenshots.html?video=GTAVI%20%2F%20Trailer%201%20-%2005.12.2023&t=51",
+        "motion": {
+            "v": 1,
+            "heading": 195,
+            "fov": {
+                "angle": 38,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_027"
+    },
+    {
+        "name": "Vice Beach & \"Venetian Islands\"",
+        "position": {
+            "lat": 1083.5,
+            "lng": -71
+        },
+        "tags": [
+            "Trailer 1",
+            "Vice City",
+            "T1/16"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame15.png",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 73,
+            "fov": {
+                "angle": 70,
+                "range": 550
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_028"
+    },
+    {
+        "name": "Biker Gang at Intersection",
+        "position": {
+            "lat": 814.5,
+            "lng": -620
+        },
+        "tags": [
+            "Trailer 1",
+            "Vice City",
+            "T1/41"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame39.png",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 297,
+            "fov": {
+                "angle": 56,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_029"
+    },
+    {
+        "name": "Gang Member",
+        "position": {
+            "lat": 1539.75,
+            "lng": -819.25
+        },
+        "tags": [
+            "Trailer 1",
+            "T1/15"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer1/Frame14.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 130,
+            "fov": {
+                "angle": 51,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer1_030"
+    }
+]

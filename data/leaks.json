@@ -1,0 +1,671 @@
+[
+    {
+        "name": "Americas_1 2022-04-12 10-28-55",
+        "position": {
+            "lat": 454.9,
+            "lng": 2009.693
+        },
+        "tags": [
+            "Leaks",
+            "Vice Beach",
+            "2022",
+            "L1/15"
+        ],
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202021-06-04%2009-40-46",
+        "id": "leak_vb_001"
+    },
+    {
+        "id": "leak_vb_002",
+        "name": "Americas 2022-01-20 11-18-26",
+        "position": {
+            "lat": 272.9,
+            "lng": 1932.2
+        },
+        "tags": [
+            "Vice Beach",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/vicebeach/Americas 2022-01-20 11-18-26.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-01-20%2011-18-26"
+    },
+    {
+        "name": "Americas 2022-07-20 08-34-27",
+        "position": {
+            "lat": 588.3,
+            "lng": 2028.6
+        },
+        "tags": [
+            "Leaks",
+            "Vice Beach",
+            "2022",
+            "L1/29"
+        ],
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-07-20%2008-34-27",
+        "id": "leak_vb_003"
+    },
+    {
+        "name": "Americas_1 2022-04-12 10-28-55",
+        "position": {
+            "lat": 1153.2,
+            "lng": 2092.8
+        },
+        "tags": [
+            "Leaks",
+            "Vice Beach",
+            "2022",
+            "L1/15"
+        ],
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-04-12%2010-28-55",
+        "id": "leak_vb_004"
+    },
+    {
+        "id": "leak_vb_005",
+        "name": "Americas_1 2022-04-12 10-28-55",
+        "position": {
+            "lat": 1373,
+            "lng": 1409.6
+        },
+        "tags": [
+            "Vice Beach",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/vicebeach/Americas_1 2022-04-12 10-28-55 1.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-04-12%2010-28-55"
+    },
+    {
+        "id": "leak_vb_006",
+        "name": "Americas_1 2022-04-13 17-42-41",
+        "position": {
+            "lat": 1558.6,
+            "lng": 1966.7
+        },
+        "tags": [
+            "Vice Beach",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/vicebeach/Americas_1 2022-04-12 10-28-55 1.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-04-13%2017-42-41"
+    },
+    {
+        "id": "leak_vb_007",
+        "name": "Americas 2021-09-01 14-44-53",
+        "position": {
+            "lat": 1317.6,
+            "lng": 1484.1
+        },
+        "tags": [
+            "Vice Beach",
+            "2021"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/vicebeach/Americas 2021-09-01 14-44-53.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202021-09-01%2014-44-53"
+    },
+    {
+        "id": "leak_vb_008",
+        "name": "Americas 2021-10-29 20-21-10",
+        "position": {
+            "lat": -429.1,
+            "lng": 1185.7
+        },
+        "tags": [
+            "Vice Beach",
+            "2021"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/vicebeach/Americas 2021-10-29 20-21-10.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202021-10-29%2020-21-10"
+    },
+    {
+        "name": "Americas_1 2022-08-10 12-27-03",
+        "position": {
+            "lat": 861.3,
+            "lng": 1954.1
+        },
+        "tags": [
+            "Leaks",
+            "Vice Beach",
+            "2022",
+            "L1/36"
+        ],
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-08-10%2012-27-03",
+        "id": "leak_vb_009"
+    },
+    {
+        "name": "Americas 2021-07-09 15-18-02",
+        "position": {
+            "lat": -98.5,
+            "lng": -339
+        },
+        "tags": [
+            "Central Vice City",
+            "2021"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas 2021-07-09 15-18-02.png",
+            "credit": ""
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202021-07-09%2015-18-02",
+        "id": "leak_cv_001"
+    },
+    {
+        "id": "leak_cv_002",
+        "name": "Americas_1 2022-09-01 14-37-21",
+        "position": {
+            "lat": 1174.2,
+            "lng": -315.4
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas_1 2022-09-01 14-37-21.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-09-01%2014-37-21"
+    },
+    {
+        "id": "leak_cv_003",
+        "name": "Americas_1 2021-09-10 16-37-50",
+        "position": {
+            "lat": 1233.4,
+            "lng": -461.5
+        },
+        "tags": [
+            "Central Vice City",
+            "2021"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas_1 2021-09-10 16-37-50.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202021-09-10%2016-37-50"
+    },
+    {
+        "id": "leak_cv_004",
+        "name": "Americas_1 2022-08-29 12-44-36",
+        "position": {
+            "lat": 383.5,
+            "lng": -1132.8
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas_1 2022-08-29 12-44-36.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-08-29%2012-44-36"
+    },
+    {
+        "id": "leak_cv_005",
+        "name": "Americas 2022-05-13 08-48-26",
+        "position": {
+            "lat": -297.6,
+            "lng": -1553.9
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas 2022-05-13 08-48-26.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-05-13%2008-48-26"
+    },
+    {
+        "id": "leak_cv_006",
+        "name": "Americas 2022-08-11 10-01-02",
+        "position": {
+            "lat": -122.7,
+            "lng": -2582
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas 2022-08-11 10-01-02.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-08-11%2010-01-02"
+    },
+    {
+        "id": "leak_cv_007",
+        "name": "Americas_1 2022-09-12 14-42-12",
+        "position": {
+            "lat": 637.277,
+            "lng": -1367.094
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas_1 2022-09-12 14-42-12.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-09-12%2014-42-12"
+    },
+    {
+        "id": "leak_cv_008",
+        "name": "Americas 2022-04-06 15-55-26",
+        "position": {
+            "lat": 736.494,
+            "lng": -1350.875
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas 2022-04-06 15-55-26.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-04-06%2015-55-26"
+    },
+    {
+        "id": "leak_cv_009",
+        "name": "Americas_1 2022-08-02 18-34-23",
+        "position": {
+            "lat": 772.747,
+            "lng": -1354.692
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas_1 2022-08-02 18-34-23.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-08-02%2018-34-23"
+    },
+    {
+        "id": "leak_cv_010",
+        "name": "Americas_1 2022-08-03 12-19-05",
+        "position": {
+            "lat": 772.747,
+            "lng": -1389.99
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas_1 2022-08-03 12-19-05.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-08-03%2012-19-05"
+    },
+    {
+        "id": "leak_cv_011",
+        "name": "Americas 2022-02-10 20-25-15",
+        "position": {
+            "lat": 1219.222,
+            "lng": -1254.521
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas 2022-02-10 20-25-15.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-02-10%2020-25-15"
+    },
+    {
+        "id": "leak_cv_012",
+        "name": "Americas_1 2022-05-20 11-20-13",
+        "position": {
+            "lat": 1051.317,
+            "lng": -569.543
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas_1 2022-05-20 11-20-13.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-05-20%2011-20-13"
+    },
+    {
+        "id": "leak_cv_013",
+        "name": "Americas 2022-06-27 14-52-04",
+        "position": {
+            "lat": 1601.3,
+            "lng": -584
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas 2022-06-27 14-52-04.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-06-27%2014-52-04"
+    },
+    {
+        "id": "leak_cv_014",
+        "name": "Americas 2022-06-27 14-52-04",
+        "position": {
+            "lat": 1706.72,
+            "lng": -522.796
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas 2022-06-27 14-52-04.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-06-27%2014-52-04"
+    },
+    {
+        "id": "leak_cv_015",
+        "name": "Americas 2022-05-20 10-56-34",
+        "position": {
+            "lat": -116.9,
+            "lng": -2630.2
+        },
+        "tags": [
+            "Central Vice City",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas 2022-05-20 10-56-34.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-06-27%2014-52-04"
+    },
+    {
+        "name": "Americas 2022-04-12 18-36-00",
+        "position": {
+            "lat": -341.296,
+            "lng": -3855.504
+        },
+        "tags": [
+            "Leaks",
+            "Central Vice City",
+            "2022",
+            "L1/16"
+        ],
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-04-12%2018-36-00",
+        "id": "leak_cv_016"
+    },
+    {
+        "id": "leak_cv_017",
+        "name": "Americas 2023-12-02 / TIKTOK",
+        "position": {
+            "lat": 1479.189,
+            "lng": -682.593
+        },
+        "tags": [
+            "Central Vice City",
+            "2023",
+            "TikTok"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/central_vicecity/Americas_2023-12-02.png"
+        },
+        "externalLink": "https://localhost/VI 2.0/leaks.php#video=Americas_2023-12-02"
+    },
+    {
+        "id": "leak_sl_001",
+        "name": "Americas_1 2022-05-05 10-00-47",
+        "position": {
+            "lat": -7188.89,
+            "lng": -3443.01
+        },
+        "tags": [
+            "South Leonida",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/south_leonida/Americas_1 2022-05-05 10-00-47.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-05-05%2010-00-47"
+    },
+    {
+        "id": "leak_sl_002",
+        "name": "Americas_1 2022-03-03 10-43-31",
+        "position": {
+            "lat": -5543.724,
+            "lng": -2342.805
+        },
+        "tags": [
+            "South Leonida",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/south_leonida/Americas_1 2022-03-03 10-43-31.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-03-03%2010-43-31"
+    },
+    {
+        "id": "leak_sl_003",
+        "name": "Americas 2022-04-21 16-26-26",
+        "position": {
+            "lat": -4463.318,
+            "lng": -3467.342
+        },
+        "tags": [
+            "South Leonida",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/south_leonida/Americas 2022-04-21 16-26-26.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-04-21%2016-26-26"
+    },
+    {
+        "id": "leak_sl_004",
+        "name": "Americas_1 2022-08-02 20-20-00",
+        "position": {
+            "lat": -3562.023,
+            "lng": -2591.802
+        },
+        "tags": [
+            "South Leonida",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/south_leonida/Americas_1 2022-08-02 20-20-00.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-08-02%2020-20-00"
+    },
+    {
+        "id": "leak_sl_005",
+        "name": "Americas_1 2022-08-02 20-20-00",
+        "position": {
+            "lat": -3270.336,
+            "lng": -2570.098
+        },
+        "tags": [
+            "South Leonida",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/south_leonida/Americas_1 2022-08-02 20-20-00 (2).png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-08-02%2020-20-00"
+    },
+    {
+        "id": "leak_sl_006",
+        "name": "Americas 2022-09-07 13-04-13",
+        "position": {
+            "lat": -1749.173,
+            "lng": -152.641
+        },
+        "tags": [
+            "South Leonida",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/south_leonida/Americas 2022-09-07 13-04-13.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-09-07%2013-04-13"
+    },
+    {
+        "id": "leak_sl_007",
+        "name": "Americas_1 2022-05-24 17-19-42",
+        "position": {
+            "lat": -1644.2,
+            "lng": -1577.5
+        },
+        "tags": [
+            "South Leonida",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/south_leonida/Americas_1 2022-05-24 17-19-42.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-05-24%2017-19-42"
+    },
+    {
+        "id": "leak_sl_008",
+        "name": "Americas_1 2022-08-24 07-48-28",
+        "position": {
+            "lat": -1959.4,
+            "lng": -1952
+        },
+        "tags": [
+            "South Leonida",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/south_leonida/Americas_1 2022-08-24 07-48-28.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202022-08-24%2007-48-28"
+    },
+    {
+        "id": "leak_wl_001",
+        "name": "Americas 2021-07-12 12-19-51",
+        "position": {
+            "lat": 4515.788,
+            "lng": -6198.668
+        },
+        "tags": [
+            "West Leonida",
+            "2021"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/west_leonida/Americas 2021-07-12 12-19-51.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202021-07-12%2012-19-51"
+    },
+    {
+        "id": "leak_wl_002",
+        "name": "Americas 2021-12-17 10-31-22",
+        "position": {
+            "lat": 3062.363,
+            "lng": -6423.337
+        },
+        "tags": [
+            "West Leonida",
+            "2021"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/west_leonida/Americas 2021-12-17 10-31-22.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202021-12-17%2010-31-22"
+    },
+    {
+        "id": "leak_wl_003",
+        "name": "Americas 2022-09-06 17-13-34",
+        "position": {
+            "lat": 3474.7,
+            "lng": -5326.2
+        },
+        "tags": [
+            "West Leonida",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/west_leonida/Americas 2022-09-06 17-13-34.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas%202022-09-06%2017-13-34"
+    },
+    {
+        "id": "leak_wl_004",
+        "name": "Americas_1 2021-12-14 19-52-44",
+        "position": {
+            "lat": 3480.694,
+            "lng": -5364.388
+        },
+        "tags": [
+            "West Leonida",
+            "2021"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/west_leonida/Americas_1 2021-12-14 19-52-44.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_1%202021-12-14%2019-52-44"
+    },
+    {
+        "id": "leak_wl_005",
+        "name": "Americas 2022-05-25 13-29-33",
+        "position": {
+            "lat": 1851.25,
+            "lng": -4720.75
+        },
+        "tags": [
+            "West Leonida",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/west_leonida/Americas 2022-05-25 13-29-33.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_2022-05-25%2013-29-33"
+    },
+    {
+        "id": "leak_wl_006",
+        "name": "Americas_1 2022-07-20 17-59-49",
+        "position": {
+            "lat": 2747.75,
+            "lng": -6328.75
+        },
+        "tags": [
+            "West Leonida",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/west_leonida/Americas_1 2022-07-20 17-59-49.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_2022-05-25%2013-29-33"
+    },
+    {
+        "id": "leak_wl_007",
+        "name": "Americas 2022-05-03 11-20-11",
+        "position": {
+            "lat": 2747.25,
+            "lng": -6319
+        },
+        "tags": [
+            "West Leonida",
+            "2022"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/west_leonida/Americas 2022-05-03 11-20-11.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_2022-05-25%2013-29-33"
+    },
+    {
+        "id": "leak_wl_008",
+        "name": "Americas 2021-11-05 11-09-23",
+        "position": {
+            "lat": 2752.788,
+            "lng": -6331.752
+        },
+        "tags": [
+            "West Leonida",
+            "2021"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/leaks/west_leonida/Americas 2021-11-05 11-09-23.png"
+        },
+        "externalLink": "https://localhost/VI/leaks.html#video=Americas_2022-05-25%2013-29-33"
+    }
+]

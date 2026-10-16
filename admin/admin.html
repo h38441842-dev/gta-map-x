@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Admin Panel | State of Leonida</title>
+    <link rel="icon" type="image/png" href="/assets/logos/favicon/favicon-96x96.png">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+
+    <!-- Authentication Modal (Default passcode: leonida2026) -->
+    <div id="loginOverlay" class="admin-login-overlay">
+        <div class="admin-login-card">
+            <img src="/assets/logos/gtavi.png" alt="GTA VI" class="login-brand-logo">
+            <h1 class="login-title">Master Control Center</h1>
+            <p class="login-subtitle">Enter administrator master passcode to access the management portal</p>
+            <form id="loginForm">
+                <input type="password" id="adminPassInput" class="login-input" placeholder="Enter Master Passcode" required autocomplete="current-password">
+                <button type="submit" class="btn-admin-primary">
+                    <i class="fas fa-lock-open"></i> Authenticate
+                </button>
+            </form>
+            <div id="loginError" style="color:var(--admin-danger); margin-top:1rem; font-size:0.85rem; display:none;">
+                <i class="fas fa-exclamation-circle"></i> Invalid Passcode
+            </div>
+            <p style="margin-top:1.5rem; font-size:0.75rem; color:#6b7280;">Default passcode: <code>leonida2026</code></p>
+        </div>
+    </div>
+
+    <!-- Master Admin Layout -->
+    <div class="admin-app" id="adminApp" style="display:none;">
+        <!-- Left Sidebar Navigation -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="/assets/logos/Logo.png" alt="State of Leonida" class="sidebar-logo">
+                <div>
+                    <div class="sidebar-title">Leonida GIS</div>
+                    <div class="sidebar-subtitle">Master Admin</div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="overview">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Overview</span>
+                </button>
+                <button class="nav-item" data-tab="seo">
+                    <i class="fas fa-search-dollar"></i>
+                    <span>SEO & Keywords</span>
+                </button>
+                <button class="nav-item" data-tab="landmarks">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Landmarks & Leaks</span>
+                </button>
+                <button class="nav-item" data-tab="blog">
+                    <i class="fas fa-feather-alt"></i>
+                    <span>Vice Wire Blog</span>
+                    <span id="blogCountBadge" class="badge-tag badge-pink" style="margin-left:auto; font-size:0.7rem;">4</span>
+                </button>
+                <button class="nav-item" data-tab="submissions">
+                    <i class="fas fa-inbox"></i>
+                    <span>Community Submissions</span>
+                    <span id="subCountBadge" class="badge-tag badge-pink" style="margin-left:auto; font-size:0.7rem;">2</span>
+                </button>
+                <button class="nav-item" data-tab="maps">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Map Layers</span>
+                </button>
+                <button class="nav-item" data-tab="settings">
+                    <i class="fas fa-sliders-h"></i>
+                    <span>Settings & Countdown</span>
+                </button>
+                <button class="nav-item" data-tab="backup">
+                    <i class="fas fa-database"></i>
+                    <span>Data Backup</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="/" target="_blank" class="btn-sidebar-link" title="Open Public Website">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>View Site</span>
+                </a>
+                <button id="logoutBtn" class="btn-sidebar-link" style="background:none; border:none; cursor:pointer;" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Exit</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-main">
+            <!-- Header Bar -->
+            <header class="admin-header">
+                <div class="admin-header-title" id="pageTitle">System Overview</div>
+                <div class="admin-header-actions">
+                    <span id="systemStatusBadge" class="badge-tag badge-cyan">
+                        <i class="fas fa-circle" style="font-size:0.5rem;"></i> System Live
+                    </span>
+                    <a href="/" target="_blank" class="btn-outline-small">
+                        <i class="fas fa-map"></i> Open Interactive Map
+                    </a>
+                </div>
+            </header>
+
+            <div class="admin-container">
+                <!-- TAB 1: OVERVIEW -->
+                <div id="tab-overview" class="tab-content active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div>
+                                <div class="stat-card-title">Mapped Locations</div>
+                                <div class="stat-card-value" id="statLandmarks">500+</div>
+                            </div>
+                            <div class="stat-card-icon"><i class="fas fa-map-pin"></i></div>
+                        </div>
+                        <div class="stat-card">
+                            <div>
+                                <div class="stat-card-title">Active Map Projections</div>
+                                <div class="stat-card-value" id="statLayers">3 Layers</div>
+                            </div>
+                            <div class="stat-card-icon"><i class="fas fa-layer-group"></i></div>
+                        </div>
+                        <div class="stat-card">
+                            <div>
+                                <div class="stat-card-title">Launch Countdown</div>
+                                <div class="stat-card-value" id="statCountdown">Nov 19, 2026</div>
+                            </div>
+                            <div class="stat-card-icon"><i class="fas fa-clock"></i></div>
+                        </div>
+                        <div class="stat-card">
+                            <div>
+                                <div class="stat-card-title">Server Uptime</div>
+                                <div class="stat-card-value" id="statUptime">100%</div>
+                            </div>
+                            <div class="stat-card-icon"><i class="fas fa-server"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="admin-panel-card">
+                        <div class="panel-card-header">
+                            <h2 class="panel-card-title"><i class="fas fa-tachometer-alt"></i> Quick Control Center</h2>
+                        </div>
+                        <p style="color:var(--admin-text-muted); margin-bottom:1.5rem; line-height:1.6;">
+                            Welcome to the State of Leonida Master Admin Panel. From here you have authoritative control over the GIS cartography layers, landmarks database, search engine optimization (SEO), metadata, launch timer, and site settings.
+                        </p>
+                        <div style="display:flex; flex-wrap:wrap; gap:1rem;">
+                            <button class="btn-outline-small" onclick="adminApp.switchTab('seo')">
+                                <i class="fas fa-search"></i> Manage SEO & Keywords
+                            </button>
+                            <button class="btn-outline-small" onclick="adminApp.switchTab('landmarks')">
+                                <i class="fas fa-plus"></i> Add New Landmark
+                            </button>
+                            <button class="btn-outline-small" onclick="adminApp.switchTab('maps')">
+                                <i class="fas fa-layer-group"></i> Switch Active Map
+                            </button>
+                            <button class="btn-outline-small" onclick="adminApp.switchTab('backup')">
+                                <i class="fas fa-download"></i> Export Data Backup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: SEO & KEYWORDS -->
+                <div id="tab-seo" class="tab-content">
+                    <div class="admin-panel-card">
+                        <div class="panel-card-header">
+                            <h2 class="panel-card-title"><i class="fas fa-search-dollar"></i> Search Engine Optimization & Keywords</h2>
+                            <button class="btn-admin-primary" style="width:auto; padding:0.6rem 1.2rem;" id="saveSeoBtn">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </div>
+
+                        <form id="seoForm">
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label class="form-label">SEO Page Title</label>
+                                    <input type="text" id="seoTitle" class="form-input" required>
+                                    <span class="form-help">Displayed on browser tabs and Google Search result headlines (optimal: 50-60 characters)</span>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label class="form-label">Meta Description</label>
+                                    <textarea id="seoDescription" class="form-textarea" required></textarea>
+                                    <span class="form-help">Summary shown beneath Google search result title (optimal: 120-160 characters)</span>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label class="form-label">Target Keywords (Comma Separated)</label>
+                                    <textarea id="seoKeywords" class="form-textarea"></textarea>
+                                    <span class="form-help">Primary and long-tail keywords for search indexing</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Canonical URL</label>
+                                    <input type="url" id="seoCanonical" class="form-input" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">OpenGraph Social Card Image URL</label>
+                                    <input type="text" id="seoOgImage" class="form-input">
+                                    <span class="form-help">Image shown when shared on Discord, Twitter, Facebook, WhatsApp</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Twitter Handle</label>
+                                    <input type="text" id="seoTwitter" class="form-input">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Google Analytics 4 Measurement ID</label>
+                                    <input type="text" id="seoGoogleAnalytics" class="form-input" placeholder="e.g. G-XXXXXXXXXX">
+                                    <span class="form-help">Enter your GA4 tag to monitor daily visitors</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Google Search Console Verification Token</label>
+                                    <input type="text" id="seoSearchConsole" class="form-input" placeholder="e.g. abc123xyz_token_here">
+                                    <span class="form-help">For google-site-verification meta tag</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Robots Indexing</label>
+                                    <select id="seoRobots" class="form-select">
+                                        <option value="index, follow">Index, Follow (Recommended)</option>
+                                        <option value="noindex, follow">Noindex, Follow</option>
+                                        <option value="noindex, nofollow">Noindex, Nofollow</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Google Snippet Live Preview -->
+                    <div class="admin-panel-card">
+                        <h3 class="panel-card-title" style="margin-bottom:1rem;"><i class="fab fa-google"></i> Google Search Result Live Preview</h3>
+                        <div style="background:#202124; padding:1.25rem; border-radius:10px; max-width:680px; font-family:arial,sans-serif;">
+                            <div style="font-size:0.8rem; color:#bdc1c6; display:flex; align-items:center; gap:0.4rem; margin-bottom:0.25rem;">
+                                <span id="previewUrl">https://map.stateofleonida.net</span>
+                            </div>
+                            <div id="previewTitle" style="font-size:1.25rem; color:#8ab4f8; margin-bottom:0.25rem; cursor:pointer; line-height:1.3;">
+                                GTA 6 Interactive Map – State of Leonida | Vice City & Florida Locations
+                            </div>
+                            <div id="previewDesc" style="font-size:0.85rem; color:#bdc1c6; line-height:1.5;">
+                                Explore the definitive interactive GTA 6 map of Leonida & Vice City. 21K deep-zoom GIS cartography...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: LANDMARKS & LEAKS -->
+                <div id="tab-landmarks" class="tab-content">
+                    <div class="admin-panel-card">
+                        <div class="panel-card-header">
+                            <h2 class="panel-card-title"><i class="fas fa-map-marker-alt"></i> Landmarks & Locations Database</h2>
+                            <button class="btn-admin-primary" style="width:auto; padding:0.6rem 1.2rem;" id="openAddLandmarkBtn">
+                                <i class="fas fa-plus"></i> Add New Location
+                            </button>
+                        </div>
+
+                        <div class="table-controls">
+                            <div class="search-box">
+                                <i class="fas fa-search" style="color:var(--admin-text-muted);"></i>
+                                <input type="text" id="landmarkSearchInput" placeholder="Search by name, ID, or description...">
+                            </div>
+
+                            <div style="display:flex; gap:0.75rem;">
+                                <select id="landmarkCategoryFilter" class="form-select" style="padding:0.5rem 0.8rem;">
+                                    <option value="all">All Categories</option>
+                                    <option value="Hotels">Hotels & Resorts</option>
+                                    <option value="Landmarks">Landmarks</option>
+                                    <option value="Infrastructure">Infrastructure & Airport</option>
+                                    <option value="leaks">2022 Leaks</option>
+                                    <option value="trailer1">Trailer 1 Shots</option>
+                                    <option value="trailer2">Trailer 2 Shots</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="admin-table-wrapper">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>In-Game Coordinates (X, Y)</th>
+                                        <th>Real-Life Match</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="landmarksTableBody">
+                                    <!-- Populated via admin.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: VICE WIRE BLOG MANAGEMENT -->
+                <div id="tab-blog" class="tab-content">
+                    <div class="admin-panel-card">
+                        <div class="panel-card-header">
+                            <div>
+                                <h2 class="panel-card-title"><i class="fas fa-feather-alt"></i> Vice Wire Blog & News Articles</h2>
+                                <p style="color:var(--admin-text-muted); font-size:0.85rem; margin-top:0.25rem;">
+                                    Publish luxury GTA 6 intelligence reports, trailer analysis, and cartography deep-dives.
+                                </p>
+                            </div>
+                            <button class="btn-admin-primary" style="width:auto; padding:0.6rem 1.4rem;" id="btnNewBlog">
+                                <i class="fas fa-plus"></i> Write New Article
+                            </button>
+                        </div>
+
+                        <!-- Filter & Search Bar -->
+                        <div style="display:flex; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+                            <input type="text" id="blogSearchInput" class="form-input" placeholder="Search articles by title, author, or excerpt..." style="flex:1; min-width:240px;">
+                            <select id="blogCategoryFilter" class="form-select" style="width:200px;">
+                                <option value="all">All Categories</option>
+                                <option value="Cartography & Leaks">Cartography & Leaks</option>
+                                <option value="Districts & Lore">Districts & Lore</option>
+                                <option value="Vehicles & Heists">Vehicles & Heists</option>
+                                <option value="Trailer Analysis">Trailer Analysis</option>
+                            </select>
+                        </div>
+
+                        <!-- Articles Table -->
+                        <div class="table-container">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Cover</th>
+                                        <th>Title & Excerpt</th>
+                                        <th>Target Keyword</th>
+                                        <th>Category</th>
+                                        <th>Author</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="blogsTableBody">
+                                    <!-- Populated via admin.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: COMMUNITY SUBMISSIONS REVIEW -->
+                <div id="tab-submissions" class="tab-content">
+                    <div class="admin-panel-card">
+                        <div class="panel-card-header">
+                            <h2 class="panel-card-title"><i class="fas fa-inbox"></i> Community User Submissions (Pending Review)</h2>
+                            <button class="btn-outline-small" onclick="adminApp.loadSubmissions()">
+                                <i class="fas fa-sync-alt"></i> Refresh Submissions
+                            </button>
+                        </div>
+                        <p style="color:var(--admin-text-muted); margin-bottom:1.5rem;">
+                            Review user-reported landmarks, trailer findings, and coordinates. Click "Approve" to immediately publish the location to the official live map.
+                        </p>
+
+                        <div class="admin-table-wrapper">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Submitted By</th>
+                                        <th>Location Name</th>
+                                        <th>Category</th>
+                                        <th>Coordinates (X, Y)</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="submissionsTableBody">
+                                    <!-- Populated via admin.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 4: MAP LAYERS -->
+                <div id="tab-maps" class="tab-content">
+                    <div class="admin-panel-card">
+                        <div class="panel-card-header">
+                            <h2 class="panel-card-title"><i class="fas fa-layer-group"></i> GIS Cartography Layers Manager</h2>
+                        </div>
+                        <p style="color:var(--admin-text-muted); margin-bottom:1.5rem;">
+                            Configure active GIS tile layers, projection bounding boxes, opacity levels, and default versions.
+                        </p>
+
+                        <div class="form-grid" id="mapsContainer">
+                            <!-- Populated via admin.js -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 5: SETTINGS & BRANDING CONTROLS -->
+                <div id="tab-settings" class="tab-content">
+                    <div class="admin-panel-card">
+                        <div class="panel-card-header">
+                            <div>
+                                <h2 class="panel-card-title"><i class="fas fa-sliders-h"></i> Site Settings & Release Countdown</h2>
+                                <p style="color:var(--admin-text-muted); font-size:0.85rem; margin-top:0.25rem;">
+                                    Configure core launch clock, announcement alerts, and default state.
+                                </p>
+                            </div>
+                            <button class="btn-admin-primary" style="width:auto; padding:0.6rem 1.4rem;" id="saveSettingsBtn">
+                                <i class="fas fa-save"></i> Save All Settings
+                            </button>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">GTA VI Target Release Date (ISO / Date)</label>
+                                <input type="datetime-local" id="settingsCountdownInput" class="form-input">
+                                <span class="form-help">Official target: 2026-11-19T00:00</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Header Countdown Clock</label>
+                                <select id="settingsCountdownEnabled" class="form-select">
+                                    <option value="true">Enabled (Visible in Header)</option>
+                                    <option value="false">Disabled (Hidden)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="form-label">Discord Community Invite URL</label>
+                                <input type="url" id="settingsDiscordUrl" class="form-input" value="https://discord.gg/JeTPhnHuxm">
+                                <span class="form-help">Redirect link for Discord icons across headers and footers</span>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="form-label">Announcement Banner Text (Optional)</label>
+                                <input type="text" id="settingsAnnouncement" class="form-input" placeholder="e.g. Trailer 2 locations verified and updated!">
+                                <span class="form-help">Leave empty to hide the announcement banner</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Watermarks & Affiliated Branding -->
+                    <div class="admin-panel-card" style="margin-top:1.5rem;">
+                        <div class="panel-card-header">
+                            <div>
+                                <h2 class="panel-card-title"><i class="fas fa-copyright"></i> Watermarks, Preloader Logos & Redirect Links</h2>
+                                <p style="color:var(--admin-text-muted); font-size:0.85rem; margin-top:0.25rem;">
+                                    Modify or remove third-party watermarks (GTADB, GTA Wiki, Affiliated logos) and set your own custom links.
+                                </p>
+                            </div>
+                            <button class="btn-admin-primary" style="width:auto; padding:0.6rem 1.4rem;" onclick="adminApp.saveBrandingSettings()">
+                                <i class="fas fa-save"></i> Save Branding
+                            </button>
+                        </div>
+
+                        <div style="background:rgba(255,255,255,0.03); border:1px solid var(--admin-border); border-radius:10px; padding:1.25rem; margin-bottom:1.5rem;">
+                            <h3 style="font-size:1rem; color:#fff; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+                                <i class="fas fa-spinner" style="color:var(--admin-pink);"></i> Preloader "Affiliated With" Watermark
+                            </h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Display Affiliated Watermark</label>
+                                    <select id="watermarkPreloaderEnabled" class="form-select">
+                                        <option value="true">Visible (Show on loading screen)</option>
+                                        <option value="false">Hidden (Remove completely)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Affiliated Header Image Path</label>
+                                    <input type="text" id="watermarkPreloaderImage" class="form-input" value="assets/logos/affiliated with.png">
+                                    <span class="form-help">Default: assets/logos/affiliated with.png (or empty to hide)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Partner 1: GTADB / Custom Database -->
+                        <div style="background:rgba(255,255,255,0.03); border:1px solid var(--admin-border); border-radius:10px; padding:1.25rem; margin-bottom:1.5rem;">
+                            <h3 style="font-size:1rem; color:#fff; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+                                <i class="fas fa-database" style="color:var(--admin-cyan);"></i> Partner / Database Credit 1 (Currently GTADB)
+                            </h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Enable Credit 1</label>
+                                    <select id="partner1Enabled" class="form-select">
+                                        <option value="true">Enabled (Show in Preloader & Footer)</option>
+                                        <option value="false">Disabled (Hide)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Display Title</label>
+                                    <input type="text" id="partner1Name" class="form-input" value="MAP.GTADB.ORG">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Subtitle / Badge</label>
+                                    <input type="text" id="partner1Subtitle" class="form-input" value="USE DATABASE">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Redirect Destination URL</label>
+                                    <input type="url" id="partner1Url" class="form-input" value="https://map.gtadb.org">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label class="form-label">Logo / Icon Image Path</label>
+                                    <input type="text" id="partner1Logo" class="form-input" value="assets/pic/gtamaplib.png">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Partner 2: GTA Wiki / Custom Wiki -->
+                        <div style="background:rgba(255,255,255,0.03); border:1px solid var(--admin-border); border-radius:10px; padding:1.25rem; margin-bottom:1.5rem;">
+                            <h3 style="font-size:1rem; color:#fff; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+                                <i class="fas fa-book" style="color:#f59e0b;"></i> Partner / Wiki Credit 2 (Currently GTA.Wiki)
+                            </h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Enable Credit 2</label>
+                                    <select id="partner2Enabled" class="form-select">
+                                        <option value="true">Enabled (Show in Preloader & Footer)</option>
+                                        <option value="false">Disabled (Hide)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Display Title</label>
+                                    <input type="text" id="partner2Name" class="form-input" value="GTA.WIKI">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Subtitle / Badge</label>
+                                    <input type="text" id="partner2Subtitle" class="form-input" value="FIND ON MARKERS">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Redirect Destination URL</label>
+                                    <input type="url" id="partner2Url" class="form-input" value="https://gta.wiki">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label class="form-label">Logo / Icon Image Path</label>
+                                    <input type="text" id="partner2Logo" class="form-input" value="assets/logos/Wiki.png">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Header Center Banner (Mappingcool2 GIF) -->
+                        <div style="background:rgba(255,255,255,0.03); border:1px solid var(--admin-border); border-radius:10px; padding:1.25rem; margin-bottom:1.5rem;">
+                            <h3 style="font-size:1rem; color:#fff; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+                                <i class="fas fa-image" style="color:var(--admin-pink);"></i> Top Header Center Banner (Animated GIF / Custom Link)
+                            </h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Header Banner Visibility</label>
+                                    <select id="headerBannerEnabled" class="form-select">
+                                        <option value="true">Visible</option>
+                                        <option value="false">Hidden (Remove banner from header)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Banner Image / GIF URL</label>
+                                    <input type="text" id="headerBannerImage" class="form-input" value="assets/logos/mappingcool2.gif">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label class="form-label">Banner Click Destination URL</label>
+                                    <input type="url" id="headerBannerUrl" class="form-input" value="https://discord.gg/JeTPhnHuxm">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Legal Disclaimers & White-Labeling -->
+                        <div style="background:rgba(255,255,255,0.03); border:1px solid var(--admin-border); border-radius:10px; padding:1.25rem;">
+                            <h3 style="font-size:1rem; color:#fff; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+                                <i class="fas fa-shield-alt" style="color:#10b981;"></i> Custom Disclaimers & Copyright Notice
+                            </h3>
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label class="form-label">Preloader Disclaimer Text</label>
+                                    <textarea id="disclaimerPreloaderText" class="form-textarea" rows="2"></textarea>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label class="form-label">Footer Disclaimer & Copyright Text</label>
+                                    <textarea id="disclaimerFooterText" class="form-textarea" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 6: DATA BACKUP -->
+                <div id="tab-backup" class="tab-content">
+                    <div class="admin-panel-card">
+                        <div class="panel-card-header">
+                            <h2 class="panel-card-title"><i class="fas fa-database"></i> Database Backup & Data Export</h2>
+                        </div>
+                        <p style="color:var(--admin-text-muted); margin-bottom:1.5rem; line-height:1.6;">
+                            Create an instant snapshot backup of all project data including landmarks, trailer locations, leak coordinates, SEO metadata, and map projection configs.
+                        </p>
+
+                        <div style="display:flex; flex-wrap:wrap; gap:1rem;">
+                            <a href="/api/admin/export" download="leonida_backup.json" class="btn-admin-primary" style="display:inline-flex; align-items:center; gap:0.6rem; text-decoration:none; width:auto;">
+                                <i class="fas fa-file-download"></i> Download Full JSON Backup
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Landmark Edit/Create Modal -->
+    <div id="landmarkModal" class="admin-modal">
+        <div class="admin-modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalLandmarkTitle">Add New Landmark</h3>
+                <button class="modal-close-btn" id="closeLandmarkModalBtn">&times;</button>
+            </div>
+            <form id="landmarkForm">
+                <input type="hidden" id="editLandmarkId">
+                <div class="form-group">
+                    <label class="form-label">Landmark Name</label>
+                    <input type="text" id="modalLandmarkName" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <input type="text" id="modalLandmarkCategory" class="form-input" placeholder="e.g. Hotels, Landmarks, Infrastructure" required>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div class="form-group">
+                        <label class="form-label">In-Game Coordinate X (Lng)</label>
+                        <input type="number" step="any" id="modalLandmarkLng" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">In-Game Coordinate Y (Lat)</label>
+                        <input type="number" step="any" id="modalLandmarkLat" class="form-input" required>
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Real-Life Lat (Miami)</label>
+                        <input type="number" step="any" id="modalRealLat" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Real-Life Lng (Miami)</label>
+                        <input type="number" step="any" id="modalRealLng" class="form-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description / Details</label>
+                    <textarea id="modalLandmarkDesc" class="form-textarea"></textarea>
+                </div>
+                <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:1.5rem;">
+                    <button type="button" class="btn-outline-small" id="cancelLandmarkBtn">Cancel</button>
+                    <button type="submit" class="btn-admin-primary" style="width:auto; padding:0.6rem 1.4rem;">
+                        <i class="fas fa-save"></i> Save Location
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Article Editor Modal -->
+    <div id="blogModal" class="admin-modal-backdrop" style="display:none;">
+        <div class="admin-modal" style="max-width:850px; max-height:90vh; overflow-y:auto;">
+            <div class="panel-card-header" style="margin-bottom:1.5rem;">
+                <h3 class="panel-card-title" id="blogModalTitle"><i class="fas fa-feather-alt"></i> Write Vice Wire Article</h3>
+                <button type="button" class="btn-action-icon" id="closeBlogModalBtn" style="color:#fff;"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="blogForm">
+                <input type="hidden" id="modalBlogId">
+                
+                <div class="form-group">
+                    <label class="form-label">Article Headline / Title</label>
+                    <input type="text" id="modalBlogTitle" class="form-input" placeholder="e.g. Triangulating Vice Beach: How Photogrammetry Decoded Ocean Drive" required>
+                </div>
+
+                <div class="form-group" style="background:rgba(255,255,255,0.02); padding:0.85rem; border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                        <label class="form-label" style="margin:0;"><i class="fas fa-bullseye" style="color:var(--admin-cyan);"></i> Primary Target Keyword (Duplicate Prevention)</label>
+                        <span id="keywordCheckBadge" class="badge-tag badge-cyan" style="font-size:0.7rem;">Enter keyword</span>
+                    </div>
+                    <input type="text" id="modalBlogKeyword" class="form-input" placeholder="e.g. GTA 6 map size vs GTA 5 comparison" required>
+                    <div id="keywordConflictNotice" style="display:none; margin-top:0.5rem; padding:0.6rem 0.8rem; border-radius:6px; font-size:0.82rem; line-height:1.4;"></div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div class="form-group">
+                        <label class="form-label">URL Slug (e.g. triangulating-vice-beach)</label>
+                        <input type="text" id="modalBlogSlug" class="form-input" placeholder="auto-generated-if-empty">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select id="modalBlogCategory" class="form-select">
+                            <option value="Cartography & Leaks">Cartography & Leaks</option>
+                            <option value="Districts & Lore">Districts & Lore</option>
+                            <option value="Vehicles & Heists">Vehicles & Heists</option>
+                            <option value="Trailer Analysis">Trailer Analysis</option>
+                            <option value="Dev Telemetry">Dev Telemetry</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Author Name</label>
+                        <input type="text" id="modalBlogAuthor" class="form-input" value="Yanis GIS Lead" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Author Role</label>
+                        <input type="text" id="modalBlogAuthorRole" class="form-input" value="Senior Cartographer">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Estimated Read Time</label>
+                        <input type="text" id="modalBlogReadTime" class="form-input" value="5 min read">
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:2fr 1fr; gap:1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Cover Image URL</label>
+                        <input type="text" id="modalBlogCover" class="form-input" value="assets/photos/screenshots/vice_city/Vice_City_05.jpg" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Image Preset</label>
+                        <select id="modalBlogCoverPreset" class="form-select">
+                            <option value="">Custom URL</option>
+                            <option value="assets/photos/screenshots/vice_city/Vice_City_05.jpg">Vice City Art Deco</option>
+                            <option value="assets/photos/screenshots/leonida_keys/Leonida_Keys_05.jpg">Leonida Keys Sunset</option>
+                            <option value="assets/photos/screenshots/jason_duval/Jason_Duval_02.jpg">Jason Duval Robbery</option>
+                            <option value="assets/photos/trailer/trailer3/T3_201.png">Port Gellhorn Harbor</option>
+                            <option value="assets/backgrounds/hero_gta6.jpg">Vice Beach Neon Hero</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Map Hotspot Key</label>
+                        <select id="modalBlogHotspot" class="form-select">
+                            <option value="">None</option>
+                            <option value="ocean-drive">Ocean Drive (Vice Beach)</option>
+                            <option value="port-gellhorn">Port Gellhorn Strip</option>
+                            <option value="airport">Vice City Intl Airport</option>
+                            <option value="keys">Leonida Keys Highway</option>
+                            <option value="ambrosia">Ambrosia Sugar Mill</option>
+                            <option value="lake-leonida">Lake Leonida Swamps</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Cartesian Lat</label>
+                        <input type="number" step="any" id="modalBlogLat" class="form-input" placeholder="e.g. 1409.4">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Cartesian Lng</label>
+                        <input type="number" step="any" id="modalBlogLng" class="form-input" placeholder="e.g. 2803.2">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Article Excerpt / Teaser (1-2 sentences)</label>
+                    <textarea id="modalBlogExcerpt" class="form-textarea" rows="2" placeholder="Brief summary displayed on cards..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                        <label class="form-label" style="margin:0;">Full Article Content (HTML / Rich Text)</label>
+                        <div style="display:flex; gap:0.4rem;">
+                            <button type="button" class="btn-action-icon" id="btnInsertP" title="Insert Paragraph" style="font-size:0.75rem;">&lt;p&gt;</button>
+                            <button type="button" class="btn-action-icon" id="btnInsertH3" title="Insert Subheading" style="font-size:0.75rem;">&lt;h3&gt;</button>
+                            <button type="button" class="btn-action-icon" id="btnInsertQuote" title="Insert Quote Box" style="font-size:0.75rem;">&lt;quote&gt;</button>
+                        </div>
+                    </div>
+                    <textarea id="modalBlogContent" class="form-textarea" rows="10" placeholder="<p>Write your detailed investigation here...</p>" required></textarea>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; align-items:center;">
+                    <div class="form-group">
+                        <label class="form-label">Publication Status</label>
+                        <select id="modalBlogStatus" class="form-select">
+                            <option value="published">Published (Live on Public Site)</option>
+                            <option value="draft">Draft (Saved in Admin only)</option>
+                        </select>
+                    </div>
+                    <div style="padding-top:1.2rem;">
+                        <label style="display:flex; align-items:center; gap:0.5rem; color:#fff; cursor:pointer;">
+                            <input type="checkbox" id="modalBlogFeatured">
+                            <span>Feature as Main Headline Story</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="duplicateOverrideContainer" style="display:none; margin-top:1.2rem; padding:0.75rem 1rem; background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.35); border-radius:8px;">
+                    <label style="display:flex; align-items:center; gap:0.6rem; color:#fca5a5; font-size:0.85rem; cursor:pointer; font-weight:600;">
+                        <input type="checkbox" id="modalBlogAllowDuplicate">
+                        <span>I understand this keyword is already covered — Allow duplicate publish anyway</span>
+                    </label>
+                </div>
+
+                <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:1.5rem;">
+                    <button type="button" class="btn-outline-small" id="cancelBlogBtn">Cancel</button>
+                    <button type="submit" class="btn-admin-primary" id="btnSaveBlogSubmit" style="width:auto; padding:0.6rem 1.6rem;">
+                        <i class="fas fa-paper-plane"></i> Save & Publish Story
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="adminToast" class="admin-toast">
+        <i class="fas fa-check-circle" style="color:var(--admin-success);"></i>
+        <span id="toastMsg">Action completed successfully</span>
+    </div>
+
+    <script src="/admin/admin.js"></script>
+</body>
+</html>

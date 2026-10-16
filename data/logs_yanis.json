@@ -1,0 +1,1832 @@
+{
+  "layerId": "YANIS",
+  "layerName": "YANIS",
+  "versions": {
+    "v8.0": {
+      "version": "v8.0",
+      "versionName": "V 8.0",
+      "date": "2025-10-14",
+      "changes": [
+    {
+      "mapchangeId": "[#376],[#316]",
+      "type": "changed",
+      "title": "Watson Bay and Leonida Penitentiary Movement",
+      "description": "Moved Watson Bay and the Leonida Penitentiary according to the latest triangulations"
+    },
+    {
+      "mapchangeId": "[#391]",
+      "type": "changed",
+      "title": "Lake Leonida and Ambrosia Redesign",
+      "description": "Moved Lake Leonida and redesigned Ambrosia according to the latest triangulations"
+    },
+    {
+      "mapchangeId": "[#378],[#400]",
+      "type": "improved",
+      "title": "Hills Between Port Gellhorn and Ambrosia",
+      "description": "Adjusted the hills between Port Gellhorn and Ambrosia to properly show elevation and added \"Mount Mountain\""
+    },
+    {
+      "mapchangeId": "[#380],[#317]",
+      "type": "improved",
+      "title": "Port Gellhorn Area Adjustment",
+      "description": "Adjusted the Port Gellhorn area according to the latest triangulations, fixing building scale around the Waffles Diner area, and added the Delights and Chase 1 areas"
+    },
+    {
+      "type": "added",
+      "title": "Brickell Key Roads",
+      "description": "Added speculative roads on Brickell Key"
+    },
+    {
+      "mapchangeId": "[#364]",
+      "type": "added",
+      "title": "Dodge Island Terminals and Roads",
+      "description": "Added new terminals on Dodge Island and speculative roads"
+    },
+    {
+      "mapchangeId": "[#404]",
+      "type": "changed",
+      "title": "Star Island Movement",
+      "description": "Moved Star Island according to the latest triangulations"
+    },
+    {
+      "mapchangeId": "[#370]",
+      "type": "improved",
+      "title": "Virginia Key Shape",
+      "description": "Adjusted Virginia key's shape to better match the latest projections"
+    },
+    {
+      "mapchangeId": "[#377]",
+      "type": "added",
+      "title": "Bayfront Park Paths and Sculpture",
+      "description": "Added speculative Paths in Bayfront Park and sculpture"
+    },
+    {
+      "mapchangeId": "[#373],[#167]",
+      "type": "changed",
+      "title": "VCIA North Interchange Redesign",
+      "description": "Redesigned the interchange north of VCIA and generally adjusted the area"
+    },
+    {
+      "mapchangeId": "[#409]",
+      "type": "improved",
+      "title": "Vice River Extension",
+      "description": "Extended the Vice River to connect with the canal coming from Ambrosia and added another one connecting to the VCIA pond"
+    },
+    {
+      "mapchangeId": "[#373],[#402]",
+      "type": "added",
+      "title": "Central Map Highways and Roads",
+      "description": "Added speculative Highways and roads in the center of the map, and extended them north"
+    },
+    {
+      "mapchangeId": "[#407]",
+      "type": "changed",
+      "title": "Peanut Island Movement",
+      "description": "Moved Peanut Island south to better match its IRL position"
+    },
+    {
+      "mapchangeId": "[#385]",
+      "type": "added",
+      "title": "Vake Island",
+      "description": "Added Vake Island the southernmost point on the map so far"
+    },
+    {
+      "mapchangeId": "[#393]",
+      "type": "improved",
+      "title": "Western Coastline Adjustment",
+      "description": "Adjusted the western coastline to better match IRL Florida's shape"
+    },
+    {
+      "mapchangeId": "[#393]",
+      "type": "added",
+      "title": "Small Keys South of Watson Bay",
+      "description": "Added Small Keys south of Watson Bay, mimicking IRL Cedar Key"
+    },
+    {
+      "mapchangeId": "[#397]",
+      "type": "improved",
+      "title": "Watson Bay Coastline and Marina",
+      "description": "Improved Watson Bay's coastline and layout and added the CK marina"
+    },
+    {
+      "mapchangeId": "[#365]",
+      "type": "improved",
+      "title": "Crosstown Area Adjustment",
+      "description": "Adjusted the Crosstown area to include [T1/41] Intersection (Bikers) and [T2/52] Empty Lot near Metro Station"
+    },
+    {
+      "mapchangeId": "[#242]",
+      "type": "added",
+      "title": "RON Gas Station",
+      "description": "Added the RON gas station and adjusted route 10 in that area"
+    },
+    {
+      "mapchangeId": "[#377]",
+      "type": "added",
+      "title": "Downtown Buildings",
+      "description": "Added buildings downtown seen in [T2/74] Truck (2)"
+    },
+    {
+      "type": "changed",
+      "title": "Leonida Penitentiary Redesign",
+      "description": "Redesigned the Leonida Penitentiary, adding buildings and speculative roads credits to @0 and niño zo"
+    },
+    {
+      "type": "improved",
+      "title": "Grassrivers Roads",
+      "description": "Adjusted the roads around the grassrivers to go through the barn and pen seen in [L1/19] Farm"
+    },
+    {
+      "mapchangeId": "[#409],[#388]",
+      "type": "changed",
+      "title": "VCIA Pond and South Florida Concrete Block",
+      "description": "Moved and rotated the VCIA pond and added the South Florida Concrete Block"
+    },
+    {
+      "mapchangeId": "[#413]",
+      "type": "added",
+      "title": "Vice Beach Lifeguard Towers",
+      "description": "Added Vice Beach lifeguard towers"
+    },
+    {
+      "mapchangeId": "[#416]",
+      "type": "fixed",
+      "title": "82705 Overseas Hwy Building Outline",
+      "description": "Fixed \"82705 Overseas Hwy\"'a building outline"
+    },
+    {
+      "mapchangeId": "[#366]",
+      "type": "added",
+      "title": "Museum Tower",
+      "description": "Added Museum Tower (Bank of America Financial Center)"
+    },
+    {
+      "mapchangeId": "[#383]",
+      "type": "added",
+      "title": "1401 Biscayne Blvd",
+      "description": "Added 1401 Biscayne Blvd"
+    },
+    {
+      "mapchangeId": "[#398]",
+      "type": "added",
+      "title": "Route 1 Highway Ramps",
+      "description": "Added the highway ramps on Route 1 north of the bridge to the Keys"
+    },
+    {
+      "mapchangeId": "[#251]",
+      "type": "changed",
+      "title": "Alpha Gas Station & Taco Restaurant",
+      "description": "Reworked the Alpha gas station & Taco Restaurant north of the Starlet Motel"
+    },
+    {
+      "mapchangeId": "[#381]",
+      "type": "added",
+      "title": "Port VC Tunnel",
+      "description": "Added the Port VC tunnel"
+    },
+    {
+      "mapchangeId": "[#389]",
+      "type": "improved",
+      "title": "Map Scale Info",
+      "description": "Updated the map scale info to be cleaner"
+    },
+    {
+      "mapchangeId": "[#390]",
+      "type": "added",
+      "title": "2383 Flamingo Dr.",
+      "description": "Added 2383 Flamingo Dr., seen in Vice City 03 Screenshot"
+    },
+    {
+      "mapchangeId": "[#371]",
+      "type": "improved",
+      "title": "Airport Hotel Tracks Connection",
+      "description": "Connected the tracks from the airport hotels to the airport metro station"
+    },
+    {
+      "mapchangeId": "[#319]",
+      "type": "fixed",
+      "title": "La Perle Area Buildings",
+      "description": "Fixed buildings in the La Perle area seen in the Vice City 09 screenshot"
+    },
+    {
+      "mapchangeId": "[#360]",
+      "type": "changed",
+      "title": "Fleeca Metro Station and Metromule",
+      "description": "Changed the Fleeca Metro station and Metromule positions and layout"
+    },
+    {
+      "mapchangeId": "[#362],[#374]",
+      "type": "added",
+      "title": "Alternative Color Scheme",
+      "description": "Added an alternative color scheme with urban areas and beaches"
+    },
+    {
+      "type": "added",
+      "title": "Content Differentiation",
+      "description": "Added differentiation between confirmed and speculated content"
+    },
+    {
+      "type": "added",
+      "title": "Labels",
+      "description": "Added labels for various things"
+    },
+    {
+      "mapchangeId": "[#379]",
+      "type": "added",
+      "title": "Camera Locations",
+      "description": "Added camera location for all located scenes"
+    },
+    {
+      "mapchangeId": "[#161]",
+      "type": "added",
+      "title": "County Borders",
+      "description": "Added County Borders"
+    },
+    {
+      "mapchangeId": "[#399]",
+      "type": "added",
+      "title": "Route Markers",
+      "description": "Added route markers for identified roads/highways"
+    },
+    {
+      "mapchangeId": "[#419]",
+      "type": "added",
+      "title": "Map Grid Labels",
+      "description": "Added labeled map columns and rows"
+    }
+      ]
+    },
+    "v9.0": {
+      "version": "v9.0",
+      "versionName": "V 9.0",
+      "date": "2025-11-15",
+      "changes": [
+        {
+      "mapchangeId": "[#440]",
+      "type": "changed",
+      "title": "Redesigned Bump",
+      "description": "Redesigned the bump seen from l1/15 to mimic irl Cape Canaveral's shape and placed it better"
+    },
+    {
+      "mapchangeId": "[#442],[#424]",
+      "type": "added",
+      "title": "Moved Mountains",
+      "description": "Moved Mount Mountain and added speculative Mount Kalaga based on Table Rock Mountain"
+    },
+    {
+      "mapchangeId": "[#428]",
+      "type": "improved",
+      "title": "Label Tweaks",
+      "description": "Tweaked the labels around the map to be more understandable and coherent"
+    },
+    {
+      "mapchangeId": "[#382]",
+      "type": "removed",
+      "title": "Removed Locations",
+      "description": "Removed the Homestead Speedway and 12000 Biscayne Blvd"
+    },
+    {
+      "type": "changed",
+      "title": "Vice City Redesign",
+      "description": "Redisigned all of the Vice City area adding Gables Estates redesigning the Venetian islands/Downtown, Tequesta/and Vice Beach following RickRick's new V3 update (see above)"
+    },
+    {
+      "type": "changed",
+      "title": "Bay Harbor Redesign",
+      "description": "Redesigned the Bay Harbor area following Saukko's work in that area"
+    },
+    {
+      "type": "changed",
+      "title": "Road Extensions",
+      "description": "Extended route 2 and the chase 1 road to lead into Bocamar Bridge"
+    },
+    {
+      "mapchangeId": "[#455],[#456]",
+      "type": "improved",
+      "title": "Grassrivers Roads",
+      "description": "Redesigned the roads around the Grassrivers to be more logical"
+    },
+    {
+      "mapchangeId": "[#435]",
+      "type": "changed",
+      "title": "Metromule Line",
+      "description": "Extended the Metromule line from Loan Depot Park north , added an underpass there for route 10 to access Ekanfinaka and Belville and moved the High Rollerz shot"
+    },
+    {
+      "mapchangeId": "[#410]",
+      "type": "improved",
+      "title": "Picnic Islands",
+      "description": "Slightly moved the Picnic Islands in a better spot"
+    },
+    {
+      "mapchangeId": "[#427],[#448]",
+      "type": "added",
+      "title": "Speculative Screenshot Locations",
+      "description": "Added s2/66 and s2/55 speculative screenshot locations"
+    },
+    {
+      "mapchangeId": "[#475]",
+      "type": "added",
+      "title": "Interior Maps",
+      "description": "Added interior maps in the bottom left corner to show interior shots with more precision"
+    },
+    {
+      "mapchangeId": "[#423],[#419]",
+      "type": "improved",
+      "title": "Trailer Shot Key",
+      "description": "Redesigned the trailer shot/screenshot key to be bigger clearer and more organized"
+    },
+    {
+      "mapchangeId": "[#477]",
+      "type": "changed",
+      "title": "Naval Air Station Road",
+      "description": "Connected the small road from t1 keys to connect to the Naval Air Station"
+    },
+    {
+      "mapchangeId": "[#483]",
+      "type": "removed",
+      "title": "Lake Leonida Contour Lines",
+      "description": "Removed some contour lines from Lake Leonida"
+    },
+    {
+      "mapchangeId": "[#472]",
+      "type": "added",
+      "title": "Vice City Urban Area",
+      "description": "Extended Vice City urban area"
+    },
+    {
+      "mapchangeId": "[#471]",
+      "type": "added",
+      "title": "Speculative Train Tracks",
+      "description": "Speculatively extended train tracks along the Vice Vity canal"
+    },
+    {
+      "mapchangeId": "[#469]",
+      "type": "changed",
+      "title": "Route Shield Change",
+      "description": "Changed the route shield from route 1 to route 3 in Waning Sands"
+    },
+    {
+      "mapchangeId": "[#467]",
+      "type": "added",
+      "title": "S2/32 Camera",
+      "description": "Added S2/32 Camera"
+    },
+    {
+      "mapchangeId": "[#465]",
+      "type": "fixed",
+      "title": "L1/40 Fix",
+      "description": "Fixed L1/40"
+    },
+    {
+      "mapchangeId": "[#457]",
+      "type": "added",
+      "title": "Shark Valley Observation Tower",
+      "description": "Added Shark Valley Observation Tower"
+    },
+    {
+      "mapchangeId": "[#450]",
+      "type": "improved",
+      "title": "L1/5 Camera Update",
+      "description": "Updated L1/5 Camera"
+    },
+    {
+      "mapchangeId": "[#449]",
+      "type": "changed",
+      "title": "Water Tower Relocation",
+      "description": "Moved the water tower near LO prison"
+    },
+    {
+      "mapchangeId": "[#433]",
+      "type": "added",
+      "title": "New Address",
+      "description": "Added 112 NE 41st St"
+    },
+    {
+      "type": "improved",
+      "title": "Credits Update",
+      "description": "Updated contributing users to the credits"
+    }
+      ]
+    },
+    "v10.0": {
+	
+      "version": "v10.0",
+      "versionName": "V 10.0",
+      "date": "2026-01-03",
+  "changes": [
+    {
+      "type": "removed",
+      "title": "Panhandle",
+      "description": "Removed the panhandle"
+    },
+    {
+      "mapchangeId": "[#507]",
+      "type": "changed",
+      "title": "Starlet Highway",
+      "description": "Made the speculative part of Starlet Highway less straight"
+    },
+    {
+      "mapchangeId": "[#505]",
+      "type": "changed",
+      "title": "Route & Rail Connections",
+      "description": "Connected Route 10 and Route 35 as well as the train tracks from Vice City to Ambrosia"
+    },
+    {
+      "mapchangeId": "[#501]",
+      "type": "changed",
+      "title": "NW 12th Avenue",
+      "description": "Extended the in game version of NW 12th avenue more west under the metro station"
+    },
+    {
+      "mapchangeId": "[#497]",
+      "type": "changed",
+      "title": "High Rollerz",
+      "description": "Moved High Rollerz and updated the surroundings (speculative)"
+    },
+    {
+      "mapchangeId": "[#519]",
+      "type": "added",
+      "title": "Mound Field",
+      "description": "Added mound field to the Allied Crystal Sugar Refinery"
+    },
+    {
+      "mapchangeId": "[#518]",
+      "type": "improved",
+      "title": "La Perle Area",
+      "description": "Updated the La Perle Area"
+    },
+    {
+      "mapchangeId": "[#517]",
+      "type": "added",
+      "title": "Delights Houses",
+      "description": "Added houses near Delights from Port Gellhorn 04"
+    },
+    {
+      "mapchangeId": "[#512]",
+      "type": "added",
+      "title": "Area Labels",
+      "description": "Added (Gables Estates) and (Flagami) labels"
+    },
+    {
+      "mapchangeId": "[#510]",
+      "type": "added",
+      "title": "Courtyard by Marriott",
+      "description": "Added Courtyard by Marriott (200 SE 2nd Ave) from T2/74"
+    },
+    {
+      "mapchangeId": "[#509]",
+      "type": "added",
+      "title": "Watson Bay Houses",
+      "description": "Added Watson Bay houses seen in Grassrivers 02"
+    },
+    {
+      "mapchangeId": "[#502]",
+      "type": "added",
+      "title": "Sugar Fields",
+      "description": "Added more sugar fields SW of Ambrosia"
+    },
+    {
+      "mapchangeId": "[#500]",
+      "type": "changed",
+      "title": "Watson Bay Shape",
+      "description": "Made Watson Bay a bay (Extended the Grassrivers west)"
+    },
+    {
+      "mapchangeId": "[#499]",
+      "type": "changed",
+      "title": "Hills Extension",
+      "description": "Extended the hills further south"
+    },
+    {
+      "mapchangeId": "[#498]",
+      "type": "added",
+      "title": "New Mountain",
+      "description": "Added new mountain north/northeast of Mount Waffles"
+    },
+    {
+      "mapchangeId": "[#494]",
+      "type": "added",
+      "title": "Boat Ramp",
+      "description": "Added Public Access Boat Ramp on Lake Leonida's west coast"
+    },
+    {
+      "mapchangeId": "[#493]",
+      "type": "changed",
+      "title": "VC Port Cranes",
+      "description": "Adjusted the positions of the southern VC port cranes"
+    },
+    {
+      "mapchangeId": "[#490]",
+      "type": "improved",
+      "title": "Port Gellhorn Bay",
+      "description": "Updated Port Gellhorn Bay and bridges"
+    },
+    {
+      "mapchangeId": "[#487]",
+      "type": "added",
+      "title": "Route 50",
+      "description": "Added route 50"
+    },
+    {
+      "mapchangeId": "[#445]",
+      "type": "changed",
+      "title": "Waning Sands",
+      "description": "Redesigned Waning Sands"
+    },
+    {
+      "mapchangeId": "[#430]",
+      "type": "improved",
+      "title": "Rail Network",
+      "description": "Improved the rail network"
+    },
+    {
+      "mapchangeId": "[#503]",
+      "type": "added",
+      "title": "Overlay Markers",
+      "description": "Added red overlay markers on unseen landmass"
+    },
+    {
+      "mapchangeId": "[#404]",
+      "type": "fixed",
+      "title": "Key Lento Roads",
+      "description": "Fixed the roads on Key Lento"
+    },
+    {
+      "mapchangeId": "[#485]",
+      "type": "fixed",
+      "title": "Port Gellhorn Roads",
+      "description": "Fixed the roads on the outskirts of Port Gellhorn"
+    },
+    {
+      "mapchangeId": "[#481]",
+      "type": "added",
+      "title": "Prison Parking Lot",
+      "description": "Added parking lot at Prison Entrance"
+    },
+    {
+      "mapchangeId": "[#415]",
+      "type": "added",
+      "title": "Map Icons",
+      "description": "Added map icons"
+    },
+    {
+      "mapchangeId": "[#468]",
+      "type": "added",
+      "title": "Watson Bay Hill",
+      "description": "Added hill north of Watson Bay"
+    },
+    {
+      "mapchangeId": "[#480]",
+      "type": "changed",
+      "title": "Key West & NAS",
+      "description": "Increased speculative size of key west rotated the NAS for the keys to have a more agressive bend north and added SFUWO School building"
+    },
+    {
+      "mapchangeId": "[#479]",
+      "type": "added",
+      "title": "Rockridge Buildings",
+      "description": "Added missing buildings in Rockridge"
+    },
+    {
+      "mapchangeId": "[#473]",
+      "type": "fixed",
+      "title": "Metro Interchange",
+      "description": "Fixed the metro interchange"
+    },
+    {
+      "mapchangeId": "[#426]",
+      "type": "improved",
+      "title": "PGH Streets",
+      "description": "Updated the PGH street layout"
+    },
+    {
+      "mapchangeId": "[#234]",
+      "type": "added",
+      "title": "Miami Beach Police Station",
+      "description": "Added Miami Beach Police Station"
+    },
+    {
+      "mapchangeId": "[#521]",
+      "type": "added",
+      "title": "Caloosahatchee Canal/River",
+      "description": "Added Speculative Caloosahatchee Canal/River"
+    },
+    {
+      "type": "improved",
+      "title": "Credits",
+      "description": "Updated Contributing users to the credits"
+    }
+      ]
+    },
+    "v11.0": {
+      "version": "v11.0",
+      "versionName": "V 11.0",
+      "date": "2026-04-02",
+      "changes": [
+    {
+      "mapchangeId": "[#574]",
+      "type": "fixed",
+      "title": "Brains's Marina Workshop",
+      "description": "Fixed Brains's Marina Workshop"
+    },
+    {
+      "mapchangeId": "[#569]",
+      "type": "added",
+      "title": "Vice Beach Parking Lot",
+      "description": "Added Vice Beach parking lot"
+    },
+    {
+      "mapchangeId": "[#529]",
+      "type": "changed",
+      "title": "VC Urban Area",
+      "description": "Extended VC urban area down to Hamlet"
+    },
+    {
+      "mapchangeId": "[#578]",
+      "type": "added",
+      "title": "PGH Juice Fruit Shop",
+      "description": "Added PGH Juice Fruit Shop"
+    },
+    {
+      "mapchangeId": "[#577]",
+      "type": "added",
+      "title": "Arthur Godfrey Rd Buildings",
+      "description": "Added 765, 757 Arthur Godfrey Rd and an unknow store by Senator law center on Bayshore"
+    },
+    {
+      "mapchangeId": "[#547]",
+      "type": "added",
+      "title": "Club Space Location",
+      "description": "Added speculative location of Club Space"
+    },
+    {
+      "mapchangeId": "[#546]",
+      "type": "added",
+      "title": "E11EVEN Roads",
+      "description": "Added roads between E11EVEN and Club Space"
+    },
+    {
+      "mapchangeId": "[#564]",
+      "type": "changed",
+      "title": "LO Prison Hill",
+      "description": "Changed hill incline north of LO Prison"
+    },
+    {
+      "mapchangeId": "[#573]",
+      "type": "added",
+      "title": "Key Lento Buildings",
+      "description": "Added buildings in Key Lento"
+    },
+    {
+      "mapchangeId": "[#582]",
+      "type": "changed",
+      "title": "Delights Position",
+      "description": "Moved Delights south"
+    },
+    {
+      "mapchangeId": "[#562]",
+      "type": "added",
+      "title": "Iron City Gym",
+      "description": "Added the rest of Iron City Gym to the map"
+    },
+    {
+      "mapchangeId": "[#581]",
+      "type": "changed",
+      "title": "Lincoln Rd",
+      "description": "Made Lincoln Rd a pedestrian street"
+    },
+    {
+      "mapchangeId": "[#572]",
+      "type": "improved",
+      "title": "Little Cuba",
+      "description": "Updated little Cuba"
+    },
+    {
+      "mapchangeId": "[#567]",
+      "type": "changed",
+      "title": "Watson Bay Hill",
+      "description": "Shrunk Watson Bay hill"
+    },
+    {
+      "mapchangeId": "[#566]",
+      "type": "added",
+      "title": "La Perle Road",
+      "description": "Added road in La Perle"
+    },
+    {
+      "mapchangeId": "[#571]",
+      "type": "removed",
+      "title": "VCIA Runway",
+      "description": "Removed speculative southern runway of VCIA and added buildings"
+    },
+    {
+      "mapchangeId": "[#583]",
+      "type": "added",
+      "title": "Delights Roads",
+      "description": "Added roads near Delights"
+    },
+    {
+      "mapchangeId": "[#580]",
+      "type": "added",
+      "title": "Vice Bay Sandbar",
+      "description": "Added speculative sandbar near the northern end of the Vice Bay"
+    },
+    {
+      "mapchangeId": "[#532]",
+      "type": "added",
+      "title": "Interior Titles",
+      "description": "Added titles for interiors"
+    },
+    {
+      "mapchangeId": "[#459]",
+      "type": "added",
+      "title": "Hamlet Hills",
+      "description": "Added hills north of Hamlet"
+    },
+    {
+      "mapchangeId": "[#482]",
+      "type": "added",
+      "title": "St. Lucie Canal",
+      "description": "Added speculative St.Lucie Canal"
+    },
+    {
+      "mapchangeId": "[#511]",
+      "type": "changed",
+      "title": "Route 35",
+      "description": "Changed Route 35 to go through Ambrosia"
+    },
+    {
+      "mapchangeId": "[#530]",
+      "type": "added",
+      "title": "Hamlet Houses",
+      "description": "Added houses north of Hamlet"
+    },
+    {
+      "mapchangeId": "[#522]",
+      "type": "added",
+      "title": "Ambrosia Airfield",
+      "description": "Added an Airfield in Ambrosia"
+    },
+    {
+      "mapchangeId": "[#527]",
+      "type": "added",
+      "title": "Missing Road",
+      "description": "Added missing small road using AIWE map"
+    },
+    {
+      "mapchangeId": "[#531]",
+      "type": "added",
+      "title": "Turkey Point Building",
+      "description": "Added new building in Turkey Point"
+    },
+    {
+      "mapchangeId": "[#533]",
+      "type": "fixed",
+      "title": "Watson Bay Buildings",
+      "description": "Fixed buildings in Watson Bay"
+    },
+    {
+      "mapchangeId": "[#539]",
+      "type": "added",
+      "title": "Hoodwinks Camera",
+      "description": "Added Hoodwinks Lucia Caminos 03 camera location to the map"
+    },
+    {
+      "mapchangeId": "[#540]",
+      "type": "added",
+      "title": "Rooftop Camera",
+      "description": "Added rooftop Jason Duval 05 camera location to the map"
+    },
+    {
+      "mapchangeId": "[#541]",
+      "type": "fixed",
+      "title": "Canals Fix",
+      "description": "Fixed canals between Leonida Penitentiary and Gables Estates"
+    },
+    {
+      "mapchangeId": "[#544],[#548]",
+      "type": "added",
+      "title": "Leonida Buildings",
+      "description": "Added buildings near Leonida Penitentiary"
+    },
+    {
+      "mapchangeId": "[#537]",
+      "type": "changed",
+      "title": "West Perrine Label",
+      "description": "Moved \"West Perrine\" label south"
+    },
+    {
+      "mapchangeId": "[#545]",
+      "type": "added",
+      "title": "Palestra Tower",
+      "description": "Added Palestra Tower/Sears Tower on the map"
+    },
+    {
+      "mapchangeId": "[#549]",
+      "type": "added",
+      "title": "Water Towers",
+      "description": "Added Water towers in the center of the map"
+    },
+    {
+      "mapchangeId": "[#551]",
+      "type": "changed",
+      "title": "Gabes Estates",
+      "description": "Moved Gabes Estates further north"
+    },
+    {
+      "mapchangeId": "[#552]",
+      "type": "added",
+      "title": "I-97 Exit",
+      "description": "Added southbound exit towards VCIA from I-97"
+    },
+    {
+      "mapchangeId": "[#543]",
+      "type": "added",
+      "title": "Unknown VCIA Buildings",
+      "description": "Added unknown buildings SE of VCIA"
+    },
+    {
+      "mapchangeId": "[#553]",
+      "type": "added",
+      "title": "New World Tower",
+      "description": "Added New World Tower, 250 Biscayne Blvd"
+    },
+    {
+      "mapchangeId": "[#554]",
+      "type": "added",
+      "title": "La Perle Auto Shop",
+      "description": "Added buildings new La Perle auto shop"
+    },
+    {
+      "mapchangeId": "[#555]",
+      "type": "added",
+      "title": "PGH Smokestack",
+      "description": "Added PGH Smokestack"
+    },
+    {
+      "mapchangeId": "[#556]",
+      "type": "changed",
+      "title": "Hamlet Road",
+      "description": "Changed road connection in Hamlet"
+    },
+    {
+      "mapchangeId": "[#558]",
+      "type": "added",
+      "title": "Baseball Field",
+      "description": "Added speculative baseball field in Ambrosia"
+    },
+    {
+      "mapchangeId": "[#557]",
+      "type": "added",
+      "title": "2060 Biscayne Blvd",
+      "description": "Added 2060 Biscayne Blvd to the map"
+    },
+    {
+      "mapchangeId": "[#568]",
+      "type": "added",
+      "title": "Unknown Road",
+      "description": "Added unknown numbered road from VCIA metro to Watson Bay"
+    },
+    {
+      "mapchangeId": "[#576]",
+      "type": "changed",
+      "title": "Waning Sands",
+      "description": "Redesigned Waning Sands (again)"
+    },
+    {
+      "mapchangeId": "[#575]",
+      "type": "changed",
+      "title": "Airward Key",
+      "description": "Changed the name of Airstrike Key to Airward Key"
+    },
+    {
+      "mapchangeId": "[#504]",
+      "type": "improved",
+      "title": "Lake Leonida NW",
+      "description": "Updated the northwest side of Lake Leonida adding mount Leonida"
+    },
+    {
+      "mapchangeId": "[#584]",
+      "type": "added",
+      "title": "499 NW 5th St",
+      "description": "Added 499 NW 5th St"
+    },
+    {
+      "mapchangeId": "[#348]",
+      "type": "added",
+      "title": "Train Line Extension",
+      "description": "Extended the train line and added the mountain pass NE of Port Gellhorn"
+    },
+    {
+      "type": "improved",
+      "title": "Credits",
+      "description": "Updated contributing users to the credits"
+    }
+      ]
+    },
+    "v12.0": {
+      "version": "v12.0",
+      "versionName": "V 12.0",
+      "date": "2026-05-11",
+      "changes": [
+    {
+      "mapchangeId": "[#652]",
+      "type": "added",
+      "title": "Missing Intersection and Houses",
+      "description": "Added missing intersection and houses seen in L1/40 see [#652]"
+    },
+    {
+      "mapchangeId": "[#649]",
+      "type": "added",
+      "title": "Missing Building, Parking Lot and Road",
+      "description": "Added missing building, parking lot and road seen in L1/25 leak see [#649]"
+    },
+    {
+      "mapchangeId": "[#590]",
+      "type": "fixed",
+      "title": "Bridge North of Hank's Waffles",
+      "description": "Fixed bridge north of Hank's Waffles see [#590]"
+    },
+    {
+      "mapchangeId": "[#622]",
+      "type": "added",
+      "title": "Missing Buildings in Watson Bay",
+      "description": "Added missing buildings in Watson Bay and redesigned the islands see [#622]"
+    },
+    {
+      "mapchangeId": "[#611]",
+      "type": "fixed",
+      "title": "East Coast Curve",
+      "description": "Fixed the east coast curve see [#611]"
+    },
+    {
+      "mapchangeId": "[#659]",
+      "type": "changed",
+      "title": "Uncle Jack Intersection",
+      "description": "Made the uncle jack intersection in PGH not speculative see [#659]"
+    },
+    {
+      "mapchangeId": "[#550]",
+      "type": "changed",
+      "title": "Highways Between Peacock Bay and Hamlet",
+      "description": "Rewired the highways between Peacock Bay and Hamlet see [#550]"
+    },
+    {
+      "mapchangeId": "[#663]",
+      "type": "changed",
+      "title": "St.Joseph Label",
+      "description": "Moved the St.Joseph label see [#663]"
+    },
+    {
+      "mapchangeId": "[#593]",
+      "type": "added",
+      "title": "Industrial Buildings North of PGH Bay",
+      "description": "Added industrial buildings north of PGH Bay see [#593]"
+    },
+    {
+      "mapchangeId": "[#662]",
+      "type": "added",
+      "title": "Elevation in Waning Sands",
+      "description": "Added elevation in Waning Sands see [#662]"
+    },
+    {
+      "mapchangeId": "[#619]",
+      "type": "changed",
+      "title": "Route 10 and Northern Vice City",
+      "description": "Moved Route 10 south and adjusted northern Vice City see [#619]"
+    },
+    {
+      "mapchangeId": "[#658]",
+      "type": "added",
+      "title": "Speculative Rail Extension",
+      "description": "Added speculative rail extension towards Yorktown see [#658]"
+    },
+    {
+      "mapchangeId": "[#657]",
+      "type": "added",
+      "title": "Residential Building in PGH",
+      "description": "Added residential building in PGH see [#657]"
+    },
+    {
+      "mapchangeId": "[#660]",
+      "type": "changed",
+      "title": "Camera Positions and Picnic Islands",
+      "description": "Adjusted camera positions for Vice City Postcard and Yacht and adjusted the picnic islands see [#660]"
+    },
+    {
+      "mapchangeId": "[#655]",
+      "type": "added",
+      "title": "Grassrivers Canal",
+      "description": "Added Grassrivers canal seen from Leonida Keys 01 (Airplane) to prison bridge see [#655]"
+    },
+    {
+      "mapchangeId": "[#506]",
+      "type": "improved",
+      "title": "Grassrivers Extension",
+      "description": "Extended the Grassrivers see [#506]"
+    },
+    {
+      "mapchangeId": "[#650]",
+      "type": "added",
+      "title": "Missing Buildings in Allied Crystal",
+      "description": "Added missing buildings in Allied Crystal see [#650]"
+    },
+    {
+      "mapchangeId": "[#607]",
+      "type": "improved",
+      "title": "Speculative I-97",
+      "description": "Extended speculative I-97 see [#607]"
+    },
+    {
+      "mapchangeId": "[#608]",
+      "type": "changed",
+      "title": "Route 50",
+      "description": "Updated Route 50 to be the mountain pass road see [#608]"
+    },
+    {
+      "mapchangeId": "[#666]",
+      "type": "changed",
+      "title": "Buildings in PGH",
+      "description": "Updated Buildings in PGH see [#666]"
+    },
+    {
+      "mapchangeId": "[#515]",
+      "type": "changed",
+      "title": "Bohemia Label",
+      "description": "Moved the Bohemia Label to the Design District see [#515]"
+    },
+    {
+      "mapchangeId": "[#670]",
+      "type": "added",
+      "title": "Hendry County Sheriff's Office",
+      "description": "Added speculative Hendry County Sheriff's Office see [#670]"
+    },
+    {
+      "mapchangeId": "[#587]",
+      "type": "added",
+      "title": "Street and Buildings in Ambrosia",
+      "description": "Added street and moved buildings in Ambrosia see [#587]"
+    },
+    {
+      "mapchangeId": "[#588]",
+      "type": "added",
+      "title": "Ambrosia Radio Tower",
+      "description": "Added Ambrosia radio tower see [#588]"
+    },
+    {
+      "mapchangeId": "[#594],[#665]",
+      "type": "added",
+      "title": "Small Buildings Near LO Prison",
+      "description": "Added small buildings near LO Prison see [#594] and [#665}"
+    },
+    {
+      "mapchangeId": "[#589]",
+      "type": "added",
+      "title": "Distant Buildings in Waning Sands",
+      "description": "Added distant buildings in Waning Sands see [#589]"
+    },
+    {
+      "mapchangeId": "[#674]",
+      "type": "added",
+      "title": "Interchange North of Ambrosia",
+      "description": "Added an interchange north of Ambrosia see [#674]"
+    },
+    {
+      "mapchangeId": "[#672]",
+      "type": "changed",
+      "title": "Baseball and Football Field in Ambrosia",
+      "description": "Moved baseball field and added football field in ambrosia see [#672]"
+    },
+    {
+      "mapchangeId": "[#671]",
+      "type": "improved",
+      "title": "Hill Contour Lines",
+      "description": "Updated Hill contour lines between PGH and Ambrosia see [#671]"
+    },
+    {
+      "mapchangeId": "[#651]",
+      "type": "added",
+      "title": "Missing Buildings in Ambrosia",
+      "description": "Added missing buildings in ambrosia see [#651]"
+    },
+    {
+      "mapchangeId": "[#496],[#630]",
+      "type": "added",
+      "title": "Pools",
+      "description": "Added pools see [#496] and [#630]"
+    },
+    {
+      "mapchangeId": "[#675]",
+      "type": "changed",
+      "title": "S4/44 Camera",
+      "description": "Moved S4/44 camera see [#675]"
+    },
+    {
+      "mapchangeId": "[#669]",
+      "type": "changed",
+      "title": "Lake Leonida",
+      "description": "Made Lake Leonida shallower see [#669]"
+    },
+    {
+      "mapchangeId": "[#664]",
+      "type": "added",
+      "title": "Speculative T1/15 Camera",
+      "description": "Added speculative T1/15 camera see [#664]"
+    },
+    {
+      "mapchangeId": "[#640]",
+      "type": "fixed",
+      "title": "Catalan Key",
+      "description": "Fixed southwest side of Catalan Key see [#640]"
+    },
+    {
+      "mapchangeId": "[#592]",
+      "type": "added",
+      "title": "Trailer in PGH",
+      "description": "Added trailer in PGH see [#592]"
+    },
+    {
+      "mapchangeId": "[#621]",
+      "type": "added",
+      "title": "Margaret Pace Park Pavillion",
+      "description": "Added Margaret Pace Park Pavillion see [#621]"
+    },
+    {
+      "mapchangeId": "[#616]",
+      "type": "added",
+      "title": "Missing Buildings in the Keys",
+      "description": "Added missing buildings in the keys see [#616]"
+    },
+    {
+      "mapchangeId": "[#609]",
+      "type": "added",
+      "title": "Warehouse-like Buildings",
+      "description": "Added unknown warehouse-like buildings in Northern Vice city [#609]"
+    },
+    {
+      "mapchangeId": "[#605]",
+      "type": "added",
+      "title": "S2/64 and S2/75 Cameras",
+      "description": "Added the S2/64 and S2/75 cameras see [#605]"
+    },
+    {
+      "mapchangeId": "[#598]",
+      "type": "improved",
+      "title": "Route 9",
+      "description": "Improved Route 9 see [#598]"
+    },
+    {
+      "mapchangeId": "[#597]",
+      "type": "added",
+      "title": "Skate Park",
+      "description": "Added potential skate park between Crosstown and Stockyard see [#597]"
+    },
+    {
+      "mapchangeId": "[#667]",
+      "type": "changed",
+      "title": "Intersection Near Watson Bay",
+      "description": "Moved intersection near Watson Bay [#667]"
+    },
+    {
+      "mapchangeId": "[#601]",
+      "type": "fixed",
+      "title": "Turkey Point",
+      "description": "Fixed Turkey point see [#601]"
+    },
+    {
+      "mapchangeId": "[#615]",
+      "type": "fixed",
+      "title": "Intersection Near the Motel",
+      "description": "Fixed and moved the intersection near the motel see [#615]"
+    },
+    {
+      "mapchangeId": "[#617]",
+      "type": "fixed",
+      "title": "Building Outlines in Crosstown",
+      "description": "Fixed building outlines in Crosstown [#617]"
+    },
+    {
+      "mapchangeId": "[#653]",
+      "type": "added",
+      "title": "Missing Scenes",
+      "description": "Added missing scenes and fixed placement and numbering errors [#653]"
+    },
+    {
+      "mapchangeId": "[#673]",
+      "type": "added",
+      "title": "Industrial Buildings in Ambrosia",
+      "description": "Added Unknown industrial buildings in Ambrosia see [#673]"
+    },
+    {
+      "mapchangeId": "[#647]",
+      "type": "added",
+      "title": "Shed from Bahia Honda State Park",
+      "description": "Added shed from Bahia Honda State Park next to the parking lot see [#647]"
+    },
+    {
+      "mapchangeId": "[#646]",
+      "type": "added",
+      "title": "Pedestrian Underpass",
+      "description": "Added Small pedestrian underpass on the west side of Bahia Honda Key bridge see [#646]"
+    },
+    {
+      "mapchangeId": "[#643]",
+      "type": "changed",
+      "title": "Rail Lines in Ambrosia",
+      "description": "Moved Rail lines in Ambrosia see [#643]"
+    },
+    {
+      "mapchangeId": "[#642],[#637]",
+      "type": "added",
+      "title": "Building and Road at Lollipop Ridge",
+      "description": "Added a building and a road at Lollipop Ridge see [#642] and [#637]"
+    },
+    {
+      "mapchangeId": "[#641]",
+      "type": "added",
+      "title": "Unidentified Building in Ambrosia",
+      "description": "Added an unidentified building south of the fields in Ambrosia see [#641]"
+    },
+    {
+      "mapchangeId": "[#639]",
+      "type": "changed",
+      "title": "Shipping Lane Near Stiltsville",
+      "description": "Moved shipping lane near Stiltsville see [#639]"
+    },
+    {
+      "mapchangeId": "[#636]",
+      "type": "changed",
+      "title": "S2/05 Marker",
+      "description": "Moved S2/05 Marker to First Base Garage see [#636]"
+    },
+    {
+      "mapchangeId": "[#648]",
+      "type": "added",
+      "title": "Boat Ramp on Bahia Honda Key",
+      "description": "Added boat ramp on Bahia Honda Key [#648]"
+    },
+    {
+      "mapchangeId": "[#634]",
+      "type": "added",
+      "title": "Unidentified Buildings Next to VCIA",
+      "description": "Added unidentified buildings next to VCIA see [#634]"
+    },
+    {
+      "mapchangeId": "[#638]",
+      "type": "added",
+      "title": "Factory Buildings in Ambrosia",
+      "description": "Added factory buildings in Ambrosia see [#638]"
+    },
+    {
+      "mapchangeId": "[#633]",
+      "type": "fixed",
+      "title": "Roads Around Key Lento",
+      "description": "Fixed roads around Key Lento gas station and fire station see [#633]"
+    },
+    {
+      "mapchangeId": "[#632]",
+      "type": "added",
+      "title": "New Roads on Key Lento",
+      "description": "Added new roads on Key Lento near Jason's House and boat ramp see [#632]"
+    },
+    {
+      "mapchangeId": "[#631]",
+      "type": "added",
+      "title": "L1/23",
+      "description": "Added L1/23 to the map see [#631]"
+    },
+    {
+      "mapchangeId": "[#627]",
+      "type": "changed",
+      "title": "Hills Around Ambrosia Airstrip",
+      "description": "Adjusted Hills around the Ambrosia airstrip see [#627]"
+    },
+    {
+      "mapchangeId": "[#624]",
+      "type": "removed",
+      "title": "PGH AIWE Non-existent Building",
+      "description": "Removed PGH AIWE non-existent building see [#624]"
+    },
+    {
+      "mapchangeId": "[#620]",
+      "type": "added",
+      "title": "Route 2 Label",
+      "description": "Added another Route 2 label north of Bocamar Bridge see [#620]"
+    },
+    {
+      "mapchangeId": "[#614]",
+      "type": "fixed",
+      "title": "Motel Layout",
+      "description": "Fixed motel layout see [#614]"
+    },
+    {
+      "mapchangeId": "[#618]",
+      "type": "changed",
+      "title": "S2/51 Camera Position",
+      "description": "Adjusted S2/51 camera position see [#618]"
+    },
+    {
+      "mapchangeId": "[#613]",
+      "type": "added",
+      "title": "Shopping Basket Icon",
+      "description": "Added missing shopping basked icon in Key Lento see [#613]"
+    },
+    {
+      "mapchangeId": "[#604]",
+      "type": "changed",
+      "title": "Building in Little Cuba",
+      "description": "Moved building in Little Cuba see [#604]"
+    },
+    {
+      "mapchangeId": "[#599]",
+      "type": "added",
+      "title": "Drawbridge in Watson Bay",
+      "description": "Added drawbridge in Watson Bay see [#599]"
+    },
+    {
+      "mapchangeId": "[#595]",
+      "type": "added",
+      "title": "Factory Building in Ambrosia",
+      "description": "Added factory building in Ambrosia see [#595]"
+    },
+    {
+      "type": "added",
+      "title": "Empty Lot",
+      "description": "Added Empty lot from T2/52"
+    },
+    {
+      "mapchangeId": "[#654]",
+      "type": "changed",
+      "title": "Font Size for Region Names",
+      "description": "Increased font size for IRL names of the six major regions see [#654]"
+    },
+    {
+      "mapchangeId": "[#628]",
+      "type": "added",
+      "title": "Bus Stops",
+      "description": "Added known bus stops see [#628]"
+    },
+    {
+      "mapchangeId": "[#602]",
+      "type": "changed",
+      "title": "Sundown Label",
+      "description": "Moved the name \"Sundown\" see [#602]"
+    },
+    {
+      "mapchangeId": "[#626]",
+      "type": "added",
+      "title": "Route Label",
+      "description": "Added (?) Route Label to the Venetian Causeway and Watson bay route see [#626]"
+    },
+    {
+      "mapchangeId": "[#635]",
+      "type": "added",
+      "title": "Road Northwest of Ambrosia",
+      "description": "Added road northwest of Ambrosia see [#635]"
+    },
+    {
+      "mapchangeId": "[#668]",
+      "type": "added",
+      "title": "Missing Side Road in Waning Sands",
+      "description": "Added missing side road in Waning Sands see [#668]"
+    },
+    {
+      "type": "added",
+      "title": "Affiliate Link",
+      "description": "Added affiliate link to https://gta.wiki/ in the credits"
+    },
+    {
+      "type": "improved",
+      "title": "Map Legend and Credits",
+      "description": "Updated the map legend and Updated contributing users to the credits"
+    }
+      ]
+    },
+    "v13.0": {
+      "version": "v13.0",
+      "versionName": "V 13.0",
+      "date": "2026-06-25",
+      "changes": [
+    {
+      "mapchangeId": "[#717]",
+      "type": "changed",
+      "title": "I-404",
+      "description": "Adjusted I-404 to avoid south hill see [#717]"
+    },
+    {
+      "mapchangeId": "[#716]",
+      "type": "added",
+      "title": "Gellhorn International Raceway Long Course",
+      "description": "Added Gellhorn International Raceway long course see [#716]"
+    },
+    {
+      "mapchangeId": "[#715],[#714],[#677]",
+      "type": "improved",
+      "title": "Starlet Highway Shape",
+      "description": "Slightly improved Starlet highway shape and added ? interstate shields see [#715] , [#714] and [#677]"
+    },
+    {
+      "mapchangeId": "[#713]",
+      "type": "improved",
+      "title": "Roads North of Ambrosia",
+      "description": "improved roads north of Ambrosia see [#713]"
+    },
+    {
+      "mapchangeId": "[#712]",
+      "type": "changed",
+      "title": "Vizcayne Tower",
+      "description": "Rotated vizcayne tower south see [#712]"
+    },
+    {
+      "mapchangeId": "[#711]",
+      "type": "added",
+      "title": "2750 NW 3rd",
+      "description": "Added 2750 NW 3rd in stockyard see [#711]"
+    },
+    {
+      "mapchangeId": "[#710]",
+      "type": "added",
+      "title": "Street South of Marina Blue",
+      "description": "Added street south of marina blue see [#710]"
+    },
+    {
+      "mapchangeId": "[#709]",
+      "type": "added",
+      "title": "Port VC",
+      "description": "Mapped port VC see [#709]"
+    },
+    {
+      "mapchangeId": "[#708]",
+      "type": "changed",
+      "title": "Buildings in Downtown",
+      "description": "Repositioned buildings in Downtown see [#708]"
+    },
+    {
+      "mapchangeId": "[#706]",
+      "type": "added",
+      "title": "Watson Island Missing Buildings and Docks",
+      "description": "Added Watson island missing buildings and docks see [#706]"
+    },
+    {
+      "mapchangeId": "[#705]",
+      "type": "added",
+      "title": "Highway West of VCIA",
+      "description": "Added highway west of VCIA see [#705]"
+    },
+    {
+      "mapchangeId": "[#703]",
+      "type": "changed",
+      "title": "Water Tower Near VCIA",
+      "description": "Moved the water tower near VCIA a bit north see [#703]"
+    },
+    {
+      "mapchangeId": "[#699]",
+      "type": "changed",
+      "title": "Islands in the Keys",
+      "description": "Extended the islands in the keys see [#699]"
+    },
+    {
+      "mapchangeId": "[#698]",
+      "type": "added",
+      "title": "Dock and Speculative House in Star Island",
+      "description": "Added dock and speculative house in star island see [#698]"
+    },
+    {
+      "mapchangeId": "[#697]",
+      "type": "added",
+      "title": "Marea Condos",
+      "description": "Added marea Condos see [#697]"
+    },
+    {
+      "mapchangeId": "[#696]",
+      "type": "added",
+      "title": "Apogee Condo",
+      "description": "Mapped Apogee condo, parking lot, paved paths Murano pool and tennis court see [#696]"
+    },
+    {
+      "mapchangeId": "[#695]",
+      "type": "fixed",
+      "title": "Vice Beach Marina",
+      "description": "Fixed vice beach marina see [#695]"
+    },
+    {
+      "mapchangeId": "[#694]",
+      "type": "changed",
+      "title": "Star Island",
+      "description": "Rotated star island and extended its bridge see [#694]"
+    },
+    {
+      "mapchangeId": "[#693]",
+      "type": "changed",
+      "title": "Ferry Island and Coast Guard Station Island",
+      "description": "Updated ferry island and coast guard station island see [#693]"
+    },
+    {
+      "mapchangeId": "[#692]",
+      "type": "added",
+      "title": "Missing Buildings in Vice City",
+      "description": "Added missing buildings in Vice City see [#692]"
+    },
+    {
+      "mapchangeId": "[#691]",
+      "type": "changed",
+      "title": "Stephen P. Clark Government Center",
+      "description": "Moved Stephen P. Clark Government Center and adjusted I-97 see [#691]"
+    },
+    {
+      "mapchangeId": "[#689]",
+      "type": "changed",
+      "title": "VCIA",
+      "description": "Redesigned VCIA see [#689]"
+    },
+    {
+      "mapchangeId": "[#688]",
+      "type": "improved",
+      "title": "Roads Around the Prison",
+      "description": "Improved Roads around the prison see [#688]"
+    },
+    {
+      "mapchangeId": "[#687]",
+      "type": "added",
+      "title": "Missing Part of Building in North Vice Beach",
+      "description": "Added missing part of building in north Vice Beach see [#687]"
+    },
+    {
+      "mapchangeId": "[#684]",
+      "type": "added",
+      "title": "Structures/Buildings on Airward Key",
+      "description": "Added structures/buildings on Airward Key see [#684]"
+    },
+    {
+      "mapchangeId": "[#683]",
+      "type": "changed",
+      "title": "Road South of 1500 Ocean Dr",
+      "description": "Updated the road south of 1500 Ocean Dr see [#683]"
+    },
+    {
+      "mapchangeId": "[#680]",
+      "type": "changed",
+      "title": "Buildings and Islands in Watson Bay",
+      "description": "Moved buildings and modified islands in Watson bay see [#680]"
+    },
+    {
+      "mapchangeId": "[#679]",
+      "type": "fixed",
+      "title": "L1/41 Camera Orientation",
+      "description": "Fixed L1/41 camera orientation see [#679]"
+    },
+    {
+      "mapchangeId": "[#678]",
+      "type": "added",
+      "title": "Homestead Youth Baseball Summer Camp",
+      "description": "Added Homestead Youth Baseball summer camp see [#678]"
+    },
+    {
+      "mapchangeId": "[#672]",
+      "type": "added",
+      "title": "Houses by Grassrivers Road/Highway North of Watson Bay",
+      "description": "Added houses by Grassrivers road/highway north of Watson bay see [#672]"
+    },
+    {
+      "mapchangeId": "[#671]",
+      "type": "added",
+      "title": "Twice the Ice",
+      "description": "Added Twice the ice see [#671]"
+    },
+    {
+      "mapchangeId": "[#670]",
+      "type": "added",
+      "title": "Residential House in Watson Bay",
+      "description": "Added residential house in Watson bay see [#670]"
+    },
+    {
+      "mapchangeId": "[#669]",
+      "type": "added",
+      "title": "Buildings in Vice Beach",
+      "description": "Added buildings in vice beach see [#669]"
+    },
+    {
+      "mapchangeId": "[#591]",
+      "type": "added",
+      "title": "Building North of Crossroads Mall",
+      "description": "Added building north of Crossroads Mall and adjusted West road see [#591]"
+    },
+    {
+      "type": "improved",
+      "title": "Credits",
+      "description": "Updated credits"
+    }
+      ]
+    },
+    "v14.0": {
+      "version": "v14.0",
+      "versionName": "V 14.0",
+      "date": "2026-08-04",
+      "changes": [
+    {
+      "mapchangeId": "[#681]",
+      "type": "changed",
+      "title": "Lake Leonida and Ambrosia",
+      "description": "Moved Lake Leonida and Ambrosia north see [#681]"
+    },
+    {
+      "mapchangeId": "[#735]",
+      "type": "changed",
+      "title": "Key West and Naval Air Station",
+      "description": "Moved speculative Key West and the Naval Air Station west see [#735]"
+    },
+    {
+      "mapchangeId": "[#788]",
+      "type": "changed",
+      "title": "Route 10",
+      "description": "Changed the course of Route 10 see [#788]"
+    },
+    {
+      "mapchangeId": "[#751]",
+      "type": "changed",
+      "title": "The Keys",
+      "description": "Stretched the keys see [#751]"
+    },
+    {
+      "mapchangeId": "[#783]",
+      "type": "changed",
+      "title": "Roads and Hills East of Port Gellhorn",
+      "description": "Redesigned the roads and hills east of Port Gellhorn see [#783]"
+    },
+    {
+      "mapchangeId": "[#766]",
+      "type": "changed",
+      "title": "Starlet Motel",
+      "description": "Resized and rotated the Starlet Motel see [#766]"
+    },
+    {
+      "type": "changed",
+      "title": "Guideways Around Vice City",
+      "description": "Redesigned the Guideways around Vice City"
+    },
+    {
+      "mapchangeId": "[#763]",
+      "type": "changed",
+      "title": "LO Prison",
+      "description": "Updated LO prison see [#763]"
+    },
+    {
+      "mapchangeId": "[#767]",
+      "type": "added",
+      "title": "Pavement and Missing Building in PGH",
+      "description": "Added pavement and missing building in PGH see [#767]"
+    },
+    {
+      "mapchangeId": "[#723]",
+      "type": "added",
+      "title": "Akoya Condo Garage Area",
+      "description": "Added the garage area to Akoya Condo see [#723]"
+    },
+    {
+      "mapchangeId": "[#787]",
+      "type": "changed",
+      "title": "Elevation Lines",
+      "description": "Updated the elevation lines see [#787]"
+    },
+    {
+      "mapchangeId": "[#764],[#765]",
+      "type": "added",
+      "title": "Missing Buildings Near Jason's House",
+      "description": "Added missing buildings near Jason's house see [#764] and [#765]"
+    },
+    {
+      "mapchangeId": "[#748]",
+      "type": "changed",
+      "title": "Vertex Refinery in PGH",
+      "description": "Redesigned the Vertex Refinery in PGH and added barrier island see [#748]"
+    },
+    {
+      "mapchangeId": "[#776]",
+      "type": "changed",
+      "title": "Route 50 and River",
+      "description": "Changed the path of Route 50 and moved the river south see [#776]"
+    },
+    {
+      "mapchangeId": "[#790]",
+      "type": "added",
+      "title": "(Flagler Memorial Island) Label",
+      "description": "Added \"(Flagler Memorial Island)\" label see [#790]"
+    },
+    {
+      "mapchangeId": "[#760]",
+      "type": "changed",
+      "title": "5959 Collins Avenue, Green & Blue Diamonds",
+      "description": "Moved 5959 Collins Avenue, Green & Blue Diamonds west and added their tennis courts see [#760]"
+    },
+    {
+      "mapchangeId": "[#342]",
+      "type": "added",
+      "title": "Route 561",
+      "description": "Added Route 561 and updated High Rollerz camera see [#342]"
+    },
+    {
+      "mapchangeId": "[#781]",
+      "type": "changed",
+      "title": "Bellville and Ekanfinaka",
+      "description": "Moved Bellville and Ekanfinaka and extended an unknown US Route in la perle see [#781]"
+    },
+    {
+      "mapchangeId": "[#782]",
+      "type": "improved",
+      "title": "Speculative Train Tracks South of VCIA",
+      "description": "Improved the speculative train tracks south of VCIA see [#782]"
+    },
+    {
+      "mapchangeId": "[#747]",
+      "type": "changed",
+      "title": "Gas Station T1 Scene",
+      "description": "Moved the Gas Station T1 scene east see [#747]"
+    },
+    {
+      "mapchangeId": "[#775]",
+      "type": "changed",
+      "title": "Watson Bay Urban Area",
+      "description": "Extended the speculative Watson Bay urban area to the NW see [#775]"
+    },
+    {
+      "mapchangeId": "[#754]",
+      "type": "changed",
+      "title": "Rusty Anchor",
+      "description": "Moved the Rusty Anchor north see [#754]"
+    },
+    {
+      "mapchangeId": "[#768]",
+      "type": "added",
+      "title": "Missing Buildings at Gellhorn International Raceway",
+      "description": "Added missing buildings to the Gellhorn International Raceway see [#768]"
+    },
+    {
+      "mapchangeId": "[#758]",
+      "type": "added",
+      "title": "Greenery to Port VC",
+      "description": "Added greenery to Port VC see [#758]"
+    },
+    {
+      "mapchangeId": "[#759],[#741],[#725],[#733]",
+      "type": "added",
+      "title": "S3 Markers on the Map",
+      "description": "Added S3/02, S3/27, S3/24, S3/55, S3/20, S3/19, S3/17 and S3/31 Markers on the Map see [#759], [#741], [#725] and [#733]"
+    },
+    {
+      "mapchangeId": "[#753]",
+      "type": "added",
+      "title": "Building Near Schlott",
+      "description": "Added building near Schlott see [#753]"
+    },
+    {
+      "mapchangeId": "[#731]",
+      "type": "improved",
+      "title": "Coast Near Jason's House",
+      "description": "Improved the coast near Jason's house and added small dock see [#731]"
+    },
+    {
+      "mapchangeId": "[#725]",
+      "type": "added",
+      "title": "Pier, Road and Building Near Haulover Inlet",
+      "description": "Added pier, road and building near Haulover Inlet see [#725]"
+    },
+    {
+      "mapchangeId": "[#729]",
+      "type": "changed",
+      "title": "Vice Beach Boardwalk",
+      "description": "Accurately remapped Vice Beach Boardwalk see [#729]"
+    },
+    {
+      "mapchangeId": "[#730]",
+      "type": "added",
+      "title": "567 NW 23rd St",
+      "description": "Added the whole 567 NW 23rd St and removed imaginary alley see [#730]"
+    },
+    {
+      "mapchangeId": "[#737]",
+      "type": "changed",
+      "title": "Watson Bay Harbor Shoreline",
+      "description": "Adjusted Watson Bay harbor shoreline see [#737]"
+    },
+    {
+      "mapchangeId": "[#732]",
+      "type": "added",
+      "title": "Missing Venetian Island Houses",
+      "description": "Added missing Venetian island Houses see [#732]"
+    },
+    {
+      "mapchangeId": "[#733]",
+      "type": "changed",
+      "title": "Northern Shoreline of Virginia Key",
+      "description": "Adjusted the northern shoreline of Virginia Key see [#733]"
+    },
+    {
+      "type": "improved",
+      "title": "Credits",
+      "description": "Updated contributing users to the credits"
+    }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1672 @@
+[
+    {
+        "name": "Vice City International Airport",
+        "position": {
+            "lat": -115,
+            "lng": -2621
+        },
+        "tags": [
+            "Trailer 3",
+            "Vice City",
+            "T3/190"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_190.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 174,
+            "fov": {
+                "angle": 72,
+                "range": 150
+            },
+            "look": {
+                "mode": "follow",
+                "offset": -6
+            },
+            "path": [
+                {
+                    "lat": -115,
+                    "lng": -2621
+                },
+                {
+                    "lat": -133.25,
+                    "lng": -2616
+                },
+                {
+                    "lat": -138.25,
+                    "lng": -2564.75
+                }
+            ],
+            "playback": {
+                "duration": 1,
+                "loop": false
+            },
+            "sync": {
+                "in": 1207.133,
+                "out": 1213.967
+            }
+        },
+        "id": "trailer3_001"
+    },
+    {
+        "name": "Gloriana Key - Car meet",
+        "position": {
+            "lat": -1906,
+            "lng": 667.5
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/247"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_247.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 28,
+            "fov": {
+                "angle": 70,
+                "range": 2400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 2
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 1565.933,
+                "out": 1567.233
+            }
+        },
+        "id": "trailer3_002"
+    },
+    {
+        "name": "Starlet Motel",
+        "position": {
+            "lat": 3495.5,
+            "lng": -5345.269
+        },
+        "tags": [
+            "Trailer 3",
+            "Port Gellhorn"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_244.png",
+            "credit": ""
+        },
+        "id": "trailer3_003"
+    },
+    {
+        "name": "Jason & Lucia with cal",
+        "position": {
+            "lat": -6295.5,
+            "lng": -2224
+        },
+        "tags": [
+            "Trailer 3"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_240.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 271,
+            "fov": {
+                "angle": 70,
+                "range": 150
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_004"
+    },
+    {
+        "name": "Lucia jump down",
+        "position": {
+            "lat": 2514.5,
+            "lng": 1622.5
+        },
+        "tags": [
+            "Trailer 3"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_174.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 229,
+            "fov": {
+                "angle": 81,
+                "range": 4850
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 2514.5,
+                    "lng": 1622.5
+                },
+                {
+                    "lat": 2460.25,
+                    "lng": 1558.75
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 1127.533,
+                "out": 1138.8
+            }
+        },
+        "id": "trailer3_005"
+    },
+    {
+        "name": "Thrillbilly Mud Club",
+        "position": {
+            "lat": 4472,
+            "lng": -4266.75
+        },
+        "tags": [
+            "Trailer 3"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_171.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 18,
+            "fov": {
+                "angle": 64,
+                "range": 250
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 4472,
+                    "lng": -4266.75
+                },
+                {
+                    "lat": 4501.25,
+                    "lng": -4259.5
+                },
+                {
+                    "lat": 4523,
+                    "lng": -4269.5
+                },
+                {
+                    "lat": 4545.5,
+                    "lng": -4287.25
+                },
+                {
+                    "lat": 4562,
+                    "lng": -4299.25
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 1114.8,
+                "out": 1119.2
+            }
+        },
+        "id": "trailer3_006"
+    },
+    {
+        "name": "Shore Drive / Livestream",
+        "position": {
+            "lat": 564,
+            "lng": 1978.5
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/168"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_168.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 195,
+            "fov": {
+                "angle": 59,
+                "range": 200
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 564,
+                    "lng": 1978.5
+                },
+                {
+                    "lat": 413.5,
+                    "lng": 1958
+                }
+            ],
+            "playback": {
+                "duration": 4,
+                "loop": false
+            },
+            "sync": {
+                "in": 1104,
+                "out": 1108.467
+            }
+        },
+        "id": "trailer3_007"
+    },
+    {
+        "name": "Fleeca Bank Heist",
+        "position": {
+            "lat": 1805,
+            "lng": 1496.75
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/166"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_166.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 218,
+            "fov": {
+                "angle": 70,
+                "range": 200
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 1805,
+                    "lng": 1496.75
+                },
+                {
+                    "lat": 1800.25,
+                    "lng": 1491
+                },
+                {
+                    "lat": 1795.25,
+                    "lng": 1489.75
+                },
+                {
+                    "lat": 1793.5,
+                    "lng": 1440.75
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 1083.333,
+                "out": 1091.933
+            }
+        },
+        "id": "trailer3_008"
+    },
+    {
+        "name": "Throwing Stuff from an Overpass",
+        "position": {
+            "lat": 5192.5,
+            "lng": -2748.25
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/163"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_163.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 169,
+            "fov": {
+                "angle": 74,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 1067.467,
+                "out": 1069.967
+            }
+        },
+        "id": "trailer3_009"
+    },
+    {
+        "name": "Gellhorn International Raceway",
+        "position": {
+            "lat": 2039,
+            "lng": -7107.185
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/162"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_162.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 132,
+            "fov": {
+                "angle": 95,
+                "range": 100
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 2039,
+                    "lng": -7107.185
+                },
+                {
+                    "lat": 2012,
+                    "lng": -7087.186
+                },
+                {
+                    "lat": 2003,
+                    "lng": -7064.187
+                },
+                {
+                    "lat": 1995,
+                    "lng": -7021.189
+                },
+                {
+                    "lat": 1987,
+                    "lng": -6927.194
+                },
+                {
+                    "lat": 1983,
+                    "lng": -6850.198
+                }
+            ],
+            "playback": {
+                "duration": 6,
+                "loop": false
+            },
+            "sync": {
+                "in": 1061.8,
+                "out": 1067.467
+            }
+        },
+        "id": "trailer3_010"
+    },
+    {
+        "name": "Kayaking in the Vice River",
+        "position": {
+            "lat": -314,
+            "lng": -1238
+        },
+        "tags": [
+            "Trailer 3"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_159.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 149,
+            "fov": {
+                "angle": 81,
+                "range": 350
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 1048.933,
+                "out": 1051.033
+            }
+        },
+        "id": "trailer3_011"
+    },
+    {
+        "name": "Rialto Causeway with Raul (2)",
+        "position": {
+            "lat": 1111.5,
+            "lng": 48.5
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/144"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_144.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 56,
+            "fov": {
+                "angle": 47,
+                "range": 350
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_012"
+    },
+    {
+        "name": "Rialto Causeway with Raul",
+        "position": {
+            "lat": 1236.5,
+            "lng": 216
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/143"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_143.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 100,
+            "fov": {
+                "angle": 59,
+                "range": 600
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 9
+            },
+            "path": [
+                {
+                    "lat": 1236.5,
+                    "lng": 216
+                },
+                {
+                    "lat": 1233,
+                    "lng": 227
+                },
+                {
+                    "lat": 1177,
+                    "lng": 242.5
+                },
+                {
+                    "lat": 1145,
+                    "lng": 124
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 976.6,
+                "out": 992.067
+            }
+        },
+        "id": "trailer3_013"
+    },
+    {
+        "name": "Torching the Black Schafter",
+        "position": {
+            "lat": 1203.75,
+            "lng": 102
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/141"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_141.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 257,
+            "fov": {
+                "angle": 61,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 1203.75,
+                    "lng": 102
+                },
+                {
+                    "lat": 1194.5,
+                    "lng": 84.25
+                },
+                {
+                    "lat": 1173.75,
+                    "lng": 60.75
+                },
+                {
+                    "lat": 1154,
+                    "lng": 67.5
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_014"
+    },
+    {
+        "name": "Hank's Waffles Robbery",
+        "position": {
+            "lat": 4518.75,
+            "lng": -6176
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/96"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_96.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 126,
+            "fov": {
+                "angle": 56,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_015"
+    },
+    {
+        "name": "Hank's Waffles Robbery",
+        "position": {
+            "lat": 4514,
+            "lng": -6182.229
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/94"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_94.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 269,
+            "fov": {
+                "angle": 72,
+                "range": 500
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_016"
+    },
+    {
+        "name": "Aerial View of Effluvia",
+        "position": {
+            "lat": 1308,
+            "lng": 1455
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/75"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_75.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 52,
+            "fov": {
+                "angle": 45,
+                "range": 150
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_017"
+    },
+    {
+        "name": "Ring Fight",
+        "position": {
+            "lat": -3367.5,
+            "lng": -2819.5
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/73"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_73.png",
+            "credit": ""
+        },
+        "id": "trailer3_018"
+    },
+    {
+        "name": "Hammer Lady",
+        "position": {
+            "lat": -3192,
+            "lng": -2692.75
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/71"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_71.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 308,
+            "fov": {
+                "angle": 78,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_019"
+    },
+    {
+        "name": "Gunfight in a Parking Lot.. in Crosstown",
+        "position": {
+            "lat": 1121.25,
+            "lng": -756.5
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/70"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_70.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 80,
+            "fov": {
+                "angle": 72,
+                "range": 100
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_020"
+    },
+    {
+        "name": "Jason & Lucia Big Guns",
+        "position": {
+            "lat": 732.5,
+            "lng": 2011.5
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/69"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_69.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 22,
+            "fov": {
+                "angle": 92,
+                "range": 100
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_021"
+    },
+    {
+        "name": "Jason's Red Ubermacht",
+        "position": {
+            "lat": 1221,
+            "lng": -490.75
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/64"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_64.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 0,
+            "fov": {
+                "angle": 77,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 1221,
+                    "lng": -490.75
+                },
+                {
+                    "lat": 1224.5,
+                    "lng": -480.25
+                },
+                {
+                    "lat": 1198.5,
+                    "lng": -457
+                },
+                {
+                    "lat": 1130.25,
+                    "lng": -519.75
+                },
+                {
+                    "lat": 1111.75,
+                    "lng": -533
+                },
+                {
+                    "lat": 1077,
+                    "lng": -538.25
+                },
+                {
+                    "lat": 1019.75,
+                    "lng": -537.5
+                },
+                {
+                    "lat": 1007.5,
+                    "lng": -532.75
+                },
+                {
+                    "lat": 1001.25,
+                    "lng": -512.5
+                },
+                {
+                    "lat": 1005,
+                    "lng": -298
+                },
+                {
+                    "lat": 1045.5,
+                    "lng": -184.5
+                }
+            ],
+            "playback": {
+                "duration": 50,
+                "loop": false
+            }
+        },
+        "id": "trailer3_022"
+    },
+    {
+        "name": "Crosstown Safehouse Exterior",
+        "position": {
+            "lat": 1256,
+            "lng": -465
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/62"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_62.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 184,
+            "fov": {
+                "angle": 70,
+                "range": 150
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_023"
+    },
+    {
+        "name": "Tucker's Citrus Farms",
+        "position": {
+            "lat": 3519.75,
+            "lng": -4551.75
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/42"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_42.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 124,
+            "fov": {
+                "angle": 82,
+                "range": 200
+            },
+            "look": {
+                "mode": "reverse",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 3519.75,
+                    "lng": -4551.75
+                },
+                {
+                    "lat": 3518,
+                    "lng": -4566.5
+                },
+                {
+                    "lat": 3518.25,
+                    "lng": -4579.5
+                },
+                {
+                    "lat": 3519.25,
+                    "lng": -4589.75
+                },
+                {
+                    "lat": 3526,
+                    "lng": -4603.5
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 369.3,
+                "out": 372.467
+            }
+        },
+        "id": "trailer3_024"
+    },
+    {
+        "name": "Arriving in Rockridge",
+        "position": {
+            "lat": 635.5,
+            "lng": -1299.962
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/01"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_1.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 238,
+            "fov": {
+                "angle": 70,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_025"
+    },
+    {
+        "name": "Jason backflip",
+        "position": {
+            "lat": -6689.25,
+            "lng": -2946.5
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/156"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_156.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 240,
+            "fov": {
+                "angle": 70,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": -6689.25,
+                    "lng": -2946.5
+                },
+                {
+                    "lat": -6697.75,
+                    "lng": -2957
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 1042.2,
+                "out": 1045
+            }
+        },
+        "id": "trailer3_026"
+    },
+    {
+        "name": "Jason Basketball in Key Lento",
+        "position": {
+            "lat": -5528.25,
+            "lng": -2342.412
+        },
+        "tags": [
+            "Trailer 3"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_153.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 293,
+            "fov": {
+                "angle": 70,
+                "range": 100
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_027"
+    },
+    {
+        "name": "Airboat in Emerald Springs",
+        "position": {
+            "lat": 2185.25,
+            "lng": -4335.5
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/152"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_152.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 16,
+            "fov": {
+                "angle": 75,
+                "range": 300
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 2185.25,
+                    "lng": -4335.5
+                },
+                {
+                    "lat": 2240.5,
+                    "lng": -4316
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 1029.867,
+                "out": 1033
+            }
+        },
+        "id": "trailer3_028"
+    },
+    {
+        "name": "Scooters in Stockyard",
+        "position": {
+            "lat": 1663.75,
+            "lng": -398.255
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/151"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_151.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 311,
+            "fov": {
+                "angle": 70,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_029"
+    },
+    {
+        "name": "Arriving at Megamundo",
+        "position": {
+            "lat": -316,
+            "lng": -444.25
+        },
+        "tags": [
+            "Trailer 3"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_201.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 284,
+            "fov": {
+                "angle": 70,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": -316,
+                    "lng": -444.25
+                },
+                {
+                    "lat": -316.25,
+                    "lng": -463
+                },
+                {
+                    "lat": -315.5,
+                    "lng": -468.25
+                },
+                {
+                    "lat": -309.5,
+                    "lng": -470
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 1243.767,
+                "out": 1260.6
+            }
+        },
+        "id": "trailer3_030"
+    },
+    {
+        "name": "Rooftop Pool",
+        "position": {
+            "lat": -894.5,
+            "lng": 18.5
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/239"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_239.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 244,
+            "fov": {
+                "angle": 58,
+                "range": 800
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_031"
+    },
+    {
+        "name": "Raul's Black Schafter",
+        "position": {
+            "lat": 161.5,
+            "lng": 386
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/112"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_112.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 97,
+            "fov": {
+                "angle": 70,
+                "range": 1150
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 161.5,
+                    "lng": 386
+                },
+                {
+                    "lat": 142.5,
+                    "lng": 389
+                },
+                {
+                    "lat": 124,
+                    "lng": 408
+                },
+                {
+                    "lat": 114.5,
+                    "lng": 440.5
+                },
+                {
+                    "lat": 92,
+                    "lng": 547.5
+                },
+                {
+                    "lat": 26,
+                    "lng": 839
+                },
+                {
+                    "lat": 21,
+                    "lng": 950
+                },
+                {
+                    "lat": 36,
+                    "lng": 1049.5
+                },
+                {
+                    "lat": 112,
+                    "lng": 1269
+                },
+                {
+                    "lat": 138.5,
+                    "lng": 1345
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 750.167,
+                "out": 789.9
+            }
+        },
+        "id": "trailer3_032"
+    },
+    {
+        "name": "Escape with Raul",
+        "position": {
+            "lat": 455,
+            "lng": 1435
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/124"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_124.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 255,
+            "fov": {
+                "angle": 56,
+                "range": 2250
+            },
+            "look": {
+                "mode": "reverse",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 455,
+                    "lng": 1435
+                },
+                {
+                    "lat": 468,
+                    "lng": 1501.5
+                },
+                {
+                    "lat": 490.5,
+                    "lng": 1572
+                },
+                {
+                    "lat": 502,
+                    "lng": 1599
+                },
+                {
+                    "lat": 530.5,
+                    "lng": 1616.5
+                },
+                {
+                    "lat": 569.5,
+                    "lng": 1624.5
+                },
+                {
+                    "lat": 576.5,
+                    "lng": 1629
+                },
+                {
+                    "lat": 574.5,
+                    "lng": 1672.5
+                },
+                {
+                    "lat": 642,
+                    "lng": 1678
+                },
+                {
+                    "lat": 649.5,
+                    "lng": 1667.5
+                },
+                {
+                    "lat": 682.5,
+                    "lng": 1670.5
+                },
+                {
+                    "lat": 900,
+                    "lng": 1701.5
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_033"
+    },
+    {
+        "name": "Sunrise over Vice City",
+        "position": {
+            "lat": 30,
+            "lng": -2401.75
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/250"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_250.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 100,
+            "fov": {
+                "angle": 52,
+                "range": 1900
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "trailer3_034"
+    },
+    {
+        "name": "Cruising near Kaseya Center",
+        "position": {
+            "lat": 153,
+            "lng": -418
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/172",
+            "T3/173"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_172.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 0,
+            "fov": {
+                "angle": 70,
+                "range": 150
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 153,
+                    "lng": -418
+                },
+                {
+                    "lat": 307,
+                    "lng": -410.5
+                },
+                {
+                    "lat": 350.25,
+                    "lng": -405.5
+                },
+                {
+                    "lat": 388.5,
+                    "lng": -413.25
+                }
+            ],
+            "playback": {
+                "duration": 7,
+                "loop": false
+            },
+            "sync": {
+                "in": 1119.2,
+                "out": 1127.5
+            }
+        },
+        "id": "trailer3_035"
+    },
+    {
+        "name": "Street Race",
+        "position": {
+            "lat": 460,
+            "lng": -1544
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/194"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_194.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 0,
+            "fov": {
+                "angle": 70,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": 460,
+                    "lng": -1544
+                },
+                {
+                    "lat": 502,
+                    "lng": -1553
+                },
+                {
+                    "lat": 543.5,
+                    "lng": -1573.5
+                },
+                {
+                    "lat": 580,
+                    "lng": -1595
+                },
+                {
+                    "lat": 610,
+                    "lng": -1619.5
+                },
+                {
+                    "lat": 635.5,
+                    "lng": -1641
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 1221.467,
+                "out": 1225.633
+            }
+        },
+        "id": "trailer3_036"
+    },
+    {
+        "name": "Vice Beach Panorama",
+        "position": {
+            "lat": 2127,
+            "lng": 2257
+        },
+        "tags": [
+            "Trailer 3",
+            "T3/238"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/trailer/trailer3/T3_238.png",
+            "credit": ""
+        },
+        "video": {
+            "src": "assets/videos/trailer/GTAVI_Trailer_3.mp4"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 238,
+            "fov": {
+                "angle": 44,
+                "range": 1400
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            },
+            "sync": {
+                "in": 1542.967,
+                "out": 1548.5
+            }
+        },
+        "id": "trailer3_037"
+    }
+]

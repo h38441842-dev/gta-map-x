@@ -1,0 +1,38 @@
+[
+  {
+    "id": "sub_1791451431060",
+    "name": "Starfish Island Mansion Marina",
+    "category": "Hotels",
+    "position": {
+      "lat": 1520.5,
+      "lng": 2210
+    },
+    "description": "Dock behind Tommy Vercetti mansion verified in trailer 1",
+    "submittedBy": "MiamiTommy",
+    "submittedAt": "2026-10-08T09:23:51.060Z"
+  },
+  {
+    "id": "sub_1",
+    "name": "Kelly County Dirt Raceway",
+    "category": "Recreation",
+    "position": {
+      "lat": 4200,
+      "lng": -5100
+    },
+    "description": "Mud track spotted in leaked clip #42. Visible bleachers and dirt bikes.",
+    "submittedBy": "ViceRacer99",
+    "submittedAt": "2026-10-08T01:30:00Z"
+  },
+  {
+    "id": "sub_2",
+    "name": "Port Gellhorn Coast Guard Station",
+    "category": "Infrastructure",
+    "position": {
+      "lat": -2450,
+      "lng": -8900
+    },
+    "description": "Helipad and twin boat docks adjacent to industrial marina.",
+    "submittedBy": "LeonidaPilot",
+    "submittedAt": "2026-10-08T02:00:00Z"
+  }
+]

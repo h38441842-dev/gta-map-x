@@ -1,0 +1,201 @@
+{
+    "id": "YANIS",
+    "name": "YANIS",
+    "author": "",
+    "logoUrl": "assets/pic/yanis.png",
+    "backgroundUrl": "assets/backgrounds/yanis.png",
+    "visible": true,
+    "enabled": true,
+    "showChangelog": true,
+    "opacity": 1.0,
+    "maxZoom": 8,
+    "maxNativeZoom": 6,
+    "minZoom": 0,
+    "currentVersion": "v16.0",
+    "versions": [
+        {
+            "id": "v7.0",
+            "name": "V 7.0",
+            "tileUrl": "tiles/YANIS/v7/{z}/{x}/{y}.png",
+            "date": "2025-08-11",
+            "originalSize": { "width": 20000, "height": 20000 },
+            "bounds": [[-7882, -16340], [12170, 3659]]
+        },
+        {
+            "id": "v8.0",
+            "name": "V 8.0",
+            "tileUrl": "tiles/YANIS/v8/normal/{z}/{x}/{y}.png",
+            "date": "2025-09-12",
+            "originalSize": { "width": 20000, "height": 20000 },
+            "bounds": [[-8000, -16500], [12000, 3500]],
+            "alternateScheme": {
+                "tileUrl": "tiles/YANIS/v8/dark/{z}/{x}/{y}.png",
+                "normalColor": ["#B9D179", "#2C67A4"],
+                "alternateColor": ["#212121", "#505050ff"]
+            },
+            "isAlternate": false
+        },
+        {
+            "id": "v9.0",
+            "name": "V 9.0",
+            "tileUrl": "tiles/YANIS/v9/normal/{z}/{x}/{y}.png",
+            "date": "2025-11-15",
+            "originalSize": { "width": 20000, "height": 20000 },
+            "bounds": [[-8000, -16500], [12000, 3500]],
+            "alternateScheme": {
+                "tileUrl": "tiles/YANIS/v9/dark/{z}/{x}/{y}.png",
+                "normalColor": ["#B9D179", "#2C67A4"],
+                "alternateColor": ["#212121", "#505050ff"]
+            },
+            "isAlternate": false
+        },
+        {
+            "id": "v10.0",
+            "name": "v10.0",
+            "tileUrl": "tiles/YANIS/v10/normal/{z}/{x}/{y}.png",
+            "noCamsTileUrl": "tiles/YANIS/v10/nocams/normal/{z}/{x}/{y}.png",
+            "date": "2026-01-03",
+            "originalSize": { "width": 20000, "height": 20000 },
+            "bounds": [[-8000, -16500], [12000, 3500]],
+            "alternateScheme": {
+                "tileUrl": "tiles/YANIS/v10/dark/{z}/{x}/{y}.png",
+                "noCamsTileUrl": "tiles/YANIS/v10/nocams/dark/{z}/{x}/{y}.png",
+                "normalColor": ["#B9D179", "#2C67A4"],
+                "alternateColor": ["#212121", "#505050ff"]
+            },
+            "isAlternate": false,
+            "updateInfo": {
+                "type": "youtube",
+                "videoId": "sU5s4lbqSKs",
+                "title": "update.v10.title",
+                "description": "update.v10.description",
+                "showbanner": false
+            }
+        },
+        {
+            "id": "v11.0",
+            "name": "v11.0",
+            "tileUrl": "tiles/YANIS/v11/normal/{z}/{x}/{y}.png",
+            "noCamsTileUrl": "tiles/YANIS/v11/nocams/normal/{z}/{x}/{y}.png",
+            "date": "2026-04-02",
+            "originalSize": { "width": 20000, "height": 20000 },
+            "bounds": [[-8000, -16500], [12000, 3500]],
+            "alternateScheme": {
+                "tileUrl": "tiles/YANIS/v11/dark/{z}/{x}/{y}.png",
+                "noCamsTileUrl": "tiles/YANIS/v11/nocams/dark/{z}/{x}/{y}.png",
+                "normalColor": ["#B9D179", "#2C67A4"],
+                "alternateColor": ["#212121", "#505050ff"]
+            },
+            "isAlternate": false,
+            "updateInfo": {
+                "type": "youtube",
+                "videoId": "eq-IwaO0CY4",
+                "title": "update.v10.title",
+                "description": "update.v10.description",
+                "showbanner": false
+            }
+        },
+        {
+            "id": "v12.0",
+            "name": "v12.0",
+            "tileUrl": "tiles/YANIS/v12/normal/{z}/{x}/{y}.png",
+            "noCamsTileUrl": "tiles/YANIS/v12/nocams/normal/{z}/{x}/{y}.png",
+            "date": "2026-05-11",
+            "originalSize": { "width": 20000, "height": 20000 },
+            "bounds": [[-8000, -16500], [12000, 3500]],
+            "alternateScheme": {
+                "tileUrl": "tiles/YANIS/v12/dark/{z}/{x}/{y}.png",
+                "noCamsTileUrl": "tiles/YANIS/v12/nocams/dark/{z}/{x}/{y}.png",
+                "normalColor": ["#B9D179", "#2C67A4"],
+                "alternateColor": ["#212121", "#505050ff"]
+            },
+            "isAlternate": false,
+            "updateInfo": {
+                "type": "youtube",
+                "videoId": "rHlBTCgCcxQ",
+                "title": "update.v10.title",
+                "description": "update.v10.description",
+                "showbanner": false
+            }
+        },
+        {
+            "id": "v13.0",
+            "name": "v13.0",
+            "tileUrl": "tiles/YANIS/v13/normal/{z}/{x}/{y}.png",
+            "noCamsTileUrl": "tiles/YANIS/v13/nocams/normal/{z}/{x}/{y}.png",
+            "date": "2026-06-24",
+            "originalSize": { "width": 20000, "height": 20000 },
+            "bounds": [[-8000, -16500], [12000, 3500]],
+            "alternateScheme": {
+                "tileUrl": "tiles/YANIS/v13/dark/{z}/{x}/{y}.png",
+                "noCamsTileUrl": "tiles/YANIS/v13/nocams/dark/{z}/{x}/{y}.png",
+                "normalColor": ["#B9D179", "#2C67A4"],
+                "alternateColor": ["#212121", "#505050ff"]
+            },
+            "isAlternate": false,
+            "updateInfo": {
+                "type": "youtube",
+                "videoId": "4Yepy8fnnds",
+                "title": "update.v10.title",
+                "description": "update.v10.description",
+                "showbanner": false
+            }
+        },
+        {
+            "id": "v14.0",
+            "name": "v14.0",
+            "tileUrl": "tiles/YANIS/v14/normal/{z}/{x}/{y}.png",
+            "noCamsTileUrl": "tiles/YANIS/v14/nocams/normal/{z}/{x}/{y}.png",
+            "date": "2026-08-04",
+            "originalSize": { "width": 20000, "height": 20000 },
+            "bounds": [[-8000, -16500], [12000, 3500]],
+            "alternateScheme": {
+                "tileUrl": "tiles/YANIS/v14/dark/{z}/{x}/{y}.png",
+                "noCamsTileUrl": "tiles/YANIS/v14/nocams/dark/{z}/{x}/{y}.png",
+                "normalColor": ["#B9D179", "#2C67A4"],
+                "alternateColor": ["#212121", "#505050ff"]
+            },
+            "isAlternate": false,
+            "updateInfo": {
+                "type": "youtube",
+                "videoId": "Bxn-S9RwPgY",
+                "title": "update.v10.title",
+                "description": "update.v10.description",
+                "showbanner": false
+            }
+        },
+        {
+            "id": "v15.0",
+            "name": "v15.0",
+            "tileUrl": "tiles/YANIS/v15/normal/{z}/{x}/{y}.png",
+            "noCamsTileUrl": "tiles/YANIS/v14/nocams/normal/{z}/{x}/{y}.png",
+            "date": "2026-08-23",
+            "originalSize": { "width": 20000, "height": 20000 },
+            "bounds": [[-8000, -16500], [12000, 3500]],
+            "alternateScheme": {
+                "tileUrl": "tiles/YANIS/v15/dark/{z}/{x}/{y}.png",
+                "noCamsTileUrl": "tiles/YANIS/v15/nocams/dark/{z}/{x}/{y}.png",
+                "normalColor": ["#B9D179", "#2C67A4"],
+                "alternateColor": ["#212121", "#505050ff"]
+            },
+            "isAlternate": false
+        },
+        {
+            "id": "v16.0",
+            "name": "v16.0",
+            "tileUrl": "tiles/YANIS/v16/normal/{z}/{x}/{y}.png",
+            "noCamsTileUrl": "tiles/YANIS/v16/nocams/normal/{z}/{x}/{y}.png",
+            "date": "2026-09-20",
+            "originalSize": { "width": 21000, "height": 20000 },
+            "bounds": [[-9000, -17000], [11000, 4000]],
+            "alternateScheme": {
+                "tileUrl": "tiles/YANIS/v16/dark/{z}/{x}/{y}.png",
+                "noCamsTileUrl": "tiles/YANIS/v16/nocams/dark/{z}/{x}/{y}.png",
+                "normalColor": ["#B9D179", "#2C67A4"],
+                "alternateColor": ["#212121", "#505050ff"]
+            },
+            "isAlternate": false
+			
+        }
+    ]
+}

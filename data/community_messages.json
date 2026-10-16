@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "channelId": 1,
+    "author": {
+      "id": 10,
+      "name": "Yanis_GIS",
+      "avatarUrl": "",
+      "rank": { "name": "Lead Cartographer", "color": "#ff50c5" },
+      "rankInfo": { "badge": "Lead", "color": "#ff50c5" }
+    },
+    "body": "Welcome to the State of Leonida Mapping Project! 21K tile pyramid updated to v16 with enhanced highway triangulation.",
+    "createdAt": "2026-10-07T12:00:00Z",
+    "reactions": { "🔥": 14, "🌴": 22 },
+    "attachments": [],
+    "mapLinks": []
+  },
+  {
+    "id": 2,
+    "channelId": 1,
+    "author": {
+      "id": 11,
+      "name": "ViceCityScout",
+      "avatarUrl": "",
+      "rank": { "name": "Contributor", "color": "#00de85" },
+      "rankInfo": { "badge": "Mapper", "color": "#00de85" }
+    },
+    "body": "Confirmed Ocean Drive art deco hotels match Trailer 1 scene 0:24 perfectly with Lummus Park palm alignments.",
+    "createdAt": "2026-10-07T15:30:00Z",
+    "reactions": { "❤️": 8 },
+    "attachments": [],
+    "mapLinks": []
+  },
+  {
+    "id": 3,
+    "channelId": 1,
+    "author": {
+      "id": 12,
+      "name": "FloridaKeysMapper",
+      "avatarUrl": "",
+      "rank": { "name": "Explorer", "color": "#ff9f43" },
+      "rankInfo": { "badge": "Scout", "color": "#ff9f43" }
+    },
+    "body": "Overseas Highway bridge coordinates verified between -7800 Y and -2100 X. Matches Key Largo road signs.",
+    "createdAt": "2026-10-07T18:15:00Z",
+    "reactions": { "👍": 11 },
+    "attachments": [],
+    "mapLinks": []
+  },
+  {
+    "id": 4,
+    "channelId": 2,
+    "author": {
+      "id": 11,
+      "name": "ViceCityScout",
+      "avatarUrl": "",
+      "rank": { "name": "Contributor", "color": "#00de85" },
+      "rankInfo": { "badge": "Mapper", "color": "#00de85" }
+    },
+    "body": "Ambrosia Sugar Mill complex identified in the western agricultural wetlands. 4 silos confirmed.",
+    "createdAt": "2026-10-07T19:00:00Z",
+    "reactions": { "👀": 7 },
+    "attachments": [],
+    "mapLinks": []
+  }
+]

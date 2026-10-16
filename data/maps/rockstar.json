@@ -1,0 +1,62 @@
+{
+    "gta5": {
+        "id": "gta5",
+        "name": "GTA V",
+        "type": "image",
+        "visible": true,
+        "enabled": false,
+        "opacity": 0.7,
+        "imageUrl": "assets/maps/GTAV.svg",
+        "logoUrl": "assets/logos/gta5logo.png",
+        "bounds": [[-3600.698, -5000], [7679.719, 5000]],
+        "attribution": "GTA V Map"
+    },
+    "gta4": {
+        "id": "gta4",
+        "name": "GTA IV",
+        "type": "image",
+        "visible": true,
+        "enabled": false,
+        "opacity": 0.7,
+        "imageUrl": "assets/maps/GTAIV.svg",
+        "logoUrl": "assets/logos/gta4logo.png",
+        "bounds": [[-2500, -5000], [3500, 5000]],
+        "attribution": "GTA IV Map"
+    },
+    "vicecity": {
+        "id": "vicecity",
+        "name": "Vice City",
+        "type": "image",
+        "visible": true,
+        "enabled": false,
+        "opacity": 0.7,
+        "imageUrl": "assets/maps/gtavc.png",
+        "logoUrl": "assets/logos/gtavicelogo.png",
+        "bounds": [[-1185, -1185], [1185, 1185]],
+        "attribution": "GTA Vice City Map"
+    },
+    "sanandreas": {
+        "id": "sanandreas",
+        "name": "San Andreas",
+        "type": "image",
+        "visible": true,
+        "enabled": false,
+        "opacity": 0.7,
+        "imageUrl": "assets/maps/GTAsa.svg",
+        "logoUrl": "assets/logos/gtasalogo.png",
+        "bounds": [[-3000, -3000], [3000, 3000]],
+        "attribution": "GTA San Andreas Map"
+    },
+    "rdr2": {
+        "id": "rdr2",
+        "name": "Red Dead Redemption 2",
+        "type": "image",
+        "visible": true,
+        "enabled": false,
+        "opacity": 0.7,
+        "imageUrl": "assets/maps/rdr2.png",
+        "logoUrl": "assets/logos/rdr2.svg",
+        "bounds": [[-3100, -5900], [5300, 4400]],
+        "attribution": "Red Dead Redemption 2 Map"
+            }
+}

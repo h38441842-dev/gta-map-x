@@ -1,0 +1,1379 @@
+{
+    "title": "Credits",
+    "subtitle": "This project exists thanks to the incredible work of the GTA mapping community. Every location, every marker, every piece of information on this site is built on what countless fans have discovered, shared, and put together over time. None of this would be possible without their dedication and passion for exploring every corner of the game. Massive thanks to everyone who contributes, helps, or inspires others - this site is for you.",
+    "sections": [
+        {
+            "title": "Special Thanks",
+            "display": "large",
+            "searchEnabled": false,
+            "members": [
+                {
+                    "name": "rlx",
+                    "role": "Landmarks Marker Database",
+                    "description": "",
+                    "avatar": "assets/pic/rlx_1.jpg",
+                    "rank": "mapper_plus",
+                    "socials": [
+                        {
+                            "platform": "website",
+                            "url": "https://map.gtadb.org/"
+                        }
+                    ]
+                },
+                {
+                    "name": "Saam.exe",
+                    "role": "",
+                    "description": "",
+                    "avatar": "assets/pic/saamexe.png",
+                    "rank": "mapper_plus",
+                    "socials": [
+                        {
+                            "platform": "website",
+                            "url": "https://vimap.saamexe.com/"
+                        }
+                    ]
+                },
+                {
+                    "name": "YANIS",
+                    "role": "Layer Credits",
+                    "description": "",
+                    "avatar": "assets/pic/yanis.png",
+                    "rank": "mapper_plus",
+                    "socials": []
+                },
+                {
+                    "name": "RickRick",
+                    "role": "Layer Credits",
+                    "description": "",
+                    "rank": "mapper_plus",
+                    "socials": [],
+                    "avatar": "assets/pic/rickrick.png"
+                },
+                {
+                    "name": "Laze",
+                    "role": "",
+                    "description": "",
+                    "avatar": "assets/logos/laze.jpg",
+                    "rank": "mapper_plus",
+                    "socials": [
+                        {
+                            "platform": "twitter",
+                            "url": "https://x.com/xlazefps"
+                        }
+                    ]
+                },
+                {
+                    "name": "Saukko505",
+                    "rank": "mapper_plus",
+                    "socials": [
+                        {
+                            "platform": "youtube",
+                            "url": "https://www.youtube.com/@saukko505"
+                        },
+                        {
+                            "platform": "twitter",
+                            "url": "https://x.com/saukko505"
+                        }
+                    ],
+                    "avatar": "assets/pic/saukko.jpg"
+                }
+            ]
+        },
+        {
+            "title": "Website Beta Tester",
+            "display": "medium",
+            "searchEnabled": false,
+            "members": [
+                {
+                    "name": "Hxlly",
+                    "rank": "contributor",
+                    "socials": [],
+                    "role": "",
+                    "description": "State of Leonida Beta Tester",
+                    "avatar": "assets/pic/Holly.png"
+                },
+                {
+                    "name": "KowalskiZ",
+                    "rank": "contributor",
+                    "socials": [],
+                    "description": "State of Leonida Beta Tester",
+                    "avatar": "assets/pic/IMG_4545.png"
+                },
+                {
+                    "name": "ÜberGaming",
+                    "rank": "trusted",
+                    "socials": [],
+                    "avatar": "assets/pic/oleg.png",
+                    "description": "Tester & Supporter since 2023. "
+                }
+            ]
+        },
+        {
+            "title": "Mappers",
+            "display": "small",
+            "searchEnabled": true,
+            "members": [
+                {
+                    "name": "DuPz0r",
+                    "socials": [],
+                    "rank": "mapper_plus",
+                    "avatar": "assets/pic/dupz.png"
+                },
+                {
+                    "name": "TreeFitty",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Fido_le_muet",
+                    "socials": [],
+                    "rank": "mapper_plus",
+                    "avatar": "assets/pic/fido.png"
+                },
+                {
+                    "name": "avatarsd",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Koeklin",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "rlx",
+                    "avatar": "assets/pic/rlx_1.jpg",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "ChurchOfGTA",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "Mehaniq",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "DX",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "Nikhil",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "Saam.exe",
+                    "socials": [],
+                    "rank": "mapper_plus",
+                    "avatar": "assets/pic/saamexe.png"
+                },
+                {
+                    "name": "DerekLeet",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "Rafamendes",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Raptexalicious",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Musa98",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "DazRave",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "ThisGoesToEleven",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Vicey",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "GhettoJesus",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Bubba",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Squnard",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Cr0ssm",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "DarkDayz",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Michal",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "ScaledAnd1cy",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "g*",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "aaazito",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "ClawMaster",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "FrenchAug",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "gunz",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Waffles Syrup",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "Sunmoth",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Jaxrud",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "Mati",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Mattineu",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "Ser_Salty",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "C4K3",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "JStarr31",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "Stinger",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Darth Sk8d3r",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Aupx",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "Pixelclone",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "IAmAtYourWindows",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "BlackScout",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Saerkal",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "The Dude",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "The_Mek",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Edge333",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Dridex",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "finger",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "AsD",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Antoñio",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "kloadit",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "TussTaster(Kyo)",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "GTA-Fan_made Radio",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "FranciscoM",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Long Long Time",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "sirstirfry",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "bloo",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "TurboLight",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Mesa",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "golden",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "babydracula",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "pariah87",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "higgs",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "M E D I",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "XL Jawn",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "flyingmonkey97",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "TakeNoShift",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "Revent66",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "SkymnäsWolf",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Z Ξ T Λ",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "lu",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "JupoL",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Ascendency",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Perseus",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "ChrisTheRealOne",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "snsjackz",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "NeinKnight",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "rainy",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Glenn 'SlamTilt' Pegden",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "RickRick",
+                    "socials": [],
+                    "rank": "mapper_plus",
+                    "avatar": "assets/pic/rickrick.png"
+                },
+                {
+                    "name": "Holt",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "lezzylree",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Laze",
+                    "socials": [],
+                    "rank": "mapper_plus",
+                    "avatar": "assets/pic/laze.jpg"
+                },
+                {
+                    "name": "JAXXN",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Squire",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "CoolGingerGinger",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "SatanGOLD!",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Juzilex",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "pilgrim",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "goldygoldy",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "MrDrFlamingo",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "LittleJoeyD",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Ganton Studios",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Prestigefi",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "blodi",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "SpeedyAero",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "bmxm",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "Takeshino",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "CP",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Aeviternum",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "grated_lemon",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "ZombieElvis",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "el pepe",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "LucidNotAwake",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "yeri_161",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "BolbiiS",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "The Ardashir",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "ClayishWall",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Nnrrzz",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Jehu",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "jfavignano",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "h_fx57",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Saukko505",
+                    "socials": [],
+                    "rank": "mapper_plus",
+                    "avatar": "assets/pic/saukko.jpg"
+                },
+                {
+                    "name": "Frosty",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "magnoliy",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Tops",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Pilgrim",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Random",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Danix",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "E.W.",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Not I Not",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Skena",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Fwankster",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "sylhes",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "violet",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Jac",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "iSrirachaa",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "DeathDarf",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Dondactor",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "MysticFoxYT",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "edg333",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "ShadowSorcery",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Mesh",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Oriond34",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "mysticcc",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "astonishedscout",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "chrome",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Synthesis",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Merlie :3",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "! Echo",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Chatterer",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Cola",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "baregen",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "MeldoniY",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Balibompa",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Tachyon",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Angelito",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "hotel tap water",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "SpaceVolcano",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Kamra",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "JKD",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Kiwieh",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Eleanor Demona",
+                    "socials": [],
+                    "rank": "mapper_plus",
+                    "avatar": "assets/pic/Eleanor Demona.png"
+                },
+                {
+                    "name": "blaue",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Scooter&Half12",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Cygnus",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "RoblifeBetter",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "ian_",
+                    "socials": [],
+                    "rank": "mapper_plus"
+                },
+                {
+                    "name": "Kindlyspace",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "richalligator",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "gorbux",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Carfreak200",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Stefan10",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "martipk",
+                    "socials": [],
+                    "rank": "mapper_plus",
+                    "avatar": "assets/pic/martipk.png"
+                },
+                {
+                    "name": "Giovanni_Tirado_48",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Yeri_161",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "TheMcDudeCM",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Topecahigh",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "imvibin",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "EducatedHotshot",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Bombardilo Crocodilo",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "vextox",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "idleuser",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "TheOneAndOnlyHeisenbob",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "hypsal",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Frosty1936",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "V (Hunter-is-Great)",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "the_JR",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "bobsageit",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "SirFrolo",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Ram",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "ManOfLaGanja",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "insidediamond",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "allie_lacey",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "HerrFalcon",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Dauby",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Zonimu",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "Hartelijke",
+                    "socials": [],
+                    "rank": "mapper"
+                },
+                {
+                    "name": "James_3460",
+                    "rank": "mapper",
+                    "socials": [],
+                    "avatar": "assets/pic/James_3460.jpg"
+                },
+                {
+                    "name": "Neutral_State",
+                    "rank": "mapper_plus",
+                    "socials": [],
+                    "avatar": "assets/pic/ChatGPT Image Dec 11, 2025 at 11_54_59 AM.png"
+                },
+                {
+                    "name": "KDA",
+                    "rank": "mapper",
+                    "socials": [],
+                    "avatar": "assets/pic/KDA.png"
+                },
+                {
+                    "name": "Dudz",
+                    "rank": "mapper",
+                    "socials": [],
+                    "avatar": "assets/pic/Dudz.png"
+                },
+                {
+                    "name": "SixStarSystems",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "CarNC",
+                    "rank": "mapper",
+                    "socials": [],
+                    "avatar": "assets/pic/CarNC.png"
+                },
+                {
+                    "name": "Anli",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "mnm345",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "pajinia",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Lala Leora",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "chap",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "niño zo",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "VLAD",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Jack244",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Monkeypolice188",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "HEKVT",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "ADF-11F Raven",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Sonarys",
+                    "rank": "mapper_plus",
+                    "socials": []
+                },
+                {
+                    "name": "Benja:)",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Sebastian",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "profrovrgta6",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "pomb u",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "MCFan77",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "OYSERO",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "usualmikey",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Filip",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "wqs",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Whatsapp",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "gufoo",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "BentPixel",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "gangatron",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "BenG",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Grene222",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "mt02",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "abejabe",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "StopsRevenge",
+                    "rank": "mapper_plus",
+                    "socials": []
+                },
+                {
+                    "name": "TexVax",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "DuskoPopovvv0175",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "rhwinner",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "RunarLG",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Darkouchen",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "cheburger",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "noasden",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "JayFA",
+                    "rank": "mapper_plus",
+                    "socials": []
+                },
+                {
+                    "name": "Garza",
+                    "rank": "mapper_plus",
+                    "socials": []
+                },
+                {
+                    "name": "Thatone200",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Alex Andrei",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "SZtraus",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "jodie.blend",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "focosg",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Kiwieh",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "DarkSpace",
+                    "rank": "mapper_plus",
+                    "socials": [],
+                    "avatar": "assets/pic/darkspace.png"
+                },
+                {
+                    "name": "Guingo",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Moawr",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Beefcan",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "the_23rd_century",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "Penistone / $1776",
+                    "rank": "mapper",
+                    "socials": []
+                },
+                {
+                    "name": "SuddenlyPigeons",
+                    "rank": "mapper_plus",
+                    "socials": []
+                }
+            ]
+        }
+    ],
+    "footer": {
+        "text": "This is a fan-made project and is not affiliated with Rockstar Games.",
+        "version": "1.0.0",
+        "year": "2025"
+    }
+}

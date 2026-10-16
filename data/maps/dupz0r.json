@@ -1,0 +1,31 @@
+{
+    "id": "DuPz0r",
+    "name": "DuPz0r",
+    "author": "",
+    "logoUrl": "assets/pic/dupz.png",
+    "visible": false,
+    "enabled": false,
+    "opacity": 1.0,
+    "maxZoom": 8,
+    "maxNativeZoom": 6,
+    "minZoom": 0,
+    "currentVersion": "v8.0",
+    "versions": [
+        {
+            "id": "v8.0",
+            "name": "v0.008",
+            "tileUrl": "tiles/dupz/v9/{z}/{x}/{y}.png",
+            "date": "2022-09-21",
+            "originalSize": { "width": 20000, "height": 20000 },
+            "bounds": [[-7000, -7000], [7000, 7000]]
+        },
+        {
+            "id": "v8.0",
+            "name": "v0.008",
+            "tileUrl": "tiles/dupz/v9/{z}/{x}/{y}.png",
+            "date": "2022-09-21",
+            "originalSize": { "width": 20000, "height": 19842 },
+            "bounds": [[-7000, -7000], [7000, 7000]]
+        }
+    ]
+}

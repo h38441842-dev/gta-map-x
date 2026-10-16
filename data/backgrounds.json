@@ -1,0 +1,83 @@
+{
+    "backgrounds": {
+        "background1": {
+            "id": "background1",
+            "name": {
+                "de": "State of Leonida main Hintergrund",
+                "en": "State of Leonida main Background"
+            },
+            "thumbnail": "assets/backgrounds/background.png",
+            "image": "assets/backgrounds/background.png",
+            "author": "State of Leonida",
+            "tags": ["default", "gta"]
+        },
+        "background2": {
+            "id": "background2",
+            "name": {
+                "de": "GTA VI Teaser Background",
+                "en": "GTA VI Teaser Background"
+            },
+            "thumbnail": "assets/backgrounds/1.png",
+            "image": "assets/backgrounds/1.png",
+            "author": "State of Leonida",
+            "tags": ["gta", "dark"]
+        },
+        "background3": {
+            "id": "background3",
+            "name": {
+                "de": "Clean Artwork By mnm345",
+                "en": "Clean Artwork By mnm345"
+            },
+            "thumbnail": "assets/backgrounds/4.png",
+            "image": "assets/backgrounds/4.png",
+            "author": "State of Leonida",
+            "tags": ["gta"]
+        },
+        "background4": {
+            "id": "background4",
+            "name": {
+                "de": "Leonida Artwork 2",
+                "en": "Leonida Artwork 2"
+            },
+            "thumbnail": "assets/backgrounds/background2.png",
+            "image": "assets/backgrounds/background2.png",
+            "author": "State of Leonida",
+            "tags": ["gta"]
+        },
+        "background5": {
+            "id": "background5",
+            "name": {
+                "de": "Leonida Artwork 3 by GTAGFX",
+                "en": "Leonida Artwork 3 by GTAGFX"
+            },
+            "thumbnail": "assets/backgrounds/HLlQuY0WMAEtKda.jpg",
+            "image": "assets/backgrounds/HLlQuY0WMAEtKda.jpg",
+            "author": "State of Leonida",
+            "tags": ["gta"]
+        },
+        "preloaderStyle": {
+            "id": "preloaderStyle",
+            "name": {
+                "de": "Dark Leonida",
+                "en": "Dark Leonida"
+            },
+            "thumbnail": "assets/backgrounds/background.png",
+            "image": "assets/backgrounds/background.png",
+            "author": "State of Leonida",
+            "tags": ["dark", "accent"],
+            "isPreloaderStyle": true
+        },
+        "customColor": {
+            "id": "customColor",
+            "name": {
+                "de": "Eigene Farbe",
+                "en": "Custom Color"
+            },
+            "thumbnail": null,
+            "image": null,
+            "author": "User",
+            "tags": ["custom", "color"],
+            "isColorPicker": true
+        }
+    }
+}

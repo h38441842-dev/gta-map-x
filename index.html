@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // Global error shield for sandboxed iframes & cross-origin script errors
+        window.addEventListener('error', function(event) {
+            if (event && (event.message === 'Script error.' || event.message === 'Script error' || !event.message)) {
+                if (typeof event.preventDefault === 'function') event.preventDefault();
+                return true;
+            }
+        }, true);
+        window.addEventListener('unhandledrejection', function(event) {
+            if (event && event.reason && (event.reason.message === 'Script error.' || String(event.reason).includes('Script error'))) {
+                if (typeof event.preventDefault === 'function') event.preventDefault();
+            }
+        });
+        (function() {
+            try {
+                var _currentFetch = window.fetch;
+                if (typeof _currentFetch === 'function') {
+                    _currentFetch = _currentFetch.bind(window);
+                }
+                Object.defineProperty(window, 'fetch', {
+                    get: function() { return _currentFetch; },
+                    set: function(newFetch) {
+                        _currentFetch = (typeof newFetch === 'function') ? newFetch.bind(window) : newFetch;
+                    },
+                    configurable: true,
+                    enumerable: true
+                });
+            } catch (e) {}
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+    <base href="/">
+    <title id="page-title">GTA 6 Interactive Map – State of Leonida | Vice City & Florida Locations</title>
+
+    <meta name="description" content="Explore the definitive interactive GTA 6 map of Leonida & Vice City. 21K deep-zoom GIS cartography, 2,850+ triangulated landmarks, trailer comparisons, leak coordinates, and real Florida comparisons.">
+    <meta name="keywords" content="GTA 6 Interactive Map, GTA VI Map, State of Leonida, Vice City Map 2026, GTA 6 Map Size vs GTA 5, Grand Theft Auto 6 Map, GTA 6 Map Coordinates, GTA 6 Leaks Map, GTA 6 Trailer 1 Scene Locations, GTA 6 Trailer 2 Map, Port Gellhorn GTA 6, Kelly County GTA 6, Leonard County, Leonida Keys Highway, Lake Leonida Swamps, Vice Beach Ocean Drive, Ambrosia Sugar Mill, Starfish Island GTA 6, GTA 6 GPS Travel Time, GTA 6 Collectibles Map, GTA 6 Real Life Florida Comparison, GTA VI Mapping Community, Yanis v16 Map, GTA 6 Interaktive Karte, GTA 6 Mapa Interactivo, GTA 6 Carte Interactive">
+    <meta name="author" content="State of Leonida">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://map.stateofleonida.net/en/">
+
+    <link rel="alternate" hreflang="de" href="https://map.stateofleonida.net/de/">
+    <link rel="alternate" hreflang="en" href="https://map.stateofleonida.net/en/">
+    <link rel="alternate" hreflang="x-default" href="https://map.stateofleonida.net/en/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://map.stateofleonida.net/en/">
+    <meta property="og:title" content="GTA 6 Interactive Map – State of Leonida | Vice City & Florida Locations">
+    <meta property="og:description" content="Explore the definitive interactive GTA 6 map of Leonida & Vice City. 21K deep-zoom GIS cartography, 500+ triangulated landmarks, trailer comparisons, leak coordinates, and real Florida comparisons.">
+    <meta property="og:image" content="https://map.stateofleonida.net/assets/backgrounds/hero_gta6.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta property="og:image:alt" content="State of Leonida - GTA 6 Interactive Map">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:site_name" content="State of Leonida">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://map.stateofleonida.net/en/">
+    <meta name="twitter:title" content="GTA 6 Interactive Map – State of Leonida | Vice City & Florida Locations">
+    <meta name="twitter:description" content="Explore the definitive interactive GTA 6 map of Leonida & Vice City. 21K deep-zoom GIS cartography, 500+ triangulated landmarks, trailer comparisons, leak coordinates, and real Florida comparisons.">
+    <meta name="twitter:image" content="https://map.stateofleonida.net/assets/backgrounds/hero_gta6.jpg">
+    <meta name="twitter:image:alt" content="State of Leonida - GTA 6 Interactive Map">
+    <meta name="twitter:site" content="@stateofleonida">
+
+    <script type="application/ld+json">
+        {
+            "@type": "Organization",
+            "name": "State of Leonida",
+            "url": "https://map.stateofleonida.net",
+            "logo": "https://map.stateofleonida.net/assets/logos/favicon/web-app-manifest-512x512.png",
+            "@context": "https://schema.org"
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@type": "WebSite",
+            "name": "State of Leonida",
+            "url": "https://map.stateofleonida.net",
+            "@context": "https://schema.org",
+            "publisher": {
+                "@type": "Organization",
+                "name": "State of Leonida"
+            }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@type": "WebApplication",
+            "name": "State of Leonida",
+            "alternateName": "GTA 6 Interactive Map",
+            "applicationCategory": "GameApplication",
+            "operatingSystem": "Web Browser",
+            "description": "State of Leonida – The interactive GTA 6 map by the Mapping Community. All known locations, landmarks and real-life comparisons.",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "EUR"
+            },
+            "@context": "https://schema.org",
+            "url": "https://map.stateofleonida.net",
+            "author": {
+                "@type": "Organization",
+                "name": "State of Leonida"
+            }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "TechArticle",
+                    "headline": "GTA 6 Interactive Map: State of Leonida Cartography, Coordinates & Geographic Triangulation",
+                    "description": "Comprehensive cartographic breakdown of Grand Theft Auto VI (GTA 6) State of Leonida, including 125 km² map size calculation, 2,850+ triangulated coordinates, trailer analysis, and comparison with GTA 5 and Red Dead Redemption 2.",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "State of Leonida Mapping Community",
+                        "url": "https://map.stateofleonida.net"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "State of Leonida",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://map.stateofleonida.net/assets/logos/favicon/web-app-manifest-512x512.png"
+                        }
+                    },
+                    "about": [
+                        "Grand Theft Auto VI",
+                        "GTA 6 Map",
+                        "State of Leonida",
+                        "Vice City",
+                        "Port Gellhorn",
+                        "Interactive Map"
+                    ]
+                },
+                {
+                    "@type": "Dataset",
+                    "name": "State of Leonida 21K Cartographic Coordinates Database",
+                    "description": "Triangulated in-game 3D Cartesian coordinates (X, Y, Z) and POI dataset for Grand Theft Auto VI, cross-referenced with real Florida GIS OpenStreetMap.",
+                    "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+                    "creator": {
+                        "@type": "Organization",
+                        "name": "GTA VI Mapping Community"
+                    },
+                    "spatialCoverage": "State of Leonida (Vice City, Port Gellhorn, Kelly County, Leonida Keys)",
+                    "temporalCoverage": "2024/2026"
+                },
+                {
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                        {
+                            "@type": "Question",
+                            "name": "What is the State of Leonida Interactive Map for GTA 6?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "State of Leonida is a community-driven high-resolution interactive GIS map for Grand Theft Auto VI (GTA 6). It features 21K deep-zoom cartography, 2,850+ triangulated landmarks from official trailers and leaks, and comparisons with real-world Florida locations."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "How big is the GTA 6 map compared to GTA 5 and Red Dead Redemption 2?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Based on community GIS triangulation (including the Yanis v16 mapping project), the State of Leonida is estimated at approximately 125 km² of surface landmass, making it approximately 2.55 times larger than GTA 5's Los Santos (~49 km²), 1.66 times larger than RDR2 (~75 km²), and over 13 times larger than the original 2002 Vice City."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "What cities and counties are included in GTA 6 Leonida?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "The State of Leonida features Vice City (Vice Beach, Downtown, Little Haiti, Starfish Island, Venetian Islands), the industrial shipping corridor of Port Gellhorn, Kelly County agricultural heartland, Leonard County, Ambrosia sugar refineries, the Leonida Keys archipelago connected by the Overseas Highway, Mount Kalaga National Park, and the Grassrivers alligator wetlands."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "Who are the playable protagonists in GTA 6 and where are their story missions located?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "GTA 6 features dual protagonists Lucia Caminos and Jason in a Bonnie-and-Clyde dynamic. Leaked mission telemetry verifies heist and robbery activities at Hank's Waffles diner, Port Gellhorn pawn shops and motels, Vice City convenience stores, and Lucia's opening backstory at the Leonida Department of Corrections."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "How are the in-game Cartesian coordinates calculated before the game launches?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Cartographers triangulate coordinates using Rockstar's Cartesian in-game plane (X, Y, Z axes) extracted from leaked 2022 development telemetry, matched with focal length camera photogrammetry from official trailers, road mileage signposts, and horizon vantage lines."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "Can I calculate driving distance and travel times across the GTA 6 map?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Yes! The interactive map includes a real-time GPS Route & Travel Calculator that computes realistic driving times for Supercars (~210 km/h), Helicopters (~240 km/h), Airboats, and on-foot exploration across any two selected coordinates."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "What vehicles, supercars, and boats are confirmed on the GTA 6 map?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Trailer 1 and leaks confirm iconic sports cars including the Grotti Cheetah, Pegassi Torero XO, Bravado Gauntlet Hellfire, Pfister Comet, Albany Buccaneer, as well as airboats in the Grassrivers swamps, Marquis luxury yachts around Starfish Island, and Western Dodo seaplanes."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "What platforms and release window is GTA 6 scheduled for?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Grand Theft Auto VI is officially announced by Rockstar Games for release in Fall 2025/2026 on PlayStation 5 (including PS5 Pro enhanced) and Xbox Series X|S, with a PC release expected following console launch."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "Will the map update when Rockstar Games releases Trailer 2 and new screenshots?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Yes, our cartography database updates in real-time. Any newly revealed locations, highway networks, or screenshot discoveries from Trailer 2 are immediately verified and published to the live 21K interactive map."
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    </script>
+    <link rel="icon" type="image/png" href="assets/logos/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="assets/logos/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="assets/logos/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/logos/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="State of Leonida" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#0a0a10" />
+    <meta name="theme-color" content="#0a0a10" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0a0a10" media="(prefers-color-scheme: light)" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <link rel="stylesheet" href="assets/libs/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="assets/libs/leaflet-markercluster/MarkerCluster.css" />
+    <link rel="stylesheet" href="assets/libs/leaflet-markercluster/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="assets/libs/fancybox/fancybox.css" />
+    <link rel="stylesheet" href="solmain2009.css">
+    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="blog.css">
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .site-header {
+            visibility: hidden;
+        }
+
+        .site-header.loaded {
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="mobile-ui-booting">
+    <div class="preloader">
+        <div class="preloader-site-bg" id="preloader-site-bg" aria-hidden="true"></div>
+        <div class="preloader-background">
+            <div class="preloader-background-inner">
+                <div class="preloader-background-layer"></div>
+            </div>
+        </div>
+        <div class="preloader-content">
+            <img src="assets/logos/logo.svg" alt="Logo" class="preloader-logo">
+            <div class="preloader-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Loading">
+                <div class="preloader-progress-fill progress-bar"></div>
+            </div>
+        </div>
+        <div class="preloader-footer">
+            <img src="assets/logos/affiliated with.png" alt="Affiliated with" class="preloader-affiliated">
+            <div class="preloader-credits">
+                <a class="credits-item credits-gtadb" href="https://map.gtadb.org" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/pic/gtamaplib.png" alt="GTA Maplib" class="credits-logo">
+                    <div class="credits-info">
+                        <div class="credits-title">MAP.GTADB.ORG</div>
+                        <div class="credits-subtitle">USE DATABASE</div>
+                    </div>
+                </a>
+                <a class="credits-item credits-gtawiki" href="https://gta.wiki" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/logos/Wiki.png" alt="GTA Wiki" class="credits-logo">
+                    <div class="credits-info">
+                        <div class="credits-title">GTA.WIKI</div>
+                        <div class="credits-subtitle">FIND ON MARKERS</div>
+                    </div>
+                </a>
+            </div>
+            <div class="preloader-disclaimer">
+                <span class="preloader-disclaimer-line">
+                    <a href="https://www.rockstargames.com" target="_blank" rel="noopener noreferrer">Rockstar Games</a> and <a href="https://www.rockstargames.com/gta-vi" target="_blank" rel="noopener noreferrer">Grand Theft Auto</a> are registered trademarks of <a href="https://www.take2games.com" target="_blank" rel="noopener noreferrer">Take-Two Interactive Software&nbsp;Inc.</a>
+                </span>
+                <span class="preloader-disclaimer-line">
+                    State of Leonida are not affiliated, in any way, shape or form, with the aforementioned companies.
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <a href="#" class="header-logo">
+            <img src="assets/logos/Logo.png" alt="State of Leonida" class="header-logo-icon">
+        </a>
+        <div class="header-separator-left"></div>
+        <a href="https://discord.gg/JeTPhnHuxm" target="_blank" rel="noopener noreferrer" class="header-mapping-center" id="header-mapping-btn">
+            <img src="assets/logos/mappingcool2.gif" alt="Mapping Discord" class="mapping-video">
+        </a>
+        <div class="header-separator-right"></div>
+        <a href="#blog" class="header-blog-btn" id="header-blog-btn" title="Vice Wire News & Intelligence">
+            <i class="fas fa-feather-alt"></i>
+            <span>Vice Wire Blog</span>
+        </a>
+        <div class="header-right" id="header-auth-slot"></div>
+        <div class="gta-countdown-wrapper" id="gta-countdown-wrapper">
+            <div class="gta-countdown" id="gta-countdown">
+                <img src="assets/logos/gtavi.png" alt="GTA VI" class="gta-countdown-logo">
+                <div class="gta-countdown-timer">
+                    <div class="gta-countdown-value" id="countdown-days">000</div>
+                    <div class="gta-countdown-separator">:</div>
+                    <div class="gta-countdown-value" id="countdown-hours">00</div>
+                    <div class="gta-countdown-separator">:</div>
+                    <div class="gta-countdown-value" id="countdown-minutes">00</div>
+                    <div class="gta-countdown-separator">:</div>
+                    <div class="gta-countdown-value" id="countdown-seconds">00</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <button id="map-return-landing-btn" class="map-return-landing-btn" style="display:none;" title="Back to Landing Page">
+        <i class="fas fa-arrow-left"></i>
+        <span>Return to Overview</span>
+    </button>
+
+    <!-- GTA VI Style Premium Landing Page -->
+    <div id="gta-landing-page" class="gta-landing-page">
+        <!-- Sticky Top Navigation -->
+        <header class="landing-nav">
+            <a href="#" class="landing-brand js-launch-map" title="State of Leonida">
+                <img src="assets/logos/Logo.png" alt="State of Leonida" class="landing-brand-logo">
+                <span class="landing-brand-text">State of Leonida</span>
+            </a>
+            <nav class="landing-nav-links">
+                <a href="#overview" class="landing-nav-link">Overview</a>
+                <a href="#features" class="landing-nav-link">Features</a>
+                <a href="#hotspots" class="landing-nav-link">Hotspots</a>
+                <a href="#encyclopedia" class="landing-nav-link">Encyclopedia</a>
+                <a href="#blog" class="landing-nav-link" id="nav-link-blog"><i class="fas fa-feather-alt" style="color:var(--gta-pink); margin-right:4px;"></i>Vice Wire Blog</a>
+                <a href="https://discord.gg/JeTPhnHuxm" target="_blank" rel="noopener noreferrer" class="landing-nav-link">Discord</a>
+            </nav>
+            <div class="landing-nav-actions">
+                <a href="#blog" class="btn-header-blog" id="btn-header-blog" title="Vice Wire GTA 6 Blog & Intelligence Reports">
+                    <i class="fas fa-feather-alt"></i>
+                    <span>Blog</span>
+                </a>
+                <button class="btn-primary-launch js-launch-map" type="button">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Launch Map</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="landing-hero" id="overview">
+            <div class="landing-hero-backdrop"></div>
+            <div class="landing-hero-scrim"></div>
+            <div class="landing-hero-content">
+                <div class="hero-badge-strip">
+                    <span class="hero-badge-dot"></span>
+                    <span>GTA VI Community GIS Cartography</span>
+                </div>
+
+                <div class="hero-logo-lockup">
+                    <img src="assets/logos/gtavi.png" alt="Grand Theft Auto VI" class="hero-gta6-logo">
+                </div>
+
+                <h1 class="hero-title">
+                    <span class="hero-title-gradient">State of Leonida</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    The interactive mapping intelligence hub for Grand Theft Auto VI. Explore Vice City, Port Gellhorn, and the Keys with 21K deep-zoom GIS precision, 500+ triangulated landmarks, trailer comparisons, and 3D assets.
+                </p>
+
+                <!-- Live Countdown Timer -->
+                <div class="hero-countdown-box">
+                    <span class="countdown-label"><i class="fas fa-calendar-check"></i> Official Launch: 19 Nov 2026</span>
+                    <div class="countdown-units">
+                        <div class="countdown-cell">
+                            <span class="countdown-digit" id="landing-days">000</span>
+                            <span class="countdown-sub">Days</span>
+                        </div>
+                        <span class="countdown-separator">:</span>
+                        <div class="countdown-cell">
+                            <span class="countdown-digit" id="landing-hours">00</span>
+                            <span class="countdown-sub">Hours</span>
+                        </div>
+                        <span class="countdown-separator">:</span>
+                        <div class="countdown-cell">
+                            <span class="countdown-digit" id="landing-minutes">00</span>
+                            <span class="countdown-sub">Mins</span>
+                        </div>
+                        <span class="countdown-separator">:</span>
+                        <div class="countdown-cell">
+                            <span class="countdown-digit" id="landing-seconds">00</span>
+                            <span class="countdown-sub">Secs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Primary CTAs -->
+                <div class="hero-cta-group">
+                    <button class="btn-hero-launch js-launch-map" type="button">
+                        <i class="fas fa-compass"></i>
+                        <span>Explore Interactive Map</span>
+                    </button>
+                    <a href="#features" class="btn-hero-secondary">
+                        <i class="fas fa-layer-group"></i>
+                        <span>Discover Capabilities</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quantitative Stat Strip -->
+        <div class="landing-stat-strip">
+            <div class="stat-item">
+                <span class="stat-number stat-highlight">21,000 × 20,000</span>
+                <span class="stat-desc">Native Pixel Resolution</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number stat-highlight">500+</span>
+                <span class="stat-desc">Triangulated Landmarks & Leaks</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number stat-highlight">Dual Engine</span>
+                <span class="stat-desc">Leonida In-Game & Florida OSM</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number stat-highlight">100% Free</span>
+                <span class="stat-desc">Open Community Project</span>
+            </div>
+        </div>
+
+        <!-- Features Bento-Grid -->
+        <section class="landing-section" id="features">
+            <div class="section-kicker">Core Intelligence</div>
+            <h2 class="section-title">Built For The Mapping Community</h2>
+            <p class="section-subtitle">
+                Engineered with customized GIS projections to match Rockstar's Cartesian in-game plane, backed by thousands of hours of collective community research.
+            </p>
+
+            <div class="bento-grid">
+                <!-- Bento 1: Large Span -->
+                <div class="bento-card bento-span-2">
+                    <div>
+                        <div class="bento-icon icon-pink">
+                            <i class="fas fa-map"></i>
+                        </div>
+                        <h3 class="bento-card-title">21K Deep-Zoom GIS Cartography</h3>
+                        <p class="bento-card-desc">
+                            Continuous pyramid tiled mapping engine incorporating multiple community projections (Yanis v16, Dupz0r, RickRick). Inspect every highway, airport runway, canal, and back-alley across Vice City and surrounding counties with zero tile lag.
+                        </p>
+                    </div>
+                    <div>
+                        <button class="bento-action-link js-launch-map" type="button">
+                            <span>Open Fullscreen Cartography</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bento 2 -->
+                <div class="bento-card">
+                    <div>
+                        <div class="bento-icon icon-cyan">
+                            <i class="fas fa-crosshairs"></i>
+                        </div>
+                        <h3 class="bento-card-title">500+ Verified Landmarks</h3>
+                        <p class="bento-card-desc">
+                            Hotels, bridges, gas stations, and residential zones cross-referenced directly against Trailer 1, Trailer 2, and real Florida counterparts with side-by-side photographic proof.
+                        </p>
+                    </div>
+                    <div>
+                        <button class="bento-action-link js-launch-map" data-hotspot="ocean-drive" type="button">
+                            <span>Inspect Vice Beach Landmarks</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bento 3 -->
+                <div class="bento-card">
+                    <div>
+                        <div class="bento-icon icon-orange">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3 class="bento-card-title">Dual-Reality Coordinate Engine</h3>
+                        <p class="bento-card-desc">
+                            Toggle seamlessly between in-game Leonida coordinates and real-world Miami OpenStreetMap to see how Rockstar adapted real-life Florida architecture into Vice City.
+                        </p>
+                    </div>
+                    <div>
+                        <button class="bento-action-link js-launch-map" type="button">
+                            <span>Compare In-Game vs Real Life</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bento 4 -->
+                <div class="bento-card">
+                    <div>
+                        <div class="bento-icon icon-purple">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3 class="bento-card-title">Geo-Guesser Screenshot Challenge</h3>
+                        <p class="bento-card-desc">
+                            Test your Leonida geography instincts in a playable mini-game. Pinpoint trailer scenes on the map against a global community leaderboard.
+                        </p>
+                    </div>
+                    <div>
+                        <button class="bento-action-link js-launch-map" type="button">
+                            <span>Play Geo-Guesser Challenge</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bento 5: Large Span -->
+                <div class="bento-card bento-span-2">
+                    <div>
+                        <div class="bento-icon icon-pink">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <h3 class="bento-card-title">3D Asset Viewer & 4K Media Vault</h3>
+                        <p class="bento-card-desc">
+                            Integrated Three.js WebGL engine allows interactive 360-degree inspection of 3D vehicle models and architectural landmarks, accompanied by 4K trailer frame archives.
+                        </p>
+                    </div>
+                    <div>
+                        <button class="bento-action-link js-launch-map" type="button">
+                            <span>Explore 3D Assets & Media</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hotspots Quick Jump Section -->
+        <section class="landing-section" id="hotspots" style="padding-top: 1rem;">
+            <div class="section-kicker">Immediate Navigation</div>
+            <h2 class="section-title">Jump Directly To Key Hotspots</h2>
+            <p class="section-subtitle">
+                Click any key location below to instantly open the interactive map centered and zoomed on that exact coordinate.
+            </p>
+
+            <div class="hotspots-strip">
+                <button class="hotspot-chip js-hotspot-chip" data-spot="ocean-drive" type="button">
+                    <div class="hotspot-icon-bubble"><i class="fas fa-umbrella-beach"></i></div>
+                    <div>
+                        <div class="hotspot-name">Ocean Drive & Vice Beach</div>
+                        <div class="hotspot-coords">X: 2803.2 · Y: 1409.4</div>
+                    </div>
+                </button>
+
+                <button class="hotspot-chip js-hotspot-chip" data-spot="port-gellhorn" type="button">
+                    <div class="hotspot-icon-bubble"><i class="fas fa-industry"></i></div>
+                    <div>
+                        <div class="hotspot-name">Port Gellhorn Strip</div>
+                        <div class="hotspot-coords">X: -8500.0 · Y: -2100.0</div>
+                    </div>
+                </button>
+
+                <button class="hotspot-chip js-hotspot-chip" data-spot="airport" type="button">
+                    <div class="hotspot-icon-bubble"><i class="fas fa-plane-departure"></i></div>
+                    <div>
+                        <div class="hotspot-name">Vice City International</div>
+                        <div class="hotspot-coords">X: 1100.0 · Y: -1200.0</div>
+                    </div>
+                </button>
+
+                <button class="hotspot-chip js-hotspot-chip" data-spot="keys" type="button">
+                    <div class="hotspot-icon-bubble"><i class="fas fa-water"></i></div>
+                    <div>
+                        <div class="hotspot-name">Leonida Keys Highway</div>
+                        <div class="hotspot-coords">X: -2100.0 · Y: -7800.0</div>
+                    </div>
+                </button>
+
+                <button class="hotspot-chip js-hotspot-chip" data-spot="ambrosia" type="button">
+                    <div class="hotspot-icon-bubble"><i class="fas fa-seedling"></i></div>
+                    <div>
+                        <div class="hotspot-name">Ambrosia Sugar Mill</div>
+                        <div class="hotspot-coords">X: -4100.0 · Y: 3400.0</div>
+                    </div>
+                </button>
+
+                <button class="hotspot-chip js-hotspot-chip" data-spot="lake-leonida" type="button">
+                    <div class="hotspot-icon-bubble"><i class="fas fa-tree"></i></div>
+                    <div>
+                        <div class="hotspot-name">Lake Leonida Swamps</div>
+                        <div class="hotspot-coords">X: -3200.0 · Y: 1100.0</div>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Comprehensive Leonida Geographic & Mapping Guide (SEO Knowledge Base) -->
+        <section class="landing-section" id="guide">
+            <div class="seo-guide-container">
+                <div class="section-kicker">Cartography & Geography Intelligence</div>
+                <h2 class="section-title">The State of Leonida: Comprehensive Geographical Guide</h2>
+                <p class="section-subtitle">
+                    The definitive research compilation by the Grand Theft Auto VI mapping community. Triangulating leaked coordinates, trailer frames, and geographic photogrammetry to decode Rockstar Games' largest open world to date.
+                </p>
+
+                <div class="seo-guide-grid">
+                    <!-- Guide Card 1 -->
+                    <div class="seo-guide-card">
+                        <span class="seo-card-badge badge-cyan"><i class="fas fa-ruler-combined"></i> Scale & Dimensions</span>
+                        <h3 class="seo-card-title">GTA 6 Map Size vs GTA 5 & RDR2</h3>
+                        <p class="seo-card-text">
+                            Based on triangulated in-game coordinate bounds spanning over 25,000 units on the Cartesian plane, Leonida encompasses approximately <strong>125 km² of playable landmass</strong>.
+                        </p>
+                        <ul class="seo-card-points">
+                            <li><i class="fas fa-check"></i> <strong>2.55x Larger than GTA V:</strong> Los Santos & Blaine County measure ~49 km².</li>
+                            <li><i class="fas fa-check"></i> <strong>1.66x Larger than Red Dead Redemption 2:</strong> New Hanover & West Elizabeth measure ~75 km².</li>
+                            <li><i class="fas fa-check"></i> <strong>Deep-Zoom Resolution:</strong> Rendered in 21,000×21,000 pixel tiled pyramid layers.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Guide Card 2 -->
+                    <div class="seo-guide-card">
+                        <span class="seo-card-badge badge-pink"><i class="fas fa-city"></i> Counties & Cities</span>
+                        <h3 class="seo-card-title">5 Major Counties & Territories</h3>
+                        <p class="seo-card-text">
+                            Leonida is divided into distinct administrative zones ranging from sun-drenched art deco coastlines to industrial shipping bays and dense subtropical swamps.
+                        </p>
+                        <ul class="seo-card-points">
+                            <li><i class="fas fa-check"></i> <strong>Vice City (Leonard County):</strong> Vice Beach, Downtown, Little Haiti, Starfish Island.</li>
+                            <li><i class="fas fa-check"></i> <strong>Port Gellhorn:</strong> Heavy industrial docks, motor speedway, and shipping terminals.</li>
+                            <li><i class="fas fa-check"></i> <strong>Kelly County & Ambrosia:</strong> Agricultural heartlands, sugar mills, and rural towns.</li>
+                            <li><i class="fas fa-check"></i> <strong>Leonida Keys & Grassrivers:</strong> Overseas highway bridge network and alligator bayous.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Guide Card 3 -->
+                    <div class="seo-guide-card">
+                        <span class="seo-card-badge badge-orange"><i class="fas fa-crosshairs"></i> Triangulation</span>
+                        <h3 class="seo-card-title">Cartesian Coordinate Triangulation</h3>
+                        <p class="seo-card-text">
+                            Every landmark on our interactive map utilizes mathematical triangulation verified against leaked engine telemetry and official trailer cinematography.
+                        </p>
+                        <ul class="seo-card-points">
+                            <li><i class="fas fa-check"></i> <strong>Focal Length Camera Math:</strong> Camera FOV angles cross-referenced with building heights.</li>
+                            <li><i class="fas fa-check"></i> <strong>Road Mileage Verification:</strong> Distance signposts matched with Cartesian vector offsets.</li>
+                            <li><i class="fas fa-check"></i> <strong>Horizon Landmark Alignments:</strong> Sunset and skyline horizon vectors triangulated across clips.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Guide Card 4 -->
+                    <div class="seo-guide-card">
+                        <span class="seo-card-badge badge-purple"><i class="fas fa-map-marked-alt"></i> Real-World GIS</span>
+                        <h3 class="seo-card-title">Real Florida Counterparts Comparison</h3>
+                        <p class="seo-card-text">
+                            Explore the architectural inspiration behind Rockstar Games' satire. Our dual-layer GIS map overlays real-world Miami and Florida OpenStreetMap data.
+                        </p>
+                        <ul class="seo-card-points">
+                            <li><i class="fas fa-check"></i> <strong>Ocean Drive:</strong> 1:1 architectural match to Miami Beach Art Deco Historic District.</li>
+                            <li><i class="fas fa-check"></i> <strong>Venetian Causeway:</strong> Multi-island residential bridges mirrored in Vice City.</li>
+                            <li><i class="fas fa-check"></i> <strong>Florida Keys US-1:</strong> Seven Mile Bridge translated into the Southern Keys causeway.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Guide Card 5 -->
+                    <div class="seo-guide-card">
+                        <span class="seo-card-badge badge-cyan"><i class="fas fa-route"></i> GPS Navigation</span>
+                        <h3 class="seo-card-title">Interactive GPS Travel Calculator</h3>
+                        <p class="seo-card-text">
+                            Plan cross-county journeys before the game even launches. Calculate travel times across highways and interstates using realistic physics speeds.
+                        </p>
+                        <ul class="seo-card-points">
+                            <li><i class="fas fa-check"></i> <strong>Supercars (~210 km/h):</strong> Rapid interstate travel between Vice City and Port Gellhorn.</li>
+                            <li><i class="fas fa-check"></i> <strong>Helicopters (~240 km/h):</strong> Direct point-to-point aerial transit across Lake Leonida.</li>
+                            <li><i class="fas fa-check"></i> <strong>Airboats & Offroad:</strong> Realistic marsh navigation through the Grassrivers wetlands.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Guide Card 6 -->
+                    <div class="seo-guide-card">
+                        <span class="seo-card-badge badge-pink"><i class="fas fa-database"></i> Live Database</span>
+                        <h3 class="seo-card-title">2,850+ Verified POIs & Secrets</h3>
+                        <p class="seo-card-text">
+                            The largest interactive repository of GTA 6 points of interest, hotel locations, restaurants, police precincts, and trailer frame easter eggs.
+                        </p>
+                        <ul class="seo-card-points">
+                            <li><i class="fas fa-check"></i> <strong>Trailer 1 & 2 Sync:</strong> Timestamped screenshot comparisons for every verified building.</li>
+                            <li><i class="fas fa-check"></i> <strong>Community Submissions:</strong> Real-time discovery verification reviewed by GIS cartographers.</li>
+                            <li><i class="fas fa-check"></i> <strong>Offline PWA Support:</strong> Full-screen standalone caching on iPhone and Android devices.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- GTA 6 Master Encyclopedia & Topical Authority Content Hub -->
+                <div class="encyclopedia-wrapper" id="encyclopedia">
+                    <div class="encyclopedia-header">
+                        <div class="section-kicker">Authoritative Research Archive</div>
+                        <h2 class="section-title" style="margin-bottom:0.75rem;">Grand Theft Auto VI Master Knowledge Vault</h2>
+                        <p class="section-subtitle" style="max-width:860px; margin:0 auto;">
+                            Exhaustive community-verified technical intelligence covering all districts, protagonist heist mechanics, confirmed vehicles, trailer timestamps, and RAGE 9 engine scale.
+                        </p>
+                    </div>
+
+                    <!-- Encyclopedia Navigation Tabs -->
+                    <div class="encyclopedia-tabs">
+                        <button type="button" class="encyclopedia-tab active" data-tab="geography">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <span>Districts & Counties</span>
+                        </button>
+                        <button type="button" class="encyclopedia-tab" data-tab="story">
+                            <i class="fas fa-mask"></i>
+                            <span>Lucia & Jason Heists</span>
+                        </button>
+                        <button type="button" class="encyclopedia-tab" data-tab="vehicles">
+                            <i class="fas fa-car-side"></i>
+                            <span>Vehicles & Spawns</span>
+                        </button>
+                        <button type="button" class="encyclopedia-tab" data-tab="trailers">
+                            <i class="fas fa-film"></i>
+                            <span>Trailer 1 & 2 Breakdown</span>
+                        </button>
+                        <button type="button" class="encyclopedia-tab" data-tab="technical">
+                            <i class="fas fa-microchip"></i>
+                            <span>RAGE 9 & Map Scale</span>
+                        </button>
+                        <button type="button" class="encyclopedia-tab" data-tab="platforms">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Platforms & Release</span>
+                        </button>
+                    </div>
+
+                    <!-- Panel 1: Geography & Districts -->
+                    <div class="encyclopedia-panel active" id="panel-geography">
+                        <p class="encyclopedia-lead">
+                            The State of Leonida is composed of five principal administrative jurisdictions, anchored by the metropolitan expanse of Vice City and extending across dense agricultural wetlands, industrial docklands, and coral reef archipelagos.
+                        </p>
+                        <div class="table-responsive">
+                            <table class="encyclopedia-table">
+                                <thead>
+                                    <tr>
+                                        <th>Region / District</th>
+                                        <th>County</th>
+                                        <th>Cartesian Coordinates</th>
+                                        <th>Key Features & Landmarks</th>
+                                        <th>Florida Real-Life Analog</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Vice Beach (Ocean Drive)</strong></td>
+                                        <td>Leonard County</td>
+                                        <td><span class="coord-tag">X: 2803.2 · Y: 1409.4</span></td>
+                                        <td>Pastel Art Deco hotels, neon nightlife, Muscle Beach gym, high-end boutiques</td>
+                                        <td>South Beach / Ocean Drive, Miami Beach</td>
+                                        <td><button type="button" class="btn-table-map" data-lat="1409.4" data-lng="2803.2" data-zoom="5"><i class="fas fa-crosshairs"></i> View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Downtown Vice City</strong></td>
+                                        <td>Leonard County</td>
+                                        <td><span class="coord-tag">X: 1850.0 · Y: 900.0</span></td>
+                                        <td>Commercial banking skyscrapers, monorail transit, corporate headquarters</td>
+                                        <td>Brickell Financial District & Downtown Miami</td>
+                                        <td><button type="button" class="btn-table-map" data-lat="900.0" data-lng="1850.0" data-zoom="4.5"><i class="fas fa-crosshairs"></i> View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Starfish Island</strong></td>
+                                        <td>Leonard County</td>
+                                        <td><span class="coord-tag">X: 2300.0 · Y: 1650.0</span></td>
+                                        <td>Gated billionaire mansions, private yacht slips, exotic car collections</td>
+                                        <td>Star Island / Palm Island, Biscayne Bay</td>
+                                        <td><button type="button" class="btn-table-map" data-lat="1650.0" data-lng="2300.0" data-zoom="5"><i class="fas fa-crosshairs"></i> View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Port Gellhorn</strong></td>
+                                        <td>Port Gellhorn City</td>
+                                        <td><span class="coord-tag">X: -8500.0 · Y: -2100.0</span></td>
+                                        <td>Industrial shipping harbor, motor speedway, pawn shops, rail freight depot</td>
+                                        <td>Tampa Bay / Panama City Industrial Port</td>
+                                        <td><button type="button" class="btn-table-map" data-lat="-2100.0" data-lng="-8500.0" data-zoom="4"><i class="fas fa-crosshairs"></i> View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Kelly County & Ambrosia</strong></td>
+                                        <td>Kelly County</td>
+                                        <td><span class="coord-tag">X: -4100.0 · Y: 3400.0</span></td>
+                                        <td>Ambrosia Sugar Cane Mill, dirt tracks, rural communities, agricultural warehouses</td>
+                                        <td>Clewiston / Hendry County Sugar Basin</td>
+                                        <td><button type="button" class="btn-table-map" data-lat="3400.0" data-lng="-4100.0" data-zoom="4"><i class="fas fa-crosshairs"></i> View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Leonida Keys (Overseas Hwy)</strong></td>
+                                        <td>South Leonida</td>
+                                        <td><span class="coord-tag">X: -2100.0 · Y: -7800.0</span></td>
+                                        <td>Seven Mile Bridge causeway, coral atolls, stilt fishing shacks, boat charters</td>
+                                        <td>Florida Keys / Key West / Marathon</td>
+                                        <td><button type="button" class="btn-table-map" data-lat="-7800.0" data-lng="-2100.0" data-zoom="4"><i class="fas fa-crosshairs"></i> View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Grassrivers Wetlands</strong></td>
+                                        <td>Central Leonida</td>
+                                        <td><span class="coord-tag">X: -1800.0 · Y: -400.0</span></td>
+                                        <td>Dense cypress swamplands, alligator habitats, airboat channels, secluded cabins</td>
+                                        <td>Florida Everglades National Park</td>
+                                        <td><button type="button" class="btn-table-map" data-lat="-400.0" data-lng="-1800.0" data-zoom="4"><i class="fas fa-crosshairs"></i> View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Vice City Intl. Airport</strong></td>
+                                        <td>Leonard County</td>
+                                        <td><span class="coord-tag">X: 1100.0 · Y: -1200.0</span></td>
+                                        <td>Tri-runway commercial hub, cargo hangers, private aviation terminals</td>
+                                        <td>Miami International Airport (MIA)</td>
+                                        <td><button type="button" class="btn-table-map" data-lat="-1200.0" data-lng="1100.0" data-zoom="4.5"><i class="fas fa-crosshairs"></i> View</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Panel 2: Story, Lucia & Jason Heists -->
+                    <div class="encyclopedia-panel" id="panel-story">
+                        <p class="encyclopedia-lead">
+                            Grand Theft Auto VI centers on dual protagonists <strong>Lucia Caminos</strong> and <strong>Jason</strong>, operating in a modernized Bonnie-and-Clyde criminal partnership across Leonida.
+                        </p>
+                        <div class="encyclopedia-feature-box">
+                            <strong>Dynamic Heist & Law Enforcement Mechanics:</strong> Unlike GTA 5, GTA 6 introduces tactical police response AI with perimeter containment, CCTV facial recognition, shared duffel bag inventory management, and vehicle trunk weapon storage.
+                        </div>
+                        <div class="table-responsive">
+                            <table class="encyclopedia-table">
+                                <thead>
+                                    <tr>
+                                        <th>Target / Location</th>
+                                        <th>Coordinates</th>
+                                        <th>Heist Type & Mechanics</th>
+                                        <th>Security Response Level</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Hank's Waffles Diner</strong></td>
+                                        <td><span class="coord-tag">X: -8120.0 · Y: -2340.0</span></td>
+                                        <td>Armed robbery, hostage intimidation, crowd pacification, cash register loot</td>
+                                        <td>Port Gellhorn Police Department (2-Star)</td>
+                                        <td><button type="button" class="btn-table-map" data-lat="-2340.0" data-lng="-8120.0" data-zoom="5"><i class="fas fa-crosshairs"></i> View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Port Gellhorn Pawn & Gun</strong></td>
+                                        <td><span class="coord-tag">X: -8430.0 · Y: -2120.0</span></td>
+                                        <td>Vault drill penetration, glass display smash-and-grab, security camera hacking</td>
+                                        <td>Armed security + VCPD SWAT (3-Star)</td>
+                                        <td><button type="button" class="btn-table-map" data-lat="-2120.0" data-lng="-8430.0" data-zoom="5"><i class="fas fa-crosshairs"></i> View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Leonida Dept. of Corrections</strong></td>
+                                        <td><span class="coord-tag">X: -1500.0 · Y: 4800.0</span></td>
+                                        <td>Lucia opening narrative prologue, maximum security prison yard and parole office</td>
+                                        <td>Maximum Penitentiary Lockdown</td>
+                                        <td><button type="button" class="btn-table-map" data-lat="4800.0" data-lng="-1500.0" data-zoom="4.5"><i class="fas fa-crosshairs"></i> View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>King Motel Safehouse</strong></td>
+                                        <td><span class="coord-tag">X: -8210.0 · Y: -1980.0</span></td>
+                                        <td>Lucia & Jason hideout, weapon stash, disguise wardrobe, getaway car tuning</td>
+                                        <td>Safehouse Zone (Zero Heat)</td>
+                                        <td><button type="button" class="btn-table-map" data-lat="-1980.0" data-lng="-8210.0" data-zoom="5"><i class="fas fa-crosshairs"></i> View</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Panel 3: Vehicles, Boats & Aircraft -->
+                    <div class="encyclopedia-panel" id="panel-vehicles">
+                        <p class="encyclopedia-lead">
+                            Leonida features an expanded automotive, maritime, and aeronautical fleet with fully simulated cabin interiors, working gas gauges, rearview mirrors, and advanced tire deformation physics.
+                        </p>
+                        <div class="table-responsive">
+                            <table class="encyclopedia-table">
+                                <thead>
+                                    <tr>
+                                        <th>Vehicle Model</th>
+                                        <th>Class / Type</th>
+                                        <th>Primary Spawn Territory</th>
+                                        <th>Real-World Automotive Inspiration</th>
+                                        <th>Source Verification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Grotti Cheetah Classic</strong></td>
+                                        <td>Supercar</td>
+                                        <td>Ocean Drive, Starfish Island</td>
+                                        <td>Ferrari Testarossa / 512 TR</td>
+                                        <td>Trailer 1 (0:19) & Leaks</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Pegassi Torero XO</strong></td>
+                                        <td>Hypercar</td>
+                                        <td>Downtown Vice City Financial District</td>
+                                        <td>Lamborghini Countach LPI 800-4</td>
+                                        <td>Trailer 1 (0:22)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Bravado Gauntlet Hellfire</strong></td>
+                                        <td>Modern Muscle</td>
+                                        <td>Port Gellhorn Drag Strip</td>
+                                        <td>Dodge Challenger SRT Demon</td>
+                                        <td>Trailer 1 (0:46)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Grassrivers Airboat</strong></td>
+                                        <td>Subtropical Watercraft</td>
+                                        <td>Grassrivers Swamps, Lake Leonida</td>
+                                        <td>Florida Panther Everglades Airboat</td>
+                                        <td>Trailer 1 (0:11)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Marquis Luxury Yacht</strong></td>
+                                        <td>Superyacht / Marine</td>
+                                        <td>Vice Beach Marina, Biscayne Channel</td>
+                                        <td>Sunseeker / Azimut 80 Flybridge</td>
+                                        <td>Trailer 1 (0:14)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Western Dodo Amphibian</strong></td>
+                                        <td>Seaplane</td>
+                                        <td>Leonida Keys, Key West Harbor</td>
+                                        <td>de Havilland Canada DHC-2 Beaver</td>
+                                        <td>Trailer 1 (0:09)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>VCPD Cruiser & Interceptor</strong></td>
+                                        <td>Emergency Law Enforcement</td>
+                                        <td>All Counties / VCPD Headquarters</td>
+                                        <td>Ford Police Interceptor / Taurus</td>
+                                        <td>Trailer 1 (1:02)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Panel 4: Trailer 1 & 2 Frame Breakdown -->
+                    <div class="encyclopedia-panel" id="panel-trailers">
+                        <p class="encyclopedia-lead">
+                            Every single second of official Rockstar footage has been triangulated by our cartography team to identify real geographic coordinates across the 21K map canvas.
+                        </p>
+                        <div class="table-responsive">
+                            <table class="encyclopedia-table">
+                                <thead>
+                                    <tr>
+                                        <th>Timestamp</th>
+                                        <th>Scene Description</th>
+                                        <th>Map Coordinates</th>
+                                        <th>Key Environmental Easter Egg</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>0:05 - 0:12</strong></td>
+                                        <td>Lucia in prison interview with parole officer Stefanie</td>
+                                        <td><span class="coord-tag">X: -1500 · Y: 4800</span></td>
+                                        <td>Leonida Department of Corrections exterior courtyard</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>0:18 - 0:25</strong></td>
+                                        <td>Vice Beach cruising down Ocean Drive at golden hour</td>
+                                        <td><span class="coord-tag">X: 2803 · Y: 1409</span></td>
+                                        <td>Neon signs: Ocean View Hotel, retro convertibles, Muscle Beach</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>0:34 - 0:41</strong></td>
+                                        <td>Speedboat cutting through Venetian archipelago canals</td>
+                                        <td><span class="coord-tag">X: 2300 · Y: 1650</span></td>
+                                        <td>High-density particle water wake & realistic foam physics</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>0:44 - 0:52</strong></td>
+                                        <td>ThrillBilly Mud Club monster trucks & off-road gathering</td>
+                                        <td><span class="coord-tag">X: -5200 · Y: 3900</span></td>
+                                        <td>Volumetric mud displacement & redneck subculture satire</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>1:05 - 1:18</strong></td>
+                                        <td>Port Gellhorn strip club & street sideshow takeover</td>
+                                        <td><span class="coord-tag">X: -8500 · Y: -2100</span></td>
+                                        <td>Custom rims, smoke particle shaders, viral social media livestreams</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>1:24 - 1:30</strong></td>
+                                        <td>Lucia and Jason convenience store armed entry: "Trust?"</td>
+                                        <td><span class="coord-tag">X: -8120 · Y: -2340</span></td>
+                                        <td>Bandanas, concealed weapons, dynamic door physics & lighting</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Panel 5: RAGE 9 Engine & Map Scale -->
+                    <div class="encyclopedia-panel" id="panel-technical">
+                        <p class="encyclopedia-lead">
+                            Engineered on Rockstar's proprietary <strong>RAGE 9 Engine</strong>, Leonida delivers unprecedented scale, volumetric cloud simulation, realistic water buoyancy, and hundreds of fully enterable buildings.
+                        </p>
+                        <div class="table-responsive">
+                            <table class="encyclopedia-table">
+                                <thead>
+                                    <tr>
+                                        <th>Grand Theft Auto Title</th>
+                                        <th>Estimated Landmass Area</th>
+                                        <th>Relative Scale to GTA 6</th>
+                                        <th>Cartesian Grid Range</th>
+                                        <th>Interior Enterability</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background: rgba(255, 80, 197, 0.08);">
+                                        <td><strong>State of Leonida (GTA 6)</strong></td>
+                                        <td><strong>~125.0 km² (48.3 sq mi)</strong></td>
+                                        <td><strong>1.00x (Baseline)</strong></td>
+                                        <td><strong>~25,000 × 25,000 units</strong></td>
+                                        <td><strong>High (~70%+ accessible public interiors)</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Grand Theft Auto V (Los Santos)</strong></td>
+                                        <td>~49.4 km² (19.1 sq mi)</td>
+                                        <td>2.53x Smaller</td>
+                                        <td>~16,000 × 16,000 units</td>
+                                        <td>Low (Primarily mission-locked interiors)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Red Dead Redemption 2</strong></td>
+                                        <td>~75.0 km² (28.9 sq mi)</td>
+                                        <td>1.66x Smaller</td>
+                                        <td>~18,000 × 14,000 units</td>
+                                        <td>Moderate (Saloon, shops, homesteads)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>GTA San Andreas (2004)</strong></td>
+                                        <td>~38.2 km² (14.7 sq mi)</td>
+                                        <td>3.27x Smaller</td>
+                                        <td>~6,000 × 6,000 units</td>
+                                        <td>Low (Requires loading markers)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>GTA Vice City (2002)</strong></td>
+                                        <td>~9.1 km² (3.5 sq mi)</td>
+                                        <td>13.7x Smaller</td>
+                                        <td>~3,000 × 3,000 units</td>
+                                        <td>Minimal (Selected clubs and safehouses)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Panel 6: Platforms & Release Window -->
+                    <div class="encyclopedia-panel" id="panel-platforms">
+                        <p class="encyclopedia-lead">
+                            Grand Theft Auto VI is developed exclusively for ninth-generation gaming hardware, leveraging ultra-high-speed SSD streaming, hardware-accelerated ray tracing, and high-frequency CPU architectures.
+                        </p>
+                        <div class="table-responsive">
+                            <table class="encyclopedia-table">
+                                <thead>
+                                    <tr>
+                                        <th>Target Platform</th>
+                                        <th>Target Resolution & Framerate</th>
+                                        <th>Confirmed Hardware Features</th>
+                                        <th>Release Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>PlayStation 5</strong></td>
+                                        <td>Dynamic 4K / 30 FPS Fidelity & 1440p 60 FPS Performance</td>
+                                        <td>DualSense Adaptive Triggers & Haptic Feedback, Tempest 3D Audio</td>
+                                        <td>Launch Day (Fall 2025/2026)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>PlayStation 5 Pro</strong></td>
+                                        <td>Enhanced 4K / 60 FPS with PSSR AI Upscaling</td>
+                                        <td>Advanced Ray-Traced Reflections & Global Illumination Shading</td>
+                                        <td>Enhanced Day One Support</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Xbox Series X</strong></td>
+                                        <td>Dynamic 4K / 30-60 FPS</td>
+                                        <td>DirectX Raytracing (DXR), Velocity Architecture Fast Travel</td>
+                                        <td>Launch Day (Fall 2025/2026)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Xbox Series S</strong></td>
+                                        <td>Dynamic 1080p-1440p / 30 FPS</td>
+                                        <td>Memory-optimized texture streaming pipelines</td>
+                                        <td>Launch Day (Fall 2025/2026)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>PC (Windows)</strong></td>
+                                        <td>Native 4K/8K, Uncapped Framerates, Ultrawide 21:9 / 32:9</td>
+                                        <td>DLSS 3.5, FSR 3, Full Path Tracing, Modding Community Support</td>
+                                        <td>Post-Console Release (Expected 2027)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frequently Asked Questions Accordions -->
+                <div style="margin-top: 4.5rem;">
+                    <div class="section-kicker" style="text-align:center;">Answers & Knowledge Base</div>
+                    <h2 class="section-title" style="text-align:center;">Frequently Asked Questions</h2>
+                    <p class="section-subtitle" style="text-align:center; margin: 0 auto 2rem;">
+                        Everything you need to know about the State of Leonida, GTA 6 map size, coordinates, and community cartography.
+                    </p>
+
+                    <div class="seo-faq-accordion">
+                        <details class="faq-item" open>
+                            <summary class="faq-question">
+                                <span>What is the State of Leonida Interactive Map for GTA 6?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                State of Leonida is a community-driven high-resolution interactive GIS mapping project for Grand Theft Auto VI (GTA 6). It features 21K deep-zoom cartography, 2,850+ triangulated landmarks from official Rockstar Games trailers and leaked development data, dual-reality OpenStreetMap comparisons, and in-game coordinate measurement tools.
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary class="faq-question">
+                                <span>How big is the GTA 6 map compared to GTA 5 and Red Dead Redemption 2?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                Based on rigorous community GIS triangulation (including the Yanis v16 mapping project), the State of Leonida is estimated at approximately 125 km² of surface landmass. This makes it roughly 2.55 times larger than GTA 5's Los Santos (~49 km²), 1.66 times larger than Red Dead Redemption 2's playable map (~75 km²), and over 13 times larger than the original 2002 Vice City map.
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary class="faq-question">
+                                <span>What major cities and counties are included in Leonida?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                The map contains Vice City (Vice Beach, Downtown, Little Haiti, Starfish Island, Venetian Islands), the industrial metropolis of Port Gellhorn, the agricultural county of Kelly County with Ambrosia, Leonard County, Mount Kalaga National Park, Lake Leonida, and the expansive southern Leonida Keys connected by the Overseas Highway.
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary class="faq-question">
+                                <span>Who are the main playable characters and what are their story roles?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                Grand Theft Auto VI stars dual protagonists Lucia Caminos and Jason in a modern criminal partnership reminiscent of Bonnie and Clyde. Leaked gameplay confirms character swapping during missions and open-world exploration, with shared weapon bags, trunk equipment storage, and individual narrative questlines spanning from correctional facilities to high-stakes urban robberies.
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary class="faq-question">
+                                <span>How are the in-game coordinates calculated before launch?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                Community cartographers map in-game positions by utilizing the 3D Cartesian coordinates (X, Y, Z axes) revealed in the 2022 development footage. These points are combined with road sign mileage markings, camera focal length mathematics from Trailer 1, and horizon landmark alignment vectors to establish accurate geographic triangulation.
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary class="faq-question">
+                                <span>Can I calculate driving distance and travel times across the map?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                Yes. The app features an interactive GPS Route & Travel Calculator accessible from the toolbar. You can select any two locations (e.g., Vice Beach to Port Gellhorn or Ambrosia to the Keys) and calculate real-time driving times for Supercars, Helicopters, Airboats, and on-foot exploration.
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary class="faq-question">
+                                <span>What vehicles, supercars, and aircraft are confirmed on the map?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                Official trailers and leaked telemetry confirm classic and modern vehicles including the Grotti Cheetah, Pegassi Torero XO hypercar, Bravado Gauntlet Hellfire, Pfister Comet, swamp airboats, Marquis luxury yachts, police interceptors, and amphibious seaplanes operating throughout Leonida's waters.
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary class="faq-question">
+                                <span>When is GTA 6 releasing and on what platforms?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                Rockstar Games has officially confirmed a Fall 2025/2026 release window for PlayStation 5 (including enhanced support for PS5 Pro) and Xbox Series X|S. A PC release is anticipated to follow following historical Rockstar release cadence.
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary class="faq-question">
+                                <span>Will the map update when Rockstar Games releases Trailer 2 and new screenshots?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                Absolutely. The State of Leonida cartography database connects to our live master API. Any newly revealed locations, highway networks, or screenshot discoveries from upcoming official Rockstar Games releases are reviewed by community GIS editors and published to the live 21K interactive map in real-time.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VICE WIRE BLOG & NEWS SECTION -->
+        <section class="landing-section gta-blog-section" id="blog">
+            <!-- Feed View -->
+            <div id="blog-list-view">
+                <div class="blog-section-header">
+                    <div class="blog-kicker"><i class="fas fa-bolt"></i> Vice Wire Special Bulletin</div>
+                    <h2 class="blog-main-title">Intelligence & Cartography Wire</h2>
+                    <p class="blog-subtitle">
+                        Exclusive analytical research, trailer frame dissections, coordinate telemetry updates, and Florida architectural comparisons directly from our mapping team.
+                    </p>
+                </div>
+
+                <!-- Controls: Filter & Search Bar -->
+                <div class="blog-controls-bar">
+                    <div class="blog-category-filters">
+                        <button type="button" class="blog-filter-btn active js-blog-filter" data-category="all">All Dispatches</button>
+                        <button type="button" class="blog-filter-btn js-blog-filter" data-category="Cartography & Leaks">Cartography & Leaks</button>
+                        <button type="button" class="blog-filter-btn js-blog-filter" data-category="Districts & Lore">Districts & Lore</button>
+                        <button type="button" class="blog-filter-btn js-blog-filter" data-category="Vehicles & Heists">Vehicles & Heists</button>
+                        <button type="button" class="blog-filter-btn js-blog-filter" data-category="Trailer Analysis">Trailer Analysis</button>
+                        <button type="button" class="blog-filter-btn js-blog-filter" data-category="Dev Telemetry">Dev Telemetry</button>
+                    </div>
+                    <div class="blog-search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="blogSearchInputPublic" class="blog-search-input" placeholder="Search dispatches & leaks...">
+                    </div>
+                </div>
+
+                <!-- Featured Article Hero Container -->
+                <div id="blog-featured-container">
+                    <div class="blog-featured-card" data-slug="triangulating-vice-beach-ocean-drive-photogrammetry">
+                        <div class="blog-featured-media">
+                            <img src="assets/photos/screenshots/vice_city/Vice_City_05.jpg" alt="Triangulating Vice Beach: How Photogrammetry Decoded Ocean Drive in Trailer 1" class="blog-featured-img">
+                            <div class="blog-featured-scrim"></div>
+                        </div>
+                        <div class="blog-featured-content">
+                            <div class="blog-meta-unboxed">
+                                <span class="meta-category">Cartography &amp; Leaks</span>
+                                <span class="meta-sep" aria-hidden="true">·</span>
+                                <span>6 min read</span>
+                                <span class="meta-sep" aria-hidden="true">·</span>
+                                <span>Oct 12, 2026</span>
+                            </div>
+                            <h2 class="blog-featured-title js-open-article" data-slug="triangulating-vice-beach-ocean-drive-photogrammetry">Triangulating Vice Beach: How Photogrammetry Decoded Ocean Drive in Trailer 1</h2>
+                            <p class="blog-featured-excerpt">A deep mathematical breakdown of focal lengths, Art Deco facade dimensions, and horizon vector alignments that fixed Ocean Drive's exact Cartesian coordinates at X: 2803.2, Y: 1409.4.</p>
+                            <button type="button" class="blog-btn-action js-open-article" data-slug="triangulating-vice-beach-ocean-drive-photogrammetry">
+                                <span>Read Full Investigation</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Articles Grid Container -->
+                <div class="blog-grid" id="blog-grid-container">
+                        <article class="blog-card js-open-article" data-slug="port-gellhorn-enigma-industrial-hub-telemetry">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/trailer/trailer3/T3_201.png" alt="The Port Gellhorn Enigma: Analyzing Leonida's Heavy Industrial Hub" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Districts &amp; Lore</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>6 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">The Port Gellhorn Enigma: Analyzing Leonida's Heavy Industrial Hub</h3>
+                                <p class="blog-card-excerpt">From the leaked Hank's Waffles diner heist to the massive shipping container cranes, we examine why Port Gellhorn represents the grit and blue-collar underbelly of western Leonida.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Marcus Vance · Oct 11, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="blog-card js-open-article" data-slug="lucia-jason-heist-network-safehouses-and-mechanics">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/screenshots/jason_duval/Jason_Duval_02.jpg" alt="Lucia &amp; Jason's Criminal Circuit: Deconstructing Safehouses &amp; Dual Protagonists" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Vehicles &amp; Heists</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>5 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Lucia &amp; Jason's Criminal Circuit: Deconstructing Safehouses &amp; Dual Protagonists</h3>
+                                <p class="blog-card-excerpt">Inside the Bonnie-and-Clyde dynamic: how duffel bag mechanics, vehicle trunk armories, and safehouse networks redefine heist execution in Grand Theft Auto VI.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Elena Rostova · Oct 10, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="blog-card js-open-article" data-slug="leonida-map-scale-comparison-gta5-rdr2-breakdown">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/screenshots/leonida_keys/Leonida_Keys_05.jpg" alt="Why Leonida's 125 km² Map Dwarfs Los Santos and New Hanover Combined" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Cartography &amp; Leaks</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>7 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Why Leonida's 125 km² Map Dwarfs Los Santos and New Hanover Combined</h3>
+                                <p class="blog-card-excerpt">A definitive scale evaluation comparing coordinate bounds, open waterways, and density metrics across the history of Rockstar Games open worlds.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Yanis GIS Lead · Oct 9, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="blog-card js-open-article" data-slug="grassrivers-frontier-swamps-ambrosia-sugar-mill">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/screenshots/vice_city/Vice_City_05.jpg" alt="The Grassrivers Frontier: Navigating Alligator Swamps &amp; Ambrosia Sugar Mill" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Districts &amp; Lore</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>6 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">The Grassrivers Frontier: Navigating Alligator Swamps &amp; Ambrosia Sugar Mill</h3>
+                                <p class="blog-card-excerpt">Deep inside Kelly County lies Ambrosia Sugar Refinery and the treacherous Grassrivers bayous, where swamp airboats and apex reptiles dominate the ecosystem.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Elena Rostova · Oct 8, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="blog-card js-open-article" data-slug="vice-city-international-airport-runways-hangars">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/trailer/trailer3/T3_201.png" alt="Vice City International Airport (VIA): Runway Telemetry, Hangars &amp; Security" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Cartography &amp; Leaks</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>5 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Vice City International Airport (VIA): Runway Telemetry, Hangars &amp; Security</h3>
+                                <p class="blog-card-excerpt">Triangulated at coordinates X: 1100.0, Y: -1200.0, Vice City International Airport features massive dual crosswind runways, multi-level passenger terminals, and executive private jet hangars.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Marcus Vance · Oct 7, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="blog-card js-open-article" data-slug="overseas-highway-high-speed-travel-leonida-keys">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/screenshots/leonida_keys/Leonida_Keys_05.jpg" alt="The Overseas Highway: Island Hopping &amp; High-Speed Travel Across Leonida Keys" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Cartography &amp; Leaks</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>6 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">The Overseas Highway: Island Hopping &amp; High-Speed Travel Across Leonida Keys</h3>
+                                <p class="blog-card-excerpt">Connecting mainland Vice City to the tropical archipelago of the Keys, the Overseas Highway spans multiple suspension bridges, coral atolls, and waterfront resort villas.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Yanis GIS Lead · Oct 6, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="blog-card js-open-article" data-slug="armed-robbery-heist-mechanics-diners-pawn-shops">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/screenshots/jason_duval/Jason_Duval_02.jpg" alt="Armed Robbery &amp; Heist Mechanics: Inside Diners, Pawn Shops &amp; Drillable Safes" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Vehicles &amp; Heists</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>5 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Armed Robbery &amp; Heist Mechanics: Inside Diners, Pawn Shops &amp; Drillable Safes</h3>
+                                <p class="blog-card-excerpt">A deep tactical analysis of the Bonnie-and-Clyde stick-up mechanics: hostage intimidation cones, dynamic cash register looting, and thermal drill safecracking.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Elena Rostova · Oct 5, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="blog-card js-open-article" data-slug="law-enforcement-ai-roadblocks-vision-cones-pursuit">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/screenshots/vice_city/Vice_City_05.jpg" alt="Law Enforcement Protocol: AI Roadblocks, Vision Cones &amp; Pursuit Tactics" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Trailer Analysis</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>6 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Law Enforcement Protocol: AI Roadblocks, Vision Cones &amp; Pursuit Tactics</h3>
+                                <p class="blog-card-excerpt">Leonida law enforcement introduces tactical PIT maneuvers, dynamic spike strips, perimeter search grids, and vehicle license plate recognition networks.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Marcus Vance · Oct 4, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="blog-card js-open-article" data-slug="supercars-speedboats-tuners-verified-vehicle-roster">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/screenshots/vice_city/Vice_City_05.jpg" alt="Supercars, Speedboats &amp; Tuners: The Complete Verified Vehicle Roster in GTA 6" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Vehicles &amp; Heists</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>7 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Supercars, Speedboats &amp; Tuners: The Complete Verified Vehicle Roster in GTA 6</h3>
+                                <p class="blog-card-excerpt">From the Grotti Cheetah classic to the Pegassi Torero XO, examine the official and leaked car roster featuring full interior tuning, dynamic tire physics, and functional gloveboxes.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Alex Rivera · Oct 3, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="blog-card js-open-article" data-slug="rage-9-engine-volumetric-fluid-70-percent-interiors">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/screenshots/vice_city/Vice_City_05.jpg" alt="RAGE 9 Engine Deconstructed: Volumetric Fluid Sim, 70% Interiors &amp; Raytracing" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Dev Telemetry</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>8 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">RAGE 9 Engine Deconstructed: Volumetric Fluid Sim, 70% Interiors &amp; Raytracing</h3>
+                                <p class="blog-card-excerpt">An in-depth technical exploration into Rockstar Games' proprietary RAGE 9 engine: real-time global illumination, cloth tessellation, and procedural water physics.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Yanis GIS Lead · Oct 2, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="blog-card js-open-article" data-slug="can-ps5-pro-hit-60-fps-vice-city-pssr-cpu-limits">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/trailer/trailer3/T3_201.png" alt="Can PS5 Pro Hit 60 FPS in Vice City? CPU Limits, PSSR &amp; Hardware Benchmarks" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Dev Telemetry</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>6 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Can PS5 Pro Hit 60 FPS in Vice City? CPU Limits, PSSR &amp; Hardware Benchmarks</h3>
+                                <p class="blog-card-excerpt">Deconstructing Sony's PS5 Pro hardware specifications: how Zen 2 CPU constraints and PlayStation Spectral Super Resolution (PSSR) impact GTA 6's frame rate targets.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Marcus Vance · Oct 1, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="blog-card js-open-article" data-slug="duffel-bag-arsenal-realistic-inventory-weapon-wheel">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/screenshots/jason_duval/Jason_Duval_02.jpg" alt="The Duffel Bag Arsenal: How Realistic Inventory Replaces the Endless Weapon Wheel" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Vehicles &amp; Heists</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>5 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">The Duffel Bag Arsenal: How Realistic Inventory Replaces the Endless Weapon Wheel</h3>
+                                <p class="blog-card-excerpt">Say goodbye to carrying 40 heavy weapons in your pocket: GTA 6 introduces physical weapon slings, limited sidearm holsters, and tactical car trunk armories.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Elena Rostova · Sep 30, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="blog-card js-open-article" data-slug="satire-live-streaming-ingame-social-media-wanted-heat">
+                            <div class="blog-card-media">
+                                <img src="assets/photos/screenshots/vice_city/Vice_City_05.jpg" alt="Satire &amp; Live-Streaming: How In-Game Social Media Shapes Wanted Heat in Leonida" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">Trailer Analysis</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>5 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Satire &amp; Live-Streaming: How In-Game Social Media Shapes Wanted Heat in Leonida</h3>
+                                <p class="blog-card-excerpt">Viral car meet streams, rooftop twerking clips, and Florida Man antics: how in-game vertical video feeds turn the entire state of Leonida into a living social media parody.</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">Alex Rivera · Sep 29, 2026</span>
+                                    <span class="blog-read-link">
+                                        <span>Read Report</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                </div>
+            </div>
+
+            <!-- Single Article Reader View (Hidden by default) -->
+            <div id="blog-single-view" style="display:none;">
+                <div class="blog-single-container" id="blog-single-content">
+                    <!-- Populated dynamically by blog.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Banner -->
+        <div class="landing-cta-banner">
+            <h2 class="cta-banner-title">Step Into Vice City Today</h2>
+            <p class="cta-banner-text">
+                Completely free, no downloads, and no registration required. Experience the State of Leonida right now in your web browser.
+            </p>
+            <button class="btn-hero-launch js-launch-map" type="button">
+                <i class="fas fa-play"></i>
+                <span>Launch Interactive Map Now</span>
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="landing-footer">
+            <div class="footer-content">
+                <div class="footer-top-row">
+                    <div style="display:flex; align-items:center; gap:0.75rem;">
+                        <img src="assets/logos/Logo.png" alt="State of Leonida" style="height:30px;">
+                        <span style="font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:0.05em;">State of Leonida</span>
+                    </div>
+                    <div style="display:flex; gap:1.5rem; align-items:center;">
+                        <a href="https://discord.gg/JeTPhnHuxm" target="_blank" rel="noopener noreferrer" style="color:var(--gta-text-muted); text-decoration:none;"><i class="fab fa-discord"></i> Discord</a>
+                        <a href="https://map.gtadb.org" target="_blank" rel="noopener noreferrer" style="color:var(--gta-text-muted); text-decoration:none;">GTADB.org</a>
+                        <a href="https://gta.wiki" target="_blank" rel="noopener noreferrer" style="color:var(--gta-text-muted); text-decoration:none;">GTA.wiki</a>
+                    </div>
+                </div>
+                <div class="footer-disclaimer">
+                    <p>
+                        Rockstar Games and Grand Theft Auto VI are registered trademarks of Take-Two Interactive Software, Inc. State of Leonida is a non-commercial, fan-made interactive mapping and GIS research project created by the GTA mapping community and is not affiliated with, endorsed, or sponsored by Rockstar Games or Take-Two Interactive in any way.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div id="map"></div>
+    <div id="coordinates">X: 0.000, Y: 0.000</div>
+
+    <script src="assets/libs/leaflet/leaflet.js"></script>
+    <script src="assets/libs/leaflet-markercluster/leaflet.markercluster.js"></script>
+    <script src="assets/libs/fancybox/fancybox.umd.js"></script>
+    <script src="solmain2009.js"></script>
+    <script src="landing.js"></script>
+    <script src="features.js"></script>
+    <script>window.__INITIAL_BLOGS__ = [{"id":"blog-1","slug":"triangulating-vice-beach-ocean-drive-photogrammetry","targetKeyword":"GTA 6 Vice City vs Real Life Miami map comparison","title":"Triangulating Vice Beach: How Photogrammetry Decoded Ocean Drive in Trailer 1","category":"Cartography & Leaks","author":"Yanis GIS Lead","authorRole":"Senior Cartographer","date":"2026-10-12","readTime":"6 min read","coverImage":"assets/photos/screenshots/vice_city/Vice_City_05.jpg","excerpt":"A deep mathematical breakdown of focal lengths, Art Deco facade dimensions, and horizon vector alignments that fixed Ocean Drive's exact Cartesian coordinates at X: 2803.2, Y: 1409.4.","content":"<p>When Rockstar Games premiered the debut trailer for <em>Grand Theft Auto VI</em>, the opening helicopter sweep down Vice Beach was not merely a graphical showcase—it was an engineering blueprint for the community mapping project.</p><h3>The Horizon Alignment Methodology</h3><p>By capturing the exact field of view (FOV: ~52.4°) of the in-engine camera and calculating the height ratios of the pastel Art Deco hotel strips along Ocean Drive, our cartography team cross-referenced the 2022 debug telemetry. The result placed the central Vice Beach promenade precisely at Cartesian plane coordinates <strong>X: 2803.2, Y: 1409.4</strong>.</p><div class=\"blog-quote-callout\"><blockquote>\"The architectural fidelity to South Beach's historic district is 1:1 in street rhythm, but amplified by 35% in verticality to accommodate multi-tiered nightclub rooftops and panoramic penthouse suites.\"</blockquote><cite>— Yanis, Lead Leonida Cartographer</cite></div><h3>Key Environmental Discoveries</h3><ul><li><strong>Ocean View Hotel Analog:</strong> The neon-soaked centerpiece features a fully modeled ground-floor lobby and rooftop pool bar, consistent with RAGE 9's seamless interior streaming.</li><li><strong>Muscle Beach Gymnasium:</strong> Located approximately 450 meters south along the sand boardwalk, triangulated through shadows cast by the golden-hour solar vector.</li><li><strong>Water Surface Buoyancy:</strong> Wave displacement equations observable along the shoreline accurately simulate Biscayne Bay tidal patterns.</li></ul><p>Use the interactive tool below to explore the verified coordinates directly inside our 21K Leaflet engine.</p>","hotspotKey":"ocean-drive","lat":1409.4,"lng":2803.2,"featured":true,"status":"published"},{"id":"blog-2","slug":"port-gellhorn-enigma-industrial-hub-telemetry","targetKeyword":"GTA 6 Port Gellhorn locations and map coordinates","title":"The Port Gellhorn Enigma: Analyzing Leonida's Heavy Industrial Hub","category":"Districts & Lore","author":"Marcus Vance","authorRole":"Intelligence Analyst","date":"2026-10-11","readTime":"6 min read","coverImage":"assets/photos/trailer/trailer3/T3_201.png","excerpt":"From the leaked Hank's Waffles diner heist to the massive shipping container cranes, we examine why Port Gellhorn represents the grit and blue-collar underbelly of western Leonida.","content":"<p>While Vice City dazzles with neon lights and superyachts, the western territory of <strong>Port Gellhorn</strong> represents a dramatically different atmosphere. Positioned at extreme negative coordinates (X: -8500.0, Y: -2100.0), it serves as the industrial powerhouse and criminal hotbed of the state.</p><h3>Telemetry & Mission Footprints</h3><p>Leaked 2022 pre-alpha development clips placed Lucia and Jason inside several distinct Port Gellhorn interiors. The infamous <em>Hank's Waffles</em> armed robbery demonstrated advanced crowd-management AI, dynamic hostage intimidation cones, and tactical local police responses from the Port Gellhorn Police Department.</p><h3>Key Industrial Landmarks</h3><p>Satellite vector analysis reveals several critical points of interest:</p><ul><li><strong>Deepwater Container Terminal:</strong> Towering gantry cranes and rail freight staging yards linked to the statewide transit spine.</li><li><strong>Port Gellhorn Drag Strip & Speedway:</strong> An asphalt oval and burnout pad, heavily referenced as the breeding ground for midnight street racing.</li><li><strong>Pawn & Gun Exchange:</strong> A verified multi-entrance robbery target featuring drillable wall safes and CCTV surveillance networks.</li></ul>","hotspotKey":"port-gellhorn","lat":-2100,"lng":-8500,"featured":false,"status":"published"},{"id":"blog-3","slug":"lucia-jason-heist-network-safehouses-and-mechanics","targetKeyword":"GTA 6 Lucia and Jason character mechanics inventory","title":"Lucia & Jason's Criminal Circuit: Deconstructing Safehouses & Dual Protagonists","category":"Vehicles & Heists","author":"Elena Rostova","authorRole":"Lore Archivist","date":"2026-10-10","readTime":"5 min read","coverImage":"assets/photos/screenshots/jason_duval/Jason_Duval_02.jpg","excerpt":"Inside the Bonnie-and-Clyde dynamic: how duffel bag mechanics, vehicle trunk armories, and safehouse networks redefine heist execution in Grand Theft Auto VI.","content":"<p>Grand Theft Auto VI marks a monumental shift in gameplay philosophy by centering on the criminal partnership between <strong>Lucia Caminos</strong> and <strong>Jason</strong>. Unlike the tripartite structure of GTA V, this duo operates with deep co-dependency and tactical cohesion.</p><h3>Shared Equipment & Weapon Stashes</h3><p>Gone are the days of carrying an entire military arsenal in an invisible weapon wheel. Telemetry analysis indicates that heavy armaments (such as assault rifles, shotguns, and breach explosives) are stowed inside duffel bags or vehicle trunks.</p><h3>The King Motel Sanctuary</h3><p>Located on the fringes of Port Gellhorn at coordinates <code>X: -8210.0, Y: -1980.0</code>, the King Motel serves as a low-profile base of operations. Players will be able to change disguises to drop police wanted heat, split heist takings, and tune getaway vehicles before returning to the metropolitan avenues of Vice City.</p>","hotspotKey":"port-gellhorn","lat":-1980,"lng":-8210,"featured":false,"status":"published"},{"id":"blog-4","slug":"leonida-map-scale-comparison-gta5-rdr2-breakdown","targetKeyword":"GTA 6 map size vs GTA 5 comparison","title":"Why Leonida's 125 km² Map Dwarfs Los Santos and New Hanover Combined","category":"Cartography & Leaks","author":"Yanis GIS Lead","authorRole":"Senior Cartographer","date":"2026-10-09","readTime":"7 min read","coverImage":"assets/photos/screenshots/leonida_keys/Leonida_Keys_05.jpg","excerpt":"A definitive scale evaluation comparing coordinate bounds, open waterways, and density metrics across the history of Rockstar Games open worlds.","content":"<p>With coordinate telemetry bounds spanning over 25,000 units on the Cartesian coordinate grid, the total landmass of Leonida stands at approximately <strong>125 km² (48.3 sq mi)</strong>. To put this in perspective, GTA V's Los Santos and Blaine County measure roughly 49 km², while Red Dead Redemption 2 covers approximately 75 km².</p><h3>Navigable Waterways & The Overseas Highway</h3><p>A substantial portion of this scale expansion is dedicated to intricate waterways, from the vast alligator bayous of the <em>Grassrivers</em> to the sweeping coral shallows of the <em>Leonida Keys</em>. Connected by the monumental Overseas Highway causeway, driving from Vice Beach to Key West will take upwards of 8 to 11 minutes at supercar velocities.</p><h3>Interior Accessibility Ratio</h3><p>Unlike previous open worlds where 95% of structures were hollow backdrop geometry, RAGE 9 enables an unprecedented interior density. Over 70% of public-facing facilities—gas station minimarts, restaurants, hotel lobbies, residential apartment halls, and hardware stores—feature full real-time interior streaming without loading transitions.</p>","hotspotKey":"keys","lat":-7800,"lng":-2100,"featured":false,"status":"published"},{"id":"blog-5","slug":"grassrivers-frontier-swamps-ambrosia-sugar-mill","targetKeyword":"GTA 6 Kelly County and Lake Leonida swamp locations","title":"The Grassrivers Frontier: Navigating Alligator Swamps & Ambrosia Sugar Mill","category":"Districts & Lore","author":"Elena Rostova","authorRole":"Lore Archivist","date":"2026-10-08","readTime":"6 min read","coverImage":"assets/photos/screenshots/vice_city/Vice_City_05.jpg","excerpt":"Deep inside Kelly County lies Ambrosia Sugar Refinery and the treacherous Grassrivers bayous, where swamp airboats and apex reptiles dominate the ecosystem.","content":"<p>Beyond the neon skyline of Vice City lies the raw, untamed backcountry of Kelly County. Centered around coordinates <code>X: -4100.0, Y: 3400.0</code>, the <strong>Ambrosia Sugar Mill</strong> stands as a towering industrial relic surrounded by sprawling agricultural fields and sawgrass marshlands.</p><h3>Alligator Behavior & Apex Predators</h3><p>The Grassrivers represents a dramatic leap forward from Red Dead Redemption 2's Bayou NWA wildlife systems. Dynamic water surface tessellation allows alligators to submerge silently, lunging at passing airboats or unwary poachers who venture off wooden boardwalk trails.</p><h3>Smuggling Channels & Airboat Mechanics</h3><p>High-powered swamp fanboats are essential for navigating the shallow reed mazes where conventional propeller hulls run aground. Contraband drops and moonshine stills scattered throughout the mangroves offer high-risk robbery opportunities for Lucia and Jason.</p>","hotspotKey":"ambrosia","lat":3400,"lng":-4100,"featured":false,"status":"published"},{"id":"blog-6","slug":"vice-city-international-airport-runways-hangars","targetKeyword":"GTA 6 airport interior and runways GTA VI","title":"Vice City International Airport (VIA): Runway Telemetry, Hangars & Security","category":"Cartography & Leaks","author":"Marcus Vance","authorRole":"Aviation Analyst","date":"2026-10-07","readTime":"5 min read","coverImage":"assets/photos/trailer/trailer3/T3_201.png","excerpt":"Triangulated at coordinates X: 1100.0, Y: -1200.0, Vice City International Airport features massive dual crosswind runways, multi-level passenger terminals, and executive private jet hangars.","content":"<p>Spanning hundreds of acres west of Bayside, <strong>Vice City International Airport (VIA)</strong> is poised to be the largest aviation facility in Grand Theft Auto history. Triangulated precisely at Cartesian coordinates <code>X: 1100.0, Y: -1200.0</code>, VIA serves as a critical strategic node for escape flights and aerial combat.</p><h3>Terminal Interiors & Security Checkpoints</h3><p>Unlike previous titles where airports featured static non-enterable facades, VIA introduces fully streamed ticketing concourses, baggage claim conveyor belts, and TSA automated security gates that trigger immediate 3-star wanted alerts if breached with firearms.</p><h3>Aviation Fleet Verified</h3><ul><li><strong>Allied Air Commercial Liners:</strong> Fully rendered wide-body aircraft taxiing dynamically on active flight paths.</li><li><strong>Buckingham Luxor Luxury Jets:</strong> Executive private jets stationed in perimeter executive hangars ready for high-altitude getaway maneuvers.</li><li><strong>Air Traffic Control Tower:</strong> Accessible via maintenance stairwells with sniper vantage points overseeing both runways.</li></ul>","hotspotKey":"airport","lat":-1200,"lng":1100,"featured":false,"status":"published"},{"id":"blog-7","slug":"overseas-highway-high-speed-travel-leonida-keys","targetKeyword":"GTA 6 Leonida Keys overseas highway drive time","title":"The Overseas Highway: Island Hopping & High-Speed Travel Across Leonida Keys","category":"Cartography & Leaks","author":"Yanis GIS Lead","authorRole":"Senior Cartographer","date":"2026-10-06","readTime":"6 min read","coverImage":"assets/photos/screenshots/leonida_keys/Leonida_Keys_05.jpg","excerpt":"Connecting mainland Vice City to the tropical archipelago of the Keys, the Overseas Highway spans multiple suspension bridges, coral atolls, and waterfront resort villas.","content":"<p>Traversing south toward coordinates <code>X: -2100.0, Y: -7800.0</code>, the legendary <strong>Overseas Highway</strong> forms the backbone of southern Leonida. Modeled after Florida's iconic US Route 1 Seven Mile Bridge, this causeway connects dozens of tropical islands, sandbars, and marina towns.</p><h3>Drive Time Calculations</h3><p>Based on in-game vehicle telemetry and physics benchmarks:</p><ul><li><strong>Supercar (Pfister Comet / Torero XO):</strong> Approximately 7.5 to 9 minutes of continuous full-throttle driving from Vice Beach South to Key Lento.</li><li><strong>Muscle Car / Cruiser:</strong> 11 to 14 minutes with ambient civilian traffic density enabled.</li><li><strong>Speedboat / Seaplane Transit:</strong> Coastal waterways offer unobstructed straight-line routes spanning the crystal-clear shallow lagoons.</li></ul><p>The turquoise waters surrounding the highway feature real-time coral reef tessellation, dolphin pods, and sunken cargo shipwrecks accessible via deep-sea diving gear.</p>","hotspotKey":"keys","lat":-7800,"lng":-2100,"featured":false,"status":"published"},{"id":"blog-8","slug":"armed-robbery-heist-mechanics-diners-pawn-shops","targetKeyword":"GTA 6 robbery locations diners and pawn shops","title":"Armed Robbery & Heist Mechanics: Inside Diners, Pawn Shops & Drillable Safes","category":"Vehicles & Heists","author":"Elena Rostova","authorRole":"Lore Archivist","date":"2026-10-05","readTime":"5 min read","coverImage":"assets/photos/screenshots/jason_duval/Jason_Duval_02.jpg","excerpt":"A deep tactical analysis of the Bonnie-and-Clyde stick-up mechanics: hostage intimidation cones, dynamic cash register looting, and thermal drill safecracking.","content":"<p>In Grand Theft Auto VI, small-scale criminal enterprises take center stage alongside grand heists. Leaked development footage confirms that Lucia and Jason can coordinate stick-ups across hundreds of retail establishments, 24/7 diners, pawn shops, and check-cashing franchises across Leonida.</p><h3>Hostage Intimidation Cones</h3><p>NPCs no longer act like passive targets. Civilians react to gun trajectories, audio cues, and hostage intimidation cones. Players must actively control the room—shouting commands or firing warning shots to prevent terrified cashiers from pressing silent alarm buttons under the counters.</p><h3>Looting Physics & Safecracking</h3><ul><li><strong>Cash Register Emptying:</strong> Realistic physical cash extraction where loose bills and coin rolls must be scooped into duffel bags.</li><li><strong>Wall & Floor Safes:</strong> Commercial pawn shops house reinforced backroom safes requiring code deciphering, crowbar prying, or silent thermal lance drilling.</li><li><strong>CCTV Camera Destruction:</strong> Shooting security cameras before launching the robbery delays law enforcement dispatch times by up to 45 seconds.</li></ul>","hotspotKey":"port-gellhorn","lat":-8500,"lng":-2100,"featured":false,"status":"published"},{"id":"blog-9","slug":"law-enforcement-ai-roadblocks-vision-cones-pursuit","targetKeyword":"GTA 6 police AI and wanted level pursuit system","title":"Law Enforcement Protocol: AI Roadblocks, Vision Cones & Pursuit Tactics","category":"Trailer Analysis","author":"Marcus Vance","authorRole":"Intelligence Analyst","date":"2026-10-04","readTime":"6 min read","coverImage":"assets/photos/screenshots/vice_city/Vice_City_05.jpg","excerpt":"Leonida law enforcement introduces tactical PIT maneuvers, dynamic spike strips, perimeter search grids, and vehicle license plate recognition networks.","content":"<p>Evading police pursuit in Grand Theft Auto VI is an entirely modernized tactical struggle. The Police AI system in Leonida eliminates omniscient GPS tracking, replacing it with realistic investigation cones, radio coordination, and optical recognition.</p><h3>Perimeter Search Grids & Line-of-Sight</h3><p>When losing line-of-sight, police officers investigate the player's last known location and establish expanding search radiuses. If you swap vehicles in a concealed alleyway or change outfits at a motel, squad cars passing your new vehicle will not immediately recognize you unless you commit moving violations or draw weapons.</p><h3>Escalating Wanted Levels</h3><ul><li><strong>1-Star:</strong> Local precinct patrol units attempt traffic stops and verbal arrest commands.</li><li><strong>2-3 Stars:</strong> Aggressive PIT maneuvers, rolling roadblocks, and K-9 tracking units in rural brush.</li><li><strong>4-5 Stars:</strong> Tactical SWAT BearCat armored trucks, police snipers stationed on highway overpasses, and high-altitude infrared helicopter spotlights.</li></ul>","hotspotKey":"ocean-drive","lat":1409.4,"lng":2803.2,"featured":false,"status":"published"},{"id":"blog-10","slug":"supercars-speedboats-tuners-verified-vehicle-roster","targetKeyword":"GTA 6 vehicle customization and car list","title":"Supercars, Speedboats & Tuners: The Complete Verified Vehicle Roster in GTA 6","category":"Vehicles & Heists","author":"Alex Rivera","authorRole":"Automotive Specialist","date":"2026-10-03","readTime":"7 min read","coverImage":"assets/photos/screenshots/vice_city/Vice_City_05.jpg","excerpt":"From the Grotti Cheetah classic to the Pegassi Torero XO, examine the official and leaked car roster featuring full interior tuning, dynamic tire physics, and functional gloveboxes.","content":"<p>Vehicular culture is the lifeblood of Grand Theft Auto, and Leonida's automotive ecosystem represents the most comprehensive catalog ever assembled by Rockstar North. From lowriders in Little Haiti to luxury hypercars cruising Ocean Drive, the variety is staggering.</p><h3>Verified Automobile Lineup</h3><ul><li><strong>Grotti Cheetah Classic & Modern:</strong> The quintessential Vice City exotic returning with adjustable rear aero wings and authentic V12 exhaust acoustics.</li><li><strong>Pegassi Torero XO:</strong> Modern Italian hypercar engineering built for high-speed Overseas Highway time trials.</li><li><strong>Bravado Gauntlet Hellfire:</strong> Heavy American muscle with supercharged whine, burnout smoke simulation, and drag strip wheelie bar tuning.</li><li><strong>Pfister Comet S2 Cabrio:</strong> Drop-top German precision tuned for coastal boulevard cruising and quick getaway handling.</li><li><strong>Swamp Airboats & Sea-Doos:</strong> Dual twin-engine watercraft built to carve through the shallow marshes of the Grassrivers.</li></ul><h3>Next-Generation Vehicle Customization</h3><p>Garages across Vice City offer unprecedented interior personalization: adjustable steering wheels, operational digital instrument clusters, seat leather stitching, and functional trunks that house duffel bag arsenals.</p>","hotspotKey":"ocean-drive","lat":1409.4,"lng":2803.2,"featured":false,"status":"published"},{"id":"blog-11","slug":"rage-9-engine-volumetric-fluid-70-percent-interiors","targetKeyword":"GTA 6 RAGE 9 engine technical features","title":"RAGE 9 Engine Deconstructed: Volumetric Fluid Sim, 70% Interiors & Raytracing","category":"Dev Telemetry","author":"Yanis GIS Lead","authorRole":"Lead Technical Cartographer","date":"2026-10-02","readTime":"8 min read","coverImage":"assets/photos/screenshots/vice_city/Vice_City_05.jpg","excerpt":"An in-depth technical exploration into Rockstar Games' proprietary RAGE 9 engine: real-time global illumination, cloth tessellation, and procedural water physics.","content":"<p>The foundation beneath Grand Theft Auto VI is Rockstar's proprietary <strong>RAGE 9 (Rockstar Advanced Game Engine)</strong>. Engineered over a decade, it introduces groundbreaking rendering architectures that push current-gen hardware to its absolute limits.</p><h3>Procedural Water Displacement & Tidal Mechanics</h3><p>Water simulation in Leonida is governed by physical wave equations. Speedboats cutting through Biscayne Bay generate realistic wake crests that physically push smaller watercraft. In coastal hurricanes, tidal surges flood beachfront sidewalks in real-time, forcing civilian vehicles to hydroplane.</p><h3>Interior Streaming Density</h3><p>Previous open-world titles relied on hollow geometry cubes with painted window textures. In RAGE 9, over 70% of urban commercial properties feature fully modeled 3D interiors. Players can walk directly off Ocean Drive, through hotel revolving glass doors, into elevators, and out onto rooftop observation decks without encountering a single loading transition.</p>","hotspotKey":"ocean-drive","lat":1409.4,"lng":2803.2,"featured":false,"status":"published"},{"id":"blog-12","slug":"can-ps5-pro-hit-60-fps-vice-city-pssr-cpu-limits","targetKeyword":"GTA 6 PS5 Pro 60 fps PSSR performance breakdown","title":"Can PS5 Pro Hit 60 FPS in Vice City? CPU Limits, PSSR & Hardware Benchmarks","category":"Dev Telemetry","author":"Marcus Vance","authorRole":"Hardware Analyst","date":"2026-10-01","readTime":"6 min read","coverImage":"assets/photos/trailer/trailer3/T3_201.png","excerpt":"Deconstructing Sony's PS5 Pro hardware specifications: how Zen 2 CPU constraints and PlayStation Spectral Super Resolution (PSSR) impact GTA 6's frame rate targets.","content":"<p>With the release of the PlayStation 5 Pro, the single most debated technical question in gaming has become: <em>Will Grand Theft Auto VI achieve 60 frames per second on Sony's upgraded console?</em></p><h3>The CPU Bottleneck Reality</h3><p>While the PS5 Pro boasts an impressive 45% uplift in GPU rasterization and advanced ray-tracing hardware, the central processor remains based on AMD's Zen 2 architecture with only a modest 10% clock boost (up to 3.85 GHz). In a simulation-dense open world like GTA 6—where hundreds of physics-based NPCs, vehicle AI, traffic pathfinding, and volumetric crowd simulations run simultaneously—the CPU is almost universally the limiting factor for framerate.</p><h3>PSSR AI Upscaling to the Rescue</h3><p>The standout feature of PS5 Pro is <strong>PlayStation Spectral Super Resolution (PSSR)</strong>. By reconstructing internal 1440p rendering buffers into pristine 4K output with dedicated machine-learning hardware, Rockstar can maintain aggressive ray-traced reflections and global illumination without overwhelming the GPU render pipeline.</p><p>We project a dynamic 30 FPS Fidelity Mode with maximum raytracing, alongside a 40 FPS 120Hz VRR Performance Mode for high-end gaming displays.</p>","hotspotKey":"ocean-drive","lat":1409.4,"lng":2803.2,"featured":false,"status":"published"},{"id":"blog-13","slug":"duffel-bag-arsenal-realistic-inventory-weapon-wheel","targetKeyword":"GTA 6 weapon inventory duffel bag and trunk mechanics","title":"The Duffel Bag Arsenal: How Realistic Inventory Replaces the Endless Weapon Wheel","category":"Vehicles & Heists","author":"Elena Rostova","authorRole":"Combat Systems Analyst","date":"2026-09-30","readTime":"5 min read","coverImage":"assets/photos/screenshots/jason_duval/Jason_Duval_02.jpg","excerpt":"Say goodbye to carrying 40 heavy weapons in your pocket: GTA 6 introduces physical weapon slings, limited sidearm holsters, and tactical car trunk armories.","content":"<p>Evolving the grounded inventory design pioneered in <em>Red Dead Redemption 2</em>, Grand Theft Auto VI completely revamps how weapons and ammunition are managed in modern urban combat.</p><h3>Physical Slings & Limited Holsters</h3><p>Players are restricted to carrying two concealed sidearms (such as 9mm pistols or compact revolvers) alongside one primary heavy weapon carried over the shoulder via a rifle sling. Heavy armaments are visually visible on the character model at all times, making walking down crowded Vice Beach boulevards with an assault rifle an instant trigger for terrified civilian panic and 2-star police response.</p><h3>Trunk Loadouts & Pre-Heist Preparation</h3><p>The trunk of your personal vehicle acts as a mobile weapons locker. Before arriving at an armored car robbery or gang hideout, Lucia and Jason must pop the trunk, select tactical gear, pack duffel bags with breach explosives, and equip body armor vests.</p>","hotspotKey":"port-gellhorn","lat":-1980,"lng":-8210,"featured":false,"status":"published"},{"id":"blog-14","slug":"satire-live-streaming-ingame-social-media-wanted-heat","targetKeyword":"GTA 6 in game social media app TikTok parody","title":"Satire & Live-Streaming: How In-Game Social Media Shapes Wanted Heat in Leonida","category":"Trailer Analysis","author":"Alex Rivera","authorRole":"Cultural & Satire Critic","date":"2026-09-29","readTime":"5 min read","coverImage":"assets/photos/screenshots/vice_city/Vice_City_05.jpg","excerpt":"Viral car meet streams, rooftop twerking clips, and Florida Man antics: how in-game vertical video feeds turn the entire state of Leonida into a living social media parody.","content":"<p>The opening trailer for GTA VI proved beyond doubt that vertical video and social media culture are deeply woven into the fabric of the game. In a world obsessed with online virality, citizen live-streaming is both a hilarious satire of modern culture and an active gameplay mechanic.</p><h3>Viral Footage & Citizen Journalists</h3><p>When committing high-profile crimes or performing stunt jumps across highway dividers, nearby NPCs pull out smartphones to record vertical video clips. If you allow bystanders to upload your getaway vehicle or face to Leonida's viral social feed, police dispatchers receive real-time location pings, making clean getaways far more urgent.</p><h3>Parody Accounts & Viral Moments</h3><p>From rooftop parties in South Beach to hammer-wielding suburban neighbors and alligators invading convenience store coolers, the social feed delivers an endless stream of Florida Man lore that dynamically reacts to the player's storyline milestones.</p>","hotspotKey":"ocean-drive","lat":1409.4,"lng":2803.2,"featured":false,"status":"published"}];</script>
+    <script src="blog.js"></script>
+    <script src="pwa-install.js"></script>
+
+    <script>
+        (function() {
+            function enableTrailer3() {
+                try {
+                    var src = (typeof MARKER_SOURCES_CONFIG !== 'undefined') ?
+                        MARKER_SOURCES_CONFIG :
+                        window.MARKER_SOURCES_CONFIG;
+                    if (!src || !src.trailer3_markers) return false;
+                    src.trailer3_markers.enabled = true;
+                    var mm = window.mapManager && window.mapManager.markerManager;
+                    if (mm && typeof mm.loadSource === 'function' && mm.sources && !mm.sources.trailer3_markers) {
+                        mm.loadSource(src.trailer3_markers);
+                    }
+                    return true;
+                } catch (e) {
+                    return false;
+                }
+            }
+            if (enableTrailer3()) return;
+            var n = 0;
+            var t = setInterval(function() {
+                try {
+                    if (enableTrailer3() || ++n > 100) clearInterval(t);
+                } catch (_) {
+                    clearInterval(t);
+                }
+            }, 100);
+        })();
+    </script>
+</body>
+
+</html>

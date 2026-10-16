@@ -1,0 +1,1242 @@
+[
+    {
+        "name": "Leonida Keys",
+        "position": {
+            "lat": -7612,
+            "lng": -4428
+        },
+        "tags": [
+            "Screenshots",
+            "Leonida Keys",
+            "S2/46"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/leonida_keys/Leonida_Keys_01.jpg",
+            "credit": "Rockstar Games / 05/06/2025"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 40,
+            "fov": {
+                "angle": 70,
+                "range": 2300
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_001"
+    },
+    {
+        "name": "Leonida Keys",
+        "position": {
+            "lat": -6317.75,
+            "lng": -3128.25
+        },
+        "tags": [
+            "Screenshots",
+            "Leonida Keys"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/leonida_keys/Leonida_Keys_05.jpg",
+            "credit": "Rockstar Games / 05/06/2025"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 199,
+            "fov": {
+                "angle": 70,
+                "range": 200
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_002"
+    },
+    {
+        "name": "Leonida Keys",
+        "position": {
+            "lat": -6694.75,
+            "lng": -2883.25
+        },
+        "tags": [
+            "Screenshots",
+            "Leonida Keys",
+            "Jason Duval"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/jason_duval/Jason_Duval_03.jpg",
+            "credit": "Rockstar Games / 05/06/2025"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 35,
+            "fov": {
+                "angle": 70,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_003"
+    },
+    {
+        "name": "Leonida Keys",
+        "position": {
+            "lat": -5254.25,
+            "lng": -2253.25
+        },
+        "tags": [
+            "Screenshots",
+            "Leonida Keys",
+            "S2/48"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/leonida_keys/Leonida_Keys_03.jpg",
+            "credit": "Rockstar Games / 05/06/2025"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 248,
+            "fov": {
+                "angle": 70,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_004"
+    },
+    {
+        "name": "Leonida Keys",
+        "position": {
+            "lat": -5255.75,
+            "lng": -2278.25
+        },
+        "tags": [
+            "Screenshots",
+            "Leonida Keys",
+            "Brian heder",
+            "S2/34"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/brian_heder/Brian_Heder_02.jpg",
+            "credit": "Rockstar Games / 05/06/2025"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 359,
+            "fov": {
+                "angle": 47,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_005"
+    },
+    {
+        "name": "Leonida Keys",
+        "position": {
+            "lat": -5818,
+            "lng": -2519.5
+        },
+        "tags": [
+            "Screenshots",
+            "Leonida Keys",
+            "Cal Hampton",
+            "S2/16"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/cal_hampton/Cal_Hampton_04.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_007"
+    },
+    {
+        "name": "Leonida Keys",
+        "position": {
+            "lat": -5737.25,
+            "lng": -2532
+        },
+        "tags": [
+            "Screenshots",
+            "Leonida Keys",
+            "Brian Heder",
+            "S2/35"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/brian_heder/Brian_Heder_03.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_008"
+    },
+    {
+        "name": "Leonida Keys",
+        "position": {
+            "lat": -6420,
+            "lng": -2909.5
+        },
+        "tags": [
+            "Screenshots",
+            "Leonida Keys",
+            "S2/47"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/leonida_keys/Leonida_Keys_02.jpg",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 268,
+            "fov": {
+                "angle": 70,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_009"
+    },
+    {
+        "name": "Leonida Keys",
+        "position": {
+            "lat": -6749,
+            "lng": -3809
+        },
+        "tags": [
+            "Screenshots",
+            "Leonida Keys",
+            "S2/72"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/leonida_keys/Leonida_Keys_06_2.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_010"
+    },
+    {
+        "name": "Watson Bay",
+        "position": {
+            "lat": -3457,
+            "lng": -5355
+        },
+        "tags": [
+            "Screenshots",
+            "Grassrivers",
+            "Watson Bay"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/grassrivers/Grassrivers_02.jpg",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 73,
+            "fov": {
+                "angle": 46,
+                "range": 600
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_011"
+    },
+    {
+        "id": "screenshots_012",
+        "name": "Vice Beach",
+        "position": {
+            "lat": 580.25,
+            "lng": 2005.25
+        },
+        "tags": [
+            "Screenshots",
+            "Vice Beach",
+            "Jason Duval"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/jason_duval/Jason_Duval_04.jpg",
+            "credit": "Rockstar Games"
+        }
+    },
+    {
+        "name": "Vice Beach",
+        "position": {
+            "lat": 601.75,
+            "lng": 1992
+        },
+        "tags": [
+            "Screenshots",
+            "Vice Beach",
+            "Jason & Lucia"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/jason_duval/Jason_Duval_04.jpg",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 284,
+            "fov": {
+                "angle": 55,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_013"
+    },
+    {
+        "name": "Vice Beach",
+        "position": {
+            "lat": 642,
+            "lng": 1992.25
+        },
+        "tags": [
+            "Screenshots",
+            "Vice Beach",
+            "S2/42"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/vice_city/Vice_City_06.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_014"
+    },
+    {
+        "id": "screenshots_015",
+        "name": "Vice Beach",
+        "position": {
+            "lat": 747,
+            "lng": 2171
+        },
+        "tags": [
+            "Screenshots",
+            "Vice Beach"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/vice_city/Vice_City_05.jpg",
+            "credit": "Rockstar Games"
+        }
+    },
+    {
+        "name": "Jason Duval",
+        "position": {
+            "lat": 470.5,
+            "lng": 720
+        },
+        "tags": [
+            "Screenshots",
+            "Vice City",
+            "Jason Duval",
+            "S2/02"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/jason_duval/Jason_Duval_02.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_016"
+    },
+    {
+        "name": "Vice City",
+        "position": {
+            "lat": 909,
+            "lng": -582.5
+        },
+        "tags": [
+            "Screenshots",
+            "Vice City",
+            "S2/44"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/vice_city/Vice_City_08.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_017"
+    },
+    {
+        "name": "Vice Beach",
+        "position": {
+            "lat": 1585,
+            "lng": 2033
+        },
+        "tags": [
+            "Screenshots",
+            "Vice Beach",
+            "S2/38"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/vice_city/Vice_City_02.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_018"
+    },
+    {
+        "name": "Vice Beach",
+        "position": {
+            "lat": 1645.75,
+            "lng": 1976.5
+        },
+        "tags": [
+            "Screenshots",
+            "Vice Beach",
+            "S2/39"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/vice_city/Vice_City_03.jpg",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 255,
+            "fov": {
+                "angle": 70,
+                "range": 200
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_019"
+    },
+    {
+        "name": "Vice City",
+        "position": {
+            "lat": -1903.5,
+            "lng": -757
+        },
+        "tags": [
+            "Screenshots",
+            "Vice City",
+            "Raul Bautista"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/raul_bautista/Raul_Bautista_03.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_020"
+    },
+    {
+        "id": "screenshots_021",
+        "name": "Vice City",
+        "position": {
+            "lat": 1262.75,
+            "lng": -689.5
+        },
+        "tags": [
+            "Screenshots",
+            "Vice Real Dimez"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/real_dimez/Real_Dimez_02.jpg",
+            "credit": "Rockstar Games"
+        }
+    },
+    {
+        "id": "screenshots_022",
+        "name": "Vice City",
+        "position": {
+            "lat": 1170,
+            "lng": -719.5
+        },
+        "tags": [
+            "Screenshots",
+            "Vice City",
+            "boobie Ike"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/boobie_Ike/Boobie_Ike_02.jpg",
+            "credit": "Rockstar Games"
+        }
+    },
+    {
+        "id": "screenshots_023",
+        "name": "Vice City",
+        "position": {
+            "lat": 1163,
+            "lng": -696
+        },
+        "tags": [
+            "Screenshots",
+            "Vice City",
+            "Real Dimez"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/real_dimez/Real_Dimez_03.jpg",
+            "credit": "Rockstar Games"
+        }
+    },
+    {
+        "name": "Vice City International Airport",
+        "position": {
+            "lat": -413,
+            "lng": -3814.5
+        },
+        "tags": [
+            "Screenshots",
+            "Vice City",
+            "S2/37"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/vice_city/Vice_City_01.jpg",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 138,
+            "fov": {
+                "angle": 60,
+                "range": 100
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_024"
+    },
+    {
+        "name": "Starlet Motel",
+        "position": {
+            "lat": 3539.5,
+            "lng": -5327.5
+        },
+        "tags": [
+            "Screenshots",
+            "Port Gellhorn",
+            "S2/51"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/port_gellhorn/Port_Gellhorn_01.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_025"
+    },
+    {
+        "name": "Delights Port Gellhorn",
+        "position": {
+            "lat": 3594,
+            "lng": -6332.75
+        },
+        "tags": [
+            "Screenshots",
+            "Port Gellhorn",
+            "S2/54"
+        ],
+        "uncertain": true,
+        "igPhoto": {
+            "url": "assets/photos/screenshots/port_gellhorn/Port_Gellhorn_04.jpg",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 283,
+            "fov": {
+                "angle": 110,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_026"
+    },
+    {
+        "name": "Port Gellhorn",
+        "position": {
+            "lat": 3601,
+            "lng": -6539.5
+        },
+        "tags": [
+            "Screenshots",
+            "Port Gellhorn"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/port_gellhorn/Port_Gellhorn_06_2.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_027"
+    },
+    {
+        "name": "Ambrosia Bikers",
+        "position": {
+            "lat": 4045,
+            "lng": -2654.5
+        },
+        "tags": [
+            "Screenshots",
+            "Ambrosia",
+            "S2/56"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/ambrosia/Ambrosia_01.jpg",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 344,
+            "fov": {
+                "angle": 53,
+                "range": 100
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_028"
+    },
+    {
+        "name": "Ambrosia",
+        "position": {
+            "lat": 3377,
+            "lng": -1680.5
+        },
+        "tags": [
+            "Screenshots",
+            "Ambrosia",
+            "S2/59"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/ambrosia/Ambrosia_04.jpg",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 251,
+            "fov": {
+                "angle": 54,
+                "range": 250
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_029"
+    },
+    {
+        "name": "Ambrosia",
+        "position": {
+            "lat": 5344,
+            "lng": -2412
+        },
+        "tags": [
+            "Screenshots",
+            "Ambrosia",
+            "S2/57"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/ambrosia/Ambrosia_02.jpg",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 200,
+            "fov": {
+                "angle": 60,
+                "range": 1800
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_030"
+    },
+    {
+        "name": "Vice City",
+        "position": {
+            "lat": 1852,
+            "lng": 383
+        },
+        "tags": [
+            "Screenshots",
+            "Vice City"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/vice_city/Vice_City_10_2.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_031"
+    },
+    {
+        "id": "screenshots_032",
+        "name": "La Perle, Vice City",
+        "position": {
+            "lat": 1137.5,
+            "lng": -1270.5
+        },
+        "tags": [
+            "Screenshots",
+            "Vice City"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/vice_city/Vice_City_09.jpg",
+            "credit": "Rockstar Games"
+        }
+    },
+    {
+        "id": "screenshots_033",
+        "name": "La Perle, Vice City",
+        "position": {
+            "lat": 1213.75,
+            "lng": -1278.75
+        },
+        "tags": [
+            "Screenshots",
+            "Vice City"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/vice_city/Vice_City_04.jpg",
+            "credit": "Rockstar Games"
+        }
+    },
+    {
+        "name": "Helicopter",
+        "position": {
+            "lat": 6232.5,
+            "lng": -2279.75
+        },
+        "tags": [
+            "Screenshots",
+            "Mount Kalaga",
+            "S2/66"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/mount_kalaga national_park/Mount_Kalaga_National_Park_02.jpg",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 231,
+            "fov": {
+                "angle": 70,
+                "range": 700
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_037"
+    },
+    {
+        "name": "Lucia",
+        "position": {
+            "lat": 1171,
+            "lng": 15
+        },
+        "tags": [
+            "Screenshots",
+            "Vice City",
+            "S2/08"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/lucia_caminos/Lucia_Caminos_02.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_038"
+    },
+    {
+        "name": "Canyon",
+        "position": {
+            "lat": 5468,
+            "lng": -4844
+        },
+        "tags": [
+            "Screenshots",
+            "Mount Kalaga",
+            "S2/68"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/mount_kalaga national_park/Mount_Kalaga_National_Park_04.jpg",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 213,
+            "fov": {
+                "angle": 70,
+                "range": 500
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_039"
+    },
+    {
+        "name": "Vice City",
+        "position": {
+            "lat": -137.75,
+            "lng": 1443.25
+        },
+        "tags": [
+            "Screenshots",
+            "S3/01"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/vice_city/Vice_City_11_2.png",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 272,
+            "fov": {
+                "angle": 70,
+                "range": 1850
+            },
+            "look": {
+                "mode": "reverse",
+                "offset": 0
+            },
+            "path": [
+                {
+                    "lat": -137.75,
+                    "lng": 1443.25
+                },
+                {
+                    "lat": -110.25,
+                    "lng": 1716.5
+                }
+            ],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_040"
+    },
+    {
+        "name": "Jason & Lucia",
+        "position": {
+            "lat": 2978.25,
+            "lng": 1540.25
+        },
+        "tags": [
+            "Screenshots",
+            "Vice City",
+            "S3/02"
+        ],
+        "id": "screenshots_041"
+    },
+    {
+        "name": "Jason",
+        "position": {
+            "lat": -5559.5,
+            "lng": -2481.25
+        },
+        "tags": [
+            "Screenshots",
+            "Ultimate Edition",
+            "Leonida Keys",
+            "S3/19"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/Ultimate Edition Benefits/ULTIMATE_EDITION_SAFEHOUSE_VEHICLES_03.jpg",
+            "credit": "Rockstar Games"
+        },
+        "motion": {
+            "v": 1,
+            "heading": 232,
+            "fov": {
+                "angle": 48,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_042"
+    },
+    {
+        "name": "Jason Safe House",
+        "position": {
+            "lat": -5550.25,
+            "lng": -2330.75
+        },
+        "tags": [
+            "Screenshots",
+            "Ultimate Edition",
+            "Leonida Keys",
+            "S3/17"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/Ultimate Edition Benefits/ULTIMATE_EDITION_SAFEHOUSE_VEHICLES_01.jpg",
+            "credit": "Rockstar Games"
+        },
+        "id": "screenshots_043"
+    },
+    {
+        "name": "Sara's Unisex Salon",
+        "position": {
+            "lat": -3396.25,
+            "lng": -2567.25
+        },
+        "tags": [
+            "Screenshots",
+            "Ultimate Editon",
+            "Hamlet",
+            "S3/24"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/Ultimate Edition Benefits/ULTIMATE_EDITION_SARAS_SALON_01.jpg",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 149,
+            "fov": {
+                "angle": 70,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_044"
+    },
+    {
+        "name": "Port Gellhorn",
+        "position": {
+            "lat": 3913.5,
+            "lng": -6834
+        },
+        "tags": [
+            "Screenshots",
+            "Port Gellhorn",
+            "S2/55"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/port_gellhorn/Port_Gellhorn_05.jpg",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 65,
+            "fov": {
+                "angle": 70,
+                "range": 100
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_045"
+    },
+    {
+        "name": "Jason & Lucia",
+        "position": {
+            "lat": -1177.75,
+            "lng": 920
+        },
+        "tags": [
+            "Screenshots",
+            "S3/55"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/Vintage Vice City Pack/VINTAGE_VICE_CITY_PACK_02.jpg",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 20,
+            "fov": {
+                "angle": 47,
+                "range": 150
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_046"
+    },
+    {
+        "name": "Pegassi Towers",
+        "position": {
+            "lat": -1120.418,
+            "lng": 306.288
+        },
+        "tags": [
+            "Screenshots",
+            "S3/88"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/vice_city/Vice_City_10.jpg",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 294,
+            "fov": {
+                "angle": 70,
+                "range": 500
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_047"
+    },
+    {
+        "name": "Jason & Lucia",
+        "position": {
+            "lat": -1519,
+            "lng": 254.75
+        },
+        "tags": [
+            "Screenshots",
+            "S3/68"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/Jason_and_Lucia/Jason_and_Lucia_03.jpg",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 341,
+            "fov": {
+                "angle": 54,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_048"
+    },
+    {
+        "name": "Mount Kalaga",
+        "position": {
+            "lat": 7452,
+            "lng": -4546.5
+        },
+        "tags": [
+            "Screenshots",
+            "S2/76"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/mount_kalaga national_park/Mount_Kalaga_National_Park_06.jpg",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 110,
+            "fov": {
+                "angle": 49,
+                "range": 250
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_049"
+    },
+    {
+        "name": "Lucia",
+        "position": {
+            "lat": 425,
+            "lng": -1283.75
+        },
+        "tags": [
+            "Screenshots",
+            "S3/84"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/lucia_caminos/Lucia_Caminos_08.jpg",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 345,
+            "fov": {
+                "angle": 87,
+                "range": 50
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_050"
+    },
+    {
+        "name": "Grassrivers",
+        "position": {
+            "lat": -4689,
+            "lng": -3591
+        },
+        "tags": [
+            "Screenshots",
+            "S3/93"
+        ],
+        "igPhoto": {
+            "url": "assets/photos/screenshots/grassrivers/Grassrivers_05.jpg",
+            "credit": ""
+        },
+        "motion": {
+            "v": 1,
+            "heading": 37,
+            "fov": {
+                "angle": 39,
+                "range": 600
+            },
+            "look": {
+                "mode": "follow",
+                "offset": 0
+            },
+            "path": [],
+            "playback": {
+                "duration": 12,
+                "loop": false
+            }
+        },
+        "id": "screenshots_051"
+    }
+]
