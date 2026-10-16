@@ -113,7 +113,6 @@ const adminApp = (() => {
         const titles = {
             overview: 'System Overview',
             seo: 'SEO & Keywords Control',
-            indexing: 'Indexing & Sitemap Control',
             landmarks: 'Landmarks & Leaks Database',
             blog: 'Vice Wire Blog Articles',
             submissions: 'Community User Submissions',
@@ -127,8 +126,6 @@ const adminApp = (() => {
             loadLandmarks();
         } else if (tabId === 'seo') {
             loadSeoSettings();
-        } else if (tabId === 'indexing') {
-            loadIndexingStatus();
         } else if (tabId === 'blog') {
             loadBlogs();
         } else if (tabId === 'submissions') {
@@ -137,85 +134,6 @@ const adminApp = (() => {
             loadMapLayers();
         } else if (tabId === 'settings') {
             loadSiteSettings();
-        }
-    }
-
-    // ---- SEO Indexing tab ----
-    async function loadIndexingStatus() {
-        try {
-            const res = await adminFetch(`${API_BASE}/seo/sitemap-status`);
-            const data = await res.json();
-            if (data.success) {
-                const t = document.getElementById('idxTotalUrls');
-                const a = document.getElementById('idxArticleUrls');
-                const l = document.getElementById('idxSitemapLink');
-                if (t) t.textContent = data.totalUrls.toLocaleString();
-                if (a) a.textContent = data.articleUrls.toLocaleString();
-                if (l) l.href = '/sitemap.xml';
-            }
-            const rres = await adminFetch(`${API_BASE}/seo/robots`);
-            const rdata = await rres.json();
-            const editor = document.getElementById('robotsEditor');
-            if (editor && rdata.success) editor.value = rdata.content;
-        } catch (e) {
-            console.error('Indexing status error:', e);
-        }
-    }
-
-    async function pingSitemap() {
-        const out = document.getElementById('pingResult');
-        if (out) out.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Pinging search engines...';
-        try {
-            const res = await adminFetch(`${API_BASE}/seo/ping-sitemap`, { method: 'POST' });
-            const data = await res.json();
-            if (out) {
-                out.innerHTML = (data.results || []).map(r =>
-                    `<span class="badge-tag ${r.ok ? 'badge-cyan' : 'badge-pink'}">${r.engine}: ${r.ok ? 'OK (' + r.status + ')' : 'FAILED'}</span>`
-                ).join(' ');
-            }
-            showToast('Sitemap ping sent');
-        } catch (e) {
-            if (out) out.textContent = 'Ping failed: ' + e.message;
-        }
-    }
-
-    async function sendIndexNow() {
-        const ta = document.getElementById('indexNowUrls');
-        const out = document.getElementById('indexNowResult');
-        const urls = (ta?.value || '').split('\n').map(s => s.trim()).filter(Boolean).slice(0, 100);
-        if (urls.length === 0) {
-            if (out) out.textContent = 'Enter at least one URL';
-            return;
-        }
-        if (out) out.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        try {
-            const res = await adminFetch(`${API_BASE}/seo/indexnow`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ urls })
-            });
-            const data = await res.json();
-            if (out) out.textContent = data.success ? `IndexNow accepted (${urls.length} URLs)` : 'IndexNow failed: ' + (data.error || data.status);
-            showToast(data.success ? 'IndexNow sent' : 'IndexNow failed', !data.success);
-        } catch (e) {
-            if (out) out.textContent = 'Error: ' + e.message;
-        }
-    }
-
-    async function saveRobots() {
-        const editor = document.getElementById('robotsEditor');
-        const content = editor?.value || '';
-        if (content.includes('Disallow: /') && !confirm('WARNING: "Disallow: /" blocks ALL search engines. Are you sure?')) return;
-        try {
-            const res = await adminFetch(`${API_BASE}/seo/robots`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ content })
-            });
-            const data = await res.json();
-            showToast(data.success ? 'robots.txt saved' : 'Save failed', !data.success);
-        } catch (e) {
-            showToast('Error: ' + e.message, true);
         }
     }
 
@@ -375,105 +293,20 @@ const adminApp = (() => {
     }
 
     // ==========================================
-    // VICE WIRE BLOG MANAGER LOGIC (paginated, bulk-capable)
+    // VICE WIRE BLOG MANAGER LOGIC
     // ==========================================
-    let blogPage = 1;
-    let blogTotalPages = 1;
-    let blogTotal = 0;
-    let blogSelected = new Set();
-
     async function loadBlogs() {
         try {
-            const pageSize = document.getElementById('blogPageSize')?.value || 50;
-            const res = await adminFetch(`/api/admin/blogs/list?page=${blogPage}&limit=${pageSize}`);
+            const res = await fetch('/api/blogs?all=1');
             const data = await res.json();
             blogsData = data.blogs || [];
-            blogTotal = data.total || 0;
-            blogTotalPages = data.totalPages || 1;
 
             const badge = document.getElementById('blogCountBadge');
-            if (badge) badge.textContent = blogTotal;
+            if (badge) badge.textContent = blogsData.length;
 
-            // Stats line
-            const statsRes = await adminFetch('/api/admin/blogs/stats');
-            const stats = await statsRes.json();
-            const statsLine = document.getElementById('blogStatsLine');
-            if (statsLine && stats.success) {
-                statsLine.textContent = `${stats.total.toLocaleString()} total · ${stats.published.toLocaleString()} published · ${stats.drafts.toLocaleString()} drafts`;
-            }
-
-            // Populate category filter dynamically
-            const catFilter = document.getElementById('blogCategoryFilter');
-            if (catFilter && stats.success) {
-                const current = catFilter.value;
-                catFilter.innerHTML = '<option value="all">All Categories</option>' +
-                    Object.keys(stats.categories).sort().map(c =>
-                        `<option value="${escapeHtml(c)}">${escapeHtml(c)} (${stats.categories[c].toLocaleString()})</option>`).join('');
-                catFilter.value = current;
-            }
-
-            updateBlogPagination();
             renderBlogsTable();
         } catch (e) {
             console.error('Error loading blogs:', e);
-        }
-    }
-
-    function updateBlogPagination() {
-        const info = document.getElementById('blogPageInfo');
-        if (info) info.textContent = `Page ${blogPage} of ${blogTotalPages} (${blogTotal.toLocaleString()} articles)`;
-        const prev = document.getElementById('blogPrevPage');
-        const next = document.getElementById('blogNextPage');
-        if (prev) prev.disabled = blogPage <= 1;
-        if (next) next.disabled = blogPage >= blogTotalPages;
-    }
-
-    function toggleBlogSelect(id, checked) {
-        if (checked) blogSelected.add(id); else blogSelected.delete(id);
-        updateBlogBulkBar();
-    }
-
-    function toggleBlogSelectAll(checked) {
-        const boxes = document.querySelectorAll('.blog-select-box');
-        boxes.forEach(b => { b.checked = checked; toggleBlogSelect(b.dataset.id, checked); });
-        updateBlogBulkBar();
-    }
-
-    function updateBlogBulkBar() {
-        const bar = document.getElementById('blogBulkBar');
-        const count = document.getElementById('blogSelectedCount');
-        if (bar) bar.style.display = blogSelected.size > 0 ? 'flex' : 'none';
-        if (count) count.textContent = `${blogSelected.size} selected`;
-    }
-
-    function clearBlogSelection() {
-        blogSelected.clear();
-        document.querySelectorAll('.blog-select-box').forEach(b => b.checked = false);
-        const sa = document.getElementById('blogSelectAll');
-        if (sa) sa.checked = false;
-        updateBlogBulkBar();
-    }
-
-    async function bulkBlogAction(action) {
-        if (blogSelected.size === 0) return;
-        const verb = action === 'delete' ? 'permanently DELETE' : action === 'publish' ? 'PUBLISH' : 'move to DRAFT';
-        if (!confirm(`Are you sure you want to ${verb} ${blogSelected.size} articles?`)) return;
-        try {
-            const res = await adminFetch('/api/admin/blogs/bulk', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action, ids: [...blogSelected] })
-            });
-            const data = await res.json();
-            if (data.success) {
-                showToast(`${data.affected} articles ${action === 'delete' ? 'deleted' : action === 'publish' ? 'published' : 'moved to draft'}`);
-                clearBlogSelection();
-                loadBlogs();
-            } else {
-                showToast(data.error || 'Bulk action failed', true);
-            }
-        } catch (e) {
-            showToast('Bulk action error: ' + e.message, true);
         }
     }
 
@@ -483,42 +316,37 @@ const adminApp = (() => {
 
         const search = (document.getElementById('blogSearchInput')?.value || '').toLowerCase();
         const category = document.getElementById('blogCategoryFilter')?.value || 'all';
-        const statusFilter = document.getElementById('blogStatusFilter')?.value || 'all';
 
         const filtered = blogsData.filter(b => {
             const title = (b.title || '').toLowerCase();
             const excerpt = (b.excerpt || '').toLowerCase();
             const author = (b.author || '').toLowerCase();
-            const kw = (b.targetKeyword || '').toLowerCase();
             const cat = (b.category || '').toLowerCase();
 
-            const matchesSearch = !search || title.includes(search) || excerpt.includes(search) || author.includes(search) || kw.includes(search);
+            const matchesSearch = !search || title.includes(search) || excerpt.includes(search) || author.includes(search);
             const matchesCat = category === 'all' || cat === category.toLowerCase();
-            const matchesStatus = statusFilter === 'all' || (b.status || 'published') === statusFilter;
-            return matchesSearch && matchesCat && matchesStatus;
+            return matchesSearch && matchesCat;
         });
 
         if (filtered.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding:2.5rem; color:var(--admin-text-muted);">No blog posts found matching your criteria.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:2.5rem; color:var(--admin-text-muted);">No blog posts found matching your criteria.</td></tr>`;
             return;
         }
 
         tbody.innerHTML = filtered.map(item => {
             const isPub = item.status === 'published';
-            const statusBadge = isPub
+            const statusBadge = isPub 
                 ? `<span class="badge-tag badge-cyan"><i class="fas fa-check-circle" style="font-size:0.6rem;"></i> Published</span>`
                 : `<span class="badge-tag" style="background:#374151; color:#9ca3af;"><i class="fas fa-clock" style="font-size:0.6rem;"></i> Draft</span>`;
 
-            const featuredStar = item.featured
+            const featuredStar = item.featured 
                 ? `<span title="Featured Headline Story" style="color:#fbbf24; margin-left:6px;"><i class="fas fa-star"></i></span>`
                 : '';
-            const checked = blogSelected.has(item.id) ? 'checked' : '';
 
             return `
                 <tr>
-                    <td><input type="checkbox" class="blog-select-box" data-id="${item.id}" ${checked} onchange="adminApp.toggleBlogSelect('${item.id}', this.checked)"></td>
                     <td style="width:70px;">
-                        <img src="${item.coverImage || 'assets/photos/screenshots/vice_city/Vice_City_05.jpg'}" alt="Cover" loading="lazy" style="width:60px; height:40px; object-fit:cover; border-radius:6px; border:1px solid rgba(255,255,255,0.1);">
+                        <img src="${item.coverImage || 'assets/photos/screenshots/vice_city/Vice_City_05.jpg'}" alt="Cover" style="width:60px; height:40px; object-fit:cover; border-radius:6px; border:1px solid rgba(255,255,255,0.1);">
                     </td>
                     <td>
                         <div style="font-weight:700; color:#fff; font-size:0.92rem; display:flex; align-items:center;">
@@ -526,9 +354,6 @@ const adminApp = (() => {
                         </div>
                         <div style="font-size:0.78rem; color:#8b92aa; max-width:380px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px;">
                             ${escapeHtml(item.excerpt || '')}
-                        </div>
-                        <div style="font-size:0.72rem; color:#6b7280; margin-top:2px;">
-                            <a href="/guides/${escapeHtml(item.slug)}" target="_blank" style="color:#6b7280;">/guides/${escapeHtml(item.slug)}</a>
                         </div>
                     </td>
                     <td>
@@ -549,7 +374,7 @@ const adminApp = (() => {
                         <button class="btn-table-action" onclick="adminApp.editBlog('${item.id}')" title="Edit Article">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <a href="/guides/${item.slug}" target="_blank" class="btn-table-action" title="View Live URL" style="display:inline-flex; align-items:center; justify-content:center; text-decoration:none;">
+                        <a href="/#blog/${item.slug}" target="_blank" class="btn-table-action" title="Preview Live" style="display:inline-flex; align-items:center; justify-content:center; text-decoration:none;">
                             <i class="fas fa-external-link-alt"></i>
                         </a>
                         <button class="btn-table-action delete" onclick="adminApp.deleteBlog('${item.id}')" title="Delete Article">
@@ -1125,11 +950,6 @@ const adminApp = (() => {
         const blogForm = document.getElementById('blogForm');
         const blogSearchInput = document.getElementById('blogSearchInput');
         const blogCategoryFilter = document.getElementById('blogCategoryFilter');
-        const blogStatusFilter = document.getElementById('blogStatusFilter');
-        const blogSelectAll = document.getElementById('blogSelectAll');
-        const blogPrevPage = document.getElementById('blogPrevPage');
-        const blogNextPage = document.getElementById('blogNextPage');
-        const blogPageSize = document.getElementById('blogPageSize');
         const coverPreset = document.getElementById('modalBlogCoverPreset');
 
         if (btnNewBlog) btnNewBlog.addEventListener('click', openAddBlog);
@@ -1138,11 +958,6 @@ const adminApp = (() => {
         if (blogForm) blogForm.addEventListener('submit', handleSaveBlog);
         if (blogSearchInput) blogSearchInput.addEventListener('input', renderBlogsTable);
         if (blogCategoryFilter) blogCategoryFilter.addEventListener('change', renderBlogsTable);
-        if (blogStatusFilter) blogStatusFilter.addEventListener('change', renderBlogsTable);
-        if (blogSelectAll) blogSelectAll.addEventListener('change', (e) => toggleBlogSelectAll(e.target.checked));
-        if (blogPrevPage) blogPrevPage.addEventListener('click', () => { if (blogPage > 1) { blogPage--; clearBlogSelection(); loadBlogs(); } });
-        if (blogNextPage) blogNextPage.addEventListener('click', () => { if (blogPage < blogTotalPages) { blogPage++; clearBlogSelection(); loadBlogs(); } });
-        if (blogPageSize) blogPageSize.addEventListener('change', () => { blogPage = 1; clearBlogSelection(); loadBlogs(); });
 
         const modalBlogKeywordInput = document.getElementById('modalBlogKeyword');
         if (modalBlogKeywordInput) {
@@ -1204,14 +1019,6 @@ const adminApp = (() => {
         loadBlogs,
         editBlog,
         deleteBlog,
-        toggleBlogSelect,
-        toggleBlogSelectAll,
-        clearBlogSelection,
-        bulkBlogAction,
-        loadIndexingStatus,
-        pingSitemap,
-        sendIndexNow,
-        saveRobots,
         loadSiteSettings,
         saveSiteSettings,
         saveBrandingSettings: saveSiteSettings

@@ -3,26 +3,6 @@ const compression = require('compression');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
-const blogdb = require('./lib/blogdb');
-
-// Auto-migrate: if blogs.db doesn't exist yet but blogs.json does,
-// build the SQLite database on first startup (one-time, ~2s for 3,660 articles).
-// blogs.json stays in the repo as the portable backup/export artifact.
-(function ensureBlogDb() {
-  const fs2 = require('fs');
-  const path2 = require('path');
-  const dbPath = path2.join(__dirname, 'data', 'blogs.db');
-  const jsonPath = path2.join(__dirname, 'data', 'blogs.json');
-  if (!fs2.existsSync(dbPath) && fs2.existsSync(jsonPath)) {
-    console.log('[blogdb] blogs.db not found — migrating from blogs.json...');
-    try {
-      const n = blogdb.importFromJson(jsonPath);
-      console.log(`[blogdb] Migrated ${n} articles to SQLite.`);
-    } catch (e) {
-      console.error('[blogdb] Auto-migration failed:', e.message);
-    }
-  }
-})();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -67,7 +47,8 @@ setInterval(() => {
 
 // Basic HTML sanitizer for user-supplied article content (prevents stored XSS).
 // Allows common formatting tags, strips scripts, event handlers, javascript: URLs.
-function sanitizeHtml(input) {  if (typeof input !== 'string') return '';
+function sanitizeHtml(input) {
+  if (typeof input !== 'string') return '';
   let out = input;
   // Remove script/style/iframe/object/embed tags entirely
   out = out.replace(/<\s*(script|style|iframe|object|embed|form|input|button)[^>]*>[\s\S]*?<\s*\/\s*\1\s*>/gi, '');
@@ -580,38 +561,9 @@ app.get('/robots.txt', (req, res) => {
   res.sendFile(path.join(__dirname, 'robots.txt'));
 });
 
-// IndexNow key verification file (serves the deterministic key)
-app.get('/:key.txt', (req, res, next) => {
-  if (!/^[a-f0-9]{32}$/.test(req.params.key)) return next();
-  const seo = readJsonSafe('data/seo.json', {});
-  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  const host = new URL(siteUrl).host;
-  const expected = crypto.createHash('sha256').update('gta6mapx-indexnow-' + host).digest('hex').slice(0, 32);
-  if (req.params.key === expected) {
-    res.type('text/plain');
-    return res.send(expected);
-  }
-  next();
-});
-
 app.get('/sitemap.xml', (req, res) => {
-  const seo = readJsonSafe('data/seo.json', {});
-  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  // SQLite: indexed query, ~1ms (was 400ms full JSON parse)
-  const published = blogdb.publishedForSitemap();
-
-  const urls = [
-    `  <url><loc>${siteUrl}/</loc><lastmod>${new Date().toISOString().slice(0, 10)}</lastmod></url>`,
-  ];
-  for (const b of published) {
-    const lastmod = b.updatedAt ? b.updatedAt.slice(0, 10) : (b.date || '');
-    // Note: changefreq/priority intentionally omitted — Google/Bing ignore them (2026)
-    urls.push(`  <url><loc>${siteUrl}/guides/${escAttr(b.slug)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`);
-  }
-
   res.type('application/xml');
-  res.setHeader('Cache-Control', 'public, max-age=3600');
-  res.send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>`);
+  res.sendFile(path.join(__dirname, 'sitemap.xml'));
 });
 
 // 7. Master Admin Panel & Control API
@@ -771,112 +723,6 @@ app.get('/api/admin/export', (req, res) => {
   res.send(JSON.stringify(bundle, null, 2));
 });
 
-// ---- SEO & Indexing control endpoints ----
-
-// Sitemap status: URL count, last generated
-app.get('/api/admin/seo/sitemap-status', (req, res) => {
-  const articleCount = blogdb.publishedCount();
-  const seo = readJsonSafe('data/seo.json', {});
-  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  res.json({
-    success: true,
-    siteUrl,
-    totalUrls: articleCount + 1,
-    articleUrls: articleCount,
-    sitemapUrl: `${siteUrl}/sitemap.xml`,
-    // Sitemap is generated dynamically on each request — always fresh
-    dynamic: true,
-    storage: 'sqlite',
-  });
-});
-
-// Ping search engines about the sitemap.
-// NOTE (Oct 2026 research): Google retired google.com/ping in June 2023 (returns 404),
-// and Bing retired its ping endpoint too. This now notifies via IndexNow instead,
-// which is the only live push mechanism. Kept as a single "notify" action for UX.
-app.post('/api/admin/seo/ping-sitemap', async (req, res) => {
-  const seo = readJsonSafe('data/seo.json', {});
-  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  const host = new URL(siteUrl).host;
-  const key = crypto.createHash('sha256').update('gta6mapx-indexnow-' + host).digest('hex').slice(0, 32);
-  // Submit the sitemap URL itself via IndexNow so Bing-family engines recrawl it
-  try {
-    const r = await fetch('https://api.indexnow.org/indexnow.json', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: [`${siteUrl}/sitemap.xml`] }),
-      signal: AbortSignal.timeout(15000),
-    });
-    res.json({ success: r.ok, results: [{ engine: 'IndexNow (Bing/Yandex/Naver)', ok: r.ok, status: r.status }],
-      note: 'Google sitemap ping retired 2023 — submit sitemap in Google Search Console instead.' });
-  } catch (e) {
-    res.json({ success: false, results: [{ engine: 'IndexNow', ok: false, error: e.message }],
-      note: 'Google sitemap ping retired 2023 — submit sitemap in Google Search Console instead.' });
-  }
-});
-
-// IndexNow: notify search engines about specific changed URLs instantly
-app.post('/api/admin/seo/indexnow', async (req, res) => {
-  const { urls } = req.body || {};
-  if (!Array.isArray(urls) || urls.length === 0 || urls.length > 100) {
-    return res.status(400).json({ success: false, error: 'Provide 1-100 URLs' });
-  }
-  const seo = readJsonSafe('data/seo.json', {});
-  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  const host = new URL(siteUrl).host;
-  // IndexNow key: derived deterministically, also served at /<key>.txt for verification
-  const key = crypto.createHash('sha256').update('gta6mapx-indexnow-' + host).digest('hex').slice(0, 32);
-  try {
-    const r = await fetch('https://api.indexnow.org/indexnow.json', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: urls }),
-      signal: AbortSignal.timeout(15000),
-    });
-    res.json({ success: r.ok, status: r.status });
-  } catch (e) {
-    res.status(502).json({ success: false, error: e.message });
-  }
-});
-
-// robots.txt view / edit
-app.get('/api/admin/seo/robots', (req, res) => {
-  const content = fs.existsSync(path.join(__dirname, 'robots.txt'))
-    ? fs.readFileSync(path.join(__dirname, 'robots.txt'), 'utf8') : '';
-  res.json({ success: true, content });
-});
-app.post('/api/admin/seo/robots', (req, res) => {
-  const { content } = req.body || {};
-  if (typeof content !== 'string' || content.length > 10000) {
-    return res.status(400).json({ success: false, error: 'Invalid robots.txt content' });
-  }
-  // Basic safety: never allow blocking everything accidentally without explicit flag
-  fs.writeFileSync(path.join(__dirname, 'robots.txt'), content);
-  res.json({ success: true });
-});
-
-// Bulk blog operations: publish / draft / delete many at once (SQLite: single indexed query)
-app.post('/api/admin/blogs/bulk', (req, res) => {
-  const { action, ids } = req.body || {};
-  if (!['publish', 'draft', 'delete'].includes(action)) {
-    return res.status(400).json({ success: false, error: 'Action must be publish, draft or delete' });
-  }
-  if (!Array.isArray(ids) || ids.length === 0 || ids.length > 1000) {
-    return res.status(400).json({ success: false, error: 'Provide 1-1000 article IDs' });
-  }
-  try {
-    const affected = blogdb.bulk(action, ids);
-    res.json({ success: true, action, affected });
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
-
-// Blog stats for admin dashboard (SQLite: indexed aggregates, ~1ms)
-app.get('/api/admin/blogs/stats', (req, res) => {
-  res.json({ success: true, ...blogdb.stats() });
-});
-
 // Community Landmark Submission
 app.post('/api/community/submit', (req, res) => {
   const sub = req.body;
@@ -964,36 +810,39 @@ app.post('/api/admin/submissions/reject', (req, res) => {
 // ==========================================
 
 app.get('/api/blogs', (req, res) => {
-  const { category, search, all, page, limit } = req.query;
+  const allBlogs = readJsonSafe('data/blogs.json', []);
+  const { category, search, all } = req.query;
 
-  // Drafts are admin-only: ?all=1 requires a valid admin session token.
-  let includeDrafts = false;
-  if (all === '1') {
-    const header = req.headers.authorization || '';
-    const token = header.startsWith('Bearer ') ? header.slice(7) : '';
-    const expiry = adminSessions.get(token);
-    if (!token || !expiry || expiry < Date.now()) {
-      return res.status(401).json({ success: false, error: 'Unauthorized: admin login required for draft access' });
-    }
-    includeDrafts = true;
+  let results = Array.isArray(allBlogs) ? allBlogs : [];
+
+  // Filter drafts unless ?all=1 is specified (for admin use)
+  if (all !== '1') {
+    results = results.filter(b => b.status === 'published');
   }
 
-  // SQLite: indexed WHERE + LIMIT/OFFSET — 1.7ms for 50 rows (was 316ms)
-  const result = blogdb.list({
-    search,
-    category: (category === 'All Stories') ? 'all' : category,
-    status: includeDrafts ? 'all' : 'published',
-    page, limit: limit || 0,  // 0 = backwards-compat full list
-    includeDrafts,
-  });
+  if (category && category !== 'all' && category !== 'All Stories') {
+    results = results.filter(b => (b.category || '').toLowerCase() === category.toLowerCase());
+  }
 
-  res.json({ success: true, count: result.blogs.length, total: result.total, page: result.page, totalPages: result.totalPages, blogs: result.blogs });
+  if (search) {
+    const q = search.toLowerCase();
+    results = results.filter(b => 
+      (b.title || '').toLowerCase().includes(q) ||
+      (b.excerpt || '').toLowerCase().includes(q) ||
+      (b.author || '').toLowerCase().includes(q)
+    );
+  }
+
+  // Sort by date descending
+  results.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+  res.json({ success: true, count: results.length, blogs: results });
 });
 
 app.get('/api/blogs/:idOrSlug', (req, res) => {
   const { idOrSlug } = req.params;
-  // SQLite: indexed lookup — 0.05ms (was 375ms full scan)
-  const blog = blogdb.getByIdOrSlug(idOrSlug);
+  const allBlogs = readJsonSafe('data/blogs.json', []);
+  const blog = allBlogs.find(b => b.id === idOrSlug || b.slug === idOrSlug);
 
   if (!blog) {
     return res.status(404).json({ success: false, error: 'Article not found' });
@@ -1007,64 +856,69 @@ app.get('/api/blogs/:idOrSlug', (req, res) => {
   res.json({ success: true, blog });
 });
 
-// Admin blog list: paginated, includes drafts, newest first
-app.get('/api/admin/blogs/list', (req, res) => {
-  const { search, category, status, page, limit } = req.query;
-  // SQLite: server-side filter + pagination — 2ms (was 400ms+)
-  const result = blogdb.list({ search, category, status, page, limit: limit || 50, includeDrafts: true });
-  res.json({ success: true, total: result.total, page: result.page, totalPages: result.totalPages, blogs: result.blogs });
-});
-
 app.post('/api/admin/blogs', (req, res) => {
   const data = req.body || {};
   if (!data.title) {
     return res.status(400).json({ success: false, error: 'Article title is required' });
   }
 
+  const allBlogs = readJsonSafe('data/blogs.json', []);
   const slug = (data.slug || data.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')) || ('article-' + Date.now());
   const targetKeyword = (data.targetKeyword || '').trim();
 
-  // Duplicate Keyword and Slug Protection (SQLite indexed lookup)
+  // Duplicate Keyword and Slug Protection
   if (!data.allowDuplicateKeyword) {
-    const conflict = blogdb.findConflict({ targetKeyword, slug });
-    if (conflict) {
-      const isKw = conflict.type === 'keyword';
+    if (targetKeyword) {
+      const kwConflict = allBlogs.find(b => (b.targetKeyword || '').trim().toLowerCase() === targetKeyword.toLowerCase());
+      if (kwConflict) {
+        return res.status(409).json({
+          success: false,
+          isDuplicate: true,
+          error: `Duplicate Keyword Conflict: The keyword "${targetKeyword}" is already targeted by article "${kwConflict.title}". Duplicate targeting causes keyword cannibalization on Google Search.`
+        });
+      }
+    }
+    const slugConflict = allBlogs.find(b => (b.slug || '').toLowerCase() === slug.toLowerCase());
+    if (slugConflict) {
       return res.status(409).json({
         success: false,
         isDuplicate: true,
-        error: isKw
-          ? `Duplicate Keyword Conflict: The keyword "${targetKeyword}" is already targeted by article "${conflict.title}". Duplicate targeting causes keyword cannibalization on Google Search.`
-          : `Duplicate URL Slug Conflict: The slug "${slug}" is already in use by "${conflict.title}". Choose a unique URL slug.`
+        error: `Duplicate URL Slug Conflict: The slug "${slug}" is already in use by "${slugConflict.title}". Choose a unique URL slug.`
       });
     }
   }
 
+  const newBlog = {
+    id: 'blog_' + Date.now(),
+    slug: slug,
+    title: data.title.trim(),
+    targetKeyword: targetKeyword,
+    category: data.category || 'Cartography & Leaks',
+    author: data.author || 'Vice Intelligence Cartographer',
+    authorRole: data.authorRole || 'GIS Staff',
+    date: data.date || new Date().toISOString().slice(0, 10),
+    readTime: data.readTime || '4 min read',
+    coverImage: data.coverImage || 'assets/photos/screenshots/vice_city/Vice_City_05.jpg',
+    excerpt: sanitizeHtml(data.excerpt || data.title).replace(/<[^>]*>/g, '').slice(0, 300),
+    content: sanitizeHtml(data.content || '<p>Article content pending...</p>'),
+    hotspotKey: data.hotspotKey || '',
+    lat: data.lat !== undefined ? parseFloat(data.lat) : null,
+    lng: data.lng !== undefined ? parseFloat(data.lng) : null,
+    featured: Boolean(data.featured),
+    status: data.status || 'published'
+  };
+
+  // If new post is marked featured, unfeature others
+  if (newBlog.featured) {
+    allBlogs.forEach(b => { b.featured = false; });
+  }
+
+  allBlogs.unshift(newBlog);
+
   try {
-    const newBlog = blogdb.create({
-      id: 'blog_' + Date.now(),
-      slug,
-      title: data.title.trim(),
-      targetKeyword,
-      category: data.category || 'Cartography & Leaks',
-      author: data.author || 'Vice Intelligence Cartographer',
-      authorRole: data.authorRole || 'GIS Staff',
-      date: data.date || new Date().toISOString().slice(0, 10),
-      readTime: data.readTime || '4 min read',
-      coverImage: data.coverImage || 'assets/photos/screenshots/vice_city/Vice_City_05.jpg',
-      excerpt: sanitizeHtml(data.excerpt || data.title).replace(/<[^>]*>/g, '').slice(0, 300),
-      content: sanitizeHtml(data.content || '<p>Article content pending...</p>'),
-      hotspotKey: data.hotspotKey || '',
-      lat: data.lat !== undefined ? parseFloat(data.lat) : null,
-      lng: data.lng !== undefined ? parseFloat(data.lng) : null,
-      featured: Boolean(data.featured),
-      status: data.status || 'published',
-    });
+    fs.writeFileSync(path.join(__dirname, 'data', 'blogs.json'), JSON.stringify(allBlogs, null, 2));
     return res.json({ success: true, blog: newBlog });
   } catch (err) {
-    // Likely UNIQUE constraint on slug (race) — report as conflict
-    if (String(err.message).includes('UNIQUE')) {
-      return res.status(409).json({ success: false, isDuplicate: true, error: `Duplicate URL Slug Conflict: The slug "${slug}" is already in use.` });
-    }
     return res.status(500).json({ success: false, error: err.message });
   }
 });
@@ -1072,67 +926,90 @@ app.post('/api/admin/blogs', (req, res) => {
 app.put('/api/admin/blogs/:id', (req, res) => {
   const { id } = req.params;
   const data = req.body || {};
-  const existing = blogdb.getByIdOrSlug(id);
+  const allBlogs = readJsonSafe('data/blogs.json', []);
+  const index = allBlogs.findIndex(b => b.id === id);
 
-  if (!existing) {
+  if (index === -1) {
     return res.status(404).json({ success: false, error: 'Article not found' });
   }
 
   const targetKeyword = (data.targetKeyword || '').trim();
   const slug = (data.slug || '').trim();
 
-  // Duplicate Keyword and Slug Protection (excluding self, SQLite indexed)
+  // Duplicate Keyword and Slug Protection (excluding self)
   if (!data.allowDuplicateKeyword) {
-    const conflict = blogdb.findConflict({ targetKeyword, slug }, id);
-    if (conflict) {
-      const isKw = conflict.type === 'keyword';
-      return res.status(409).json({
-        success: false,
-        isDuplicate: true,
-        error: isKw
-          ? `Duplicate Keyword Conflict: The keyword "${targetKeyword}" is already targeted by article "${conflict.title}".`
-          : `Duplicate URL Slug Conflict: The slug "${slug}" is already used by "${conflict.title}".`
-      });
+    if (targetKeyword) {
+      const kwConflict = allBlogs.find(b => b.id !== id && (b.targetKeyword || '').trim().toLowerCase() === targetKeyword.toLowerCase());
+      if (kwConflict) {
+        return res.status(409).json({
+          success: false,
+          isDuplicate: true,
+          error: `Duplicate Keyword Conflict: The keyword "${targetKeyword}" is already targeted by article "${kwConflict.title}".`
+        });
+      }
+    }
+    if (slug) {
+      const slugConflict = allBlogs.find(b => b.id !== id && (b.slug || '').toLowerCase() === slug.toLowerCase());
+      if (slugConflict) {
+        return res.status(409).json({
+          success: false,
+          isDuplicate: true,
+          error: `Duplicate URL Slug Conflict: The slug "${slug}" is already used by "${slugConflict.title}".`
+        });
+      }
     }
   }
 
-  try {
-    const updates = {};
-    if (data.title !== undefined) updates.title = data.title.trim();
-    if (data.slug !== undefined) updates.slug = data.slug.trim();
-    if (data.targetKeyword !== undefined) updates.targetKeyword = data.targetKeyword.trim();
-    if (data.category !== undefined) updates.category = data.category;
-    if (data.author !== undefined) updates.author = data.author;
-    if (data.authorRole !== undefined) updates.authorRole = data.authorRole;
-    if (data.date !== undefined) updates.date = data.date;
-    if (data.readTime !== undefined) updates.readTime = data.readTime;
-    if (data.coverImage !== undefined) updates.coverImage = data.coverImage;
-    if (data.excerpt !== undefined) updates.excerpt = sanitizeHtml(data.excerpt).replace(/<[^>]*>/g, '').slice(0, 300);
-    if (data.content !== undefined) updates.content = sanitizeHtml(data.content);
-    if (data.hotspotKey !== undefined) updates.hotspotKey = data.hotspotKey;
-    if (data.lat !== undefined) updates.lat = parseFloat(data.lat);
-    if (data.lng !== undefined) updates.lng = parseFloat(data.lng);
-    if (data.featured !== undefined) updates.featured = Boolean(data.featured);
-    if (data.status !== undefined) updates.status = data.status;
+  if (data.featured) {
+    allBlogs.forEach(b => { b.featured = false; });
+  }
 
-    const updated = blogdb.update(id, updates);
-    return res.json({ success: true, blog: updated });
+  const existing = allBlogs[index];
+  allBlogs[index] = {
+    ...existing,
+    title: data.title !== undefined ? data.title.trim() : existing.title,
+    slug: data.slug !== undefined ? data.slug.trim() : existing.slug,
+    targetKeyword: data.targetKeyword !== undefined ? data.targetKeyword.trim() : (existing.targetKeyword || ''),
+    category: data.category !== undefined ? data.category : existing.category,
+    author: data.author !== undefined ? data.author : existing.author,
+    authorRole: data.authorRole !== undefined ? data.authorRole : existing.authorRole,
+    date: data.date !== undefined ? data.date : existing.date,
+    readTime: data.readTime !== undefined ? data.readTime : existing.readTime,
+    coverImage: data.coverImage !== undefined ? data.coverImage : existing.coverImage,
+    excerpt: data.excerpt !== undefined ? sanitizeHtml(data.excerpt).replace(/<[^>]*>/g, '').slice(0, 300) : existing.excerpt,
+    content: data.content !== undefined ? sanitizeHtml(data.content) : existing.content,
+    hotspotKey: data.hotspotKey !== undefined ? data.hotspotKey : existing.hotspotKey,
+    lat: data.lat !== undefined ? parseFloat(data.lat) : existing.lat,
+    lng: data.lng !== undefined ? parseFloat(data.lng) : existing.lng,
+    featured: data.featured !== undefined ? Boolean(data.featured) : existing.featured,
+    status: data.status !== undefined ? data.status : existing.status,
+    updatedAt: new Date().toISOString()
+  };
+
+  try {
+    fs.writeFileSync(path.join(__dirname, 'data', 'blogs.json'), JSON.stringify(allBlogs, null, 2));
+    return res.json({ success: true, blog: allBlogs[index] });
   } catch (err) {
-    if (String(err.message).includes('UNIQUE')) {
-      return res.status(409).json({ success: false, isDuplicate: true, error: `Duplicate URL Slug Conflict: The slug "${slug}" is already used.` });
-    }
     return res.status(500).json({ success: false, error: err.message });
   }
 });
 
 app.delete('/api/admin/blogs/:id', (req, res) => {
   const { id } = req.params;
-  // SQLite: single indexed DELETE — 4ms ACID (was 475ms full-file rewrite)
-  const deleted = blogdb.remove(id);
-  if (!deleted) {
+  let allBlogs = readJsonSafe('data/blogs.json', []);
+  const initialLen = allBlogs.length;
+  allBlogs = allBlogs.filter(b => b.id !== id);
+
+  if (allBlogs.length === initialLen) {
     return res.status(404).json({ success: false, error: 'Article not found' });
   }
-  return res.json({ success: true });
+
+  try {
+    fs.writeFileSync(path.join(__dirname, 'data', 'blogs.json'), JSON.stringify(allBlogs, null, 2));
+    return res.json({ success: true });
+  } catch (err) {
+    return res.status(500).json({ success: false, error: err.message });
+  }
 });
 
 // 8. Serve static files from root with long-term caching for immutable assets.
@@ -1193,106 +1070,6 @@ app.get(['/tiles/*', '/assets/*'], async (req, res) => {
     return res.sendFile(fallbackImg);
   }
   res.status(404).end();
-});
-
-// 7b. SEO article pages — every post gets its own indexable URL: /guides/<slug>
-// Server-side rendered with full meta tags, Open Graph, canonical and JSON-LD.
-function escAttr(s) {
-  return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-function stripTags(s) {
-  return String(s || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-}
-
-app.get('/guides/:slug', (req, res) => {
-  const slug = req.params.slug;
-  // SQLite: indexed slug lookup — 0.05ms (was 375ms)
-  const blog = blogdb.getBySlug(slug);
-
-  if (!blog || blog.status !== 'published') {
-    return res.status(404).sendFile(path.join(__dirname, 'index.html'));
-  }
-
-  const seo = readJsonSafe('data/seo.json', {});
-  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  const canonical = `${siteUrl}/guides/${blog.slug}`;
-  const title = escAttr(blog.title);
-  const desc = escAttr((blog.excerpt || stripTags(blog.content).slice(0, 160)).slice(0, 160));
-  const keywords = escAttr(blog.targetKeyword || '');
-  const cover = blog.coverImage && !blog.coverImage.startsWith('http')
-    ? `${siteUrl}/${blog.coverImage}` : escAttr(blog.coverImage || '');
-  const dateIso = blog.date || new Date().toISOString().slice(0, 10);
-  const textContent = stripTags(blog.content);
-
-  // Related articles (same category, exclude self, max 6) — SQLite indexed
-  const related = blogdb.related(blog, 6);
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: blog.title,
-    description: stripTags(blog.excerpt || '').slice(0, 200),
-    image: cover ? [cover] : undefined,
-    datePublished: dateIso,
-    dateModified: blog.updatedAt || dateIso,
-    author: { '@type': 'Person', name: blog.author || 'GTA6mapx Editorial' },
-    publisher: { '@type': 'Organization', name: 'GTA6mapx', url: siteUrl },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
-  };
-
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 'public, max-age=3600');
-  res.send(`<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${title} | GTA6mapx</title>
-<meta name="description" content="${desc}">
-${keywords ? `<meta name="keywords" content="${keywords}">` : ''}
-<link rel="canonical" href="${canonical}">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<meta property="og:type" content="article">
-<meta property="og:title" content="${title}">
-<meta property="og:description" content="${desc}">
-<meta property="og:url" content="${canonical}">
-<meta property="og:site_name" content="GTA6mapx">
-${cover ? `<meta property="og:image" content="${cover}">` : ''}
-<meta property="article:published_time" content="${dateIso}">
-<meta property="article:section" content="${escAttr(blog.category || '')}">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${title}">
-<meta name="twitter:description" content="${desc}">
-${cover ? `<meta name="twitter:image" content="${cover}">` : ''}
-<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
-<style>
-*{box-sizing:border-box}body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;margin:0;background:#0a0a12;color:#e8e8f0;line-height:1.7}
-.wrap{max-width:780px;margin:0 auto;padding:2rem 1.25rem}
-.crumb{font-size:.85rem;color:#888;margin-bottom:1rem}.crumb a{color:#ff50c5;text-decoration:none}
-h1{font-size:2rem;line-height:1.3;margin:.5rem 0 1rem}
-.meta{color:#999;font-size:.9rem;margin-bottom:1.5rem;display:flex;gap:1rem;flex-wrap:wrap}
-.hero{width:100%;border-radius:12px;margin:1rem 0}
-.article-body img{max-width:100%;height:auto;border-radius:8px}
-.article-body h2{margin-top:2rem;color:#fff}.article-body h3{margin-top:1.5rem;color:#fff}
-.article-body a{color:#ff50c5}.article-body blockquote{border-left:3px solid #ff50c5;padding-left:1rem;color:#bbb;margin:1.5rem 0}
-.related{margin-top:3rem;border-top:1px solid #222;padding-top:1.5rem}
-.related h2{font-size:1.2rem}.related ul{list-style:none;padding:0}.related li{margin:.6rem 0}.related a{color:#ff50c5;text-decoration:none}
-.cta{margin-top:2rem;padding:1.5rem;background:#14141f;border-radius:12px;text-align:center}
-.cta a{display:inline-block;background:#ff50c5;color:#fff;padding:.7rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:600;margin-top:.8rem}
-</style>
-</head>
-<body>
-<div class="wrap">
-<nav class="crumb"><a href="/">GTA6mapx</a> &rsaquo; <a href="/#blog">Guides</a> &rsaquo; ${escAttr(blog.category || '')}</nav>
-<h1>${escAttr(blog.title)}</h1>
-<div class="meta"><span>By ${escAttr(blog.author || 'GTA6mapx Editorial')}</span><span>${escAttr(dateIso)}</span><span>${escAttr(blog.readTime || '')}</span><span>${escAttr(blog.category || '')}</span></div>
-${cover ? `<img class="hero" src="${cover}" alt="${title}" loading="eager">` : ''}
-<article class="article-body">${blog.content}</article>
-${related.length ? `<section class="related"><h2>Related Guides</h2><ul>${related.map(r => `<li><a href="/guides/${escAttr(r.slug)}">${escAttr(r.title)}</a></li>`).join('')}</ul></section>` : ''}
-<div class="cta"><strong>Explore the interactive GTA 6 map</strong><br><a href="/">Open GTA6mapx Map</a></div>
-</div>
-</body>
-</html>`);
 });
 
 // 8. SPA fallback for language routes (/en/, /de/, etc.)
