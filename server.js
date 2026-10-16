@@ -47,7 +47,8 @@ setInterval(() => {
 
 // Basic HTML sanitizer for user-supplied article content (prevents stored XSS).
 // Allows common formatting tags, strips scripts, event handlers, javascript: URLs.
-function sanitizeHtml(input) {  if (typeof input !== 'string') return '';
+function sanitizeHtml(input) {
+  if (typeof input !== 'string') return '';
   let out = input;
   // Remove script/style/iframe/object/embed tags entirely
   out = out.replace(/<\s*(script|style|iframe|object|embed|form|input|button)[^>]*>[\s\S]*?<\s*\/\s*\1\s*>/gi, '');
@@ -560,38 +561,9 @@ app.get('/robots.txt', (req, res) => {
   res.sendFile(path.join(__dirname, 'robots.txt'));
 });
 
-// IndexNow key verification file (serves the deterministic key)
-app.get('/:key.txt', (req, res, next) => {
-  if (!/^[a-f0-9]{32}$/.test(req.params.key)) return next();
-  const seo = readJsonSafe('data/seo.json', {});
-  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  const host = new URL(siteUrl).host;
-  const expected = crypto.createHash('sha256').update('gta6mapx-indexnow-' + host).digest('hex').slice(0, 32);
-  if (req.params.key === expected) {
-    res.type('text/plain');
-    return res.send(expected);
-  }
-  next();
-});
-
 app.get('/sitemap.xml', (req, res) => {
-  const seo = readJsonSafe('data/seo.json', {});
-  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  const allBlogs = readJsonSafe('data/blogs.json', []);
-  const published = allBlogs.filter(b => b.status === 'published');
-
-  const urls = [
-    `  <url><loc>${siteUrl}/</loc><lastmod>${new Date().toISOString().slice(0, 10)}</lastmod></url>`,
-  ];
-  for (const b of published) {
-    const lastmod = b.updatedAt ? b.updatedAt.slice(0, 10) : (b.date || '');
-    // Note: changefreq/priority intentionally omitted — Google/Bing ignore them (2026)
-    urls.push(`  <url><loc>${siteUrl}/guides/${escAttr(b.slug)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`);
-  }
-
   res.type('application/xml');
-  res.setHeader('Cache-Control', 'public, max-age=3600');
-  res.send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>`);
+  res.sendFile(path.join(__dirname, 'sitemap.xml'));
 });
 
 // 7. Master Admin Panel & Control API
@@ -751,136 +723,6 @@ app.get('/api/admin/export', (req, res) => {
   res.send(JSON.stringify(bundle, null, 2));
 });
 
-// ---- SEO & Indexing control endpoints ----
-
-// Sitemap status: URL count, last generated
-app.get('/api/admin/seo/sitemap-status', (req, res) => {
-  const allBlogs = readJsonSafe('data/blogs.json', []);
-  const published = allBlogs.filter(b => b.status === 'published');
-  const seo = readJsonSafe('data/seo.json', {});
-  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  res.json({
-    success: true,
-    siteUrl,
-    totalUrls: published.length + 1,
-    articleUrls: published.length,
-    sitemapUrl: `${siteUrl}/sitemap.xml`,
-    // Sitemap is generated dynamically on each request — always fresh
-    dynamic: true,
-  });
-});
-
-// Ping search engines about the sitemap.
-// NOTE (Oct 2026 research): Google retired google.com/ping in June 2023 (returns 404),
-// and Bing retired its ping endpoint too. This now notifies via IndexNow instead,
-// which is the only live push mechanism. Kept as a single "notify" action for UX.
-app.post('/api/admin/seo/ping-sitemap', async (req, res) => {
-  const seo = readJsonSafe('data/seo.json', {});
-  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  const host = new URL(siteUrl).host;
-  const key = crypto.createHash('sha256').update('gta6mapx-indexnow-' + host).digest('hex').slice(0, 32);
-  // Submit the sitemap URL itself via IndexNow so Bing-family engines recrawl it
-  try {
-    const r = await fetch('https://api.indexnow.org/indexnow.json', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: [`${siteUrl}/sitemap.xml`] }),
-      signal: AbortSignal.timeout(15000),
-    });
-    res.json({ success: r.ok, results: [{ engine: 'IndexNow (Bing/Yandex/Naver)', ok: r.ok, status: r.status }],
-      note: 'Google sitemap ping retired 2023 — submit sitemap in Google Search Console instead.' });
-  } catch (e) {
-    res.json({ success: false, results: [{ engine: 'IndexNow', ok: false, error: e.message }],
-      note: 'Google sitemap ping retired 2023 — submit sitemap in Google Search Console instead.' });
-  }
-});
-
-// IndexNow: notify search engines about specific changed URLs instantly
-app.post('/api/admin/seo/indexnow', async (req, res) => {
-  const { urls } = req.body || {};
-  if (!Array.isArray(urls) || urls.length === 0 || urls.length > 100) {
-    return res.status(400).json({ success: false, error: 'Provide 1-100 URLs' });
-  }
-  const seo = readJsonSafe('data/seo.json', {});
-  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  const host = new URL(siteUrl).host;
-  // IndexNow key: derived deterministically, also served at /<key>.txt for verification
-  const key = crypto.createHash('sha256').update('gta6mapx-indexnow-' + host).digest('hex').slice(0, 32);
-  try {
-    const r = await fetch('https://api.indexnow.org/indexnow.json', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: urls }),
-      signal: AbortSignal.timeout(15000),
-    });
-    res.json({ success: r.ok, status: r.status });
-  } catch (e) {
-    res.status(502).json({ success: false, error: e.message });
-  }
-});
-
-// robots.txt view / edit
-app.get('/api/admin/seo/robots', (req, res) => {
-  const content = fs.existsSync(path.join(__dirname, 'robots.txt'))
-    ? fs.readFileSync(path.join(__dirname, 'robots.txt'), 'utf8') : '';
-  res.json({ success: true, content });
-});
-app.post('/api/admin/seo/robots', (req, res) => {
-  const { content } = req.body || {};
-  if (typeof content !== 'string' || content.length > 10000) {
-    return res.status(400).json({ success: false, error: 'Invalid robots.txt content' });
-  }
-  // Basic safety: never allow blocking everything accidentally without explicit flag
-  fs.writeFileSync(path.join(__dirname, 'robots.txt'), content);
-  res.json({ success: true });
-});
-
-// Bulk blog operations: publish / draft / delete many at once
-app.post('/api/admin/blogs/bulk', (req, res) => {
-  const { action, ids } = req.body || {};
-  if (!['publish', 'draft', 'delete'].includes(action)) {
-    return res.status(400).json({ success: false, error: 'Action must be publish, draft or delete' });
-  }
-  if (!Array.isArray(ids) || ids.length === 0 || ids.length > 1000) {
-    return res.status(400).json({ success: false, error: 'Provide 1-1000 article IDs' });
-  }
-  const allBlogs = readJsonSafe('data/blogs.json', []);
-  const idSet = new Set(ids);
-  let affected = 0;
-  let remaining;
-  if (action === 'delete') {
-    remaining = allBlogs.filter(b => !idSet.has(b.id));
-    affected = allBlogs.length - remaining.length;
-  } else {
-    remaining = allBlogs.map(b => {
-      if (idSet.has(b.id)) {
-        affected++;
-        return { ...b, status: action === 'publish' ? 'published' : 'draft', updatedAt: new Date().toISOString() };
-      }
-      return b;
-    });
-  }
-  try {
-    fs.writeFileSync(path.join(__dirname, 'data', 'blogs.json'), JSON.stringify(remaining, null, 2));
-    res.json({ success: true, action, affected });
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
-
-// Blog stats for admin dashboard
-app.get('/api/admin/blogs/stats', (req, res) => {
-  const allBlogs = readJsonSafe('data/blogs.json', []);
-  const published = allBlogs.filter(b => b.status === 'published').length;
-  const drafts = allBlogs.filter(b => b.status !== 'published').length;
-  const categories = {};
-  for (const b of allBlogs) {
-    const c = b.category || 'Uncategorized';
-    categories[c] = (categories[c] || 0) + 1;
-  }
-  res.json({ success: true, total: allBlogs.length, published, drafts, categories });
-});
-
 // Community Landmark Submission
 app.post('/api/community/submit', (req, res) => {
   const sub = req.body;
@@ -969,19 +811,12 @@ app.post('/api/admin/submissions/reject', (req, res) => {
 
 app.get('/api/blogs', (req, res) => {
   const allBlogs = readJsonSafe('data/blogs.json', []);
-  const { category, search, all, page, limit } = req.query;
+  const { category, search, all } = req.query;
 
   let results = Array.isArray(allBlogs) ? allBlogs : [];
 
-  // Drafts are admin-only: ?all=1 requires a valid admin session token.
-  if (all === '1') {
-    const header = req.headers.authorization || '';
-    const token = header.startsWith('Bearer ') ? header.slice(7) : '';
-    const expiry = adminSessions.get(token);
-    if (!token || !expiry || expiry < Date.now()) {
-      return res.status(401).json({ success: false, error: 'Unauthorized: admin login required for draft access' });
-    }
-  } else {
+  // Filter drafts unless ?all=1 is specified (for admin use)
+  if (all !== '1') {
     results = results.filter(b => b.status === 'published');
   }
 
@@ -1001,17 +836,7 @@ app.get('/api/blogs', (req, res) => {
   // Sort by date descending
   results.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
 
-  // Pagination (default: all for backwards-compat; use ?page=&limit= for pages)
-  const total = results.length;
-  const lim = Math.min(parseInt(limit, 10) || 0, 500);
-  const pg = Math.max(parseInt(page, 10) || 1, 1);
-  let totalPages = 1;
-  if (lim > 0) {
-    totalPages = Math.max(Math.ceil(total / lim), 1);
-    results = results.slice((pg - 1) * lim, pg * lim);
-  }
-
-  res.json({ success: true, count: results.length, total, page: pg, totalPages, blogs: results });
+  res.json({ success: true, count: results.length, blogs: results });
 });
 
 app.get('/api/blogs/:idOrSlug', (req, res) => {
@@ -1029,39 +854,6 @@ app.get('/api/blogs/:idOrSlug', (req, res) => {
   }
 
   res.json({ success: true, blog });
-});
-
-// Admin blog list: paginated, includes drafts, newest first
-app.get('/api/admin/blogs/list', (req, res) => {
-  const allBlogs = readJsonSafe('data/blogs.json', []);
-  const { search, category, status, page, limit } = req.query;
-  let results = Array.isArray(allBlogs) ? allBlogs : [];
-
-  if (search) {
-    const q = search.toLowerCase();
-    results = results.filter(b =>
-      (b.title || '').toLowerCase().includes(q) ||
-      (b.excerpt || '').toLowerCase().includes(q) ||
-      (b.targetKeyword || '').toLowerCase().includes(q) ||
-      (b.slug || '').toLowerCase().includes(q)
-    );
-  }
-  if (category && category !== 'all') {
-    results = results.filter(b => (b.category || '').toLowerCase() === category.toLowerCase());
-  }
-  if (status && status !== 'all') {
-    results = results.filter(b => (b.status || 'published') === status);
-  }
-
-  results.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
-
-  const total = results.length;
-  const lim = Math.min(Math.max(parseInt(limit, 10) || 50, 1), 200);
-  const pg = Math.max(parseInt(page, 10) || 1, 1);
-  const totalPages = Math.max(Math.ceil(total / lim), 1);
-  const pageItems = results.slice((pg - 1) * lim, pg * lim);
-
-  res.json({ success: true, total, page: pg, totalPages, blogs: pageItems });
 });
 
 app.post('/api/admin/blogs', (req, res) => {
@@ -1278,108 +1070,6 @@ app.get(['/tiles/*', '/assets/*'], async (req, res) => {
     return res.sendFile(fallbackImg);
   }
   res.status(404).end();
-});
-
-// 7b. SEO article pages — every post gets its own indexable URL: /guides/<slug>
-// Server-side rendered with full meta tags, Open Graph, canonical and JSON-LD.
-function escAttr(s) {
-  return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-function stripTags(s) {
-  return String(s || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-}
-
-app.get('/guides/:slug', (req, res) => {
-  const slug = req.params.slug;
-  const allBlogs = readJsonSafe('data/blogs.json', []);
-  const blog = allBlogs.find(b => (b.slug || '').toLowerCase() === slug.toLowerCase());
-
-  if (!blog || blog.status !== 'published') {
-    return res.status(404).sendFile(path.join(__dirname, 'index.html'));
-  }
-
-  const seo = readJsonSafe('data/seo.json', {});
-  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  const canonical = `${siteUrl}/guides/${blog.slug}`;
-  const title = escAttr(blog.title);
-  const desc = escAttr((blog.excerpt || stripTags(blog.content).slice(0, 160)).slice(0, 160));
-  const keywords = escAttr(blog.targetKeyword || '');
-  const cover = blog.coverImage && !blog.coverImage.startsWith('http')
-    ? `${siteUrl}/${blog.coverImage}` : escAttr(blog.coverImage || '');
-  const dateIso = blog.date || new Date().toISOString().slice(0, 10);
-  const textContent = stripTags(blog.content);
-
-  // Related articles (same category, exclude self, max 6)
-  const related = allBlogs
-    .filter(b => b.status === 'published' && b.id !== blog.id && (b.category || '') === (blog.category || ''))
-    .slice(0, 6);
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: blog.title,
-    description: stripTags(blog.excerpt || '').slice(0, 200),
-    image: cover ? [cover] : undefined,
-    datePublished: dateIso,
-    dateModified: blog.updatedAt || dateIso,
-    author: { '@type': 'Person', name: blog.author || 'GTA6mapx Editorial' },
-    publisher: { '@type': 'Organization', name: 'GTA6mapx', url: siteUrl },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
-  };
-
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 'public, max-age=3600');
-  res.send(`<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${title} | GTA6mapx</title>
-<meta name="description" content="${desc}">
-${keywords ? `<meta name="keywords" content="${keywords}">` : ''}
-<link rel="canonical" href="${canonical}">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<meta property="og:type" content="article">
-<meta property="og:title" content="${title}">
-<meta property="og:description" content="${desc}">
-<meta property="og:url" content="${canonical}">
-<meta property="og:site_name" content="GTA6mapx">
-${cover ? `<meta property="og:image" content="${cover}">` : ''}
-<meta property="article:published_time" content="${dateIso}">
-<meta property="article:section" content="${escAttr(blog.category || '')}">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${title}">
-<meta name="twitter:description" content="${desc}">
-${cover ? `<meta name="twitter:image" content="${cover}">` : ''}
-<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
-<style>
-*{box-sizing:border-box}body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;margin:0;background:#0a0a12;color:#e8e8f0;line-height:1.7}
-.wrap{max-width:780px;margin:0 auto;padding:2rem 1.25rem}
-.crumb{font-size:.85rem;color:#888;margin-bottom:1rem}.crumb a{color:#ff50c5;text-decoration:none}
-h1{font-size:2rem;line-height:1.3;margin:.5rem 0 1rem}
-.meta{color:#999;font-size:.9rem;margin-bottom:1.5rem;display:flex;gap:1rem;flex-wrap:wrap}
-.hero{width:100%;border-radius:12px;margin:1rem 0}
-.article-body img{max-width:100%;height:auto;border-radius:8px}
-.article-body h2{margin-top:2rem;color:#fff}.article-body h3{margin-top:1.5rem;color:#fff}
-.article-body a{color:#ff50c5}.article-body blockquote{border-left:3px solid #ff50c5;padding-left:1rem;color:#bbb;margin:1.5rem 0}
-.related{margin-top:3rem;border-top:1px solid #222;padding-top:1.5rem}
-.related h2{font-size:1.2rem}.related ul{list-style:none;padding:0}.related li{margin:.6rem 0}.related a{color:#ff50c5;text-decoration:none}
-.cta{margin-top:2rem;padding:1.5rem;background:#14141f;border-radius:12px;text-align:center}
-.cta a{display:inline-block;background:#ff50c5;color:#fff;padding:.7rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:600;margin-top:.8rem}
-</style>
-</head>
-<body>
-<div class="wrap">
-<nav class="crumb"><a href="/">GTA6mapx</a> &rsaquo; <a href="/#blog">Guides</a> &rsaquo; ${escAttr(blog.category || '')}</nav>
-<h1>${escAttr(blog.title)}</h1>
-<div class="meta"><span>By ${escAttr(blog.author || 'GTA6mapx Editorial')}</span><span>${escAttr(dateIso)}</span><span>${escAttr(blog.readTime || '')}</span><span>${escAttr(blog.category || '')}</span></div>
-${cover ? `<img class="hero" src="${cover}" alt="${title}" loading="eager">` : ''}
-<article class="article-body">${blog.content}</article>
-${related.length ? `<section class="related"><h2>Related Guides</h2><ul>${related.map(r => `<li><a href="/guides/${escAttr(r.slug)}">${escAttr(r.title)}</a></li>`).join('')}</ul></section>` : ''}
-<div class="cta"><strong>Explore the interactive GTA 6 map</strong><br><a href="/">Open GTA6mapx Map</a></div>
-</div>
-</body>
-</html>`);
 });
 
 // 8. SPA fallback for language routes (/en/, /de/, etc.)
