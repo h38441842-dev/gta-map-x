@@ -42473,3 +42473,44 @@ body.studio-standalone {
     color: var(--accent-color);
     font-weight: 650
 }
+
+
+/* ==========================================================================
+   WATERMARK & EXTERNAL ATTRIBUTION SUPPRESSION SHIELD
+   ========================================================================== */
+.leaflet-control-attribution,
+.leaflet-container .leaflet-control-attribution,
+.preloader-affiliated,
+.preloader-credits,
+.credits-button,
+.coffee-button,
+.marker-credits,
+.marker-credits-container,
+.thanks-lightbox,
+#thanks-lightbox,
+.header-mapping-center,
+#header-mapping-btn,
+.credits-gtadb,
+.credits-gtawiki {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+}
+
+
+/* Suppress Control Panel Footer Watermarks */
+.footer-laze-wrapper,
+.footer-thanks-wrapper,
+.footer-drevix-wrapper,
+.footer-links-wrapper,
+#footer-laze {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    pointer-events: none !important;
+}

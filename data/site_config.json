@@ -2,44 +2,44 @@
   "countdownDate": "2026-11-19T00:00",
   "countdownEnabled": true,
   "announcement": "",
-  "discordUrl": "https://discord.gg/JeTPhnHuxm",
+  "discordUrl": "",
   "headerBanner": {
-    "enabled": true,
-    "imageUrl": "assets/logos/mappingcool2.gif",
-    "targetUrl": "https://discord.gg/JeTPhnHuxm",
-    "altText": "Mapping Discord"
+    "enabled": false,
+    "imageUrl": "",
+    "targetUrl": "",
+    "altText": ""
   },
   "watermarks": {
-    "preloaderAffiliatedEnabled": true,
-    "preloaderAffiliatedImage": "assets/logos/affiliated with.png",
+    "preloaderAffiliatedEnabled": false,
+    "preloaderAffiliatedImage": "",
     "partner1": {
-      "enabled": true,
-      "name": "MAP.GTADB.ORG",
-      "subtitle": "USE DATABASE",
-      "url": "https://map.gtadb.org",
-      "logo": "assets/pic/gtamaplib.png"
+      "enabled": false,
+      "name": "",
+      "subtitle": "",
+      "url": "",
+      "logo": ""
     },
     "partner2": {
-      "enabled": true,
-      "name": "GTA.WIKI",
-      "subtitle": "FIND ON MARKERS",
-      "url": "https://gta.wiki",
-      "logo": "assets/logos/Wiki.png"
+      "enabled": false,
+      "name": "",
+      "subtitle": "",
+      "url": "",
+      "logo": ""
     }
   },
   "footer": {
-    "showDiscord": true,
-    "showGtadb": true,
-    "showGtaWiki": true,
-    "customLinkText": "",
-    "customLinkUrl": ""
+    "showDiscord": false,
+    "showGtadb": false,
+    "showGtaWiki": false,
+    "customLinkText": "GTA Map X Official",
+    "customLinkUrl": "#"
   },
   "disclaimers": {
-    "preloaderDisclaimer": "Rockstar Games and Grand Theft Auto are registered trademarks of Take-Two Interactive Software Inc. State of Leonida is not affiliated with the aforementioned companies.",
-    "footerDisclaimer": "Rockstar Games and Grand Theft Auto VI are registered trademarks of Take-Two Interactive Software, Inc. State of Leonida is a non-commercial, fan-made interactive mapping and GIS research project created by the GTA mapping community and is not affiliated with, endorsed, or sponsored by Rockstar Games or Take-Two Interactive in any way."
+    "preloaderDisclaimer": "Grand Theft Auto and State of Leonida are registered trademarks of Take-Two Interactive Software Inc. All rights reserved.",
+    "footerDisclaimer": "Rockstar Games and Grand Theft Auto VI are registered trademarks of Take-Two Interactive Software, Inc. GTA Map X is an independent high-resolution GIS interactive mapping and intelligence platform."
   },
   "externalWiki": {
-    "enabled": true,
-    "customBaseUrl": "https://gta.wiki"
+    "enabled": false,
+    "customBaseUrl": ""
   }
 }
