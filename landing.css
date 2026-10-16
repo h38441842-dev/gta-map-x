@@ -1185,3 +1185,101 @@
     height: 0 !important;
     pointer-events: none !important;
 }
+
+
+/* ==========================================================================
+   OFFICIAL GTA6MAPX WATERMARK BADGE (STATE OF LEONIDA MAP)
+   ========================================================================== */
+.gta6mapx-map-watermark {
+    position: fixed;
+    bottom: 16px;
+    right: 18px;
+    z-index: 1000;
+    pointer-events: auto;
+    user-select: none;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.gta6mapx-wm-link {
+    text-decoration: none !important;
+    display: inline-block;
+}
+
+.gta6mapx-wm-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    border-radius: 9999px;
+    background: rgba(13, 16, 27, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45), 0 0 18px rgba(244, 63, 94, 0.18);
+    transition: all 0.22s ease;
+}
+
+.gta6mapx-wm-link:hover .gta6mapx-wm-pill {
+    background: rgba(18, 22, 38, 0.94);
+    border-color: rgba(244, 63, 94, 0.45);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(244, 63, 94, 0.35);
+    transform: translateY(-1px);
+}
+
+.gta6mapx-wm-icon {
+    height: 18px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.gta6mapx-wm-brand {
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+}
+
+.gta6mapx-wm-brand .wm-pink {
+    color: #f43f5e;
+}
+
+.gta6mapx-wm-brand .wm-cyan {
+    color: #06b6d4;
+}
+
+.gta6mapx-wm-sep {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 11px;
+    margin: 0 1px;
+}
+
+.gta6mapx-wm-sub {
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.78);
+    text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+    .gta6mapx-map-watermark {
+        bottom: calc(75px + env(safe-area-inset-bottom, 0px));
+        right: 12px;
+    }
+    .gta6mapx-wm-pill {
+        padding: 5px 12px;
+        gap: 6px;
+    }
+    .gta6mapx-wm-brand {
+        font-size: 11px;
+    }
+    .gta6mapx-wm-sub {
+        font-size: 9.5px;
+    }
+}
