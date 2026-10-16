@@ -50,6 +50,10 @@
                     <i class="fas fa-search-dollar"></i>
                     <span>SEO & Keywords</span>
                 </button>
+                <button class="nav-item" data-tab="indexing">
+                    <i class="fas fa-rocket"></i>
+                    <span>Indexing & Sitemap</span>
+                </button>
                 <button class="nav-item" data-tab="landmarks">
                     <i class="fas fa-map-marker-alt"></i>
                     <span>Landmarks & Leaks</span>
@@ -250,6 +254,50 @@
                     </div>
                 </div>
 
+                <!-- TAB: INDEXING & SITEMAP -->
+                <div id="tab-indexing" class="tab-content">
+                    <div class="admin-panel-card">
+                        <div class="panel-card-header">
+                            <div>
+                                <h2 class="panel-card-title"><i class="fas fa-rocket"></i> Search Indexing & Sitemap Control</h2>
+                                <p style="color:var(--admin-text-muted); font-size:0.85rem; margin-top:0.25rem;">
+                                    Every article has its own indexable URL (<code>/guides/&lt;slug&gt;</code>). Control sitemap, ping search engines, and push instant IndexNow updates.
+                                </p>
+                            </div>
+                            <button class="btn-outline-small" onclick="adminApp.loadIndexingStatus()"><i class="fas fa-sync-alt"></i> Refresh</button>
+                        </div>
+
+                        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; margin-bottom:1.5rem;">
+                            <div class="stat-card"><div class="stat-label">Sitemap URLs</div><div class="stat-value" id="idxTotalUrls">—</div></div>
+                            <div class="stat-card"><div class="stat-label">Article URLs</div><div class="stat-value" id="idxArticleUrls">—</div></div>
+                            <div class="stat-card"><div class="stat-label">Sitemap</div><div class="stat-value" style="font-size:0.9rem; color:#4ade80;">Dynamic ✓</div></div>
+                        </div>
+
+                        <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+                            <a id="idxSitemapLink" href="/sitemap.xml" target="_blank" class="btn-outline-small"><i class="fas fa-external-link-alt"></i> View Sitemap</a>
+                            <button class="btn-admin-primary" style="width:auto; padding:0.6rem 1.2rem;" onclick="adminApp.pingSitemap()"><i class="fas fa-bell"></i> Ping Google & Bing</button>
+                        </div>
+                        <div id="pingResult" style="margin-bottom:1.5rem; font-size:0.85rem;"></div>
+
+                        <h3 style="margin-bottom:0.75rem;"><i class="fas fa-zap"></i> IndexNow — Instant URL Updates</h3>
+                        <p style="color:var(--admin-text-muted); font-size:0.85rem; margin-bottom:0.75rem;">Paste article URLs (one per line, max 100) to notify Bing, Yandex & others instantly after publishing or updating.</p>
+                        <textarea id="indexNowUrls" class="form-input" rows="5" style="width:100%; font-family:monospace; font-size:0.8rem;" placeholder="https://yoursite.com/guides/my-article-slug"></textarea>
+                        <div style="margin-top:0.75rem;">
+                            <button class="btn-admin-primary" style="width:auto; padding:0.6rem 1.2rem;" onclick="adminApp.sendIndexNow()"><i class="fas fa-paper-plane"></i> Send IndexNow</button>
+                            <span id="indexNowResult" style="margin-left:1rem; font-size:0.85rem;"></span>
+                        </div>
+                    </div>
+
+                    <div class="admin-panel-card" style="margin-top:1.5rem;">
+                        <div class="panel-card-header">
+                            <h2 class="panel-card-title"><i class="fas fa-robot"></i> robots.txt Editor</h2>
+                            <button class="btn-admin-primary" style="width:auto; padding:0.6rem 1.2rem;" onclick="adminApp.saveRobots()"><i class="fas fa-save"></i> Save robots.txt</button>
+                        </div>
+                        <textarea id="robotsEditor" class="form-input" rows="10" style="width:100%; font-family:monospace; font-size:0.8rem;"></textarea>
+                        <p style="color:var(--admin-text-muted); font-size:0.8rem; margin-top:0.5rem;">Warning: <code>Disallow: /</code> blocks all search engines. The sitemap URL must stay crawlable.</p>
+                    </div>
+                </div>
+
                 <!-- TAB 3: LANDMARKS & LEAKS -->
                 <div id="tab-landmarks" class="tab-content">
                     <div class="admin-panel-card">
@@ -307,6 +355,7 @@
                                 <h2 class="panel-card-title"><i class="fas fa-feather-alt"></i> Vice Wire Blog & News Articles</h2>
                                 <p style="color:var(--admin-text-muted); font-size:0.85rem; margin-top:0.25rem;">
                                     Publish luxury GTA 6 intelligence reports, trailer analysis, and cartography deep-dives.
+                                    <span id="blogStatsLine" style="display:block; margin-top:0.3rem;"></span>
                                 </p>
                             </div>
                             <button class="btn-admin-primary" style="width:auto; padding:0.6rem 1.4rem;" id="btnNewBlog">
@@ -315,15 +364,25 @@
                         </div>
 
                         <!-- Filter & Search Bar -->
-                        <div style="display:flex; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+                        <div style="display:flex; gap:1rem; margin-bottom:1rem; flex-wrap:wrap;">
                             <input type="text" id="blogSearchInput" class="form-input" placeholder="Search articles by title, author, or excerpt..." style="flex:1; min-width:240px;">
                             <select id="blogCategoryFilter" class="form-select" style="width:200px;">
                                 <option value="all">All Categories</option>
-                                <option value="Cartography & Leaks">Cartography & Leaks</option>
-                                <option value="Districts & Lore">Districts & Lore</option>
-                                <option value="Vehicles & Heists">Vehicles & Heists</option>
-                                <option value="Trailer Analysis">Trailer Analysis</option>
                             </select>
+                            <select id="blogStatusFilter" class="form-select" style="width:160px;">
+                                <option value="all">All Statuses</option>
+                                <option value="published">Published</option>
+                                <option value="draft">Drafts</option>
+                            </select>
+                        </div>
+
+                        <!-- Bulk Actions Bar -->
+                        <div id="blogBulkBar" style="display:none; gap:0.75rem; margin-bottom:1rem; flex-wrap:wrap; align-items:center; background:var(--admin-card); border:1px solid var(--admin-border); border-radius:8px; padding:0.6rem 1rem;">
+                            <span id="blogSelectedCount" style="font-size:0.85rem; color:var(--admin-text-muted);"></span>
+                            <button class="btn-outline-small" onclick="adminApp.bulkBlogAction('publish')"><i class="fas fa-check"></i> Publish</button>
+                            <button class="btn-outline-small" onclick="adminApp.bulkBlogAction('draft')"><i class="fas fa-clock"></i> Move to Draft</button>
+                            <button class="btn-outline-small" style="color:var(--admin-danger); border-color:var(--admin-danger);" onclick="adminApp.bulkBlogAction('delete')"><i class="fas fa-trash"></i> Delete</button>
+                            <button class="btn-outline-small" onclick="adminApp.clearBlogSelection()">Clear</button>
                         </div>
 
                         <!-- Articles Table -->
@@ -331,6 +390,7 @@
                             <table class="admin-table">
                                 <thead>
                                     <tr>
+                                        <th style="width:36px;"><input type="checkbox" id="blogSelectAll" title="Select all on page"></th>
                                         <th>Cover</th>
                                         <th>Title & Excerpt</th>
                                         <th>Target Keyword</th>
@@ -345,6 +405,18 @@
                                     <!-- Populated via admin.js -->
                                 </tbody>
                             </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div id="blogPagination" style="display:flex; gap:0.75rem; align-items:center; justify-content:center; margin-top:1.25rem; flex-wrap:wrap;">
+                            <button class="btn-outline-small" id="blogPrevPage"><i class="fas fa-chevron-left"></i> Prev</button>
+                            <span id="blogPageInfo" style="font-size:0.85rem; color:var(--admin-text-muted);"></span>
+                            <button class="btn-outline-small" id="blogNextPage">Next <i class="fas fa-chevron-right"></i></button>
+                            <select id="blogPageSize" class="form-select" style="width:110px;">
+                                <option value="25">25 / page</option>
+                                <option value="50" selected>50 / page</option>
+                                <option value="100">100 / page</option>
+                            </select>
                         </div>
                     </div>
                 </div>
