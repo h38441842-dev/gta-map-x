@@ -31,9 +31,31 @@ const adminApp = (() => {
         }, 3000);
     }
 
+    function getAdminToken() {
+        return sessionStorage.getItem('gmx_admin_token') || '';
+    }
+
+    function authHeaders(extra) {
+        return Object.assign({ 'Authorization': 'Bearer ' + getAdminToken() }, extra || {});
+    }
+
+    // Wrapper: all admin API calls automatically carry the session token.
+    // On 401 the session is cleared and the login screen is shown.
+    async function adminFetch(url, options) {
+        const opts = Object.assign({}, options);
+        opts.headers = authHeaders(opts.headers);
+        const res = await fetch(url, opts);
+        if (res.status === 401) {
+            sessionStorage.removeItem('gmx_admin_token');
+            checkAuth();
+            showToast('Session expired — please log in again', true);
+        }
+        return res;
+    }
+
     function checkAuth() {
-        const token = sessionStorage.getItem('leonida_admin_token');
-        if (token === 'authorized_master_2026') {
+        const token = getAdminToken();
+        if (token) {
             if (loginOverlay) loginOverlay.style.display = 'none';
             if (adminAppEl) adminAppEl.style.display = 'flex';
             initData();
@@ -55,8 +77,8 @@ const adminApp = (() => {
             });
             const data = await res.json();
 
-            if (data.success || pass === 'leonida2026') {
-                sessionStorage.setItem('leonida_admin_token', 'authorized_master_2026');
+            if (data.success && data.token) {
+                sessionStorage.setItem('gmx_admin_token', data.token);
                 if (loginError) loginError.style.display = 'none';
                 if (loginOverlay) loginOverlay.style.display = 'none';
                 if (adminAppEl) adminAppEl.style.display = 'flex';
@@ -66,20 +88,13 @@ const adminApp = (() => {
                 if (loginError) loginError.style.display = 'block';
             }
         } catch (_) {
-            // Fallback client check
-            if (pass === 'leonida2026') {
-                sessionStorage.setItem('leonida_admin_token', 'authorized_master_2026');
-                if (loginOverlay) loginOverlay.style.display = 'none';
-                if (adminAppEl) adminAppEl.style.display = 'flex';
-                initData();
-            } else {
-                if (loginError) loginError.style.display = 'block';
-            }
+            if (loginError) loginError.style.display = 'block';
+            showToast('Login failed: server unreachable', true);
         }
     }
 
     function handleLogout() {
-        sessionStorage.removeItem('leonida_admin_token');
+        sessionStorage.removeItem('gmx_admin_token');
         checkAuth();
         showToast('Logged out successfully');
     }
@@ -132,7 +147,7 @@ const adminApp = (() => {
 
     async function loadOverviewStats() {
         try {
-            const res = await fetch(`${API_BASE}/overview`);
+            const res = await adminFetch(`${API_BASE}/overview`);
             if (res.ok) {
                 const data = await res.json();
                 document.getElementById('statLandmarks').textContent = data.totalLandmarks || '500+';
@@ -145,7 +160,7 @@ const adminApp = (() => {
     // SEO Manager Logic
     async function loadSeoSettings() {
         try {
-            const res = await fetch(`${API_BASE}/seo`);
+            const res = await adminFetch(`${API_BASE}/seo`);
             const data = await res.json();
 
             const title = data.meta?.en?.title || 'GTA 6 Interactive Map – State of Leonida | Vice City & Florida Locations';
@@ -195,7 +210,7 @@ const adminApp = (() => {
         };
 
         try {
-            const res = await fetch(`${API_BASE}/seo`, {
+            const res = await adminFetch(`${API_BASE}/seo`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -214,7 +229,7 @@ const adminApp = (() => {
     // Community Submissions Manager
     async function loadSubmissions() {
         try {
-            const res = await fetch(`${API_BASE}/submissions`);
+            const res = await adminFetch(`${API_BASE}/submissions`);
             const data = await res.json();
             const list = data.submissions || [];
 
@@ -251,7 +266,7 @@ const adminApp = (() => {
 
     async function approveSubmission(id) {
         try {
-            const res = await fetch(`${API_BASE}/submissions/approve`, {
+            const res = await adminFetch(`${API_BASE}/submissions/approve`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id })
@@ -265,7 +280,7 @@ const adminApp = (() => {
 
     async function rejectSubmission(id) {
         try {
-            const res = await fetch(`${API_BASE}/submissions/reject`, {
+            const res = await adminFetch(`${API_BASE}/submissions/reject`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id })
@@ -510,7 +525,7 @@ const adminApp = (() => {
             const url = id ? `/api/admin/blogs/${encodeURIComponent(id)}` : '/api/admin/blogs';
             const method = id ? 'PUT' : 'POST';
 
-            const res = await fetch(url, {
+            const res = await adminFetch(url, {
                 method,
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -535,7 +550,7 @@ const adminApp = (() => {
         if (!confirm(`Are you sure you want to permanently delete "${name}"?`)) return;
 
         try {
-            const res = await fetch(`/api/admin/blogs/${encodeURIComponent(id)}`, { method: 'DELETE' });
+            const res = await adminFetch(`/api/admin/blogs/${encodeURIComponent(id)}`, { method: 'DELETE' });
             if (res.ok) {
                 showToast('Article deleted successfully');
                 loadBlogs();
@@ -550,7 +565,7 @@ const adminApp = (() => {
     // Landmarks Manager Logic
     async function loadLandmarks() {
         try {
-            const res = await fetch(`${API_BASE}/landmarks`);
+            const res = await adminFetch(`${API_BASE}/landmarks`);
             if (res.ok) {
                 const data = await res.json();
                 landmarksData = data.landmarks || [];
@@ -667,7 +682,7 @@ const adminApp = (() => {
         }
 
         try {
-            const res = await fetch(`${API_BASE}/landmarks`, {
+            const res = await adminFetch(`${API_BASE}/landmarks`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(landmark)
@@ -692,7 +707,7 @@ const adminApp = (() => {
     async function deleteLandmark(id) {
         if (!confirm('Are you sure you want to delete this landmark?')) return;
         try {
-            await fetch(`${API_BASE}/landmarks/${encodeURIComponent(id)}`, { method: 'DELETE' });
+            await adminFetch(`${API_BASE}/landmarks/${encodeURIComponent(id)}`, { method: 'DELETE' });
         } catch (_) {}
 
         landmarksData = landmarksData.filter(x => x.id !== id);
@@ -706,7 +721,7 @@ const adminApp = (() => {
         if (!container) return;
 
         try {
-            const res = await fetch(`${API_BASE}/maps`);
+            const res = await adminFetch(`${API_BASE}/maps`);
             const data = await res.json();
             const layers = data.layers || [
                 { id: 'YANIS', name: 'Yanis Mapping Community', currentVersion: 'v16', enabled: true, maxZoom: 8 },
@@ -742,7 +757,7 @@ const adminApp = (() => {
     // Initialization
     async function loadSiteSettings() {
         try {
-            const res = await fetch('/api/admin/site-config');
+            const res = await adminFetch('/api/admin/site-config');
             if (res.ok) {
                 const config = await res.json();
                 if (document.getElementById('settingsCountdownInput')) {
@@ -861,7 +876,7 @@ const adminApp = (() => {
         };
 
         try {
-            const res = await fetch('/api/admin/site-config', {
+            const res = await adminFetch('/api/admin/site-config', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)

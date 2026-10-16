@@ -1,17 +1,78 @@
 const express = require('express');
 const compression = require('compression');
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
 const REMOTE_ASSET_ORIGIN = process.env.REMOTE_ASSET_ORIGIN || 'https://map.stateofleonida.net';
 const GTADB_ORIGIN = process.env.GTADB_ORIGIN || 'https://map.gtadb.org';
 
+// ---- Admin security ----
+// Passcode MUST be set via env var in production. The default is only for local dev.
+const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || 'leonida2026';
+if (!process.env.ADMIN_PASSCODE) {
+  console.warn('[security] ADMIN_PASSCODE env var not set — using default dev passcode. Set ADMIN_PASSCODE in production!');
+}
+// In-memory admin sessions: token -> expiry timestamp (1 hour)
+const adminSessions = new Map();
+const ADMIN_SESSION_TTL_MS = 60 * 60 * 1000;
+
+function issueAdminToken() {
+  const token = 'gmx_' + crypto.randomBytes(32).toString('hex');
+  adminSessions.set(token, Date.now() + ADMIN_SESSION_TTL_MS);
+  return token;
+}
+
+function requireAdmin(req, res, next) {
+  const header = req.headers.authorization || '';
+  const token = header.startsWith('Bearer ') ? header.slice(7) : (req.query.admin_token || '');
+  const expiry = adminSessions.get(token);
+  if (!token || !expiry || expiry < Date.now()) {
+    if (token) adminSessions.delete(token);
+    return res.status(401).json({ success: false, error: 'Unauthorized: admin login required' });
+  }
+  next();
+}
+
+// Periodic cleanup of expired sessions (every 15 min)
+setInterval(() => {
+  const now = Date.now();
+  for (const [tok, exp] of adminSessions) {
+    if (exp < now) adminSessions.delete(tok);
+  }
+}, 15 * 60 * 1000).unref();
+
+// Basic HTML sanitizer for user-supplied article content (prevents stored XSS).
+// Allows common formatting tags, strips scripts, event handlers, javascript: URLs.
+function sanitizeHtml(input) {
+  if (typeof input !== 'string') return '';
+  let out = input;
+  // Remove script/style/iframe/object/embed tags entirely
+  out = out.replace(/<\s*(script|style|iframe|object|embed|form|input|button)[^>]*>[\s\S]*?<\s*\/\s*\1\s*>/gi, '');
+  out = out.replace(/<\s*(script|style|iframe|object|embed|form|input|button)[^>]*\/?>/gi, '');
+  // Remove event handler attributes (on*)
+  out = out.replace(/\s+on\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+  // Neutralize javascript: / data: URLs
+  out = out.replace(/(href|src|xlink:href)\s*=\s*(["']?)\s*javascript:[^"'\s>]*/gi, '$1=$2#');
+  out = out.replace(/(href|src|xlink:href)\s*=\s*(["']?)\s*data:(?!image\/(png|jpe?g|gif|webp))[^"'\s>]*/gi, '$1=$2#');
+  return out;
+}
+
 app.use(compression());
 app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true }));
+
+// Security headers (lightweight, no extra dependency)
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'geolocation=(self), camera=(), microphone=()');
+  next();
+});
 
 // In-memory state for mocked endpoints
 const inMemoryStats = {
@@ -513,10 +574,21 @@ app.get('/admin', (req, res) => {
 
 app.post('/api/admin/login', (req, res) => {
   const passcode = req.body?.passcode || '';
-  if (passcode === 'leonida2026') {
-    return res.json({ success: true, token: 'authorized_master_2026' });
+  // Constant-time comparison to avoid timing leaks
+  const a = Buffer.from(passcode);
+  const b = Buffer.from(ADMIN_PASSCODE);
+  const ok = a.length === b.length && crypto.timingSafeEqual(a, b);
+  if (ok) {
+    return res.json({ success: true, token: issueAdminToken() });
   }
   return res.status(401).json({ success: false, error: 'Invalid passcode' });
+});
+
+// All /api/admin/* routes below require a valid admin session token.
+// Login itself is exempt. Static /admin files are served above (see section 7 header).
+app.use('/api/admin', (req, res, next) => {
+  if (req.path === '/login') return next();
+  return requireAdmin(req, res, next);
 });
 
 app.get('/api/admin/overview', (req, res) => {
@@ -776,6 +848,11 @@ app.get('/api/blogs/:idOrSlug', (req, res) => {
     return res.status(404).json({ success: false, error: 'Article not found' });
   }
 
+  // Drafts are not publicly visible — only published articles served here.
+  if (blog.status !== 'published') {
+    return res.status(404).json({ success: false, error: 'Article not found' });
+  }
+
   res.json({ success: true, blog });
 });
 
@@ -822,8 +899,8 @@ app.post('/api/admin/blogs', (req, res) => {
     date: data.date || new Date().toISOString().slice(0, 10),
     readTime: data.readTime || '4 min read',
     coverImage: data.coverImage || 'assets/photos/screenshots/vice_city/Vice_City_05.jpg',
-    excerpt: data.excerpt || data.title,
-    content: data.content || '<p>Article content pending...</p>',
+    excerpt: sanitizeHtml(data.excerpt || data.title).replace(/<[^>]*>/g, '').slice(0, 300),
+    content: sanitizeHtml(data.content || '<p>Article content pending...</p>'),
     hotspotKey: data.hotspotKey || '',
     lat: data.lat !== undefined ? parseFloat(data.lat) : null,
     lng: data.lng !== undefined ? parseFloat(data.lng) : null,
@@ -899,8 +976,8 @@ app.put('/api/admin/blogs/:id', (req, res) => {
     date: data.date !== undefined ? data.date : existing.date,
     readTime: data.readTime !== undefined ? data.readTime : existing.readTime,
     coverImage: data.coverImage !== undefined ? data.coverImage : existing.coverImage,
-    excerpt: data.excerpt !== undefined ? data.excerpt : existing.excerpt,
-    content: data.content !== undefined ? data.content : existing.content,
+    excerpt: data.excerpt !== undefined ? sanitizeHtml(data.excerpt).replace(/<[^>]*>/g, '').slice(0, 300) : existing.excerpt,
+    content: data.content !== undefined ? sanitizeHtml(data.content) : existing.content,
     hotspotKey: data.hotspotKey !== undefined ? data.hotspotKey : existing.hotspotKey,
     lat: data.lat !== undefined ? parseFloat(data.lat) : existing.lat,
     lng: data.lng !== undefined ? parseFloat(data.lng) : existing.lng,
@@ -935,8 +1012,21 @@ app.delete('/api/admin/blogs/:id', (req, res) => {
   }
 });
 
-// 8. Serve static files from root
-app.use(express.static(__dirname, { index: 'index.html' }));
+// 8. Serve static files from root with long-term caching for immutable assets.
+// HTML entry points stay fresh (no-cache); hashed/versioned assets get 1-year immutable cache.
+app.use(express.static(__dirname, {
+  index: 'index.html',
+  setHeaders: (res, filePath) => {
+    const name = path.basename(filePath).toLowerCase();
+    if (name === 'index.html' || name === 'sw.js' || name.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-cache');
+    } else if (/\.(js|css|png|jpg|jpeg|gif|webp|avif|svg|ico|woff2?|ttf|eot|json)$/.test(name)) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    } else {
+      res.setHeader('Cache-Control', 'public, max-age=86400');
+    }
+  }
+}));
 
 // 7. Remote proxy fallback for map tiles and photos not stored locally in the shallow repo clone
 app.get(['/tiles/*', '/assets/*'], async (req, res) => {
