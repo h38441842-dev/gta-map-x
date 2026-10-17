@@ -594,7 +594,20 @@ app.get('/:key.txt', (req, res, next) => {
   next();
 });
 
+// Sitemap in-memory cache (5-min TTL, invalidated on blog writes)
+let sitemapCache = { xml: null, at: 0 };
+function invalidateSitemapCache() { sitemapCache = { xml: null, at: 0 }; }
+
 app.get('/sitemap.xml', (req, res) => {
+  // In-memory cache: sitemap costs ~105ms to generate (3,661 URLs).
+  // Cache for 5 min — invalidated on any blog write (see invalidateSitemapCache).
+  const now = Date.now();
+  if (sitemapCache.xml && (now - sitemapCache.at) < 5 * 60 * 1000) {
+    res.type('application/xml');
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    res.setHeader('X-Cache', 'HIT');
+    return res.send(sitemapCache.xml);
+  }
   const seo = readJsonSafe('data/seo.json', {});
   const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
   // SQLite: indexed query, ~1ms (was 400ms full JSON parse)
@@ -609,9 +622,12 @@ app.get('/sitemap.xml', (req, res) => {
     urls.push(`  <url><loc>${siteUrl}/guides/${escAttr(b.slug)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`);
   }
 
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>`;
+  sitemapCache = { xml, at: now };
   res.type('application/xml');
   res.setHeader('Cache-Control', 'public, max-age=3600');
-  res.send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>`);
+  res.setHeader('X-Cache', 'MISS');
+  res.send(xml);
 });
 
 // 7. Master Admin Panel & Control API
@@ -866,6 +882,7 @@ app.post('/api/admin/blogs/bulk', (req, res) => {
   }
   try {
     const affected = blogdb.bulk(action, ids);
+    invalidateSitemapCache();
     res.json({ success: true, action, affected });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -1059,6 +1076,7 @@ app.post('/api/admin/blogs', (req, res) => {
       featured: Boolean(data.featured),
       status: data.status || 'published',
     });
+    invalidateSitemapCache();
     return res.json({ success: true, blog: newBlog });
   } catch (err) {
     // Likely UNIQUE constraint on slug (race) — report as conflict
@@ -1116,6 +1134,7 @@ app.put('/api/admin/blogs/:id', (req, res) => {
     if (data.status !== undefined) updates.status = data.status;
 
     const updated = blogdb.update(id, updates);
+    invalidateSitemapCache();
     return res.json({ success: true, blog: updated });
   } catch (err) {
     if (String(err.message).includes('UNIQUE')) {
@@ -1132,6 +1151,7 @@ app.delete('/api/admin/blogs/:id', (req, res) => {
   if (!deleted) {
     return res.status(404).json({ success: false, error: 'Article not found' });
   }
+  invalidateSitemapCache();
   return res.json({ success: true });
 });
 
