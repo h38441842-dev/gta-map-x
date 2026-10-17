@@ -37,3 +37,8 @@ thumbs.db
 
 # AI Studio / Brain
 .aistudio/
+
+# SQLite database (auto-generated from blogs.json on first run)
+data/blogs.db
+data/blogs.db-*
+
