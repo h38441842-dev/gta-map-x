@@ -128,12 +128,12 @@
                                 <span class="meta-sep" aria-hidden="true">·</span>
                                 <span>${formatDate(featuredItem.date)}</span>
                             </div>
-                            <h2 class="blog-featured-title js-open-article" data-slug="${featuredItem.slug}">${escapeHtml(featuredItem.title)}</h2>
+                            <h2 class="blog-featured-title"><a href="/guides/${featuredItem.slug}" class="js-open-article" data-slug="${featuredItem.slug}" style="color:inherit; text-decoration:none;">${escapeHtml(featuredItem.title)}</a></h2>
                             <p class="blog-featured-excerpt">${escapeHtml(featuredItem.excerpt || '')}</p>
-                            <button type="button" class="blog-btn-action js-open-article" data-slug="${featuredItem.slug}">
+                            <a href="/guides/${featuredItem.slug}" class="blog-btn-action js-open-article" data-slug="${featuredItem.slug}" style="display:inline-flex; text-decoration:none;">
                                 <span>Read Full Investigation</span>
                                 <i class="fas fa-arrow-right"></i>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 `;
@@ -142,9 +142,11 @@
             }
         }
 
-        // Render Grid Cards
+        // Render Grid Cards — each card is a real <a> to /guides/<slug> so crawlers
+        // follow article URLs; JS click handler keeps the SPA experience.
         gridContainer.innerHTML = gridItems.map(item => `
             <article class="blog-card js-open-article" data-slug="${item.slug}">
+                <a href="/guides/${item.slug}" class="blog-card-link" data-slug="${item.slug}" style="display:block; color:inherit; text-decoration:none;">
                 <div class="blog-card-media">
                     <img src="${item.coverImage || 'assets/photos/screenshots/vice_city/Vice_City_05.jpg'}" alt="${escapeHtml(item.title)}" class="blog-card-img" loading="lazy">
                 </div>
@@ -164,6 +166,7 @@
                         </span>
                     </div>
                 </div>
+                </a>
             </article>
         `).join('');
     }
