@@ -220,9 +220,21 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="form-label">Google Search Console Verification Token</label>
-                                    <input type="text" id="seoSearchConsole" class="form-input" placeholder="e.g. abc123xyz_token_here">
-                                    <span class="form-help">For google-site-verification meta tag</span>
+                                    <label class="form-label">Google Search Console Verification Token / Tag</label>
+                                    <input type="text" id="seoSearchConsole" class="form-input" placeholder="e.g. abc123xyz_token_here or full meta tag">
+                                    <span class="form-help">Enter token or full &lt;meta name="google-site-verification" content="..."&gt; tag. Automatically injected live before &lt;/head&gt; across all pages.</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Bing Webmaster Tools Verification Token / Tag</label>
+                                    <input type="text" id="seoBingWebmaster" class="form-input" placeholder="e.g. 1234567890ABCDEF1234567890ABCDEF">
+                                    <span class="form-help">For &lt;meta name="msvalidate.01" content="..."&gt; tag. Automatically injected for Bing &amp; Yahoo indexing.</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Custom Analytics &amp; Head Tracking Scripts</label>
+                                    <textarea id="seoCustomHead" class="form-textarea" rows="3" placeholder="e.g. &lt;!-- Google Tag Manager --&gt; or Cloudflare Web Analytics / custom scripts"></textarea>
+                                    <span class="form-help">Raw HTML/scripts automatically injected before &lt;/head&gt; across all pages.</span>
                                 </div>
 
                                 <div class="form-group">
@@ -361,6 +373,13 @@
                             <button class="btn-admin-primary" style="width:auto; padding:0.6rem 1.4rem;" id="btnNewBlog">
                                 <i class="fas fa-plus"></i> Write New Article
                             </button>
+                        </div>
+
+                        <div style="background:rgba(6,182,212,0.12); border:1px solid rgba(6,182,212,0.3); border-radius:8px; padding:0.75rem 1rem; margin-bottom:1rem; font-size:0.85rem; color:#a5f3fc; display:flex; align-items:center; gap:10px;">
+                            <i class="fas fa-info-circle" style="font-size:1.1rem; color:#06b6d4;"></i>
+                            <div>
+                                <strong>Live Publishing Control:</strong> Only articles in <strong>Published</strong> status appear on the live Vice Wire blog and Google sitemap. Articles in <strong>Draft</strong> status are hidden. You can click any article's status badge below to toggle between Live and Draft instantly, or use Bulk Actions to publish multiple articles.
+                            </div>
                         </div>
 
                         <!-- Filter & Search Bar -->

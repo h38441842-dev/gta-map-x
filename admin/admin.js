@@ -261,8 +261,12 @@ const adminApp = (() => {
 
             const gaInput = document.getElementById('seoGoogleAnalytics');
             const gscInput = document.getElementById('seoSearchConsole');
+            const bingInput = document.getElementById('seoBingWebmaster');
+            const headInput = document.getElementById('seoCustomHead');
             if (gaInput) gaInput.value = data.googleAnalyticsId || '';
             if (gscInput) gscInput.value = data.googleSearchConsoleTag || '';
+            if (bingInput) bingInput.value = data.bingWebmasterTag || '';
+            if (headInput) headInput.value = data.customHeadHtml || '';
 
             updateGooglePreview(title, desc, canonical);
         } catch (_) {}
@@ -288,7 +292,9 @@ const adminApp = (() => {
             ogImage: document.getElementById('seoOgImage').value.trim(),
             twitter: document.getElementById('seoTwitter').value.trim(),
             googleAnalyticsId: document.getElementById('seoGoogleAnalytics')?.value.trim() || '',
-            googleSearchConsoleTag: document.getElementById('seoSearchConsole')?.value.trim() || ''
+            googleSearchConsoleTag: document.getElementById('seoSearchConsole')?.value.trim() || '',
+            bingWebmasterTag: document.getElementById('seoBingWebmaster')?.value.trim() || '',
+            customHeadHtml: document.getElementById('seoCustomHead')?.value.trim() || ''
         };
 
         try {
@@ -477,6 +483,25 @@ const adminApp = (() => {
         }
     }
 
+    async function quickToggleBlogStatus(id, newStatus) {
+        try {
+            const res = await adminFetch(`/api/admin/blogs/${encodeURIComponent(id)}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: newStatus })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showToast(`Article is now ${newStatus === 'published' ? 'LIVE & PUBLISHED' : 'MOVED TO DRAFT'}!`, false);
+                loadBlogs();
+            } else {
+                showToast(data.error || 'Failed to update status', true);
+            }
+        } catch (err) {
+            showToast('Error: ' + err.message, true);
+        }
+    }
+
     function renderBlogsTable() {
         const tbody = document.getElementById('blogsTableBody');
         if (!tbody) return;
@@ -506,8 +531,8 @@ const adminApp = (() => {
         tbody.innerHTML = filtered.map(item => {
             const isPub = item.status === 'published';
             const statusBadge = isPub
-                ? `<span class="badge-tag badge-cyan"><i class="fas fa-check-circle" style="font-size:0.6rem;"></i> Published</span>`
-                : `<span class="badge-tag" style="background:#374151; color:#9ca3af;"><i class="fas fa-clock" style="font-size:0.6rem;"></i> Draft</span>`;
+                ? `<button type="button" class="badge-tag badge-cyan" onclick="adminApp.quickToggleBlogStatus('${item.id}', 'draft')" title="Click to move to Draft" style="cursor:pointer; border:none; padding:4px 8px; border-radius:6px; font-weight:600;"><i class="fas fa-check-circle" style="font-size:0.6rem;"></i> Published (Live)</button>`
+                : `<button type="button" class="badge-tag" onclick="adminApp.quickToggleBlogStatus('${item.id}', 'published')" title="Click to Publish immediately to live blog" style="cursor:pointer; border:none; background:#374151; color:#a5f3fc; padding:4px 8px; border-radius:6px; font-weight:600;"><i class="fas fa-upload" style="font-size:0.6rem; color:#06b6d4;"></i> Draft (Click to Publish)</button>`;
 
             const featuredStar = item.featured
                 ? `<span title="Featured Headline Story" style="color:#fbbf24; margin-left:6px;"><i class="fas fa-star"></i></span>`
@@ -1208,6 +1233,7 @@ const adminApp = (() => {
         toggleBlogSelectAll,
         clearBlogSelection,
         bulkBlogAction,
+        quickToggleBlogStatus,
         loadIndexingStatus,
         pingSitemap,
         sendIndexNow,

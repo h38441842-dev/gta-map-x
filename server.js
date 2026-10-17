@@ -685,6 +685,8 @@ app.post('/api/admin/seo', (req, res) => {
   if (data.twitter) seo.twitter = { ...(seo.twitter || {}), site: data.twitter };
   if (data.googleAnalyticsId !== undefined) seo.googleAnalyticsId = data.googleAnalyticsId;
   if (data.googleSearchConsoleTag !== undefined) seo.googleSearchConsoleTag = data.googleSearchConsoleTag;
+  if (data.bingWebmasterTag !== undefined) seo.bingWebmasterTag = data.bingWebmasterTag;
+  if (data.customHeadHtml !== undefined) seo.customHeadHtml = data.customHeadHtml;
 
   try {
     fs.writeFileSync(path.join(__dirname, 'data', 'seo.json'), JSON.stringify(seo, null, 4));
@@ -1155,6 +1157,70 @@ app.delete('/api/admin/blogs/:id', (req, res) => {
   return res.json({ success: true });
 });
 
+function injectSeoAndAnalytics(html, seo) {
+  if (!html || !seo) return html;
+  const tags = [];
+
+  // Google Search Console Verification Meta Tag
+  if (seo.googleSearchConsoleTag) {
+    const raw = String(seo.googleSearchConsoleTag).trim();
+    const match = raw.match(/content=["']([^"']+)["']/i);
+    const token = match ? match[1] : raw.replace(/<[^>]*>/g, '').trim();
+    if (token) {
+      tags.push(`    <meta name="google-site-verification" content="${escAttr(token)}">`);
+    }
+  }
+
+  // Bing Webmaster Verification Tag
+  if (seo.bingWebmasterTag) {
+    const raw = String(seo.bingWebmasterTag).trim();
+    const match = raw.match(/content=["']([^"']+)["']/i);
+    const token = match ? match[1] : raw.replace(/<[^>]*>/g, '').trim();
+    if (token) {
+      tags.push(`    <meta name="msvalidate.01" content="${escAttr(token)}">`);
+    }
+  }
+
+  // Google Analytics 4 (GA4 gtag.js)
+  if (seo.googleAnalyticsId) {
+    const gaId = String(seo.googleAnalyticsId).trim();
+    if (/^G-[A-Za-z0-9]+$/i.test(gaId)) {
+      tags.push(`    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=${escAttr(gaId)}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${escAttr(gaId)}');
+    </script>`);
+    }
+  }
+
+  // Custom Tracking Head HTML
+  if (seo.customHeadHtml && typeof seo.customHeadHtml === 'string' && seo.customHeadHtml.trim()) {
+    tags.push(`    <!-- Custom Tracking / Head Scripts -->\n    ${seo.customHeadHtml.trim()}`);
+  }
+
+  if (tags.length > 0 && html.includes('</head>')) {
+    return html.replace('</head>', tags.join('\n') + '\n</head>');
+  }
+  return html;
+}
+
+// Dynamic root route injecting live Google Analytics & Search Console tags
+app.get(['/', '/index.html'], (req, res, next) => {
+  try {
+    let html = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
+    const seo = readJsonSafe('data/seo.json', {});
+    html = injectSeoAndAnalytics(html, seo);
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Cache-Control', 'no-cache');
+    return res.send(html);
+  } catch (err) {
+    return next();
+  }
+});
+
 // 8. Serve static files from root with long-term caching for immutable assets.
 // HTML entry points stay fresh (no-cache); hashed/versioned assets get 1-year immutable cache.
 app.use(express.static(__dirname, {
@@ -1262,7 +1328,7 @@ app.get('/guides/:slug', (req, res) => {
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.setHeader('Cache-Control', 'public, max-age=3600');
-  res.send(`<!DOCTYPE html>
+  const guideHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1312,7 +1378,8 @@ ${related.length ? `<section class="related"><h2>Related Guides</h2><ul>${relate
 <div class="cta"><strong>Explore the interactive GTA 6 map</strong><br><a href="/">Open GTA6mapx Map</a></div>
 </div>
 </body>
-</html>`);
+</html>`;
+  res.send(injectSeoAndAnalytics(guideHtml, seo));
 });
 
 // 8. SPA fallback for language routes (/en/, /de/, etc.)
