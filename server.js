@@ -581,11 +581,12 @@ app.get('/sitemap.xml', (req, res) => {
   const published = allBlogs.filter(b => b.status === 'published');
 
   const urls = [
-    `  <url><loc>${siteUrl}/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>`,
+    `  <url><loc>${siteUrl}/</loc><lastmod>${new Date().toISOString().slice(0, 10)}</lastmod></url>`,
   ];
   for (const b of published) {
     const lastmod = b.updatedAt ? b.updatedAt.slice(0, 10) : (b.date || '');
-    urls.push(`  <url><loc>${siteUrl}/guides/${escAttr(b.slug)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>0.8</priority></url>`);
+    // Note: changefreq/priority intentionally omitted — Google/Bing ignore them (2026)
+    urls.push(`  <url><loc>${siteUrl}/guides/${escAttr(b.slug)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`);
   }
 
   res.type('application/xml');
@@ -769,25 +770,29 @@ app.get('/api/admin/seo/sitemap-status', (req, res) => {
   });
 });
 
-// Ping search engines about the sitemap (Google + Bing)
+// Ping search engines about the sitemap.
+// NOTE (Oct 2026 research): Google retired google.com/ping in June 2023 (returns 404),
+// and Bing retired its ping endpoint too. This now notifies via IndexNow instead,
+// which is the only live push mechanism. Kept as a single "notify" action for UX.
 app.post('/api/admin/seo/ping-sitemap', async (req, res) => {
   const seo = readJsonSafe('data/seo.json', {});
   const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
-  const sitemapUrl = encodeURIComponent(`${siteUrl}/sitemap.xml`);
-  const targets = [
-    `https://www.google.com/ping?sitemap=${sitemapUrl}`,
-    `https://www.bing.com/ping?sitemap=${sitemapUrl}`,
-  ];
-  const results = [];
-  for (const url of targets) {
-    try {
-      const r = await fetch(url, { signal: AbortSignal.timeout(10000) });
-      results.push({ engine: url.includes('google') ? 'Google' : 'Bing', ok: r.ok, status: r.status });
-    } catch (e) {
-      results.push({ engine: url.includes('google') ? 'Google' : 'Bing', ok: false, error: e.message });
-    }
+  const host = new URL(siteUrl).host;
+  const key = crypto.createHash('sha256').update('gta6mapx-indexnow-' + host).digest('hex').slice(0, 32);
+  // Submit the sitemap URL itself via IndexNow so Bing-family engines recrawl it
+  try {
+    const r = await fetch('https://api.indexnow.org/indexnow.json', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: [`${siteUrl}/sitemap.xml`] }),
+      signal: AbortSignal.timeout(15000),
+    });
+    res.json({ success: r.ok, results: [{ engine: 'IndexNow (Bing/Yandex/Naver)', ok: r.ok, status: r.status }],
+      note: 'Google sitemap ping retired 2023 — submit sitemap in Google Search Console instead.' });
+  } catch (e) {
+    res.json({ success: false, results: [{ engine: 'IndexNow', ok: false, error: e.message }],
+      note: 'Google sitemap ping retired 2023 — submit sitemap in Google Search Console instead.' });
   }
-  res.json({ success: true, results });
 });
 
 // IndexNow: notify search engines about specific changed URLs instantly
