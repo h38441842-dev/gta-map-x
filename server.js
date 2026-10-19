@@ -1392,6 +1392,10 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(PORT, HOST, () => {
-  console.log(`State of Leonida server listening on http://${HOST}:${PORT}`);
-});
+module.exports = app;
+
+if (require.main === module || !process.env.VERCEL) {
+  app.listen(PORT, HOST, () => {
+    console.log(`State of Leonida server listening on http://${HOST}:${PORT}`);
+  });
+}
