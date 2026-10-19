@@ -158,6 +158,11 @@
             hEl.textContent = String(hours).padStart(2, '0');
             mEl.textContent = String(minutes).padStart(2, '0');
             sEl.textContent = String(seconds).padStart(2, '0');
+
+            const headerDaysEl = document.getElementById('countdown-days');
+            if (headerDaysEl) {
+                headerDaysEl.textContent = String(days);
+            }
         }
 
         update();

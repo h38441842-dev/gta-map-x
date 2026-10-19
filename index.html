@@ -258,14 +258,197 @@
             overflow: hidden;
         }
 
+        /* ===================================================
+           LUXURY GLOWING FLOATING HEADER PILL (Matches fix header.png)
+           =================================================== */
         .site-header {
-            visibility: hidden;
+            position: fixed !important;
+            top: 18px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            z-index: 1095 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 20px !important;
+            padding: 6px 24px 6px 20px !important;
+            min-height: 54px !important;
+            border-radius: 9999px !important;
+            background: linear-gradient(135deg, rgba(34, 18, 58, 0.90) 0%, rgba(20, 11, 38, 0.95) 100%) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(236, 72, 153, 0.45) !important;
+            animation: solHeaderPulseGlow 3.5s ease-in-out infinite alternate !important;
+            box-sizing: border-box !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            pointer-events: auto !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transition: all 0.35s ease !important;
+        }
+
+        @keyframes solHeaderPulseGlow {
+            0% {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6),
+                            0 0 16px rgba(236, 72, 153, 0.28),
+                            0 0 35px rgba(139, 92, 246, 0.2);
+                border-color: rgba(236, 72, 153, 0.35);
+            }
+            50% {
+                box-shadow: 0 4px 26px rgba(0, 0, 0, 0.75),
+                            0 0 28px rgba(236, 72, 153, 0.65),
+                            0 0 52px rgba(139, 92, 246, 0.45);
+                border-color: rgba(236, 72, 153, 0.75);
+            }
+            100% {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6),
+                            0 0 16px rgba(236, 72, 153, 0.28),
+                            0 0 35px rgba(139, 92, 246, 0.2);
+                border-color: rgba(236, 72, 153, 0.35);
+            }
         }
 
         .site-header.loaded {
-            visibility: visible;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform: translateX(-50%) !important;
+        }
+
+        .header-logo {
+            display: inline-flex !important;
+            align-items: center !important;
+            text-decoration: none !important;
+            flex-shrink: 0 !important;
+            transition: transform 0.25s ease !important;
+        }
+
+        .header-logo:hover {
+            transform: scale(1.03) !important;
+        }
+
+        .header-logo-icon {
+            height: 34px !important;
+            width: auto !important;
+            object-fit: contain !important;
+            display: block !important;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45)) !important;
+        }
+
+        .header-mapping-center {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            position: relative !important;
+            overflow: hidden !important;
+            width: 120px !important;
+            height: 38px !important;
+            border-radius: 8px !important;
+            flex-shrink: 0 !important;
+            box-shadow: 0 0 14px rgba(236, 72, 153, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            cursor: pointer !important;
+            transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+            text-decoration: none !important;
+            margin-left: 0 !important;
+        }
+
+        .header-mapping-center:hover {
+            transform: scale(1.04) !important;
+            box-shadow: 0 0 22px rgba(236, 72, 153, 0.75) !important;
+        }
+
+        .header-mapping-center .mapping-video {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+            position: static !important;
+            transform: none !important;
+        }
+
+        .header-countdown-pill {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 7px !important;
+            flex-shrink: 0 !important;
+            cursor: default !important;
+        }
+
+        .header-countdown-days {
+            font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+            font-size: 1.7rem !important;
+            font-weight: 900 !important;
+            font-style: italic !important;
+            color: #ff50c5 !important;
+            line-height: 1 !important;
+            letter-spacing: -0.02em !important;
+            text-shadow: 0 0 14px rgba(255, 80, 197, 0.85), 0 0 28px rgba(236, 72, 153, 0.5) !important;
+        }
+
+        .header-countdown-labels {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            line-height: 1.05 !important;
+        }
+
+        .header-countdown-line {
+            font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+            font-size: 0.62rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.08em !important;
+            text-transform: uppercase !important;
+            color: #ffffff !important;
+            opacity: 0.95 !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        /* Completely Suppress Discord Auth Elements */
+        #header-auth-slot,
+        .header-right,
+        .auth-login-btn,
+        .auth-panel,
+        .auth-discord-icon,
+        .auth-header-btn,
+        .auth-discord-avatar,
+        .auth-profile-badge {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            opacity: 0 !important;
+        }
+
+        @media (max-width: 680px) {
+            .site-header {
+                top: 10px !important;
+                padding: 4px 14px !important;
+                gap: 12px !important;
+                min-height: 46px !important;
+                max-width: 96vw !important;
+            }
+            .header-logo-icon {
+                height: 26px !important;
+            }
+            .header-mapping-center {
+                width: 92px !important;
+                height: 30px !important;
+            }
+            .header-countdown-days {
+                font-size: 1.35rem !important;
+            }
+            .header-countdown-line {
+                font-size: 0.5rem !important;
+            }
         }
     </style>
+    <script>
+        window.AUTH_CONFIG = { enabled: false, ui: { showLoginButton: false, showProfileButton: false } };
+    </script>
 </head>
 
 <body class="mobile-ui-booting">
@@ -300,32 +483,18 @@
         </div>
     </div>
 
-    <header class="site-header">
-        <a href="#" class="header-logo" title="GTA6MapX - State of Leonida Interactive Map">
-            <img src="assets/logos/Logo.png" alt="GTA6MapX" class="header-logo-icon">
-            <span class="header-brand-title" style="display:flex; align-items:center; gap:6px; margin-left:8px; font-family:'Montserrat',sans-serif;">
-                <span style="font-weight:900; font-size:1.15rem; color:#fff; letter-spacing:0.04em;">GTA6<span style="color:var(--gta-pink,#f43f5e);">MAP</span><span style="color:var(--gta-cyan,#06b6d4);">X</span></span>
-                <span style="font-size:0.7rem; font-weight:600; text-transform:uppercase; color:rgba(255,255,255,0.65); padding-left:6px; border-left:1px solid rgba(255,255,255,0.25);">Leonida Map</span>
-            </span>
+    <header class="site-header loaded" id="main-site-header">
+        <a href="#" class="header-logo js-launch-map" title="State of Leonida Interactive Map">
+            <img src="assets/logos/Logo.png" alt="State of Leonida" class="header-logo-icon">
         </a>
-        <div style="flex:1;"></div>
-        <a href="#blog" class="header-blog-btn" id="header-blog-btn" title="Vice Wire News & Intelligence">
-            <i class="fas fa-feather-alt"></i>
-            <span>Vice Wire Blog</span>
-        </a>
-        <div class="header-right" id="header-auth-slot"></div>
-        <div class="gta-countdown-wrapper" id="gta-countdown-wrapper">
-            <div class="gta-countdown" id="gta-countdown">
-                <img src="assets/logos/gtavi.png" alt="GTA VI" class="gta-countdown-logo">
-                <div class="gta-countdown-timer">
-                    <div class="gta-countdown-value" id="countdown-days">000</div>
-                    <div class="gta-countdown-separator">:</div>
-                    <div class="gta-countdown-value" id="countdown-hours">00</div>
-                    <div class="gta-countdown-separator">:</div>
-                    <div class="gta-countdown-value" id="countdown-minutes">00</div>
-                    <div class="gta-countdown-separator">:</div>
-                    <div class="gta-countdown-value" id="countdown-seconds">00</div>
-                </div>
+        <div class="header-mapping-center" id="header-mapping-btn" title="VI Mapping">
+            <img src="assets/logos/mappingcool2.gif" alt="Mapping" class="mapping-video">
+        </div>
+        <div class="header-countdown-pill" id="header-countdown-pill" title="GTA VI Launch Countdown">
+            <span class="header-countdown-days" id="countdown-days">31</span>
+            <div class="header-countdown-labels">
+                <span class="header-countdown-line">DAYS</span>
+                <span class="header-countdown-line">TO GO</span>
             </div>
         </div>
     </header>
