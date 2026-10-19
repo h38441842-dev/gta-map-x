@@ -1292,11 +1292,16 @@ function stripTags(s) {
 
 app.get('/guides/:slug', (req, res) => {
   const slug = req.params.slug;
-  // SQLite: indexed slug lookup — 0.05ms (was 375ms)
-  const blog = blogdb.getBySlug(slug);
+  // SQLite: indexed slug or ID lookup — 0.05ms (was 375ms)
+  const blog = blogdb.getByIdOrSlug(slug);
 
   if (!blog || blog.status !== 'published') {
     return res.status(404).sendFile(path.join(__dirname, 'index.html'));
+  }
+
+  // 301 Permanent Redirect if accessed by internal ID to preserve canonical SEO URL
+  if (slug === blog.id && blog.slug && blog.slug !== blog.id) {
+    return res.redirect(301, `/guides/${blog.slug}`);
   }
 
   const seo = readJsonSafe('data/seo.json', {});
