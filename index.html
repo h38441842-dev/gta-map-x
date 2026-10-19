@@ -370,78 +370,81 @@
         .header-countdown-pill {
             display: inline-flex !important;
             align-items: center !important;
-            gap: 8px !important;
+            gap: 10px !important;
             flex-shrink: 0 !important;
             cursor: default !important;
-            padding: 4px 12px !important;
-            background: rgba(0, 0, 0, 0.4) !important;
+            padding: 4px 14px 4px 10px !important;
+            background: rgba(12, 6, 24, 0.65) !important;
             border-radius: 9999px !important;
-            border: 1px solid rgba(255, 255, 255, 0.14) !important;
+            border: 1px solid rgba(236, 72, 153, 0.3) !important;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 2px 8px rgba(0, 0, 0, 0.4) !important;
         }
 
-        .header-live-timer {
+        .header-gtavi-logo {
+            height: 26px !important;
+            width: auto !important;
+            object-fit: contain !important;
+            display: block !important;
+            filter: drop-shadow(0 2px 6px rgba(236, 72, 153, 0.5)) !important;
+        }
+
+        .header-timer-blocks {
             display: inline-flex !important;
-            align-items: baseline !important;
-            gap: 2px !important;
+            align-items: center !important;
+            gap: 5px !important;
             font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
         }
 
-        .hl-timer-val {
-            font-size: 1.18rem !important;
+        .timer-block {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-width: 26px !important;
+        }
+
+        .timer-num {
+            font-size: 1.12rem !important;
             font-weight: 900 !important;
             font-style: italic !important;
             color: #ffffff !important;
+            line-height: 1 !important;
             letter-spacing: -0.01em !important;
-            min-width: 16px !important;
-            text-align: center !important;
-            display: inline-block !important;
+            font-variant-numeric: tabular-nums !important;
         }
 
-        .hl-timer-val.hl-days {
+        .timer-num.num-pink {
             color: #ff50c5 !important;
-            text-shadow: 0 0 10px rgba(255, 80, 197, 0.8) !important;
+            text-shadow: 0 0 12px rgba(255, 80, 197, 0.85) !important;
         }
 
-        .hl-timer-val.hl-secs {
+        .timer-num.num-cyan {
             color: #38bdf8 !important;
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.8) !important;
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.85) !important;
         }
 
-        .hl-timer-lbl {
-            font-size: 0.62rem !important;
+        .timer-sub {
+            font-size: 0.52rem !important;
             font-weight: 800 !important;
-            color: rgba(255, 255, 255, 0.75) !important;
+            letter-spacing: 0.08em !important;
             text-transform: uppercase !important;
-            margin-right: 3px !important;
+            color: rgba(255, 255, 255, 0.65) !important;
+            line-height: 1 !important;
+            margin-top: 2px !important;
         }
 
-        .hl-timer-sep {
-            font-size: 0.9rem !important;
-            font-weight: 700 !important;
-            color: rgba(255, 80, 197, 0.7) !important;
-            margin: 0 1px !important;
+        .timer-colon {
+            font-size: 0.95rem !important;
+            font-weight: 800 !important;
+            color: rgba(255, 80, 197, 0.75) !important;
+            line-height: 1 !important;
+            margin-bottom: 7px !important;
             animation: timerColonBlink 1s infinite !important;
         }
 
         @keyframes timerColonBlink {
             0%, 49% { opacity: 1; }
             50%, 100% { opacity: 0.25; }
-        }
-
-        .hl-timer-tag {
-            font-family: 'Montserrat', system-ui, sans-serif !important;
-            font-size: 0.58rem !important;
-            font-weight: 900 !important;
-            letter-spacing: 0.08em !important;
-            text-transform: uppercase !important;
-            color: #ff50c5 !important;
-            background: rgba(255, 80, 197, 0.16) !important;
-            padding: 3px 6px !important;
-            border-radius: 4px !important;
-            border: 1px solid rgba(255, 80, 197, 0.35) !important;
-            line-height: 1 !important;
-            text-shadow: 0 0 8px rgba(255, 80, 197, 0.5) !important;
-            white-space: nowrap !important;
         }
 
         /* Completely Suppress Discord Auth Elements */
@@ -533,17 +536,29 @@
         <div class="header-mapping-center" id="header-mapping-btn" title="VI Mapping">
             <img src="assets/logos/mappingcool2.gif" alt="Mapping" class="mapping-video">
         </div>
-        <div class="header-countdown-pill" id="header-countdown-pill" title="GTA VI Live Countdown">
-            <div class="header-live-timer">
-                <span class="hl-timer-val hl-days" id="countdown-days">31</span><span class="hl-timer-lbl">d</span>
-                <span class="hl-timer-sep">:</span>
-                <span class="hl-timer-val" id="countdown-hours">00</span><span class="hl-timer-lbl">h</span>
-                <span class="hl-timer-sep">:</span>
-                <span class="hl-timer-val" id="countdown-minutes">00</span><span class="hl-timer-lbl">m</span>
-                <span class="hl-timer-sep">:</span>
-                <span class="hl-timer-val hl-secs" id="countdown-seconds">00</span><span class="hl-timer-lbl">s</span>
+        <div class="header-countdown-pill" id="header-countdown-pill" title="GTA VI Live Release Countdown">
+            <img src="assets/logos/gtavi.png" alt="GTA VI" class="header-gtavi-logo">
+            <div class="header-timer-blocks">
+                <div class="timer-block">
+                    <span class="timer-num num-pink" id="countdown-days">30</span>
+                    <span class="timer-sub">DAYS</span>
+                </div>
+                <span class="timer-colon">:</span>
+                <div class="timer-block">
+                    <span class="timer-num" id="countdown-hours">15</span>
+                    <span class="timer-sub">HOURS</span>
+                </div>
+                <span class="timer-colon">:</span>
+                <div class="timer-block">
+                    <span class="timer-num" id="countdown-minutes">53</span>
+                    <span class="timer-sub">MINS</span>
+                </div>
+                <span class="timer-colon">:</span>
+                <div class="timer-block">
+                    <span class="timer-num num-cyan" id="countdown-seconds">40</span>
+                    <span class="timer-sub">SECS</span>
+                </div>
             </div>
-            <span class="hl-timer-tag">TO GO</span>
         </div>
     </header>
 
