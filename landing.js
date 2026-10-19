@@ -159,10 +159,14 @@
             mEl.textContent = String(minutes).padStart(2, '0');
             sEl.textContent = String(seconds).padStart(2, '0');
 
-            const headerDaysEl = document.getElementById('countdown-days');
-            if (headerDaysEl) {
-                headerDaysEl.textContent = String(days);
-            }
+            const hdrDays = document.getElementById('countdown-days');
+            const hdrHours = document.getElementById('countdown-hours');
+            const hdrMinutes = document.getElementById('countdown-minutes');
+            const hdrSeconds = document.getElementById('countdown-seconds');
+            if (hdrDays) hdrDays.textContent = String(days);
+            if (hdrHours) hdrHours.textContent = String(hours).padStart(2, '0');
+            if (hdrMinutes) hdrMinutes.textContent = String(minutes).padStart(2, '0');
+            if (hdrSeconds) hdrSeconds.textContent = String(seconds).padStart(2, '0');
         }
 
         update();
