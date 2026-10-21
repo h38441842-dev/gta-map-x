@@ -617,7 +617,7 @@ app.get('/sitemap.xml', (req, res) => {
   const now = Date.now();
   if (sitemapCache.xml && (now - sitemapCache.at) < 5 * 60 * 1000) {
     res.type('application/xml');
-    res.setHeader('Cache-Control', 'public, max-age=3600');
+    res.setHeader('Cache-Control', 'public, max-age=300');
     res.setHeader('X-Cache', 'HIT');
     return res.send(sitemapCache.xml);
   }
@@ -638,7 +638,7 @@ app.get('/sitemap.xml', (req, res) => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>`;
   sitemapCache = { xml, at: now };
   res.type('application/xml');
-  res.setHeader('Cache-Control', 'public, max-age=3600');
+  res.setHeader('Cache-Control', 'public, max-age=300');
   res.setHeader('X-Cache', 'MISS');
   res.send(xml);
 });
@@ -1345,7 +1345,7 @@ app.get('/guides/:slug', (req, res) => {
   };
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 'public, max-age=3600');
+  res.setHeader('Cache-Control', 'public, max-age=300');
   const guideHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
