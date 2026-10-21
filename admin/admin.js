@@ -214,7 +214,7 @@ const adminApp = (() => {
             const data = await res.json();
             if (out) out.textContent = data.success
                 ? `IndexNow accepted — ${data.submitted} URLs submitted for ${data.host}`
-                : 'IndexNow failed: ' + (data.error || data.status);
+                : 'IndexNow failed (' + (data.status || '?') + ')' + (data.detail ? ': ' + data.detail : (data.error ? ': ' + data.error : ''));
             showToast(data.success ? 'All URLs submitted via IndexNow' : 'IndexNow failed', !data.success);
         } catch (e) {
             if (out) out.textContent = 'Error: ' + e.message;
