@@ -202,6 +202,25 @@ const adminApp = (() => {
         }
     }
 
+    async function sendIndexNowAll() {
+        const out = document.getElementById('indexNowAllResult');
+        if (out) out.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting all URLs...';
+        try {
+            const res = await adminFetch(`${API_BASE}/seo/indexnow-all`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({})
+            });
+            const data = await res.json();
+            if (out) out.textContent = data.success
+                ? `IndexNow accepted — ${data.submitted} URLs submitted for ${data.host}`
+                : 'IndexNow failed: ' + (data.error || data.status);
+            showToast(data.success ? 'All URLs submitted via IndexNow' : 'IndexNow failed', !data.success);
+        } catch (e) {
+            if (out) out.textContent = 'Error: ' + e.message;
+        }
+    }
+
     async function saveRobots() {
         const editor = document.getElementById('robotsEditor');
         const content = editor?.value || '';
@@ -1237,6 +1256,7 @@ const adminApp = (() => {
         loadIndexingStatus,
         pingSitemap,
         sendIndexNow,
+        sendIndexNowAll,
         saveRobots,
         loadSiteSettings,
         saveSiteSettings,

@@ -870,6 +870,28 @@ app.post('/api/admin/seo/indexnow', async (req, res) => {
   }
 });
 
+// IndexNow — submit the homepage + ALL published article URLs in one batch
+// (IndexNow accepts up to 10,000 URLs per request). For Bing/Yandex/Naver.
+app.post('/api/admin/seo/indexnow-all', requireAdmin, async (req, res) => {
+  const seo = readJsonSafe('data/seo.json', {});
+  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
+  const host = new URL(siteUrl).host;
+  const key = crypto.createHash('sha256').update('gta6mapx-indexnow-' + host).digest('hex').slice(0, 32);
+  const published = blogdb.publishedForSitemap();
+  const urls = [`${siteUrl}/`, ...published.map(b => `${siteUrl}/guides/${b.slug}`)];
+  try {
+    const r = await fetch('https://api.indexnow.org/indexnow.json', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: urls.slice(0, 10000) }),
+      signal: AbortSignal.timeout(20000),
+    });
+    res.json({ success: r.ok, status: r.status, submitted: urls.length, host });
+  } catch (e) {
+    res.status(502).json({ success: false, error: e.message });
+  }
+});
+
 // robots.txt view / edit
 app.get('/api/admin/seo/robots', (req, res) => {
   const content = fs.existsSync(path.join(__dirname, 'robots.txt'))
