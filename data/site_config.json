@@ -2,7 +2,7 @@
   "countdownDate": "2026-11-19T00:00",
   "countdownEnabled": true,
   "announcement": "",
-  "discordUrl": "",
+  "discordUrl": "https://discord.gg/Cjtb42qgQF",
   "headerBanner": {
     "enabled": false,
     "imageUrl": "",
@@ -28,7 +28,7 @@
     }
   },
   "footer": {
-    "showDiscord": false,
+    "showDiscord": true,
     "showGtadb": false,
     "showGtaWiki": false,
     "customLinkText": "GTA Map X Official",
