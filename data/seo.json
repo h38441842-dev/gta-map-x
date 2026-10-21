@@ -1,158 +1,158 @@
 {
-    "site": {
-        "name": "State of Leonida",
-        "tagline": "GTA 6 Interactive Map",
-        "url": "https://map.stateofleonida.net",
-        "locale": "de_DE",
-        "alternateLocale": "en_US",
-        "defaultLang": "en",
-        "languages": [
-            "de",
-            "en"
-        ]
+  "site": {
+    "name": "State of Leonida",
+    "tagline": "GTA 6 Interactive Map",
+    "url": "https://gta6mapx.com",
+    "locale": "de_DE",
+    "alternateLocale": "en_US",
+    "defaultLang": "en",
+    "languages": [
+      "de",
+      "en"
+    ]
+  },
+  "routes": {
+    "markerPrefix": "/m/"
+  },
+  "meta": {
+    "de": {
+      "title": "State of Leonida - Interaktive GTA 6 Map",
+      "description": "State of Leonida - Die interaktive GTA 6 Karte der Mapping Community. Entdecke alle Locations, Landmarks, Trailer-Screenshots und Real-Life Vergleiche in Leonida (Vice City)."
     },
-    "routes": {
-        "markerPrefix": "/m/"
+    "en": {
+      "title": "GTA 6 Interactive Map – State of Leonida | Vice City & Florida Locations",
+      "description": "Explore the definitive interactive GTA 6 map of Leonida & Vice City."
+    }
+  },
+  "templates": {
+    "marker": {
+      "title": "{name} - State of Leonida",
+      "description": {
+        "de": "{name} auf der interaktiven GTA 6 Karte von Leonida. {detail}",
+        "en": "{name} on the interactive GTA 6 map of Leonida. {detail}"
+      },
+      "detailFallback": {
+        "de": "Entdecke Location, Landmark und Real-Life Vergleich.",
+        "en": "Explore location, landmark and real-life comparison."
+      }
     },
-    "meta": {
-        "de": {
-            "title": "State of Leonida - Interaktive GTA 6 Map",
-            "description": "State of Leonida - Die interaktive GTA 6 Karte der Mapping Community. Entdecke alle Locations, Landmarks, Trailer-Screenshots und Real-Life Vergleiche in Leonida (Vice City)."
-        },
-        "en": {
-            "title": "GTA 6 Interactive Map – State of Leonida | Vice City & Florida Locations",
-            "description": "Explore the definitive interactive GTA 6 map of Leonida & Vice City."
-        }
+    "news": {
+      "title": "{title} - State of Leonida",
+      "description": {
+        "de": "{subtitle}",
+        "en": "{subtitle}"
+      },
+      "descriptionFallback": {
+        "de": "News und Updates von State of Leonida - der interaktiven GTA 6 Karte.",
+        "en": "News and updates from State of Leonida - the interactive GTA 6 map."
+      }
+    }
+  },
+  "openGraph": {
+    "type": "website",
+    "image": "assets/logos/og-share.png",
+    "imageFallback": "assets/logos/favicon/web-app-manifest-512x512.png",
+    "imageWidth": 1200,
+    "imageHeight": 630,
+    "imageAlt": "State of Leonida"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "site": "@stateofleonida"
+  },
+  "structuredData": {
+    "organization": {
+      "@type": "Organization",
+      "name": "State of Leonida",
+      "url": "https://map.stateofleonida.net",
+      "logo": "https://map.stateofleonida.net/assets/logos/favicon/web-app-manifest-512x512.png"
     },
-    "templates": {
-        "marker": {
-            "title": "{name} - State of Leonida",
-            "description": {
-                "de": "{name} auf der interaktiven GTA 6 Karte von Leonida. {detail}",
-                "en": "{name} on the interactive GTA 6 map of Leonida. {detail}"
-            },
-            "detailFallback": {
-                "de": "Entdecke Location, Landmark und Real-Life Vergleich.",
-                "en": "Explore location, landmark and real-life comparison."
-            }
-        },
-        "news": {
-            "title": "{title} - State of Leonida",
-            "description": {
-                "de": "{subtitle}",
-                "en": "{subtitle}"
-            },
-            "descriptionFallback": {
-                "de": "News und Updates von State of Leonida - der interaktiven GTA 6 Karte.",
-                "en": "News and updates from State of Leonida - the interactive GTA 6 map."
-            }
-        }
+    "website": {
+      "@type": "WebSite",
+      "name": "State of Leonida",
+      "url": "https://map.stateofleonida.net"
     },
-    "openGraph": {
-        "type": "website",
-        "image": "assets/logos/og-share.png",
-        "imageFallback": "assets/logos/favicon/web-app-manifest-512x512.png",
-        "imageWidth": 1200,
-        "imageHeight": 630,
-        "imageAlt": "State of Leonida"
-    },
-    "twitter": {
-        "card": "summary_large_image",
-        "site": "@stateofleonida"
-    },
-    "structuredData": {
-        "organization": {
-            "@type": "Organization",
-            "name": "State of Leonida",
-            "url": "https://map.stateofleonida.net",
-            "logo": "https://map.stateofleonida.net/assets/logos/favicon/web-app-manifest-512x512.png"
-        },
-        "website": {
-            "@type": "WebSite",
-            "name": "State of Leonida",
-            "url": "https://map.stateofleonida.net"
-        },
-        "webApplication": {
-            "@type": "WebApplication",
-            "name": "State of Leonida",
-            "alternateName": "GTA 6 Interactive Map",
-            "applicationCategory": "GameApplication",
-            "operatingSystem": "Web Browser",
-            "description": {
-                "de": "State of Leonida – Die interaktive GTA 6 Karte der Mapping Community. Alle bekannten Locations, Landmarks und Real-Life Vergleiche.",
-                "en": "State of Leonida – The interactive GTA 6 map by the Mapping Community. All known locations, landmarks and real-life comparisons."
-            },
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "EUR"
-            }
-        }
-    },
-    "robots": {
-        "index": true,
-        "follow": true,
-        "googleBot": {
-            "index": true,
-            "follow": true,
-            "maxSnippet": -1,
-            "maxImagePreview": "large",
-            "maxVideoPreview": -1
-        }
-    },
-    "localSources": [
-        "data/leaks.json",
-        "data/trailer1.json",
-        "data/trailer2.json",
-        "data/screenshots.json",
-        "data/markers.json"
-    ],
-    "topicalPillars": [
-        "Geographic Districts & Coordinates",
-        "Protagonists Lucia & Jason Heists",
-        "Vehicles & Watercraft Spawns",
-        "Trailer 1 & 2 Frame-by-Frame Timestamps",
-        "RAGE 9 Engine Scale & Map Size Comparison",
-        "Platforms & Release Roadmap"
-    ],
-    "keywords": [
-        "GTA 6 Interactive Map",
-        "GTA 6 Map Size vs GTA 5",
-        "State of Leonida Map",
-        "Vice City Map 2026",
-        "Grand Theft Auto 6 Map",
-        "GTA 6 Map Coordinates",
-        "GTA 6 Leaks Map",
-        "GTA 6 Trailer 1 Scene Locations",
-        "GTA 6 Trailer 2 Map",
-        "Port Gellhorn GTA 6",
-        "Kelly County GTA 6",
-        "Leonard County",
-        "Leonida Keys Highway",
-        "Lake Leonida Swamps",
-        "Vice Beach Ocean Drive",
-        "Ambrosia Sugar Mill",
-        "Starfish Island GTA 6",
-        "GTA 6 GPS Travel Time",
-        "GTA 6 Real Life Florida Comparison",
-        "GTA VI Mapping Community",
-        "Yanis v16 Map",
-        "GTA 6 Heist Locations",
-        "Lucia and Jason Story Map",
-        "GTA 6 Vehicle Spawns Map",
-        "GTA 6 Supercars List",
-        "GTA 6 RAGE 9 Engine Map Scale",
-        "GTA 6 PS5 Pro 60 FPS",
-        "GTA 6 Map Landmass km2",
-        "Seven Mile Bridge GTA 6 Keys",
-        "GTA 6 Grassrivers Everglades",
-        "ThrillBilly Mud Club GTA 6",
-        "Leonida Dept of Corrections",
-        "Hank Waffles Robbery GTA 6",
-        "King Motel Safehouse GTA 6"
-    ],
-    "googleAnalyticsId": "",
-    "googleSearchConsoleTag": "",
-    "bingWebmasterTag": "",
-    "customHeadHtml": ""
+    "webApplication": {
+      "@type": "WebApplication",
+      "name": "State of Leonida",
+      "alternateName": "GTA 6 Interactive Map",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Web Browser",
+      "description": {
+        "de": "State of Leonida – Die interaktive GTA 6 Karte der Mapping Community. Alle bekannten Locations, Landmarks und Real-Life Vergleiche.",
+        "en": "State of Leonida – The interactive GTA 6 map by the Mapping Community. All known locations, landmarks and real-life comparisons."
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+  },
+  "robots": {
+    "index": true,
+    "follow": true,
+    "googleBot": {
+      "index": true,
+      "follow": true,
+      "maxSnippet": -1,
+      "maxImagePreview": "large",
+      "maxVideoPreview": -1
+    }
+  },
+  "localSources": [
+    "data/leaks.json",
+    "data/trailer1.json",
+    "data/trailer2.json",
+    "data/screenshots.json",
+    "data/markers.json"
+  ],
+  "topicalPillars": [
+    "Geographic Districts & Coordinates",
+    "Protagonists Lucia & Jason Heists",
+    "Vehicles & Watercraft Spawns",
+    "Trailer 1 & 2 Frame-by-Frame Timestamps",
+    "RAGE 9 Engine Scale & Map Size Comparison",
+    "Platforms & Release Roadmap"
+  ],
+  "keywords": [
+    "GTA 6 Interactive Map",
+    "GTA 6 Map Size vs GTA 5",
+    "State of Leonida Map",
+    "Vice City Map 2026",
+    "Grand Theft Auto 6 Map",
+    "GTA 6 Map Coordinates",
+    "GTA 6 Leaks Map",
+    "GTA 6 Trailer 1 Scene Locations",
+    "GTA 6 Trailer 2 Map",
+    "Port Gellhorn GTA 6",
+    "Kelly County GTA 6",
+    "Leonard County",
+    "Leonida Keys Highway",
+    "Lake Leonida Swamps",
+    "Vice Beach Ocean Drive",
+    "Ambrosia Sugar Mill",
+    "Starfish Island GTA 6",
+    "GTA 6 GPS Travel Time",
+    "GTA 6 Real Life Florida Comparison",
+    "GTA VI Mapping Community",
+    "Yanis v16 Map",
+    "GTA 6 Heist Locations",
+    "Lucia and Jason Story Map",
+    "GTA 6 Vehicle Spawns Map",
+    "GTA 6 Supercars List",
+    "GTA 6 RAGE 9 Engine Map Scale",
+    "GTA 6 PS5 Pro 60 FPS",
+    "GTA 6 Map Landmass km2",
+    "Seven Mile Bridge GTA 6 Keys",
+    "GTA 6 Grassrivers Everglades",
+    "ThrillBilly Mud Club GTA 6",
+    "Leonida Dept of Corrections",
+    "Hank Waffles Robbery GTA 6",
+    "King Motel Safehouse GTA 6"
+  ],
+  "googleAnalyticsId": "",
+  "googleSearchConsoleTag": "",
+  "bingWebmasterTag": "",
+  "customHeadHtml": ""
 }
