@@ -878,7 +878,9 @@ app.post('/api/admin/seo/indexnow-all', requireAdmin, async (req, res) => {
   const host = new URL(siteUrl).host;
   const key = crypto.createHash('sha256').update('gta6mapx-indexnow-' + host).digest('hex').slice(0, 32);
   const published = blogdb.publishedForSitemap();
-  const urls = [`${siteUrl}/`, ...published.map(b => `${siteUrl}/guides/${b.slug}`)];
+  // IndexNow requires percent-encoded URLs — 310 slugs contain non-ASCII
+  // characters (ó, ę, …); sending them raw makes the whole batch fail 400.
+  const urls = [`${siteUrl}/`, ...published.map(b => `${siteUrl}/guides/${encodeURIComponent(b.slug)}`)];
   try {
     const r = await fetch('https://api.indexnow.org/indexnow.json', {
       method: 'POST',
@@ -886,7 +888,8 @@ app.post('/api/admin/seo/indexnow-all', requireAdmin, async (req, res) => {
       body: JSON.stringify({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: urls.slice(0, 10000) }),
       signal: AbortSignal.timeout(20000),
     });
-    res.json({ success: r.ok, status: r.status, submitted: urls.length, host });
+    const detail = r.ok ? '' : (await r.text().catch(() => '')).slice(0, 200);
+    res.json({ success: r.ok, status: r.status, submitted: urls.length, host, ...(detail ? { detail } : {}) });
   } catch (e) {
     res.status(502).json({ success: false, error: e.message });
   }
