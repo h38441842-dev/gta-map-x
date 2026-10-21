@@ -5254,6 +5254,8 @@ class SEOManager {
         }
         return site['alternateLocale'] || 'en_US';
     }['_brandTitle']() {
+        const _seoMeta = this['config'] ?.['meta'] ?.[this['_defaultLang']()] || this['config'] ?.['meta'] ?.['en'];
+        if (_seoMeta && _seoMeta['title']) return _seoMeta['title']['trim']() || _seoMeta['title'];
         return (this['config'] ?.['site'] ?.['name'] || 'State\x20of\x20Leonida')['trim']() || 'State\x20of\x20Leonida';
     }
     async ['reload']() {
