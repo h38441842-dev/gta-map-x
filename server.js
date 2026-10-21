@@ -821,6 +821,31 @@ app.get('/api/admin/seo/sitemap-status', (req, res) => {
   });
 });
 
+// IndexNow submission helper. Oct 21, 2026: api.indexnow.org returns an Azure
+// edge error page ("Our services aren't available right now", HTTP 400) from
+// multiple networks, while Bing's own endpoint accepts submissions (202) and
+// propagates them to the IndexNow network. Try Bing first, shared API second.
+async function submitIndexNow(payload) {
+  const endpoints = ['https://www.bing.com/indexnow', 'https://api.indexnow.org/indexnow.json'];
+  let last = { ok: false, status: 0, endpoint: '', detail: '' };
+  for (const endpoint of endpoints) {
+    try {
+      const r = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(20000),
+      });
+      const detail = r.ok ? '' : (await r.text().catch(() => '')).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160);
+      last = { ok: r.ok, status: r.status, endpoint, detail };
+      if (r.ok) return last;
+    } catch (e) {
+      last = { ok: false, status: 0, endpoint, detail: e.message };
+    }
+  }
+  return last;
+}
+
 // Ping search engines about the sitemap.
 // NOTE (Oct 2026 research): Google retired google.com/ping in June 2023 (returns 404),
 // and Bing retired its ping endpoint too. This now notifies via IndexNow instead,
@@ -831,19 +856,9 @@ app.post('/api/admin/seo/ping-sitemap', async (req, res) => {
   const host = new URL(siteUrl).host;
   const key = crypto.createHash('sha256').update('gta6mapx-indexnow-' + host).digest('hex').slice(0, 32);
   // Submit the sitemap URL itself via IndexNow so Bing-family engines recrawl it
-  try {
-    const r = await fetch('https://api.indexnow.org/indexnow.json', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: [`${siteUrl}/sitemap.xml`] }),
-      signal: AbortSignal.timeout(15000),
-    });
-    res.json({ success: r.ok, results: [{ engine: 'IndexNow (Bing/Yandex/Naver)', ok: r.ok, status: r.status }],
-      note: 'Google sitemap ping retired 2023 — submit sitemap in Google Search Console instead.' });
-  } catch (e) {
-    res.json({ success: false, results: [{ engine: 'IndexNow', ok: false, error: e.message }],
-      note: 'Google sitemap ping retired 2023 — submit sitemap in Google Search Console instead.' });
-  }
+  const r = await submitIndexNow({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: [`${siteUrl}/sitemap.xml`] });
+  res.json({ success: r.ok, results: [{ engine: 'IndexNow (Bing/Yandex/Naver)', ok: r.ok, status: r.status }],
+    note: 'Google sitemap ping retired 2023 — submit sitemap in Google Search Console instead.' });
 });
 
 // IndexNow: notify search engines about specific changed URLs instantly
@@ -857,17 +872,9 @@ app.post('/api/admin/seo/indexnow', async (req, res) => {
   const host = new URL(siteUrl).host;
   // IndexNow key: derived deterministically, also served at /<key>.txt for verification
   const key = crypto.createHash('sha256').update('gta6mapx-indexnow-' + host).digest('hex').slice(0, 32);
-  try {
-    const r = await fetch('https://api.indexnow.org/indexnow.json', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: urls }),
-      signal: AbortSignal.timeout(15000),
-    });
-    res.json({ success: r.ok, status: r.status });
-  } catch (e) {
-    res.status(502).json({ success: false, error: e.message });
-  }
+  const r = await submitIndexNow({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: urls });
+  if (!r.ok && r.status === 0) return res.status(502).json({ success: false, error: r.detail || 'IndexNow unreachable' });
+  res.json({ success: r.ok, status: r.status, ...(r.detail ? { detail: r.detail } : {}) });
 });
 
 // IndexNow — submit the homepage + ALL published article URLs in one batch
@@ -881,18 +888,9 @@ app.post('/api/admin/seo/indexnow-all', requireAdmin, async (req, res) => {
   // IndexNow requires percent-encoded URLs — 310 slugs contain non-ASCII
   // characters (ó, ę, …); sending them raw makes the whole batch fail 400.
   const urls = [`${siteUrl}/`, ...published.map(b => `${siteUrl}/guides/${encodeURIComponent(b.slug)}`)];
-  try {
-    const r = await fetch('https://api.indexnow.org/indexnow.json', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: urls.slice(0, 10000) }),
-      signal: AbortSignal.timeout(20000),
-    });
-    const detail = r.ok ? '' : (await r.text().catch(() => '')).slice(0, 200);
-    res.json({ success: r.ok, status: r.status, submitted: urls.length, host, ...(detail ? { detail } : {}) });
-  } catch (e) {
-    res.status(502).json({ success: false, error: e.message });
-  }
+  const r = await submitIndexNow({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: urls.slice(0, 10000) });
+  if (!r.ok && r.status === 0) return res.status(502).json({ success: false, error: r.detail || 'IndexNow unreachable' });
+  res.json({ success: r.ok, status: r.status, submitted: urls.length, host, via: r.endpoint, ...(r.detail ? { detail: r.detail } : {}) });
 });
 
 // robots.txt view / edit
