@@ -22,6 +22,19 @@ const blogdb = require('./lib/blogdb');
       console.error('[blogdb] Auto-migration failed:', e.message);
     }
   }
+  // Auto-deploy sync: on every boot, add articles that are new in
+  // blogs.json (pushed via git after the first deploy). Existing rows —
+  // including admin-panel edits — are never overwritten.
+  if (fs2.existsSync(dbPath) && fs2.existsSync(jsonPath)) {
+    try {
+      const added = blogdb.syncNewFromJson(jsonPath);
+      if (added > 0) {
+        console.log(`[blogdb] Boot sync: added ${added} new article(s) from blogs.json.`);
+      }
+    } catch (e) {
+      console.error('[blogdb] Boot sync failed:', e.message);
+    }
+  }
 })();
 
 const app = express();
