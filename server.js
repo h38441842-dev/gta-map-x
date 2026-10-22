@@ -37,6 +37,21 @@ const blogdb = require('./lib/blogdb');
       console.error('[blogdb] Slug rename failed:', e.message);
     }
   }
+  // Topic cover images: apply data/covermap.json ({slug: coverImage}) to
+  // existing rows before the sync. Only the cover changes — content is
+  // never touched by this step.
+  const covermapPath = path2.join(__dirname, 'data', 'covermap.json');
+  if (fs2.existsSync(dbPath) && fs2.existsSync(covermapPath)) {
+    try {
+      const cmap = JSON.parse(fs2.readFileSync(covermapPath, 'utf8'));
+      const cr = blogdb.applyCoverImages(cmap);
+      if (cr.updated) {
+        console.log(`[blogdb] Cover images updated: ${cr.updated}`);
+      }
+    } catch (e) {
+      console.error('[blogdb] Cover image apply failed:', e.message);
+    }
+  }
   // Auto-deploy sync: on every boot, add articles that are new in
   // blogs.json (pushed via git after the first deploy). Existing rows —
   // including admin-panel edits — are never overwritten.
@@ -1401,12 +1416,13 @@ app.get('/guides/:slug', (req, res) => {
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.setHeader('Cache-Control', 'public, max-age=300');
+  const titleTag = /gta6mapx/i.test(title) ? title : title + ' | GTA6mapx';
   const guideHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${title} | GTA6mapx</title>
+<title>${titleTag}</title>
 <meta name="description" content="${desc}">
 ${keywords ? `<meta name="keywords" content="${keywords}">` : ''}
 <link rel="canonical" href="${canonical}">
