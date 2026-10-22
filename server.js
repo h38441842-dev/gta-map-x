@@ -22,6 +22,21 @@ const blogdb = require('./lib/blogdb');
       console.error('[blogdb] Auto-migration failed:', e.message);
     }
   }
+  // Slug cleanup: apply renames (data/redirects.json) to existing DB rows
+  // BEFORE the boot sync, so renamed articles match blogs.json and are not
+  // re-inserted as duplicates. Rows whose target slug is taken are skipped.
+  const redirectsPath = path2.join(__dirname, 'data', 'redirects.json');
+  if (fs2.existsSync(dbPath) && fs2.existsSync(redirectsPath)) {
+    try {
+      const map = JSON.parse(fs2.readFileSync(redirectsPath, 'utf8'));
+      const r = blogdb.applySlugRenames(map);
+      if (r.renamed || r.skipped) {
+        console.log(`[blogdb] Slug renames: ${r.renamed} applied, ${r.skipped} skipped (target taken).`);
+      }
+    } catch (e) {
+      console.error('[blogdb] Slug rename failed:', e.message);
+    }
+  }
   // Auto-deploy sync: on every boot, add articles that are new in
   // blogs.json (pushed via git after the first deploy). Existing rows —
   // including admin-panel edits — are never overwritten.
@@ -1317,6 +1332,18 @@ app.get(['/tiles/*', '/assets/*'], async (req, res) => {
   res.status(404).end();
 });
 
+// Slug-cleanup redirects (old slug -> clean slug), loaded once and cached.
+let slugRedirectsCache = null;
+function getSlugRedirects() {
+  if (slugRedirectsCache) return slugRedirectsCache;
+  try {
+    slugRedirectsCache = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'redirects.json'), 'utf8'));
+  } catch {
+    slugRedirectsCache = {};
+  }
+  return slugRedirectsCache;
+}
+
 // 7b. SEO article pages — every post gets its own indexable URL: /guides/<slug>
 // Server-side rendered with full meta tags, Open Graph, canonical and JSON-LD.
 function escAttr(s) {
@@ -1332,6 +1359,9 @@ app.get('/guides/:slug', (req, res) => {
   const blog = blogdb.getByIdOrSlug(slug);
 
   if (!blog || blog.status !== 'published') {
+    // Slug cleanup: old (pre-cleanup) slugs 301 to their clean replacements.
+    const target = getSlugRedirects()[slug] || getSlugRedirects()[String(slug).toLowerCase()];
+    if (target) return res.redirect(301, `/guides/${target}`);
     return res.status(404).sendFile(path.join(__dirname, 'index.html'));
   }
 
