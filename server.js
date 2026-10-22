@@ -1341,6 +1341,8 @@ app.get('/guides/:slug', (req, res) => {
   }
 
   const seo = readJsonSafe('data/seo.json', {});
+  const siteCfg = readJsonSafe('data/site_config.json', {});
+  const discordUrl = escAttr(siteCfg.discordUrl || 'https://discord.gg/Cjtb42qgQF');
   const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
   const canonical = `${siteUrl}/guides/${blog.slug}`;
   const title = escAttr(blog.title);
@@ -1406,6 +1408,9 @@ h1{font-size:2rem;line-height:1.3;margin:.5rem 0 1rem}
 .related h2{font-size:1.2rem}.related ul{list-style:none;padding:0}.related li{margin:.6rem 0}.related a{color:#ff50c5;text-decoration:none}
 .cta{margin-top:2rem;padding:1.5rem;background:#14141f;border-radius:12px;text-align:center}
 .cta a{display:inline-block;background:#ff50c5;color:#fff;padding:.7rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:600;margin-top:.8rem}
+.cta-discord{margin-top:2rem;padding:1.5rem;background:#16182b;border:1px solid #5865F2;border-radius:12px;text-align:center}
+.cta-discord p{color:#aab;margin:.4rem 0 0}
+.cta-discord a{display:inline-block;background:#5865F2;color:#fff;padding:.7rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:600;margin-top:.9rem}
 </style>
 </head>
 <body>
@@ -1416,6 +1421,7 @@ h1{font-size:2rem;line-height:1.3;margin:.5rem 0 1rem}
 ${cover ? `<img class="hero" src="${cover}" alt="${title}" loading="eager">` : ''}
 <article class="article-body">${blog.content}</article>
 ${related.length ? `<section class="related"><h2>Related Guides</h2><ul>${related.map(r => `<li><a href="/guides/${escAttr(r.slug)}">${escAttr(r.title)}</a></li>`).join('')}</ul></section>` : ''}
+<div class="cta-discord"><strong>💬 Join the GTA6mapx Discord</strong><p>Map discoveries, trailer breakdowns, weekly landmark hunts and the countdown to launch day — November 19, 2026. The first 100 members get the OG — Founding 100 role, forever.</p><a href="${discordUrl}" target="_blank" rel="noopener">Join the Discord Server</a></div>
 <div class="cta"><strong>Explore the interactive GTA 6 map</strong><br><a href="/">Open GTA6mapx Map</a></div>
 </div>
 </body>

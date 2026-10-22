@@ -248,6 +248,13 @@
                     ${mapJumpHtml}
                 </div>
 
+                <!-- Discord Community CTA -->
+                <div style="margin-top: 3rem; padding: 1.8rem; background: #16182b; border: 1px solid #5865F2; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.15rem; font-weight: 800; color: #fff;">💬 Join the GTA6mapx Discord</div>
+                    <p style="color: #9ba3be; margin: 0.6rem auto 0; max-width: 520px;">Map discoveries, trailer breakdowns, weekly landmark hunts and the countdown to launch day — November 19, 2026. The first 100 members get the OG — Founding 100 role, forever.</p>
+                    <a href="https://discord.gg/Cjtb42qgQF" target="_blank" rel="noopener" style="display: inline-block; background: #5865F2; color: #fff; padding: 0.7rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 700; margin-top: 1rem;">Join the Discord Server</a>
+                </div>
+
                 <!-- Bottom Author Bio & Return Action -->
                 <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem;">
                     <div>
