@@ -52,6 +52,20 @@ const blogdb = require('./lib/blogdb');
       console.error('[blogdb] Cover image apply failed:', e.message);
     }
   }
+  // Reviewed content fixes: apply data/contentfixes.json ({slug: fields})
+  // to existing rows. Only slugs/fields listed there are ever written.
+  const contentFixPath = path2.join(__dirname, 'data', 'contentfixes.json');
+  if (fs2.existsSync(dbPath) && fs2.existsSync(contentFixPath)) {
+    try {
+      const fixes = JSON.parse(fs2.readFileSync(contentFixPath, 'utf8'));
+      const fr = blogdb.applyContentFixes(fixes);
+      if (fr.updated) {
+        console.log(`[blogdb] Content fixes applied: ${fr.updated}`);
+      }
+    } catch (e) {
+      console.error('[blogdb] Content fix apply failed:', e.message);
+    }
+  }
   // Auto-deploy sync: on every boot, add articles that are new in
   // blogs.json (pushed via git after the first deploy). Existing rows —
   // including admin-panel edits — are never overwritten.
