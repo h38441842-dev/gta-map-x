@@ -580,11 +580,11 @@
                 <a href="#features" class="landing-nav-link">Features</a>
                 <a href="#hotspots" class="landing-nav-link">Hotspots</a>
                 <a href="#encyclopedia" class="landing-nav-link">Encyclopedia</a>
-                <a href="#blog" class="landing-nav-link" id="nav-link-blog"><i class="fas fa-feather-alt" style="color:var(--gta-pink); margin-right:4px;"></i>Vice Wire Blog</a>
+                <a href="/blog" class="landing-nav-link" id="nav-link-blog"><i class="fas fa-feather-alt" style="color:var(--gta-pink); margin-right:4px;"></i>Vice Wire Blog</a>
                 <a href="/admin/" class="landing-nav-link"><i class="fas fa-shield-alt" style="color:var(--gta-blue); margin-right:4px;"></i>Admin</a>
             </nav>
             <div class="landing-nav-actions">
-                <a href="#blog" class="btn-header-blog" id="btn-header-blog" title="Vice Wire GTA 6 Blog & Intelligence Reports">
+                <a href="/blog" class="btn-header-blog" id="btn-header-blog" title="Vice Wire GTA 6 Blog & Intelligence Reports">
                     <i class="fas fa-feather-alt"></i>
                     <span>Blog</span>
                 </a>
@@ -1461,348 +1461,27 @@
             <!-- Feed View -->
             <div id="blog-list-view">
                 <div class="blog-section-header">
-                    <div class="blog-kicker"><i class="fas fa-bolt"></i> Vice Wire Special Bulletin</div>
-                    <h2 class="blog-main-title">Intelligence & Cartography Wire</h2>
+                    <div class="blog-kicker"><i class="fas fa-bolt"></i> VICE WIRE — MOST READ</div>
+                    <h2 class="blog-main-title">Popular GTA 6 Guides</h2>
                     <p class="blog-subtitle">
-                        Exclusive analytical research, trailer frame dissections, coordinate telemetry updates, and Florida architectural comparisons directly from our mapping team.
+                        The ten essential Leonida briefings — release date, map, trailers, price, platforms and the protagonists — hand-picked from the full Vice Wire archive.
                     </p>
                 </div>
 
-                <!-- Controls: Filter & Search Bar -->
-                <div class="blog-controls-bar">
-                    <div class="blog-category-filters">
-                        <button type="button" class="blog-filter-btn active js-blog-filter" data-category="all">All Dispatches</button>
-                        <button type="button" class="blog-filter-btn js-blog-filter" data-category="Cartography & Leaks">Cartography & Leaks</button>
-                        <button type="button" class="blog-filter-btn js-blog-filter" data-category="Districts & Lore">Districts & Lore</button>
-                        <button type="button" class="blog-filter-btn js-blog-filter" data-category="Vehicles & Heists">Vehicles & Heists</button>
-                        <button type="button" class="blog-filter-btn js-blog-filter" data-category="Trailer Analysis">Trailer Analysis</button>
-                        <button type="button" class="blog-filter-btn js-blog-filter" data-category="Dev Telemetry">Dev Telemetry</button>
-                    </div>
-                    <div class="blog-search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="blogSearchInputPublic" class="blog-search-input" placeholder="Search dispatches & leaks...">
-                    </div>
-                </div>
+                <!-- Featured Article Hero Container (rank #1, filled by blog.js) -->
+                <div id="blog-featured-container"></div>
 
-                <!-- Featured Article Hero Container -->
-                <div id="blog-featured-container">
-                    <div class="blog-featured-card" data-slug="triangulating-vice-beach-ocean-drive-photogrammetry">
-                        <div class="blog-featured-media">
-                            <img src="assets/photos/screenshots/vice_city/Vice_City_05.jpg" alt="Triangulating Vice Beach: How Photogrammetry Decoded Ocean Drive in Trailer 1" class="blog-featured-img">
-                            <div class="blog-featured-scrim"></div>
-                        </div>
-                        <div class="blog-featured-content">
-                            <div class="blog-meta-unboxed">
-                                <span class="meta-category">Cartography &amp; Leaks</span>
-                                <span class="meta-sep" aria-hidden="true">·</span>
-                                <span>6 min read</span>
-                                <span class="meta-sep" aria-hidden="true">·</span>
-                                <span>Oct 12, 2026</span>
-                            </div>
-                            <h2 class="blog-featured-title js-open-article" data-slug="triangulating-vice-beach-ocean-drive-photogrammetry">Triangulating Vice Beach: How Photogrammetry Decoded Ocean Drive in Trailer 1</h2>
-                            <p class="blog-featured-excerpt">A deep mathematical breakdown of focal lengths, Art Deco facade dimensions, and horizon vector alignments that fixed Ocean Drive's exact Cartesian coordinates at X: 2803.2, Y: 1409.4.</p>
-                            <button type="button" class="blog-btn-action js-open-article" data-slug="triangulating-vice-beach-ocean-drive-photogrammetry">
-                                <span>Read Full Investigation</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <!-- Popular Articles Grid (ranks #2-#10, filled by blog.js) -->
+                <div class="blog-grid" id="blog-grid-container"></div>
 
-                <!-- Articles Grid Container -->
-                <div class="blog-grid" id="blog-grid-container">
-                        <article class="blog-card js-open-article" data-slug="port-gellhorn-enigma-industrial-hub-telemetry">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/trailer/trailer3/T3_201.png" alt="The Port Gellhorn Enigma: Analyzing Leonida's Heavy Industrial Hub" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Districts &amp; Lore</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>6 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">The Port Gellhorn Enigma: Analyzing Leonida's Heavy Industrial Hub</h3>
-                                <p class="blog-card-excerpt">From the leaked Hank's Waffles diner heist to the massive shipping container cranes, we examine why Port Gellhorn represents the grit and blue-collar underbelly of western Leonida.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Marcus Vance · Oct 11, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
+                <p class="blog-popular-hook">New intel drops every week — the Wire never sleeps.</p>
 
-                        <article class="blog-card js-open-article" data-slug="lucia-jason-heist-network-safehouses-and-mechanics">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/screenshots/jason_duval/Jason_Duval_02.jpg" alt="Lucia &amp; Jason's Criminal Circuit: Deconstructing Safehouses &amp; Dual Protagonists" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Vehicles &amp; Heists</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>5 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">Lucia &amp; Jason's Criminal Circuit: Deconstructing Safehouses &amp; Dual Protagonists</h3>
-                                <p class="blog-card-excerpt">Inside the Bonnie-and-Clyde dynamic: how duffel bag mechanics, vehicle trunk armories, and safehouse networks redefine heist execution in Grand Theft Auto VI.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Elena Rostova · Oct 10, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-card js-open-article" data-slug="leonida-map-scale-comparison-gta5-rdr2-breakdown">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/screenshots/leonida_keys/Leonida_Keys_05.jpg" alt="Why Leonida's 125 km² Map Dwarfs Los Santos and New Hanover Combined" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Cartography &amp; Leaks</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>7 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">Why Leonida's 125 km² Map Dwarfs Los Santos and New Hanover Combined</h3>
-                                <p class="blog-card-excerpt">A definitive scale evaluation comparing coordinate bounds, open waterways, and density metrics across the history of Rockstar Games open worlds.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Vice Wire GIS Lead · Oct 9, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-card js-open-article" data-slug="grassrivers-frontier-swamps-ambrosia-sugar-mill">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/screenshots/vice_city/Vice_City_05.jpg" alt="The Grassrivers Frontier: Navigating Alligator Swamps &amp; Ambrosia Sugar Mill" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Districts &amp; Lore</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>6 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">The Grassrivers Frontier: Navigating Alligator Swamps &amp; Ambrosia Sugar Mill</h3>
-                                <p class="blog-card-excerpt">Deep inside Kelly County lies Ambrosia Sugar Refinery and the treacherous Grassrivers bayous, where swamp airboats and apex reptiles dominate the ecosystem.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Elena Rostova · Oct 8, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-card js-open-article" data-slug="vice-city-international-airport-runways-hangars">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/trailer/trailer3/T3_201.png" alt="Vice City International Airport (VIA): Runway Telemetry, Hangars &amp; Security" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Cartography &amp; Leaks</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>5 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">Vice City International Airport (VIA): Runway Telemetry, Hangars &amp; Security</h3>
-                                <p class="blog-card-excerpt">Triangulated at coordinates X: 1100.0, Y: -1200.0, Vice City International Airport features massive dual crosswind runways, multi-level passenger terminals, and executive private jet hangars.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Marcus Vance · Oct 7, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-card js-open-article" data-slug="overseas-highway-high-speed-travel-leonida-keys">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/screenshots/leonida_keys/Leonida_Keys_05.jpg" alt="The Overseas Highway: Island Hopping &amp; High-Speed Travel Across Leonida Keys" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Cartography &amp; Leaks</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>6 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">The Overseas Highway: Island Hopping &amp; High-Speed Travel Across Leonida Keys</h3>
-                                <p class="blog-card-excerpt">Connecting mainland Vice City to the tropical archipelago of the Keys, the Overseas Highway spans multiple suspension bridges, coral atolls, and waterfront resort villas.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Vice Wire GIS Lead · Oct 6, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-card js-open-article" data-slug="armed-robbery-heist-mechanics-diners-pawn-shops">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/screenshots/jason_duval/Jason_Duval_02.jpg" alt="Armed Robbery &amp; Heist Mechanics: Inside Diners, Pawn Shops &amp; Drillable Safes" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Vehicles &amp; Heists</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>5 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">Armed Robbery &amp; Heist Mechanics: Inside Diners, Pawn Shops &amp; Drillable Safes</h3>
-                                <p class="blog-card-excerpt">A deep tactical analysis of the Bonnie-and-Clyde stick-up mechanics: hostage intimidation cones, dynamic cash register looting, and thermal drill safecracking.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Elena Rostova · Oct 5, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-card js-open-article" data-slug="law-enforcement-ai-roadblocks-vision-cones-pursuit">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/screenshots/vice_city/Vice_City_05.jpg" alt="Law Enforcement Protocol: AI Roadblocks, Vision Cones &amp; Pursuit Tactics" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Trailer Analysis</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>6 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">Law Enforcement Protocol: AI Roadblocks, Vision Cones &amp; Pursuit Tactics</h3>
-                                <p class="blog-card-excerpt">Leonida law enforcement introduces tactical PIT maneuvers, dynamic spike strips, perimeter search grids, and vehicle license plate recognition networks.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Marcus Vance · Oct 4, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-card js-open-article" data-slug="supercars-speedboats-tuners-verified-vehicle-roster">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/screenshots/vice_city/Vice_City_05.jpg" alt="Supercars, Speedboats &amp; Tuners: The Complete Verified Vehicle Roster in GTA 6" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Vehicles &amp; Heists</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>7 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">Supercars, Speedboats &amp; Tuners: The Complete Verified Vehicle Roster in GTA 6</h3>
-                                <p class="blog-card-excerpt">From the Grotti Cheetah classic to the Pegassi Torero XO, examine the official and leaked car roster featuring full interior tuning, dynamic tire physics, and functional gloveboxes.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Alex Rivera · Oct 3, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-card js-open-article" data-slug="rage-9-engine-volumetric-fluid-70-percent-interiors">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/screenshots/vice_city/Vice_City_05.jpg" alt="RAGE 9 Engine Deconstructed: Volumetric Fluid Sim, 70% Interiors &amp; Raytracing" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Dev Telemetry</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>8 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">RAGE 9 Engine Deconstructed: Volumetric Fluid Sim, 70% Interiors &amp; Raytracing</h3>
-                                <p class="blog-card-excerpt">An in-depth technical exploration into Rockstar Games' proprietary RAGE 9 engine: real-time global illumination, cloth tessellation, and procedural water physics.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Vice Wire GIS Lead · Oct 2, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-card js-open-article" data-slug="can-ps5-pro-hit-60-fps-vice-city-pssr-cpu-limits">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/trailer/trailer3/T3_201.png" alt="Can PS5 Pro Hit 60 FPS in Vice City? CPU Limits, PSSR &amp; Hardware Benchmarks" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Dev Telemetry</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>6 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">Can PS5 Pro Hit 60 FPS in Vice City? CPU Limits, PSSR &amp; Hardware Benchmarks</h3>
-                                <p class="blog-card-excerpt">Deconstructing Sony's PS5 Pro hardware specifications: how Zen 2 CPU constraints and PlayStation Spectral Super Resolution (PSSR) impact GTA 6's frame rate targets.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Marcus Vance · Oct 1, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-card js-open-article" data-slug="duffel-bag-arsenal-realistic-inventory-weapon-wheel">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/screenshots/jason_duval/Jason_Duval_02.jpg" alt="The Duffel Bag Arsenal: How Realistic Inventory Replaces the Endless Weapon Wheel" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Vehicles &amp; Heists</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>5 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">The Duffel Bag Arsenal: How Realistic Inventory Replaces the Endless Weapon Wheel</h3>
-                                <p class="blog-card-excerpt">Say goodbye to carrying 40 heavy weapons in your pocket: GTA 6 introduces physical weapon slings, limited sidearm holsters, and tactical car trunk armories.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Elena Rostova · Sep 30, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="blog-card js-open-article" data-slug="satire-live-streaming-ingame-social-media-wanted-heat">
-                            <div class="blog-card-media">
-                                <img src="assets/photos/screenshots/vice_city/Vice_City_05.jpg" alt="Satire &amp; Live-Streaming: How In-Game Social Media Shapes Wanted Heat in Leonida" class="blog-card-img" loading="lazy">
-                            </div>
-                            <div class="blog-card-content">
-                                <div class="blog-meta-unboxed">
-                                    <span class="meta-category">Trailer Analysis</span>
-                                    <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>5 min read</span>
-                                </div>
-                                <h3 class="blog-card-title">Satire &amp; Live-Streaming: How In-Game Social Media Shapes Wanted Heat in Leonida</h3>
-                                <p class="blog-card-excerpt">Viral car meet streams, rooftop twerking clips, and Florida Man antics: how in-game vertical video feeds turn the entire state of Leonida into a living social media parody.</p>
-                                <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">Alex Rivera · Sep 29, 2026</span>
-                                    <span class="blog-read-link">
-                                        <span>Read Report</span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-                </div>
-            </div>
-
-            <!-- Single Article Reader View (Hidden by default) -->
-            <div id="blog-single-view" style="display:none;">
-                <div class="blog-single-container" id="blog-single-content">
-                    <!-- Populated dynamically by blog.js -->
+                <!-- Premium button band: the full archive lives on /blog -->
+                <div class="blog-cta-band">
+                    <a href="/blog" class="blog-explore-btn">
+                        <span>Explore All <span id="blogTotalCount"></span>Guides</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1833,7 +1512,7 @@
                     <div style="display:flex; gap:1.5rem; align-items:center;">
                         <a href="#overview" style="color:var(--gta-text-muted); text-decoration:none;">Overview</a>
                         <a href="#features" style="color:var(--gta-text-muted); text-decoration:none;">Features</a>
-                        <a href="#blog" style="color:var(--gta-text-muted); text-decoration:none;">Vice Wire Blog</a>
+                        <a href="/blog" style="color:var(--gta-text-muted); text-decoration:none;">Vice Wire Blog</a>
                         <a href="/admin/" style="color:var(--gta-text-muted); text-decoration:none;"><i class="fas fa-lock"></i> Admin Portal</a>
                     </div>
                 </div>

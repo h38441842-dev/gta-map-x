@@ -3,6 +3,18 @@
   "countdownEnabled": true,
   "announcement": "",
   "discordUrl": "https://discord.gg/Cjtb42qgQF",
+  "homepagePopular": [
+    "gta-6-release-date",
+    "gta-6-map",
+    "gta-6-trailer-2-release-date",
+    "gta-6-price",
+    "gta-6-platforms",
+    "gta-6-pc",
+    "gta-6-system-requirements",
+    "gta-6-lucia",
+    "gta-6-jason",
+    "gta-6-vice-city"
+  ],
   "headerBanner": {
     "enabled": false,
     "imageUrl": "",

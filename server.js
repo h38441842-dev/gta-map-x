@@ -1089,6 +1089,54 @@ app.get('/api/blogs', (req, res) => {
   res.json({ success: true, count: result.blogs.length, total: result.total, page: result.page, totalPages: result.totalPages, blogs: result.blogs });
 });
 
+// Homepage "Popular" feed (Redesign Phase 1) — card fields ONLY (never article
+// `content`), in the curated order from data/site_config.json `homepagePopular`.
+// Fallback chain when the config list is missing/short: featured posts (newest
+// first), then newest published — always capped at 10 cards.
+const POPULAR_CARD_FIELDS = ['slug', 'title', 'category', 'excerpt', 'coverImage', 'readTime', 'date'];
+function popularCard(blog) {
+  const card = {};
+  for (const f of POPULAR_CARD_FIELDS) card[f] = blog[f] ?? '';
+  return card;
+}
+
+app.get('/api/blogs/popular', (req, res) => {
+  const config = readJsonSafe('data/site_config.json', {});
+  const configured = Array.isArray(config.homepagePopular) ? config.homepagePopular : [];
+  const cards = [];
+  const seen = new Set();
+
+  for (const slug of configured) {
+    if (cards.length >= 10) break;
+    const key = String(slug || '').trim().toLowerCase();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    const blog = blogdb.getBySlug(key);
+    if (blog && blog.status === 'published') cards.push(popularCard(blog));
+  }
+
+  if (cards.length < 10) {
+    // blogdb.list() is newest-first (date DESC) and caps limit at 500.
+    const pool = blogdb.list({ status: 'published', page: 1, limit: 500 }).blogs
+      .filter(b => !seen.has(String(b.slug || '').toLowerCase()));
+    for (const b of pool.filter(b => b.featured)) {
+      if (cards.length >= 10) break;
+      seen.add(String(b.slug || '').toLowerCase());
+      cards.push(popularCard(b));
+    }
+    for (const b of pool) {
+      if (cards.length >= 10) break;
+      const key = String(b.slug || '').toLowerCase();
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      cards.push(popularCard(b));
+    }
+  }
+
+  res.setHeader('Cache-Control', 'public, max-age=300');
+  res.json({ success: true, count: cards.length, total: blogdb.publishedCount(), blogs: cards });
+});
+
 app.get('/api/blogs/:idOrSlug', (req, res) => {
   const { idOrSlug } = req.params;
   // SQLite: indexed lookup — 0.05ms (was 375ms full scan)
@@ -1299,6 +1347,90 @@ app.get(['/', '/index.html'], (req, res, next) => {
   } catch (err) {
     return next();
   }
+});
+
+// Minimal placeholder /blog index (Redesign Phase 1) — the premium /blog page
+// (Phase 3) replaces this. Server-rendered card list, 24 per page, ?page=N.
+app.get(['/blog', '/blog/'], (req, res) => {
+  const perPage = 24;
+  const page = Math.max(parseInt(req.query.page, 10) || 1, 1);
+  const result = blogdb.list({ status: 'published', page, limit: perPage });
+  const fmtDate = (d) => {
+    if (!d) return '';
+    try { return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); } catch (_) { return String(d); }
+  };
+  const cards = result.blogs.map(b => `
+                    <article class="blog-card">
+                        <a href="/guides/${escAttr(b.slug)}" class="blog-card-link" style="display:block; color:inherit; text-decoration:none;">
+                            <div class="blog-card-media">
+                                <img src="${escAttr(b.coverImage || 'assets/photos/screenshots/vice_city/Vice_City_05.jpg')}" alt="${escAttr(b.title)}" class="blog-card-img" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta-unboxed">
+                                    <span class="meta-category">${escAttr(b.category || 'Intelligence')}</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>${escAttr(b.readTime || '4 min read')}</span>
+                                </div>
+                                <h3 class="blog-card-title">${escAttr(b.title)}</h3>
+                                <p class="blog-card-excerpt">${escAttr(b.excerpt || '')}</p>
+                                <div class="blog-card-footer">
+                                    <span style="color: #9ba3be; font-weight: 500;">${fmtDate(b.date)}</span>
+                                    <span class="blog-read-link"><span>Read Report</span> <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>`).join('');
+  const prevLink = page > 1
+    ? `<a href="/blog?page=${page - 1}" class="blog-page-link">← Newer</a>`
+    : '<span></span>';
+  const nextLink = page < result.totalPages
+    ? `<a href="/blog?page=${page + 1}" class="blog-page-link">Older →</a>`
+    : '<span></span>';
+  const seo = readJsonSafe('data/seo.json', {});
+  const html = injectSeoAndAnalytics(`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vice Wire Blog — All GTA 6 Guides &amp; Reports | GTA6mapx</title>
+    <meta name="description" content="Browse all ${result.total} GTA 6 guides, trailer breakdowns and Leonida intelligence reports from the GTA6mapx Vice Wire.">
+    <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="blog.css">
+    <style>
+        body { background: #07070f; margin: 0; }
+        .blog-index-wrap { max-width: 1240px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+        .blog-index-head { margin-bottom: 2.5rem; }
+        .blog-index-head a { color: #9ba3be; text-decoration: none; font-weight: 600; }
+        .blog-index-head a:hover { color: #fff; }
+        .blog-index-head h1 { color: #fff; font-size: 2.2rem; margin: 1rem 0 0.5rem; }
+        .blog-index-head p { color: #9ba3be; margin: 0; }
+        .blog-pagination { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; color: #9ba3be; font-weight: 600; }
+        .blog-page-link { color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); padding: 0.6rem 1.2rem; border-radius: 999px; }
+        .blog-page-link:hover { border-color: rgba(255, 80, 197, 0.6); }
+    </style>
+</head>
+<body>
+    <main class="blog-index-wrap">
+        <div class="blog-index-head">
+            <a href="/">← Back to the Interactive Map</a>
+            <h1>Vice Wire — All GTA 6 Guides &amp; Reports</h1>
+            <p>${result.total} published dispatches — page ${result.page} of ${result.totalPages}.</p>
+        </div>
+        <div class="blog-grid">${cards}
+        </div>
+        <nav class="blog-pagination">
+            ${prevLink}
+            <span>Page ${result.page} of ${result.totalPages}</span>
+            ${nextLink}
+        </nav>
+    </main>
+</body>
+</html>`, seo);
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.setHeader('Cache-Control', 'no-cache');
+  return res.send(html);
 });
 
 // 8. Serve static files from root with long-term caching for immutable assets.
