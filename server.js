@@ -4,6 +4,8 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const blogdb = require('./lib/blogdb');
+const articleLib = require('./lib/article');
+const linker = require('./lib/linker');
 
 // Auto-migrate: if blogs.db doesn't exist yet but blogs.json does,
 // build the SQLite database on first startup (one-time, ~2s for 3,660 articles).
@@ -964,7 +966,7 @@ app.post('/api/admin/blogs/bulk', (req, res) => {
   }
   try {
     const affected = blogdb.bulk(action, ids);
-    invalidateSitemapCache();
+    invalidateSitemapCache(); linker.invalidate();
     res.json({ success: true, action, affected });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -1206,7 +1208,7 @@ app.post('/api/admin/blogs', (req, res) => {
       featured: Boolean(data.featured),
       status: data.status || 'published',
     });
-    invalidateSitemapCache();
+    invalidateSitemapCache(); linker.invalidate();
     return res.json({ success: true, blog: newBlog });
   } catch (err) {
     // Likely UNIQUE constraint on slug (race) — report as conflict
@@ -1264,7 +1266,7 @@ app.put('/api/admin/blogs/:id', (req, res) => {
     if (data.status !== undefined) updates.status = data.status;
 
     const updated = blogdb.update(id, updates);
-    invalidateSitemapCache();
+    invalidateSitemapCache(); linker.invalidate();
     return res.json({ success: true, blog: updated });
   } catch (err) {
     if (String(err.message).includes('UNIQUE')) {
@@ -1281,7 +1283,7 @@ app.delete('/api/admin/blogs/:id', (req, res) => {
   if (!deleted) {
     return res.status(404).json({ success: false, error: 'Article not found' });
   }
-  invalidateSitemapCache();
+  invalidateSitemapCache(); linker.invalidate();
   return res.json({ success: true });
 });
 
@@ -1544,11 +1546,86 @@ app.get('/guides/:slug', (req, res) => {
   const dateIso = blog.date || new Date().toISOString().slice(0, 10);
   const textContent = stripTags(blog.content);
 
-  // Related articles (same category, exclude self, max 6) — SQLite indexed
-  const related = blogdb.related(blog, 6);
+  // --- Redesign Phase 2: premium article template (specs 06/07/08/09) ---
+  // Everything below is template-level: stored content is only read, never edited.
+  const A = articleLib;
+  const sourcesData = readJsonSafe('data/official-sources.json', null);
+  const lang = A.detectLang(blog);
+  const og100Open = siteCfg.og100Open !== false;
+  const inviteUrl = siteCfg.discordUrl || 'https://discord.gg/Cjtb42qgQF';
+  const fmtDate = (d) => {
+    if (!d) return '';
+    try { return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); } catch (_) { return String(d); }
+  };
+  const hubUrl = `/blog?category=${encodeURIComponent(blog.category || 'Guides')}`;
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
+  // Internal linking (spec 07): scored ranker; picks de-duped vs in-body links.
+  const picks = linker.relatedScored(blog, { count: 9, exclude: A.extractInBodySlugs(blog.content) });
+  const relatedCards = picks.slice(0, 6);
+  const continuePicks = picks.slice(6, 9);
+
+  // Render-time content transforms (spec 06 helpers) — stored bytes untouched.
+  const split = A.splitIntro(blog.content);
+  const lead = A.tagLead(split.intro);
+  let introHtml = lead.html;
+  let bodyHtml = split.body;
+  const toc = A.buildToc(bodyHtml);
+  bodyHtml = toc.html;
+  const faq = A.transformFaq(bodyHtml);
+  bodyHtml = faq.html;
+  introHtml = A.badgeEvidence(introHtml);
+  bodyHtml = A.badgeEvidence(bodyHtml);
+  bodyHtml = A.lazyImages(bodyHtml);
+  const take = A.extractTakeaways(textContent);
+  const pull = A.pickPullQuote(textContent, take.used);
+  if (pull) bodyHtml = A.insertPullQuote(bodyHtml, pull);
+  if (continuePicks.length >= 2) {
+    bodyHtml = A.insertContinueStrip(bodyHtml, A.continueStripHtml(continuePicks, escAttr, A.capFirst));
+  }
+  const sourcesBlock = A.buildSourcesBlock(blog, lang, sourcesData);
+  if (sourcesBlock) bodyHtml = A.insertSourcesBlock(bodyHtml, sourcesBlock);
+
+  // Discord start hook (spec 09): spliced after the intro's first real paragraph.
+  const hookHtml = A.discordStartHook({ lang, slug: blog.slug, discordUrl: inviteUrl, og100Open });
+  introHtml = A.injectAfterFirstParagraph(introHtml, hookHtml);
+
+  // Standfirst (spec 06 §6a): verbatim excerpt; suppressed if it repeats the lead.
+  const excerptText = String(blog.excerpt || '').trim();
+  const leadTextNorm = A.stripTags(split.intro).toLowerCase();
+  const showStandfirst = !!excerptText && !leadTextNorm.includes(excerptText.slice(0, 40).toLowerCase());
+
+  const updatedText = blog.updatedAt && blog.updatedAt !== blog.date ? fmtDate(blog.updatedAt) : '';
+  const cardCover = (r) => (r.coverImage
+    ? (String(r.coverImage).startsWith('http') ? escAttr(r.coverImage) : `${siteUrl}/${escAttr(String(r.coverImage).replace(/^\//, ''))}`)
+    : '');
+  const cardHtml = (r) => `<a class="ax-card" href="/guides/${escAttr(r.slug)}">${cardCover(r) ? `<span class="ax-card-media"><img src="${cardCover(r)}" alt="${escAttr(r.title)}" loading="lazy" decoding="async"><span class="ax-card-chip">${escAttr(r.category)}</span></span>` : ''}<span class="ax-card-body"><span class="ax-card-title">${escAttr(r.title)}</span><span class="ax-card-excerpt">${escAttr(String(r.excerpt || '').slice(0, 160))}</span><span class="ax-card-meta">${escAttr(r.readTime || '')} · ${escAttr(fmtDate(r.date))}</span><span class="ax-card-action">${escAttr(A.capFirst(r.anchor))}</span></span></a>`;
+  const relatedHtml = relatedCards.length
+    ? `<section class="ax-related"><h2>Related Guides</h2><div class="ax-cards">${relatedCards.map(cardHtml).join('')}</div><a class="ax-hub-line" href="${hubUrl}">More guides in ${escAttr(blog.category || 'Guides')} →</a></section>`
+    : '';
+  const trustHtml = A.trustStripHtml({
+    author: blog.author || 'GTA6mapx Editorial',
+    authorRole: blog.authorRole || '',
+    dateText: fmtDate(dateIso),
+    updatedText,
+  });
+  const endCtaHtml = A.endCtaPanel({
+    lang, discordUrl: inviteUrl, og100Open,
+    countdownDate: siteCfg.countdownDate || '2026-11-19T00:00',
+  });
+  const tocList = toc.entries.length >= 4 ? A.tocListHtml(toc.entries) : '';
+  const mobileTocHtml = tocList
+    ? `<!--ax:toc-mobile--><details class="ax-toc-mobile"><summary>On this page</summary>${tocList}</details><!--/ax:toc-mobile-->`
+    : '';
+  const railTocHtml = tocList
+    ? `<aside class="ax-toc"><div class="ax-toc-title">On this page</div>${tocList}</aside>`
+    : '';
+  const takeawaysBox = split.hasH2 ? A.takeawaysHtml(take, toc.entries) : '';
+
+  // Structured data (spec 06 §3): Article node (fields unchanged) + BreadcrumbList
+  // + FAQPage when Q&A pairs were extracted — all inside one @graph.
+  const crumbTitle = String(blog.title || '').length > 60
+    ? String(blog.title).slice(0, 60).trimEnd() + '…' : String(blog.title || '');
+  const articleNode = {
     '@type': 'Article',
     headline: blog.title,
     description: stripTags(blog.excerpt || '').slice(0, 200),
@@ -1558,7 +1635,28 @@ app.get('/guides/:slug', (req, res) => {
     author: { '@type': 'Person', name: blog.author || 'GTA6mapx Editorial' },
     publisher: { '@type': 'Organization', name: 'GTA6mapx', url: siteUrl },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    '@id': canonical,
   };
+  const breadcrumbNode = {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'GTA6mapx', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: `${siteUrl}/blog` },
+      { '@type': 'ListItem', position: 3, name: blog.category || 'Guides', item: `${siteUrl}${hubUrl}` },
+      { '@type': 'ListItem', position: 4, name: crumbTitle, item: canonical },
+    ],
+  };
+  const graph = [articleNode, breadcrumbNode];
+  if (faq.pairs.length) {
+    graph.push({
+      '@type': 'FAQPage',
+      mainEntity: faq.pairs.map(p => ({
+        '@type': 'Question', name: p.q,
+        acceptedAnswer: { '@type': 'Answer', text: p.a },
+      })),
+    });
+  }
+  const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.setHeader('Cache-Control', 'public, max-age=300');
@@ -1587,35 +1685,178 @@ ${cover ? `<meta property="og:image" content="${cover}">` : ''}
 ${cover ? `<meta name="twitter:image" content="${cover}">` : ''}
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 <style>
-*{box-sizing:border-box}body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;margin:0;background:#0a0a12;color:#e8e8f0;line-height:1.7}
-.wrap{max-width:780px;margin:0 auto;padding:2rem 1.25rem}
-.crumb{font-size:.85rem;color:#888;margin-bottom:1rem}.crumb a{color:#ff50c5;text-decoration:none}
-h1{font-size:2rem;line-height:1.3;margin:.5rem 0 1rem}
-.meta{color:#999;font-size:.9rem;margin-bottom:1.5rem;display:flex;gap:1rem;flex-wrap:wrap}
-.hero{width:100%;border-radius:12px;margin:1rem 0}
-.article-body img{max-width:100%;height:auto;border-radius:8px}
-.article-body h2{margin-top:2rem;color:#fff}.article-body h3{margin-top:1.5rem;color:#fff}
-.article-body a{color:#ff50c5}.article-body blockquote{border-left:3px solid #ff50c5;padding-left:1rem;color:#bbb;margin:1.5rem 0}
-.related{margin-top:3rem;border-top:1px solid #222;padding-top:1.5rem}
-.related h2{font-size:1.2rem}.related ul{list-style:none;padding:0}.related li{margin:.6rem 0}.related a{color:#ff50c5;text-decoration:none}
-.cta{margin-top:2rem;padding:1.5rem;background:#14141f;border-radius:12px;text-align:center}
-.cta a{display:inline-block;background:#ff50c5;color:#fff;padding:.7rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:600;margin-top:.8rem}
-.cta-discord{margin-top:2rem;padding:1.5rem;background:#16182b;border:1px solid #5865F2;border-radius:12px;text-align:center}
-.cta-discord p{color:#aab;margin:.4rem 0 0}
-.cta-discord a{display:inline-block;background:#5865F2;color:#fff;padding:.7rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:600;margin-top:.9rem}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;margin:0;background:#0a0a12;color:#e8e8f0;line-height:1.7}
+a{color:#ff50c5}
+.ax-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;background:linear-gradient(90deg,#ff50c5,#8b5cf6);transform:scaleX(0);transform-origin:left;opacity:0}
+.ax-shell{max-width:1180px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+.ax-crumb{font-size:.85rem;color:#888;margin-bottom:1.25rem}
+.ax-crumb ol{list-style:none;display:flex;flex-wrap:wrap;gap:.45rem;margin:0;padding:0}
+.ax-crumb li+li::before{content:'›';margin-right:.45rem;color:#555}
+.ax-crumb a{color:#ff50c5;text-decoration:none}
+.ax-crumb [aria-current]{color:#bbb}
+.ax-chip{display:inline-block;border:1px solid #ff50c5;color:#ff50c5;border-radius:999px;padding:.18rem .8rem;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;margin-bottom:.9rem}
+.ax-head h1{font-size:clamp(1.9rem,4.5vw,2.9rem);line-height:1.15;letter-spacing:-.01em;margin:.2rem 0 1rem;color:#fff}
+.ax-standfirst{font-size:1.25rem;line-height:1.55;color:#c9c9d6;border-left:3px solid #ff50c5;padding-left:1rem;margin:0 0 1.25rem;max-width:720px}
+.ax-meta{color:#999;font-size:.9rem;display:flex;gap:1rem 1.4rem;flex-wrap:wrap;border-top:1px solid #222;border-bottom:1px solid #222;padding:.7rem 0;margin-bottom:1.5rem}
+.ax-legend-mini{color:#c9c9d6}
+.ax-hero{margin:0 0 2rem}
+.ax-hero img{width:100%;aspect-ratio:16/9;object-fit:cover;max-height:560px;border-radius:16px;display:block}
+.ax-grid{display:grid;grid-template-columns:minmax(0,760px);gap:3rem;justify-content:center}
+@media(min-width:1024px){.ax-grid{grid-template-columns:minmax(0,760px) 300px}}
+.ax-toc{display:none}
+@media(min-width:1024px){.ax-toc{display:block;position:sticky;top:88px;max-height:calc(100vh - 120px);overflow:auto;align-self:start;background:#10101c;border:1px solid #23233a;border-radius:12px;padding:1rem 1.1rem}}
+.ax-toc-title{font-weight:800;color:#fff;margin-bottom:.6rem;font-size:.95rem}
+.ax-toc ul{list-style:none;margin:0;padding:0}
+.ax-toc li{margin:.35rem 0;font-size:.88rem;line-height:1.4}
+.ax-toc-l3{padding-left:.9rem}
+.ax-toc a{color:#b9b9cc;text-decoration:none}
+.ax-toc a:hover,.ax-toc a.is-active{color:#ff50c5}
+.ax-toc-mobile{border:1px solid #23233a;border-radius:12px;padding:.8rem 1rem;margin:1.5rem 0;background:#10101c}
+.ax-toc-mobile summary{cursor:pointer;font-weight:700;color:#fff}
+.ax-toc-mobile ul{list-style:none;margin:.6rem 0 0;padding:0}
+.ax-toc-mobile li{margin:.35rem 0;font-size:.92rem}
+.ax-toc-mobile .ax-toc-l3{padding-left:.9rem}
+.ax-toc-mobile a{color:#b9b9cc;text-decoration:none}
+@media(min-width:1024px){.ax-toc-mobile{display:none}}
+.article-body{font-size:1.06rem;line-height:1.8;color:#dcdce6}
+.article-body p{margin:0 0 1.1em}
+.article-body h2{font-size:1.55rem;color:#fff;margin:2.6rem 0 .9rem;line-height:1.3;border-top:1px solid #23233a;padding-top:1.4rem;scroll-margin-top:96px}
+.article-body h3{font-size:1.22rem;color:#fff;margin:1.9rem 0 .6rem;scroll-margin-top:96px}
+.article-body a{color:#ff50c5;text-underline-offset:3px}
+.article-body a[href^="http"]:not([href*="gta6mapx.com"])::after{content:' ↗';font-size:.85em}
+.article-body ul,.article-body ol{margin:0 0 1.1em;padding-left:1.4rem}
+.article-body li{margin:.4em 0}
+.article-body ul li::marker{content:'▸ ';color:#ff50c5}
+.article-body img{max-width:100%;height:auto;border-radius:12px;margin:1.6rem 0;border:1px solid #23233a}
+.article-body strong{color:#fff;font-weight:650}
+.article-body blockquote{border-left:3px solid #ff50c5;padding-left:1rem;color:#bbb;margin:1.5rem 0}
+.article-body table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.95rem}
+.article-body th,.article-body td{border:1px solid #23233a;padding:.5rem .7rem;text-align:left}
+.article-body tr:nth-child(even){background:#10101c}
+.ax-lead{font-size:1.13rem;line-height:1.75}
+@media(min-width:640px){.ax-lead-cap::first-letter{font-size:3.4em;float:left;line-height:.85;padding-right:.12em;color:#ff50c5;font-weight:800}}
+.ax-ev{display:inline-flex;align-items:center;border-radius:999px;padding:0 .45em;font-size:.85em;line-height:1.5;vertical-align:baseline}
+.ax-ev-yes{background:rgba(46,204,113,.14)}
+.ax-ev-trailer{background:rgba(139,92,246,.16)}
+.ax-ev-unannounced{background:rgba(245,176,65,.14)}
+.ax-slot-discord{margin:1.6rem 0}
+.hook-discord-start{background:#16182b;border:2px solid #5865F2;border-radius:12px;padding:1.1rem 1.25rem}
+.hook-eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.08em;color:#8f9bf0;margin-bottom:.45rem}
+.hook-headline{font-size:1.22rem;font-weight:800;color:#fff;line-height:1.3}
+.hook-sentence{color:#aab;margin:.5rem 0 0;font-size:.95rem;line-height:1.6}
+.hook-bullets{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin:.8rem 0 0;padding:0;font-size:.9rem;color:#c9c9d6}
+.hook-bullets li{margin:0}
+.hook-bullets li::marker{content:''}
+.hook-btn{display:inline-block;background:#5865F2;color:#fff;padding:.7rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:700;margin-top:1rem}
+.hook-btn:hover{background:#4752c4}
+.ax-takeaways{border:1px solid #23233a;border-left:3px solid #ff50c5;border-radius:12px;background:#10101c;padding:1.1rem 1.25rem;margin:1.6rem 0}
+.ax-takeaways h2{border:0;padding:0;margin:0 0 .6rem;font-size:1.15rem}
+.ax-takeaways ul{margin:0;padding-left:1.2rem}
+.ax-takeaways li{margin:.35em 0}
+.ax-pull{font-size:1.5rem;font-style:italic;text-align:center;color:#fff;line-height:1.5;border-top:3px solid #ff50c5;padding:1.4rem 1rem .4rem;margin:2.4rem 0}
+.ax-continue{border:1px solid #23233a;border-left:3px solid #5865F2;border-radius:12px;background:#10101c;padding:1rem 1.25rem;margin:2rem 0}
+.ax-continue h3{margin:0 0 .5rem;font-size:1.05rem}
+.ax-continue ul{list-style:none;margin:0;padding:0}
+.ax-continue li{margin:.45rem 0}
+.ax-continue li::marker{content:''}
+.ax-faq-item{border:1px solid #23233a;border-radius:10px;margin:.7rem 0;background:#10101c}
+.ax-faq-q{margin:0;font-size:1.02rem}
+.ax-faq-q button{all:inherit;display:block;width:100%;text-align:left;background:none;border:0;color:#fff;font-weight:650;padding:.85rem 1.1rem;cursor:pointer}
+.ax-faq-q button::after{content:'▾';float:right;color:#ff50c5;transition:transform .2s}
+.ax-faq-q button[aria-expanded="true"]::after{transform:rotate(180deg)}
+.ax-faq-a{padding:0 1.1rem .9rem}
+.ax-faq-a p:last-child{margin-bottom:0}
+.ax-sources{border:1px solid #23233a;border-radius:12px;background:#0d1420;padding:1rem 1.25rem;margin:2rem 0}
+.ax-sources-h{border:0;padding:0;margin:0 0 .5rem;font-size:.85rem;letter-spacing:.09em;text-transform:uppercase;color:#9fd0ff}
+.ax-sources ul{list-style:none;margin:0;padding:0}
+.ax-sources li{margin:.4rem 0}
+.ax-sources li::marker{content:''}
+.ax-trust{border:1px solid #23233a;border-radius:12px;background:#10101c;padding:1.2rem 1.3rem;margin:3rem 0 0}
+.ax-trust-brand{font-weight:800;color:#fff;font-size:1.05rem}
+.ax-trust-by{color:#b9b9cc;margin-top:.2rem}
+.ax-trust-method{color:#c9c9d6;margin:.7rem 0}
+.ax-trust-legend{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;color:#c9c9d6;font-size:.92rem}
+.ax-trust-dates{color:#888;font-size:.88rem;margin-top:.7rem}
+.ax-related{margin-top:3rem;border-top:1px solid #222;padding-top:1.5rem}
+.ax-related h2{font-size:1.35rem;color:#fff;margin:0 0 1.1rem}
+.ax-cards{display:grid;grid-template-columns:1fr;gap:1.1rem}
+@media(min-width:640px){.ax-cards{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.ax-cards{grid-template-columns:repeat(3,1fr)}}
+.ax-card{display:block;background:#10101c;border:1px solid #23233a;border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s}
+.ax-card:hover{transform:translateY(-3px);border-color:#ff50c5}
+.ax-card-media{position:relative;display:block}
+.ax-card-media img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.ax-card-chip{position:absolute;top:.6rem;left:.6rem;background:rgba(10,10,18,.85);color:#ff50c5;border:1px solid #ff50c5;border-radius:999px;padding:.1rem .6rem;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.ax-card-body{display:block;padding:.95rem 1.05rem 1.05rem}
+.ax-card-title{display:block;color:#fff;font-weight:700;font-size:1.02rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ax-card-excerpt{display:block;color:#9a9ab0;font-size:.9rem;line-height:1.5;margin-top:.45rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ax-card-meta{display:block;color:#777;font-size:.82rem;margin-top:.6rem}
+.ax-card-action{display:inline-block;color:#ff50c5;font-weight:700;font-size:.9rem;margin-top:.55rem}
+.ax-hub-line{display:inline-block;margin-top:1.2rem;color:#ff50c5;text-decoration:none;font-weight:700}
+.ax-endcta{display:grid;grid-template-columns:1fr;gap:1.1rem;margin-top:2.5rem}
+@media(min-width:768px){.ax-endcta{grid-template-columns:1fr 1fr}}
+.ax-endcta-discord,.ax-endcta-map{padding:1.5rem;border-radius:12px;text-align:center}
+.ax-endcta-discord{background:#16182b;border:1px solid #5865F2}
+.ax-endcta-discord strong{color:#fff;font-size:1.15rem}
+.ax-endcta-discord p{color:#aab;margin:.5rem 0 0}
+.ax-btn-discord{display:inline-block;background:#5865F2;color:#fff;padding:.7rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:700;margin-top:.9rem}
+.ax-og-line{color:#8f9bf0;font-size:.85rem;margin-top:.7rem}
+.ax-endcta-map{background:#14141f;border:1px solid #23233a}
+.ax-endcta-map strong{color:#fff;font-size:1.15rem}
+.ax-btn-map{display:inline-block;background:#ff50c5;color:#fff;padding:.7rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:600;margin-top:.8rem}
+.ax-totop{position:fixed;right:1.1rem;bottom:1.1rem;width:44px;height:44px;border-radius:50%;border:1px solid #ff50c5;background:#14141f;color:#ff50c5;font-size:1.15rem;cursor:pointer;opacity:0;transition:opacity .2s;z-index:60}
 </style>
 </head>
 <body>
-<div class="wrap">
-<nav class="crumb"><a href="/">GTA6mapx</a> &rsaquo; <a href="/#blog">Guides</a> &rsaquo; ${escAttr(blog.category || '')}</nav>
+<div class="ax-progress" id="ax-progress"></div>
+<div class="ax-shell">
+<nav class="ax-crumb" aria-label="Breadcrumb"><ol><li><a href="/">GTA6mapx</a></li><li><a href="/blog">Guides</a></li><li><a href="${hubUrl}">${escAttr(blog.category || 'Guides')}</a></li><li aria-current="page">${escAttr(crumbTitle)}</li></ol></nav>
+<header class="ax-head">
+<a class="ax-chip" href="${hubUrl}">${escAttr(blog.category || 'Guides')}</a>
 <h1>${escAttr(blog.title)}</h1>
-<div class="meta"><span>By ${escAttr(blog.author || 'GTA6mapx Editorial')}</span><span>${escAttr(dateIso)}</span><span>${escAttr(blog.readTime || '')}</span><span>${escAttr(blog.category || '')}</span></div>
-${cover ? `<img class="hero" src="${cover}" alt="${title}" loading="eager">` : ''}
-<article class="article-body">${blog.content}</article>
-${related.length ? `<section class="related"><h2>Related Guides</h2><ul>${related.map(r => `<li><a href="/guides/${escAttr(r.slug)}">${escAttr(r.title)}</a></li>`).join('')}</ul></section>` : ''}
-<div class="cta-discord"><strong>💬 Join the GTA6mapx Discord</strong><p>Map discoveries, trailer breakdowns, weekly landmark hunts and the countdown to launch day — November 19, 2026. The first 100 members get the OG — Founding 100 role, forever.</p><a href="${discordUrl}" target="_blank" rel="noopener">Join the Discord Server</a></div>
-<div class="cta"><strong>Explore the interactive GTA 6 map</strong><br><a href="/">Open GTA6mapx Map</a></div>
+${showStandfirst ? `<p class="ax-standfirst">${escAttr(excerptText)}</p>` : ''}
+<div class="ax-meta"><span>By ${escAttr(blog.author || 'GTA6mapx Editorial')}${blog.authorRole ? ` · ${escAttr(blog.authorRole)}` : ''}</span><span><time datetime="${escAttr(dateIso)}">${escAttr(fmtDate(dateIso))}</time></span>${updatedText ? `<span>Updated ${escAttr(updatedText)}</span>` : ''}<span>${escAttr(blog.readTime || '')}</span><span class="ax-legend-mini">✅ Confirmed · 🎬 Trailer · ❓ Unannounced</span></div>
+${cover ? `<figure class="ax-hero"><img src="${cover}" alt="${title}" width="1600" height="900" loading="eager" fetchpriority="high"></figure>` : ''}
+</header>
+<div class="ax-grid">
+<main class="ax-main">
+<article class="article-body"><div class="ax-intro">${introHtml}</div>${takeawaysBox}${mobileTocHtml}<div class="ax-body">${bodyHtml}</div></article>
+</main>
+${railTocHtml}
 </div>
+${trustHtml}
+${relatedHtml}
+${endCtaHtml}
+</div>
+<button class="ax-totop" id="ax-totop" type="button" aria-label="Back to top">↑</button>
+<script>
+(function(){
+  var bar=document.getElementById('ax-progress'),tot=document.getElementById('ax-totop'),tick=false;
+  function upd(){
+    var sh=document.documentElement.scrollHeight-window.innerHeight;
+    var p=sh>0?Math.min(1,window.scrollY/sh):0;
+    bar.style.transform='scaleX('+p+')';
+    bar.style.opacity=p>0.005?'1':'0';
+    tot.style.opacity=window.scrollY>600?'1':'0';
+    tick=false;
+  }
+  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});
+  upd();
+  tot.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  var items=document.querySelectorAll('.ax-faq-item');
+  items.forEach(function(it,idx){
+    var btn=it.querySelector('button'),pan=it.querySelector('.ax-faq-a');
+    if(!btn||!pan)return;
+    if(idx>0){pan.hidden=true;btn.setAttribute('aria-expanded','false');}
+    btn.addEventListener('click',function(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded',open?'false':'true');
+      pan.hidden=open;
+    });
+  });
+})();
+</script>
 </body>
 </html>`;
   res.send(injectSeoAndAnalytics(guideHtml, seo));
