@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTA 6 Blog — Guides, Updates, News &amp; Q&amp;A | GTA6mapx</title>
+    <meta name="description" content="Browse all GTA 6 guides, updates and answers on the Vice Wire — Leonida's map, Lucia &amp; Jason, vehicles, heists, trailers and the road to the November 19, 2026 launch.">
+    <link rel="canonical" href="https://gta6mapx.com/blog">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="GTA6mapx">
+    <meta property="og:title" content="GTA 6 Blog — Guides, Updates, News &amp; Q&amp;A | GTA6mapx">
+    <meta property="og:description" content="Browse all GTA 6 guides, updates and answers on the Vice Wire — Leonida's map, Lucia &amp; Jason, vehicles, heists, trailers and the road to the November 19, 2026 launch.">
+    <meta property="og:url" content="https://gta6mapx.com/blog">
+    <meta property="og:image" content="https://gta6mapx.com/assets/photos/screenshots/vice_city/Vice_City_05.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Vice Wire — GTA6mapx Blog",
+      "url": "https://gta6mapx.com/blog",
+      "description": "Browse all GTA 6 guides, updates and answers on the Vice Wire — Leonida's map, Lucia & Jason, vehicles, heists, trailers and the road to the November 19, 2026 launch.",
+      "publisher": { "@type": "Organization", "name": "GTA6mapx", "url": "https://gta6mapx.com" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gta6mapx.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gta6mapx.com/blog" }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="blogpage.css">
+</head>
+<body class="bp-page" data-page="blog-index">
+    <header class="bp-topbar">
+        <a class="bp-wordmark" href="/">GTA<span>6</span>MAPX</a>
+        <nav class="bp-topnav">
+            <a class="bp-topbtn" href="/"><i class="fas fa-map"></i><span> Interactive Map</span></a>
+            <a class="bp-topbtn bp-topbtn--discord" href="https://discord.gg/Cjtb42qgQF" target="_blank" rel="noopener"><i class="fab fa-discord"></i><span> Join the Discord</span></a>
+        </nav>
+    </header>
+
+    <main class="bp-wrap">
+        <section class="bp-hero">
+            <div class="bp-hero-inner">
+                <p class="blog-kicker">VICE WIRE — THE GTA6MAPX NEWSWIRE</p>
+                <h1 class="bp-hero-title">Every <span class="bp-grad">GTA 6</span> Guide, Update &amp; Answer</h1>
+                <p class="bp-hero-sub">Browse the complete Vice Wire archive — <strong id="blogTotalCount">3,600+</strong> dispatches on the map, Lucia &amp; Jason, vehicles, heists, trailers and the road to November 19, 2026.</p>
+                <p class="bp-hero-ctas">
+                    <a class="bp-btn bp-btn--primary" href="/">Explore the Interactive Map</a>
+                    <a class="bp-btn bp-btn--ghost" href="https://discord.gg/Cjtb42qgQF" target="_blank" rel="noopener"><i class="fab fa-discord"></i> Join the Discord</a>
+                </p>
+            </div>
+        </section>
+
+        <section class="bp-popular" id="popularStrip" hidden>
+            <div class="bp-popular-head">
+                <span class="bp-popular-label"><i class="fas fa-fire"></i> POPULAR THIS WEEK</span>
+                <span class="bp-popular-rule" aria-hidden="true"></span>
+            </div>
+            <div class="bp-pop-rail" id="popularRail"></div>
+        </section>
+
+        <div class="bp-toolbar" id="blogToolbar">
+            <div class="blog-controls-bar bp-controls">
+                <div class="blog-category-filters" id="chipRail" role="group" aria-label="Filter by category"></div>
+                <div class="bp-toolbar-tools">
+                    <div class="blog-search-box">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input type="text" id="blogSearch" class="blog-search-input" placeholder="Search guides, updates, questions…" autocomplete="off" aria-label="Search articles">
+                        <button type="button" id="searchClear" class="bp-search-clear" aria-label="Clear search" hidden><i class="fas fa-times"></i></button>
+                    </div>
+                    <label class="bp-sort-label" for="blogSort">Sort</label>
+                    <select id="blogSort" class="bp-sort" aria-label="Sort articles">
+                        <option value="newest" selected>Newest first</option>
+                        <option value="oldest">Oldest first</option>
+                        <option value="az">Title A–Z</option>
+                        <option value="za">Title Z–A</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <p class="bp-meta-line"><span id="resultsMeta" aria-live="polite">Loading the wire…</span> <button type="button" id="clearFilters" class="bp-clear-filters" hidden>Clear filters <i class="fas fa-times" aria-hidden="true"></i></button></p>
+
+        <div class="blog-grid" id="blogGrid"></div>
+
+        <div class="bp-loadmore" id="loadMoreWrap" hidden>
+            <p class="bp-progress-text" id="loadMoreProgress"></p>
+            <div class="bp-progress" aria-hidden="true"><div class="bp-progress-bar" id="loadMoreBar"></div></div>
+            <button type="button" id="loadMoreBtn" class="bp-loadmore-btn">Load More Dispatches</button>
+            <a class="bp-loadmore-btn bp-loadmore-end" id="loadMoreEnd" href="https://discord.gg/Cjtb42qgQF" target="_blank" rel="noopener" hidden>You&rsquo;re all caught up. Join the Discord for the next dispatch &rarr;</a>
+        </div>
+
+        <noscript>
+            <div class="bp-noscript">
+                <h2>Latest dispatches</h2>
+                <ul><!--__BLOG_NOSCRIPT__--></ul>
+                <p>Browse by category: <a href="/blog/category/guides/">GTA 6 Guides</a> · <a href="/blog/category/gta-6-updates/">News &amp; Updates</a> · <a href="/blog/category/qa/">Questions &amp; Answers</a> · <a href="/blog/category/deep-dives/">Vice Wire Deep Dives</a></p>
+            </div>
+        </noscript>
+    </main>
+
+    <footer class="bp-footer">
+        <p class="bp-footer-line">Mapping Leonida one dispatch at a time.</p>
+        <p class="bp-footer-ctas">
+            <a class="bp-btn bp-btn--primary" href="/">Explore the Interactive Map</a>
+            <a class="bp-btn bp-btn--discord" href="https://discord.gg/Cjtb42qgQF" target="_blank" rel="noopener"><i class="fab fa-discord"></i> Join the Discord</a>
+        </p>
+        <p class="bp-footer-copy">© 2026 GTA6mapx — State of Leonida. Fan-made, not affiliated with Rockstar Games or Take-Two Interactive.</p>
+    </footer>
+
+    <script src="blogpage.js" defer></script>
+</body>
+</html>

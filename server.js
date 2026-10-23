@@ -675,6 +675,10 @@ app.get('/sitemap.xml', (req, res) => {
   const urls = [
     `  <url><loc>${siteUrl}/</loc><lastmod>${new Date().toISOString().slice(0, 10)}</lastmod></url>`,
   ];
+  // /blog hub (Redesign Phase 3) — exactly one entry; category archives are
+  // deliberately NOT listed here (spec 10 Phase-3 gate: total = previous + 1).
+  const blogLastmod = published.length ? String(published[0].updatedAt || published[0].date || '').slice(0, 10) : '';
+  urls.push(`  <url><loc>${siteUrl}/blog</loc>${blogLastmod ? `<lastmod>${blogLastmod}</lastmod>` : ''}</url>`);
   for (const b of published) {
     const lastmod = b.updatedAt ? b.updatedAt.slice(0, 10) : (b.date || '');
     // Note: changefreq/priority intentionally omitted — Google/Bing ignore them (2026)
@@ -933,7 +937,7 @@ app.post('/api/admin/seo/indexnow-all', requireAdmin, async (req, res) => {
   const published = blogdb.publishedForSitemap();
   // IndexNow requires percent-encoded URLs — 310 slugs contain non-ASCII
   // characters (ó, ę, …); sending them raw makes the whole batch fail 400.
-  const urls = [`${siteUrl}/`, ...published.map(b => `${siteUrl}/guides/${encodeURIComponent(b.slug)}`)];
+  const urls = [`${siteUrl}/`, `${siteUrl}/blog`, ...published.map(b => `${siteUrl}/guides/${encodeURIComponent(b.slug)}`)];
   const r = await submitIndexNow({ host, key, keyLocation: `${siteUrl}/${key}.txt`, urlList: urls.slice(0, 10000) });
   if (!r.ok && r.status === 0) return res.status(502).json({ success: false, error: r.detail || 'IndexNow unreachable' });
   res.json({ success: r.ok, status: r.status, submitted: urls.length, host, via: r.endpoint, ...(r.detail ? { detail: r.detail } : {}) });
@@ -1064,8 +1068,102 @@ app.post('/api/admin/submissions/reject', (req, res) => {
 // BLOG & VICE WIRE ARTICLE ENDPOINTS
 // ==========================================
 
+// ==========================================
+// BLOG DISPLAY TAXONOMY (Redesign Phase 3, specs 03/04) — DISPLAY level only.
+// Stored `category` strings are never edited; the four display groups below
+// map onto them. The same mapping is mirrored in blogpage.js — keep in sync.
+// ==========================================
+const BLOG_GROUPS = [
+  {
+    slug: 'guides', name: 'GTA 6 Guides', badge: 'Guide', icon: 'fa-compass',
+    stored: ['Guides'],
+    desc: 'Complete guides and explainers for GTA 6 in Leonida — release date, map and regions, platforms, pre-orders, characters, vehicles, weapons and cheats, each checked against what Rockstar has actually confirmed for the November 19, 2026 launch on PS5 and Xbox Series X|S. Start here when you want the full answer, not a rumour.',
+    metaDesc: 'Complete GTA 6 guides and explainers — release date, map, platforms, pre-orders, characters and cheats, checked against what Rockstar has confirmed.',
+  },
+  {
+    slug: 'gta-6-updates', name: 'News & Updates', badge: 'Update', icon: 'fa-bolt',
+    stored: ['GTA 6 Updates'],
+    desc: 'The fast-moving wire — announcements, updates and explainers from across the GTA 6 beat and the wider world around it: trailers, platforms, prices, and the games and hardware players compare it with. Dated, labelled, and updated as official word lands.',
+    metaDesc: 'The GTA6mapx news wire — announcements, updates and explainers from across the GTA 6 beat: trailers, platforms, prices and the road to launch.',
+  },
+  {
+    slug: 'qa', name: 'Questions & Answers', badge: 'Q&A', icon: 'fa-circle-question',
+    stored: ['Q&A'],
+    desc: 'Straight answers to the questions everyone asks about GTA 6 — when it launches, where it is set, who Lucia and Jason are, what it costs, and what is still unconfirmed. Short, direct, and evidence-labelled: confirmed, trailer-shown, or still unknown.',
+    metaDesc: 'Straight answers to the biggest GTA 6 questions — launch date, setting, Lucia & Jason, price and what is still unconfirmed. Evidence-labelled.',
+  },
+  {
+    slug: 'deep-dives', name: 'Vice Wire Deep Dives', badge: 'Deep Dive', icon: 'fa-satellite-dish',
+    stored: ['Cartography & Leaks', 'Districts & Lore', 'Vehicles & Heists', 'Trailer Analysis', 'Dev Telemetry'],
+    desc: 'The original Vice Wire investigations — long-form, bylined deep dives from the mapping team: cartography and map telemetry, district lore, trailer frame analysis, engine and hardware breakdowns, and the vehicles and heist systems of Leonida. The most detailed reading on the site.',
+    metaDesc: 'The original Vice Wire investigations — long-form, bylined deep dives on Leonida\u2019s map, lore, trailers, engine tech, vehicles and heists.',
+  },
+];
+const BLOG_GROUP_BY_SLUG = {};
+const BLOG_GROUP_BY_STORED = {};
+for (const g of BLOG_GROUPS) {
+  BLOG_GROUP_BY_SLUG[g.slug] = g;
+  for (const s of g.stored) BLOG_GROUP_BY_STORED[s.toLowerCase()] = g;
+}
+// Accepts a display slug ('qa') or a raw stored value ('Q&A') — article pages
+// link to /blog with raw stored values, /blog chips use display slugs.
+function resolveBlogGroup(raw) {
+  if (!raw || typeof raw !== 'string') return null;
+  const key = raw.trim().toLowerCase();
+  return BLOG_GROUP_BY_SLUG[key] || BLOG_GROUP_BY_STORED[key] || null;
+}
+
+// Comparators use plain codepoint order on lowercased strings — the JS
+// mirror of the spec's SQL `title COLLATE NOCASE` (localeCompare would
+// reorder punctuation like em dashes and break page-boundary stability).
+const BLOG_SORTS = {
+  newest: (a, b) => (String(b.date || '') < String(a.date || '') ? -1 : String(b.date || '') > String(a.date || '') ? 1 : 0) || (b.id - a.id),
+  oldest: (a, b) => (String(a.date || '') < String(b.date || '') ? -1 : String(a.date || '') > String(b.date || '') ? 1 : 0) || (a.id - b.id),
+  az: (a, b) => { const x = String(a.title || '').toLowerCase(), y = String(b.title || '').toLowerCase(); return (x < y ? -1 : x > y ? 1 : 0) || (a.id - b.id); },
+  za: (a, b) => { const x = String(a.title || '').toLowerCase(), y = String(b.title || '').toLowerCase(); return (x > y ? -1 : x < y ? 1 : 0) || (b.id - a.id); },
+};
+
+// Shared blog listing behind /api/blogs, the /blog boot payload and the
+// /blog/category/:slug archives. Plain requests delegate to blogdb.list()
+// untouched (same SQLite path as before); display groups spanning several
+// stored categories, an explicit `sort`, or `popular=1` take an in-memory
+// path (full filtered set → sort → slice) whose pagination math mirrors
+// blogdb.list() exactly, so the response contract never changes.
+function queryBlogs({ search, category, group, status = 'published', page = 1, limit = 0, sort, popular = false } = {}) {
+  const storedCats = group ? group.stored : null;
+  const extended = !!sort || !!popular || (storedCats && storedCats.length > 1);
+  if (!extended) {
+    return blogdb.list({
+      search,
+      category: storedCats ? storedCats[0] : category,
+      status,
+      page, limit,  // 0 = backwards-compat full list
+    });
+  }
+  let rows = [];
+  if (storedCats) {
+    for (const c of storedCats) {
+      rows = rows.concat(blogdb.list({ search, category: c, status, page: 1, limit: 0 }).blogs);
+    }
+  } else {
+    rows = blogdb.list({ search, category, status, page: 1, limit: 0 }).blogs;
+  }
+  const cmp = popular
+    ? (a, b) => (Number(b.featured || 0) - Number(a.featured || 0)) || BLOG_SORTS.newest(a, b)
+    : (BLOG_SORTS[sort] || BLOG_SORTS.newest);
+  rows.sort(cmp);
+  const total = rows.length;
+  const rawLim = parseInt(limit, 10);
+  const paginated = rawLim > 0;
+  const lim = paginated ? Math.min(Math.max(rawLim, 1), 500) : total;
+  const pg = Math.max(parseInt(page, 10) || 1, 1);
+  const totalPages = paginated ? Math.max(Math.ceil(total / lim), 1) : 1;
+  const offset = (pg - 1) * lim;
+  return { total, page: pg, totalPages, blogs: paginated ? rows.slice(offset, offset + lim) : rows };
+}
+
 app.get('/api/blogs', (req, res) => {
-  const { category, search, all, page, limit } = req.query;
+  const { category, search, all, page, limit, sort, popular } = req.query;
 
   // Drafts are admin-only: ?all=1 requires a valid admin session token.
   let includeDrafts = false;
@@ -1079,16 +1177,41 @@ app.get('/api/blogs', (req, res) => {
     includeDrafts = true;
   }
 
+  // A display-group slug — or a raw stored value, which belongs to exactly
+  // one group — resolves to that group (spec 04). Unknown values pass
+  // through to blogdb.list() unchanged, as before.
+  const group = (category && category !== 'All Stories' && category !== 'all')
+    ? resolveBlogGroup(category)
+    : null;
+
   // SQLite: indexed WHERE + LIMIT/OFFSET — 1.7ms for 50 rows (was 316ms)
-  const result = blogdb.list({
+  const result = queryBlogs({
     search,
     category: (category === 'All Stories') ? 'all' : category,
+    group,
     status: includeDrafts ? 'all' : 'published',
     page, limit: limit || 0,  // 0 = backwards-compat full list
-    includeDrafts,
+    sort: sort ? (BLOG_SORTS[sort] ? sort : 'newest') : undefined,
+    popular: popular === '1' || popular === 'true',
   });
 
   res.json({ success: true, count: result.blogs.length, total: result.total, page: result.page, totalPages: result.totalPages, blogs: result.blogs });
+});
+
+// Public category counts (Redesign Phase 3, spec 03 §3.3) — published only,
+// grouped by the raw stored values; /blog maps them onto display groups.
+// Registered before /api/blogs/:idOrSlug so 'categories' is not read as a slug.
+app.get('/api/blogs/categories', (req, res) => {
+  const rows = blogdb.list({ status: 'published', page: 1, limit: 0 }).blogs;
+  const counts = new Map();
+  for (const b of rows) {
+    const name = b.category || 'Uncategorized';
+    counts.set(name, (counts.get(name) || 0) + 1);
+  }
+  const categories = Array.from(counts, ([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count);
+  res.setHeader('Cache-Control', 'public, max-age=300');
+  res.json({ success: true, categories });
 });
 
 // Homepage "Popular" feed (Redesign Phase 1) — card fields ONLY (never article
@@ -1351,83 +1474,199 @@ app.get(['/', '/index.html'], (req, res, next) => {
   }
 });
 
-// Minimal placeholder /blog index (Redesign Phase 1) — the premium /blog page
-// (Phase 3) replaces this. Server-rendered card list, 24 per page, ?page=N.
-app.get(['/blog', '/blog/'], (req, res) => {
-  const perPage = 24;
-  const page = Math.max(parseInt(req.query.page, 10) || 1, 1);
-  const result = blogdb.list({ status: 'published', page, limit: perPage });
+// Premium /blog index (Redesign Phase 3, spec 03) — serves the blog.html
+// shell with SEO/analytics injection and a __BLOG_BOOT__ first-page payload
+// so first paint + crawlers get real article links without waiting on a
+// fetch. The initial view honours ?category= (display slug or raw stored
+// value), ?q=/?search= and ?sort= so shared links and the article pages'
+// category links land on the matching filtered view.
+app.get(['/blog', '/blog/'], (req, res, next) => {
+  try {
+    let html = fs.readFileSync(path.join(__dirname, 'blog.html'), 'utf8');
+    const seo = readJsonSafe('data/seo.json', {});
+    html = injectSeoAndAnalytics(html, seo);
+    const group = resolveBlogGroup(req.query.category);
+    const q = typeof req.query.q === 'string' ? req.query.q
+      : (typeof req.query.search === 'string' ? req.query.search : '');
+    const sort = BLOG_SORTS[req.query.sort] ? req.query.sort : 'newest';
+    const first = queryBlogs({
+      search: q || undefined,
+      group,
+      status: 'published',
+      page: 1, limit: 24,
+      sort: sort !== 'newest' ? sort : undefined,
+    });
+    const boot = {
+      blogs: first.blogs, total: first.total, totalPages: first.totalPages,
+      group: group ? group.slug : 'all', q, sort,
+    };
+    const bootJson = JSON.stringify(boot).replace(/</g, '\\u003c');
+    html = html.replace('</head>', `<script>window.__BLOG_BOOT__ = ${bootJson};</script>\n</head>`);
+    const noscript = first.blogs
+      .map(b => `<li><a href="/guides/${escAttr(b.slug)}">${escAttr(b.title)}</a></li>`)
+      .join('');
+    html = html.replace('<!--__BLOG_NOSCRIPT__-->', noscript);
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Cache-Control', 'no-cache');
+    return res.send(html);
+  } catch (err) {
+    return next();
+  }
+});
+
+// Category archives (Redesign Phase 3, spec 04 §7) — SSR, crawlable, one
+// per display group at /blog/category/<slug>/ (trailing slash optional).
+// Unknown slugs 404; the raw stored strings never appear in a URL.
+function blogArchiveCard(b, group) {
   const fmtDate = (d) => {
     if (!d) return '';
     try { return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); } catch (_) { return String(d); }
   };
-  const cards = result.blogs.map(b => `
+  const isDeep = group.slug === 'deep-dives';
+  return `
                     <article class="blog-card">
                         <a href="/guides/${escAttr(b.slug)}" class="blog-card-link" style="display:block; color:inherit; text-decoration:none;">
                             <div class="blog-card-media">
-                                <img src="${escAttr(b.coverImage || 'assets/photos/screenshots/vice_city/Vice_City_05.jpg')}" alt="${escAttr(b.title)}" class="blog-card-img" loading="lazy">
+                                <img src="${escAttr(b.coverImage || 'assets/photos/screenshots/vice_city/Vice_City_05.jpg')}" alt="${escAttr(b.title)}" class="blog-card-img" loading="lazy" decoding="async" width="640" height="360">
+                                <span class="blog-card-badge bp-badge bp-badge--${group.slug}"><i class="fas ${group.icon}"></i>${escAttr(group.badge)}</span>
                             </div>
                             <div class="blog-card-content">
                                 <div class="blog-meta-unboxed">
-                                    <span class="meta-category">${escAttr(b.category || 'Intelligence')}</span>
+                                    <span class="meta-category">${escAttr(b.category || 'Guides')}</span>
                                     <span class="meta-sep" aria-hidden="true">·</span>
-                                    <span>${escAttr(b.readTime || '4 min read')}</span>
+                                    <span>${escAttr(b.readTime || '5 min read')}</span>
+                                    <span class="meta-sep" aria-hidden="true">·</span>
+                                    <span>${fmtDate(b.date)}</span>
                                 </div>
                                 <h3 class="blog-card-title">${escAttr(b.title)}</h3>
-                                <p class="blog-card-excerpt">${escAttr(b.excerpt || '')}</p>
+                                ${b.excerpt ? `<p class="blog-card-excerpt">${escAttr(b.excerpt)}</p>` : ''}
                                 <div class="blog-card-footer">
-                                    <span style="color: #9ba3be; font-weight: 500;">${fmtDate(b.date)}</span>
+                                    <span style="color: #9ba3be; font-weight: 500;">${escAttr(b.author || 'GTA6mapx Editorial')}${isDeep ? '' : ` · ${fmtDate(b.date)}`}</span>
                                     <span class="blog-read-link"><span>Read Report</span> <i class="fas fa-arrow-right"></i></span>
                                 </div>
                             </div>
                         </a>
-                    </article>`).join('');
+                    </article>`;
+}
+
+app.get(['/blog/category/:slug', '/blog/category/:slug/'], (req, res) => {
+  const seo = readJsonSafe('data/seo.json', {});
+  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://gta6mapx.com').replace(/\/$/, '');
+  const config = readJsonSafe('data/site_config.json', {});
+  const discordUrl = config.discordUrl || 'https://discord.gg/Cjtb42qgQF';
+  const group = BLOG_GROUP_BY_SLUG[String(req.params.slug || '').toLowerCase()];
+  if (!group) {
+    res.status(404);
+    return res.send(injectSeoAndAnalytics(`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Not Found | GTA6mapx</title>
+    <link rel="stylesheet" href="/assets/fonts/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/blog.css">
+    <link rel="stylesheet" href="/blogpage.css">
+</head>
+<body class="bp-page">
+    <main class="bp-wrap" style="padding-top:4rem; padding-bottom:4rem; text-align:center;">
+        <h1 class="bp-archive-title">This corner of the Wire doesn&rsquo;t exist</h1>
+        <p class="bp-archive-desc" style="margin-left:auto; margin-right:auto;">The category you asked for isn&rsquo;t on the board. Browse the full archive instead.</p>
+        <p style="margin-top:2rem;"><a class="bp-btn bp-btn--primary" href="/blog">Open the Blog</a></p>
+    </main>
+</body>
+</html>`, seo));
+  }
+
+  const perPage = 24;
+  const totalPagesProbe = queryBlogs({ group, status: 'published', page: 1, limit: perPage });
+  const page = Math.min(Math.max(parseInt(req.query.page, 10) || 1, 1), Math.max(totalPagesProbe.totalPages, 1));
+  const result = page === 1 ? totalPagesProbe
+    : queryBlogs({ group, status: 'published', page, limit: perPage });
+  const canonical = `${siteUrl}/blog/category/${group.slug}/`;
+  const cards = result.blogs.map(b => blogArchiveCard(b, group)).join('');
   const prevLink = page > 1
-    ? `<a href="/blog?page=${page - 1}" class="blog-page-link">← Newer</a>`
+    ? `<a href="/blog/category/${group.slug}/?page=${page - 1}" class="bp-page-link">← Newer</a>`
     : '<span></span>';
   const nextLink = page < result.totalPages
-    ? `<a href="/blog?page=${page + 1}" class="blog-page-link">Older →</a>`
+    ? `<a href="/blog/category/${group.slug}/?page=${page + 1}" class="bp-page-link">Older →</a>`
     : '<span></span>';
-  const seo = readJsonSafe('data/seo.json', {});
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: `${group.name} — GTA6mapx Blog`,
+    url: canonical,
+    description: group.metaDesc,
+    isPartOf: { '@type': 'Blog', name: 'Vice Wire — GTA6mapx Blog', url: `${siteUrl}/blog` },
+  };
+  const crumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
+      { '@type': 'ListItem', position: 3, name: group.name, item: canonical },
+    ],
+  };
   const html = injectSeoAndAnalytics(`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vice Wire Blog — All GTA 6 Guides &amp; Reports | GTA6mapx</title>
-    <meta name="description" content="Browse all ${result.total} GTA 6 guides, trailer breakdowns and Leonida intelligence reports from the GTA6mapx Vice Wire.">
-    <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="assets/fonts/fonts.css">
-    <link rel="stylesheet" href="landing.css">
-    <link rel="stylesheet" href="blog.css">
-    <style>
-        body { background: #07070f; margin: 0; }
-        .blog-index-wrap { max-width: 1240px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
-        .blog-index-head { margin-bottom: 2.5rem; }
-        .blog-index-head a { color: #9ba3be; text-decoration: none; font-weight: 600; }
-        .blog-index-head a:hover { color: #fff; }
-        .blog-index-head h1 { color: #fff; font-size: 2.2rem; margin: 1rem 0 0.5rem; }
-        .blog-index-head p { color: #9ba3be; margin: 0; }
-        .blog-pagination { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; color: #9ba3be; font-weight: 600; }
-        .blog-page-link { color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); padding: 0.6rem 1.2rem; border-radius: 999px; }
-        .blog-page-link:hover { border-color: rgba(255, 80, 197, 0.6); }
-    </style>
+    <title>${escAttr(group.name)} — GTA 6 Blog | GTA6mapx</title>
+    <meta name="description" content="${escAttr(group.metaDesc)}">
+    <link rel="canonical" href="${canonical}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="GTA6mapx">
+    <meta property="og:title" content="${escAttr(group.name)} — GTA 6 Blog | GTA6mapx">
+    <meta property="og:description" content="${escAttr(group.metaDesc)}">
+    <meta property="og:url" content="${canonical}">
+    <meta property="og:image" content="${siteUrl}/assets/photos/screenshots/vice_city/Vice_City_05.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    ${page > 1 ? `<link rel="prev" href="/blog/category/${group.slug}/${page > 2 ? `?page=${page - 1}` : ''}">` : ''}
+    ${page < result.totalPages ? `<link rel="next" href="/blog/category/${group.slug}/?page=${page + 1}">` : ''}
+    <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>
+    <script type="application/ld+json">${JSON.stringify(crumbs).replace(/</g, '\\u003c')}</script>
+    <link rel="stylesheet" href="/assets/fonts/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/blog.css">
+    <link rel="stylesheet" href="/blogpage.css">
 </head>
-<body>
-    <main class="blog-index-wrap">
-        <div class="blog-index-head">
-            <a href="/">← Back to the Interactive Map</a>
-            <h1>Vice Wire — All GTA 6 Guides &amp; Reports</h1>
-            <p>${result.total} published dispatches — page ${result.page} of ${result.totalPages}.</p>
-        </div>
+<body class="bp-page">
+    <header class="bp-topbar">
+        <a class="bp-wordmark" href="/">GTA<span>6</span>MAPX</a>
+        <nav class="bp-topnav">
+            <a class="bp-topbtn" href="/"><i class="fas fa-map"></i><span> Interactive Map</span></a>
+            <a class="bp-topbtn bp-topbtn--discord" href="${escAttr(discordUrl)}" target="_blank" rel="noopener"><i class="fab fa-discord"></i><span> Join the Discord</span></a>
+        </nav>
+    </header>
+    <main class="bp-wrap">
+        <nav class="bp-crumb" aria-label="Breadcrumb">
+            <a href="/">Home</a> <span aria-hidden="true">›</span> <a href="/blog">Blog</a> <span aria-hidden="true">›</span> <span aria-current="page">${escAttr(group.name)}</span>
+        </nav>
+        <section class="bp-archive-head">
+            <p class="blog-kicker"><i class="fas ${group.icon}"></i> VICE WIRE — CATEGORY ARCHIVE</p>
+            <h1 class="bp-archive-title">${escAttr(group.name)}</h1>
+            <p class="bp-archive-desc">${escAttr(group.desc)}</p>
+            <p class="bp-archive-count">${result.total.toLocaleString('en-US')} dispatches · Page ${result.page} of ${result.totalPages}</p>
+        </section>
         <div class="blog-grid">${cards}
         </div>
-        <nav class="blog-pagination">
+        <nav class="bp-pagination">
             ${prevLink}
             <span>Page ${result.page} of ${result.totalPages}</span>
             ${nextLink}
         </nav>
+        <p class="bp-archive-all"><a href="/blog">← Browse the full archive</a></p>
     </main>
+    <footer class="bp-footer">
+        <p class="bp-footer-line">Mapping Leonida one dispatch at a time.</p>
+        <p class="bp-footer-ctas">
+            <a class="bp-btn bp-btn--primary" href="/">Explore the Interactive Map</a>
+            <a class="bp-btn bp-btn--discord" href="${escAttr(discordUrl)}" target="_blank" rel="noopener"><i class="fab fa-discord"></i> Join the Discord</a>
+        </p>
+        <p class="bp-footer-copy">© 2026 GTA6mapx — State of Leonida. Fan-made, not affiliated with Rockstar Games or Take-Two Interactive.</p>
+    </footer>
 </body>
 </html>`, seo);
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
