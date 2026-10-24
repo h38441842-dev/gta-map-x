@@ -39,6 +39,22 @@ const linker = require('./lib/linker');
       console.error('[blogdb] Slug rename failed:', e.message);
     }
   }
+  // Duplicate merges: delete loser rows of merged duplicate pairs
+  // (data/merges.json { losers: [...] }) AFTER slug renames and BEFORE the
+  // boot sync, so losers are never re-inserted. Survivor rows keep their
+  // content until applyContentFixes writes the merged union content.
+  const mergesPath = path2.join(__dirname, 'data', 'merges.json');
+  if (fs2.existsSync(dbPath) && fs2.existsSync(mergesPath)) {
+    try {
+      const merges = JSON.parse(fs2.readFileSync(mergesPath, 'utf8'));
+      const mr = blogdb.applyMerges(merges.losers || []);
+      if (mr.deleted) {
+        console.log(`[blogdb] Merges applied: ${mr.deleted} deleted`);
+      }
+    } catch (e) {
+      console.error('[blogdb] Merge apply failed:', e.message);
+    }
+  }
   // Topic cover images: apply data/covermap.json ({slug: coverImage}) to
   // existing rows before the sync. Only the cover changes — content is
   // never touched by this step.
