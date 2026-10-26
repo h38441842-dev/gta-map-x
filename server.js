@@ -687,7 +687,8 @@ app.get('/llms.txt', (req, res) => {
 });
 
 // ai-catalog.json — machine-readable manifest of public resources for AI agents
-app.get('/ai-catalog.json', (req, res) => {
+// (also served at the /.well-known/ discovery path, which agent tooling probes)
+app.get(['/ai-catalog.json', '/.well-known/ai-catalog.json'], (req, res) => {
   res.type('application/json');
   res.sendFile(path.join(__dirname, 'ai-catalog.json'));
 });
