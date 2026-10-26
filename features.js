@@ -591,17 +591,53 @@
         }
     }
 
-    // Initialize when DOM ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', injectUI);
-    } else {
+    // Lazy init: the toolbar/drawers built by injectUI() are only used once a
+    // visitor opens the map and reaches for a tool, so building them at
+    // DOMContentLoaded just competes with the map's own boot for main-thread
+    // time. Init on idle (2s cap) or on first interaction, whichever comes
+    // first. Deep links (?x=..&y=..) keep the original immediate init so
+    // shared-location URLs behave exactly as before.
+    let featuresInitDone = false;
+    function ensureFeaturesInit() {
+        if (featuresInitDone) return;
+        featuresInitDone = true;
         injectUI();
     }
 
-    // Expose helpers globally
+    function hasDeepLinkParams() {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            return !isNaN(parseFloat(params.get('x'))) && !isNaN(parseFloat(params.get('y')));
+        } catch (_) {
+            return false;
+        }
+    }
+
+    function scheduleFeaturesInit() {
+        if (hasDeepLinkParams()) {
+            ensureFeaturesInit();
+            return;
+        }
+        window.addEventListener('pointerdown', ensureFeaturesInit, { once: true, passive: true });
+        window.addEventListener('keydown', ensureFeaturesInit, { once: true });
+        if (typeof window.requestIdleCallback === 'function') {
+            window.requestIdleCallback(ensureFeaturesInit, { timeout: 2000 });
+        } else {
+            setTimeout(ensureFeaturesInit, 1200);
+        }
+    }
+
+    // Initialize when DOM ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', scheduleFeaturesInit);
+    } else {
+        scheduleFeaturesInit();
+    }
+
+    // Expose helpers globally (wrappers ensure the UI exists before use)
     window.LeonidaFeatures = {
-        toggleSpot: toggleSpotVisited,
-        setCompare: setComparisonOverlay,
-        clearCompare: clearComparisonOverlay
+        toggleSpot: function(id) { ensureFeaturesInit(); toggleSpotVisited(id); },
+        setCompare: function(key) { ensureFeaturesInit(); setComparisonOverlay(key); },
+        clearCompare: function() { ensureFeaturesInit(); clearComparisonOverlay(); }
     };
 })();

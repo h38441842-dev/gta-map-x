@@ -155,7 +155,22 @@
         });
 
         handleInitialRoute();
-        fetchPopular();
+        schedulePopularFetch();
+    }
+
+    // The Popular cards live below the fold: defer the fetch until the
+    // browser is idle (1.5s cap) so it never competes with first paint or
+    // the map boot. GTABlog.refresh (below) still fetches on demand.
+    let popularFetchScheduled = false;
+    function schedulePopularFetch() {
+        if (popularFetchScheduled) return;
+        popularFetchScheduled = true;
+        const start = () => fetchPopular();
+        if (typeof window.requestIdleCallback === 'function') {
+            window.requestIdleCallback(start, { timeout: 1500 });
+        } else {
+            setTimeout(start, 300);
+        }
     }
 
     function formatDate(dateStr) {

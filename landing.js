@@ -145,6 +145,13 @@
 
         if (!dEl || !hEl || !mEl || !sEl) return;
 
+        // Header countdown spans are static HTML: resolve once instead of
+        // four getElementById lookups on every 1s tick.
+        const hdrDays = document.getElementById('countdown-days');
+        const hdrHours = document.getElementById('countdown-hours');
+        const hdrMinutes = document.getElementById('countdown-minutes');
+        const hdrSeconds = document.getElementById('countdown-seconds');
+
         function update() {
             const now = Date.now();
             const diff = Math.max(0, TARGET_DATE - now);
@@ -159,10 +166,6 @@
             mEl.textContent = String(minutes).padStart(2, '0');
             sEl.textContent = String(seconds).padStart(2, '0');
 
-            const hdrDays = document.getElementById('countdown-days');
-            const hdrHours = document.getElementById('countdown-hours');
-            const hdrMinutes = document.getElementById('countdown-minutes');
-            const hdrSeconds = document.getElementById('countdown-seconds');
             if (hdrDays) hdrDays.textContent = String(days);
             if (hdrHours) hdrHours.textContent = String(hours).padStart(2, '0');
             if (hdrMinutes) hdrMinutes.textContent = String(minutes).padStart(2, '0');
