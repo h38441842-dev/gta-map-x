@@ -1147,6 +1147,17 @@ function resolveBlogGroup(raw) {
   const key = raw.trim().toLowerCase();
   return BLOG_GROUP_BY_SLUG[key] || BLOG_GROUP_BY_STORED[key] || null;
 }
+// Legacy /blog?category= values may also carry a group's display NAME
+// ('News & Updates', 'GTA 6 Guides') — resolve those too, from the same
+// BLOG_GROUPS taxonomy (no second mapping).
+const BLOG_GROUP_BY_NAME = {};
+for (const g of BLOG_GROUPS) BLOG_GROUP_BY_NAME[g.name.toLowerCase()] = g;
+function resolveLegacyBlogCategory(raw) {
+  const group = resolveBlogGroup(raw);
+  if (group) return group;
+  if (!raw || typeof raw !== 'string') return null;
+  return BLOG_GROUP_BY_NAME[raw.trim().toLowerCase()] || null;
+}
 
 // Comparators use plain codepoint order on lowercased strings — the JS
 // mirror of the spec's SQL `title COLLATE NOCASE` (localeCompare would
@@ -1512,10 +1523,19 @@ app.get(['/', '/index.html'], (req, res, next) => {
 // Premium /blog index (Redesign Phase 3, spec 03) — serves the blog.html
 // shell with SEO/analytics injection and a __BLOG_BOOT__ first-page payload
 // so first paint + crawlers get real article links without waiting on a
-// fetch. The initial view honours ?category= (display slug or raw stored
-// value), ?q=/?search= and ?sort= so shared links and the article pages'
-// category links land on the matching filtered view.
+// fetch. The initial view honours ?q=/?search= and ?sort=. A ?category=
+// param is NOT honoured here: legacy /blog?category=<...> URLs duplicate
+// this page ("Duplicate without user-selected canonical"), so they 301 to
+// the display group's archive at /blog/category/<slug> instead.
 app.get(['/blog', '/blog/'], (req, res, next) => {
+  if (req.query.category !== undefined) {
+    const rawCat = Array.isArray(req.query.category) ? req.query.category[0] : req.query.category;
+    const legacyGroup = resolveLegacyBlogCategory(rawCat);
+    if (!legacyGroup) return res.redirect(301, '/blog');
+    const pageNum = parseInt(req.query.page, 10);
+    const pageQs = Number.isInteger(pageNum) && pageNum > 1 ? `?page=${pageNum}` : '';
+    return res.redirect(301, `/blog/category/${legacyGroup.slug}${pageQs}`);
+  }
   try {
     let html = fs.readFileSync(path.join(__dirname, 'blog.html'), 'utf8');
     const seo = readJsonSafe('data/seo.json', {});
