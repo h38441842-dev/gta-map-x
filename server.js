@@ -1759,7 +1759,10 @@ app.get(['/tiles/*', '/assets/*'], async (req, res) => {
     if (upstream.ok) {
       const contentType = upstream.headers.get('content-type') || (req.path.endsWith('.png') ? 'image/png' : 'image/jpeg');
       res.setHeader('Content-Type', contentType);
-      res.setHeader('Cache-Control', 'public, max-age=604800');
+      // Same policy as express.static above: tile URLs are versioned (/v7/…) and
+      // asset paths are content-stable, so the proxied first hit is cached a year
+      // immutable too (the file is written to disk below; later hits are local).
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
       const buffer = Buffer.from(await upstream.arrayBuffer());
 
       // Cache tile/asset to disk asynchronously so subsequent hits are instant local files
