@@ -1,0 +1,38 @@
+# GTA6mapx — GTA 6 Interactive Map (State of Leonida)
+
+GTA6mapx is a fan-made interactive map and guide hub for Grand Theft Auto VI, covering the fictional state of Leonida — including Vice City, the Leonida Keys, Grassrivers, Port Gellhorn, Ambrosia and Mount Kalaga National Park. GTA 6 launches on November 19, 2026 for PlayStation 5 and Xbox Series X|S. The site tracks only what Rockstar Games has confirmed or shown in official trailers, labels every claim by evidence level (Rockstar-confirmed, trailer-confirmed, leak-reported, disputed), and publishes 3,599 guides and articles in its blog.
+
+## Map
+
+- [Interactive GTA 6 map of Leonida](https://gta6mapx.com/): the homepage map — explore Vice City and the regions of Leonida with 2,850+ points of interest and deep-zoom tiles.
+
+## Blog and guides
+
+- [Blog — all GTA 6 guides](https://gta6mapx.com/blog): the full guide index, searchable and sortable.
+- [GTA 6 Guides](https://gta6mapx.com/blog/category/guides): complete guides and explainers — release date, map, platforms, price, characters and cheats.
+- [News & Updates](https://gta6mapx.com/blog/category/gta-6-updates): announcements, updates and explainers from across the GTA 6 beat.
+- [Questions & Answers](https://gta6mapx.com/blog/category/qa): straight, evidence-labelled answers to the biggest GTA 6 questions.
+- [Vice Wire Deep Dives](https://gta6mapx.com/blog/category/deep-dives): long-form investigations — cartography, district lore, trailer analysis and engine breakdowns.
+
+## Flagship guides
+
+- [GTA 6 release date](https://gta6mapx.com/guides/gta-6-release-date)
+- [GTA 6 map](https://gta6mapx.com/guides/gta-6-map)
+- [GTA 6 trailer 2 release date](https://gta6mapx.com/guides/gta-6-trailer-2-release-date)
+- [GTA 6 price](https://gta6mapx.com/guides/gta-6-price)
+- [GTA 6 platforms](https://gta6mapx.com/guides/gta-6-platforms)
+- [GTA 6 on PC](https://gta6mapx.com/guides/gta-6-pc)
+- [GTA 6 system requirements](https://gta6mapx.com/guides/gta-6-system-requirements)
+- [Lucia Caminos](https://gta6mapx.com/guides/gta-6-lucia)
+- [Jason Duval](https://gta6mapx.com/guides/gta-6-jason)
+- [Vice City in GTA 6](https://gta6mapx.com/guides/gta-6-vice-city)
+
+## Community
+
+- [GTA6mapx Discord — State of Leonida](https://discord.gg/Cjtb42qgQF): the community server for map intel, finds and discussion.
+
+## For crawlers and agents
+
+- [Sitemap](https://gta6mapx.com/sitemap.xml): every published guide URL.
+- [AI catalog (JSON)](https://gta6mapx.com/ai-catalog.json): a machine-readable manifest of this site's public resources and API endpoints.
+- Public API: `GET https://gta6mapx.com/api/blogs` (paginated guide list, supports search/sort/category) and `GET https://gta6mapx.com/api/blogs/popular` (the 10 homepage guides).

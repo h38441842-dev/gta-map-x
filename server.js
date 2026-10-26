@@ -155,6 +155,12 @@ function sanitizeHtml(input) {  if (typeof input !== 'string') return '';
   return out;
 }
 
+// Security: HSTS — force HTTPS for one year on every response.
+app.use((req, res, next) => {
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000');
+  next();
+});
+
 // SEO canonicalisation: canonical URLs on this site have NO trailing slash
 // (canonical tags declare e.g. /guides/<slug>, /blog/category/<group>), but
 // page routes answer both forms with 200 — a duplicate-content signal.
@@ -324,7 +330,7 @@ const LEADERBOARD_DATA = {
       total_games: 4,
       total_score: 22500,
       average_score: 5625,
-      avatarUrl: 'https://cdn.discordapp.com/avatars/353888535528341505/2b63a120601962c7eb1b40ee6848abcd.png?size=128',
+      avatarUrl: 'https://cdn.discordapp.com/embed/avatars/0.png',
     },
     {
       id: 807352034978168843,
@@ -338,7 +344,7 @@ const LEADERBOARD_DATA = {
       total_games: 18,
       total_score: 97960,
       average_score: 5442,
-      avatarUrl: 'https://cdn.discordapp.com/avatars/807352034978168843/61f70503098a25b3508753c908f7f9ff.png?size=128',
+      avatarUrl: 'https://cdn.discordapp.com/embed/avatars/0.png',
     },
     {
       id: 637895274009854003,
@@ -352,7 +358,7 @@ const LEADERBOARD_DATA = {
       total_games: 6,
       total_score: 20160,
       average_score: 3360,
-      avatarUrl: 'https://cdn.discordapp.com/avatars/637895274009854003/c9c0fe268c0757aa333cdd7853f5d02f.png?size=128',
+      avatarUrl: 'https://cdn.discordapp.com/embed/avatars/0.png',
     },
     {
       id: 385154398009032714,
@@ -380,7 +386,7 @@ const LEADERBOARD_DATA = {
       total_games: 2,
       total_score: 7440,
       average_score: 3720,
-      avatarUrl: 'https://cdn.discordapp.com/avatars/1057022791410528356/dd4d0a907b1c16293a61cb1050aee0b7.png?size=128',
+      avatarUrl: 'https://cdn.discordapp.com/embed/avatars/0.png',
     },
     {
       id: 194016674968633344,
@@ -394,7 +400,7 @@ const LEADERBOARD_DATA = {
       total_games: 2,
       total_score: 6600,
       average_score: 3300,
-      avatarUrl: 'https://cdn.discordapp.com/avatars/194016674968633344/520fae4d0359df41ed280f764df0108f.png?size=128',
+      avatarUrl: 'https://cdn.discordapp.com/embed/avatars/0.png',
     },
   ],
 };
@@ -672,6 +678,18 @@ app.get('/image-proxy.php', async (req, res) => {
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
   res.sendFile(path.join(__dirname, 'robots.txt'));
+});
+
+// llms.txt — plain-text site summary/link index for language models
+app.get('/llms.txt', (req, res) => {
+  res.type('text/plain');
+  res.sendFile(path.join(__dirname, 'llms.txt'));
+});
+
+// ai-catalog.json — machine-readable manifest of public resources for AI agents
+app.get('/ai-catalog.json', (req, res) => {
+  res.type('application/json');
+  res.sendFile(path.join(__dirname, 'ai-catalog.json'));
 });
 
 // IndexNow key verification file (serves the deterministic key)
