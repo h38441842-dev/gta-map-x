@@ -13,4 +13,4 @@ Allow: /
 Disallow: /admin
 Disallow: /api/admin/
 
-Sitemap: https://map.stateofleonida.net/sitemap.xml
+Sitemap: https://gta6mapx.com/sitemap.xml

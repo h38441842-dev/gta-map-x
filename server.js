@@ -155,6 +155,25 @@ function sanitizeHtml(input) {  if (typeof input !== 'string') return '';
   return out;
 }
 
+// SEO canonicalisation: canonical URLs on this site have NO trailing slash
+// (canonical tags declare e.g. /guides/<slug>, /blog/category/<group>), but
+// page routes answer both forms with 200 — a duplicate-content signal.
+// 301 any GET/HEAD for a slash-terminated page path to its non-slash twin
+// (query string preserved). Exempt: the root "/", /api/* (API semantics
+// untouched) and file-like paths (a "." in the last segment: tiles, assets,
+// *.xml, *.txt, ...).
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  const p = req.path;
+  if (p.length <= 1 || !p.endsWith('/')) return next();
+  if (p.startsWith('/api/')) return next();
+  const lastSegment = p.slice(0, -1).split('/').pop();
+  if (lastSegment.includes('.')) return next();
+  const q = req.originalUrl.indexOf('?');
+  const qs = q >= 0 ? req.originalUrl.slice(q) : '';
+  return res.redirect(301, p.slice(0, -1) + qs);
+});
+
 app.use(compression());
 app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true }));
@@ -1599,13 +1618,13 @@ app.get(['/blog/category/:slug', '/blog/category/:slug/'], (req, res) => {
   const page = Math.min(Math.max(parseInt(req.query.page, 10) || 1, 1), Math.max(totalPagesProbe.totalPages, 1));
   const result = page === 1 ? totalPagesProbe
     : queryBlogs({ group, status: 'published', page, limit: perPage });
-  const canonical = `${siteUrl}/blog/category/${group.slug}/`;
+  const canonical = `${siteUrl}/blog/category/${group.slug}`;
   const cards = result.blogs.map(b => blogArchiveCard(b, group)).join('');
   const prevLink = page > 1
-    ? `<a href="/blog/category/${group.slug}/?page=${page - 1}" class="bp-page-link">← Newer</a>`
+    ? `<a href="/blog/category/${group.slug}?page=${page - 1}" class="bp-page-link">← Newer</a>`
     : '<span></span>';
   const nextLink = page < result.totalPages
-    ? `<a href="/blog/category/${group.slug}/?page=${page + 1}" class="bp-page-link">Older →</a>`
+    ? `<a href="/blog/category/${group.slug}?page=${page + 1}" class="bp-page-link">Older →</a>`
     : '<span></span>';
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -1639,8 +1658,8 @@ app.get(['/blog/category/:slug', '/blog/category/:slug/'], (req, res) => {
     <meta property="og:url" content="${canonical}">
     <meta property="og:image" content="${siteUrl}/assets/photos/screenshots/vice_city/Vice_City_05.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    ${page > 1 ? `<link rel="prev" href="/blog/category/${group.slug}/${page > 2 ? `?page=${page - 1}` : ''}">` : ''}
-    ${page < result.totalPages ? `<link rel="next" href="/blog/category/${group.slug}/?page=${page + 1}">` : ''}
+    ${page > 1 ? `<link rel="prev" href="/blog/category/${group.slug}${page > 2 ? `?page=${page - 1}` : ''}">` : ''}
+    ${page < result.totalPages ? `<link rel="next" href="/blog/category/${group.slug}?page=${page + 1}">` : ''}
     <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>
     <script type="application/ld+json">${JSON.stringify(crumbs).replace(/</g, '\\u003c')}</script>
     <link rel="stylesheet" href="/assets/fonts/fontawesome/css/all.min.css">

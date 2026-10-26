@@ -138,7 +138,7 @@
                 g.stored.forEach(function (s) { sum += countsByStored[s] || 0; });
                 countHtml = ' <span class="chip-count">' + fmtCount(sum) + '</span>';
             }
-            html += '<a href="/blog/category/' + g.slug + '/" class="blog-filter-btn' + (state.group === g.slug ? ' active' : '') + '" data-group="' + g.slug + '" aria-pressed="' + (state.group === g.slug) + '">' + escapeHtml(g.name) + countHtml + '</a>';
+            html += '<a href="/blog/category/' + g.slug + '" class="blog-filter-btn' + (state.group === g.slug ? ' active' : '') + '" data-group="' + g.slug + '" aria-pressed="' + (state.group === g.slug) + '">' + escapeHtml(g.name) + countHtml + '</a>';
         });
         els.chipRail.innerHTML = html;
     }
