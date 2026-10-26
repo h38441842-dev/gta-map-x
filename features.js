@@ -203,7 +203,7 @@
             <div class="drawer-body">
                 <div>
                     <label style="font-size:0.75rem; text-transform:uppercase; color:#8b92aa; font-weight:700; display:block; margin-bottom:6px;">Start Location (Point A)</label>
-                    <select id="routeSelectA" class="route-preset-select">
+                    <select id="routeSelectA" class="route-preset-select" aria-label="Route start point">
                         <option value="ocean-drive">Ocean Drive (Vice Beach)</option>
                         <option value="airport">Vice City International Airport</option>
                         <option value="port-gellhorn">Port Gellhorn Industrial Strip</option>
@@ -215,7 +215,7 @@
 
                 <div>
                     <label style="font-size:0.75rem; text-transform:uppercase; color:#8b92aa; font-weight:700; display:block; margin-bottom:6px;">Destination (Point B)</label>
-                    <select id="routeSelectB" class="route-preset-select">
+                    <select id="routeSelectB" class="route-preset-select" aria-label="Route destination point">
                         <option value="port-gellhorn">Port Gellhorn Industrial Strip</option>
                         <option value="ocean-drive">Ocean Drive (Vice Beach)</option>
                         <option value="airport">Vice City International Airport</option>
@@ -528,7 +528,7 @@
             const isDone = visited.includes(item.id);
             return `
                 <div class="checklist-item ${isDone ? 'visited' : ''}" onclick="window.LeonidaFeatures.toggleSpot('${item.id}')">
-                    <input type="checkbox" class="checklist-checkbox" ${isDone ? 'checked' : ''} onclick="event.stopPropagation(); window.LeonidaFeatures.toggleSpot('${item.id}')">
+                    <input type="checkbox" class="checklist-checkbox" aria-label="Mark ${item.name} as visited" ${isDone ? 'checked' : ''} onclick="event.stopPropagation(); window.LeonidaFeatures.toggleSpot('${item.id}')">
                     <span class="checklist-text">${item.name}</span>
                     <span style="font-size:0.7rem; color:#8b92aa;">${item.cat}</span>
                 </div>
@@ -591,6 +591,120 @@
         }
     }
 
+    /* -------------------------------------------------------------
+       8. ACCESSIBILITY PATCH (map chrome rendered by solmain2009.js)
+       The app shell's tab switchers (marker / media / lightbox), the
+       layer version & Rockstar-map opacity sliders and the draw-tool
+       inputs are rendered at runtime by solmain2009.js with icon-only
+       buttons and unlabelled inputs. This pass gives each of them an
+       accessible name — mirroring the control's own data-tooltip or
+       visible label text — and corrects the challenge leaderboard
+       heading level. Ids, classes, data attributes, visible text and
+       behaviour are never touched.
+       ------------------------------------------------------------- */
+    const A11Y_TAB_SELECTOR = '.marker-type-tab[data-type], .marker-type-tab[data-filter-type], .media-type-tab, .lightbox-tab';
+    const A11Y_INPUT_SELECTOR = '[id^="version-slider-"], .rockstar-map-opacity input, #draw-color-picker, #draw-color-hex, #thickness-slider, #opacity-slider';
+
+    function a11yHumanize(key) {
+        return String(key || '').replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()).trim();
+    }
+
+    function a11yTabLabel(btn) {
+        const tip = btn.getAttribute('data-tooltip');
+        if (tip && tip.trim()) return tip.trim();
+        const span = btn.querySelector('span');
+        if (span && span.textContent.trim()) return span.textContent.trim();
+        const key = btn.getAttribute('data-type') || btn.getAttribute('data-filter-type') || btn.getAttribute('data-tab');
+        return key ? a11yHumanize(key) : '';
+    }
+
+    function a11yInputLabel(input) {
+        const id = input.id || '';
+        if (id.indexOf('version-slider-') === 0) {
+            const layer = id.slice('version-slider-'.length);
+            return layer ? layer + ' map version' : 'Map version';
+        }
+        if (input.closest && input.closest('.rockstar-map-opacity')) {
+            const card = input.closest('.rockstar-map-card');
+            const nameEl = card ? card.querySelector('.rockstar-map-name') : null;
+            const name = nameEl && nameEl.textContent.trim() ? nameEl.textContent.trim() : '';
+            return name ? 'Opacity for ' + name : 'Map opacity';
+        }
+        if (id === 'draw-color-picker') {
+            const row = input.parentElement;
+            const lab = row ? row.querySelector('.draw-color-custom-label') : null;
+            return (lab && lab.textContent.trim()) || 'Custom draw color';
+        }
+        if (id === 'draw-color-hex') return 'Draw color hex value';
+        if (id === 'thickness-slider') return 'Draw line thickness';
+        if (id === 'opacity-slider') return 'Draw opacity';
+        return '';
+    }
+
+    // The leaderboard heading renders as an <h4> whose previous heading
+    // in the accessibility tree is an <h2> (the marker panel's <h3> is
+    // hidden until the panel opens), so it skips a level. Rebuild it as
+    // an <h3>, carrying the computed styles inline: solmain2009.css
+    // styles it through the element selector (.challenge-leaderboard
+    // h4), which a class alone cannot reproduce once the tag changes.
+    function a11yFixLeaderboardHeading(root) {
+        let h4 = null;
+        if (root.matches && root.matches('#challenge-leaderboard h4')) h4 = root;
+        else if (root.querySelector) h4 = root.querySelector('#challenge-leaderboard h4');
+        if (!h4) return;
+        const cs = window.getComputedStyle(h4);
+        const props = ['margin', 'color', 'font-size', 'font-weight', 'display', 'align-items', 'gap', 'text-transform', 'letter-spacing', 'line-height'];
+        const carried = props.map(p => p + ': ' + cs.getPropertyValue(p)).join('; ');
+        const h3 = document.createElement('h3');
+        for (const attr of h4.attributes) h3.setAttribute(attr.name, attr.value);
+        const existing = h4.getAttribute('style');
+        h3.setAttribute('style', (existing ? existing + '; ' : '') + carried);
+        h3.setAttribute('data-a11y-level-fixed', '1');
+        h3.innerHTML = h4.innerHTML;
+        h4.replaceWith(h3);
+    }
+
+    function a11yLabelWithin(root) {
+        if (!root || root.nodeType !== 1) return;
+        const scan = (selector, fn) => {
+            if (root.matches && root.matches(selector)) fn(root);
+            if (root.querySelectorAll) root.querySelectorAll(selector).forEach(fn);
+        };
+        scan(A11Y_TAB_SELECTOR, btn => {
+            if (!btn.getAttribute('aria-label')) {
+                const label = a11yTabLabel(btn);
+                if (label) btn.setAttribute('aria-label', label);
+            }
+        });
+        scan(A11Y_INPUT_SELECTOR, input => {
+            if (!input.getAttribute('aria-label')) {
+                const label = a11yInputLabel(input);
+                if (label) input.setAttribute('aria-label', label);
+            }
+        });
+        a11yFixLeaderboardHeading(root);
+    }
+
+    let a11yObserver = null;
+    function initA11yPatch() {
+        a11yLabelWithin(document.documentElement);
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => a11yLabelWithin(document.documentElement));
+        }
+        window.addEventListener('load', () => a11yLabelWithin(document.documentElement));
+        setTimeout(() => a11yLabelWithin(document.documentElement), 2500);
+        if (typeof MutationObserver === 'function' && !a11yObserver) {
+            a11yObserver = new MutationObserver(records => {
+                for (const rec of records) {
+                    rec.addedNodes.forEach(node => {
+                        if (node && node.nodeType === 1) a11yLabelWithin(node);
+                    });
+                }
+            });
+            a11yObserver.observe(document.documentElement, { childList: true, subtree: true });
+        }
+    }
+
     // Lazy init: the toolbar/drawers built by injectUI() are only used once a
     // visitor opens the map and reaches for a tool, so building them at
     // DOMContentLoaded just competes with the map's own boot for main-thread
@@ -626,6 +740,10 @@
             setTimeout(ensureFeaturesInit, 1200);
         }
     }
+
+    // Accessibility pass runs immediately (it only labels existing /
+    // future map-chrome nodes and never builds UI itself).
+    initA11yPatch();
 
     // Initialize when DOM ready
     if (document.readyState === 'loading') {
