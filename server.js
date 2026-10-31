@@ -733,6 +733,8 @@ app.get('/sitemap.xml', (req, res) => {
   // deliberately NOT listed here (spec 10 Phase-3 gate: total = previous + 1).
   const blogLastmod = published.length ? String(published[0].updatedAt || published[0].date || '').slice(0, 10) : '';
   urls.push(`  <url><loc>${siteUrl}/blog</loc>${blogLastmod ? `<lastmod>${blogLastmod}</lastmod>` : ''}</url>`);
+  // A–Z guide index (internal-linking boost, Oct 31): one crawlable hub for every guide.
+  urls.push(`  <url><loc>${siteUrl}/all-guides</loc>${blogLastmod ? `<lastmod>${blogLastmod}</lastmod>` : ''}</url>`);
   for (const b of published) {
     const lastmod = b.updatedAt ? b.updatedAt.slice(0, 10) : (b.date || '');
     // Note: changefreq/priority intentionally omitted — Google/Bing ignore them (2026)
@@ -1665,6 +1667,13 @@ app.get(['/blog/category/:slug', '/blog/category/:slug/'], (req, res) => {
   const nextLink = page < result.totalPages
     ? `<a href="/blog/category/${group.slug}?page=${page + 1}" class="bp-page-link">Older →</a>`
     : '<span></span>';
+  // Page-jump strip (internal-linking boost, Oct 31): first / every 10th / last,
+  // so no archive page sits more than 2 clicks from page 1 of its category.
+  const jumpSet = new Set([1, result.totalPages]);
+  for (let p = 10; p < result.totalPages; p += 10) jumpSet.add(p);
+  const jumpLinks = [...jumpSet].sort((a, b) => a - b).map(p => (p === page
+    ? `<span class="bp-page-link" aria-current="page" style="opacity:.55">${p}</span>`
+    : `<a href="/blog/category/${group.slug}${p > 1 ? `?page=${p}` : ''}" class="bp-page-link">${p}</a>`)).join('');
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -1731,7 +1740,8 @@ app.get(['/blog/category/:slug', '/blog/category/:slug/'], (req, res) => {
             <span>Page ${result.page} of ${result.totalPages}</span>
             ${nextLink}
         </nav>
-        <p class="bp-archive-all"><a href="/blog">← Browse the full archive</a></p>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:.75rem;">${jumpLinks}</div>
+        <p class="bp-archive-all"><a href="/blog">← Browse the full archive</a> · <a href="/all-guides">All guides A–Z →</a></p>
     </main>
     <footer class="bp-footer">
         <p class="bp-footer-line">Mapping Leonida one dispatch at a time.</p>
@@ -1832,6 +1842,130 @@ function stripTags(s) {
   return String(s || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
+// A–Z guide index (internal-linking boost, Oct 31, 2026): one server-rendered
+// page linking EVERY published guide, grouped by display category. Puts each
+// guide 2 clicks from the homepage (Home → this page → guide) instead of up to
+// ~85 clicks deep at the end of the category pagination chains. Rendered HTML
+// is cached in memory for 5 minutes, same pattern as the sitemap.
+let allGuidesCache = { html: null, at: 0 };
+app.get('/all-guides', (req, res) => {
+  const now = Date.now();
+  if (allGuidesCache.html && (now - allGuidesCache.at) < 5 * 60 * 1000) {
+    res.type('html');
+    res.setHeader('Cache-Control', 'public, max-age=300');
+    res.setHeader('X-Cache', 'HIT');
+    return res.send(allGuidesCache.html);
+  }
+  const seo = readJsonSafe('data/seo.json', {});
+  const siteCfg = readJsonSafe('data/site_config.json', {});
+  const discordUrl = escAttr(siteCfg.discordUrl || 'https://discord.gg/Cjtb42qgQF');
+  const siteUrl = (seo.site && seo.site.url ? seo.site.url : 'https://map.stateofleonida.net').replace(/\/$/, '');
+  const canonical = `${siteUrl}/all-guides`;
+  const rows = blogdb.publishedForIndex();
+  const byGroup = new Map(BLOG_GROUPS.map(g => [g.slug, []]));
+  for (const r of rows) {
+    const g = resolveBlogGroup(r.category) || BLOG_GROUPS[0];
+    byGroup.get(g.slug).push(r);
+  }
+  const total = rows.length;
+  const chips = BLOG_GROUPS.filter(g => byGroup.get(g.slug).length)
+    .map(g => `<a class="bp-chip" href="#${g.slug}">${escAttr(g.name)} · ${byGroup.get(g.slug).length.toLocaleString('en-US')}</a>`).join('');
+  const sections = BLOG_GROUPS.filter(g => byGroup.get(g.slug).length).map(g => {
+    const items = byGroup.get(g.slug)
+      .map(r => `<li><a href="/guides/${escAttr(r.slug)}">${escAttr(r.title || r.slug)}</a></li>`).join('');
+    return `<section class="ag-group">
+            <h2 id="${g.slug}">${escAttr(g.name)}</h2>
+            <p class="bp-archive-count">${byGroup.get(g.slug).length.toLocaleString('en-US')} dispatches</p>
+            <ul class="ag-list">${items}</ul>
+        </section>`;
+  }).join('');
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'All GTA 6 Guides A–Z — GTA6mapx',
+    url: canonical,
+    description: `The complete A–Z index of all ${total.toLocaleString('en-US')} GTA6mapx guides and updates on GTA 6, Leonida and Vice City.`,
+    isPartOf: { '@type': 'Blog', name: 'Vice Wire — GTA6mapx Blog', url: `${siteUrl}/blog` },
+  };
+  const crumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'All Guides', item: canonical },
+    ],
+  };
+  const html = injectSeoAndAnalytics(`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All GTA 6 Guides A–Z | GTA6mapx</title>
+    <meta name="description" content="Every GTA6mapx guide in one A–Z index — ${total.toLocaleString('en-US')} evidence-checked guides and updates on GTA 6, Leonida, Vice City, Lucia and Jason.">
+    <link rel="canonical" href="${canonical}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="GTA6mapx">
+    <meta property="og:title" content="All GTA 6 Guides A–Z | GTA6mapx">
+    <meta property="og:description" content="The complete A–Z index of GTA6mapx guides — release date, map, platforms, characters, vehicles, weapons and cheats.">
+    <meta property="og:url" content="${canonical}">
+    <meta property="og:image" content="${siteUrl}/assets/photos/screenshots/vice_city/Vice_City_05.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>
+    <script type="application/ld+json">${JSON.stringify(crumbs).replace(/</g, '\\u003c')}</script>
+    <link rel="stylesheet" href="/assets/fonts/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/blog.css">
+    <link rel="stylesheet" href="/blogpage.css">
+    <style>
+    .bp-chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.25rem}
+    .bp-chips a{border:1px solid #2c3247;border-radius:999px;padding:.35rem .8rem;font-size:.85rem;color:var(--bp-text,#e6e9f2);text-decoration:none}
+    .bp-chips a:hover{border-color:#4a5170;text-decoration:none}
+    .ag-list{columns:3;column-gap:2rem;list-style:none;margin:1rem 0 2.5rem;padding:0}
+    .ag-list li{break-inside:avoid;margin:0 0 .45rem}
+    .ag-list a{color:var(--bp-text,#e6e9f2);text-decoration:none;font-size:.92rem;line-height:1.35}
+    .ag-list a:hover{text-decoration:underline}
+    .ag-group h2{scroll-margin-top:5rem}
+    @media (max-width:900px){.ag-list{columns:2}}
+    @media (max-width:560px){.ag-list{columns:1}}
+    </style>
+</head>
+<body class="bp-page">
+    <header class="bp-topbar">
+        <a class="bp-wordmark" href="/">GTA<span>6</span>MAPX</a>
+        <nav class="bp-topnav">
+            <a class="bp-topbtn" href="/"><i class="fas fa-map"></i><span> Interactive Map</span></a>
+            <a class="bp-topbtn bp-topbtn--discord" href="${discordUrl}" target="_blank" rel="noopener"><i class="fab fa-discord"></i><span> Join the Discord</span></a>
+        </nav>
+    </header>
+    <main class="bp-wrap">
+        <nav class="bp-crumb" aria-label="Breadcrumb">
+            <a href="/">Home</a> <span aria-hidden="true">›</span> <span aria-current="page">All Guides</span>
+        </nav>
+        <section class="bp-archive-head">
+            <p class="blog-kicker"><i class="fas fa-list-ul"></i> VICE WIRE — COMPLETE INDEX</p>
+            <h1 class="bp-archive-title">All GTA 6 Guides A–Z</h1>
+            <p class="bp-archive-desc">Every dispatch on the Wire in one place — ${total.toLocaleString('en-US')} guides and updates on GTA 6, the State of Leonida and Vice City, each checked against what Rockstar has actually confirmed for the November 19, 2026 launch on PS5 and Xbox Series X|S.</p>
+            <div class="bp-chips">${chips}</div>
+        </section>
+        ${sections}
+        <p class="bp-archive-all"><a href="/blog">← Back to the Blog</a> · <a href="/">Explore the Interactive Map</a></p>
+    </main>
+    <footer class="bp-footer">
+        <p class="bp-footer-line">Mapping Leonida one dispatch at a time.</p>
+        <p class="bp-footer-ctas">
+            <a class="bp-btn bp-btn--primary" href="/">Explore the Interactive Map</a>
+            <a class="bp-btn bp-btn--discord" href="${discordUrl}" target="_blank" rel="noopener"><i class="fab fa-discord"></i> Join the Discord</a>
+        </p>
+    </footer>
+</body>
+</html>`, seo);
+  allGuidesCache = { html, at: now };
+  res.type('html');
+  res.setHeader('Cache-Control', 'public, max-age=300');
+  res.setHeader('X-Cache', 'MISS');
+  return res.send(html);
+});
+
 app.get('/guides/:slug', (req, res) => {
   const slug = req.params.slug;
   // SQLite: indexed slug or ID lookup — 0.05ms (was 375ms)
@@ -1916,7 +2050,7 @@ app.get('/guides/:slug', (req, res) => {
     : '');
   const cardHtml = (r) => `<a class="ax-card" href="/guides/${escAttr(r.slug)}">${cardCover(r) ? `<span class="ax-card-media"><img src="${cardCover(r)}" alt="${escAttr(r.title)}" loading="lazy" decoding="async"><span class="ax-card-chip">${escAttr(r.category)}</span></span>` : ''}<span class="ax-card-body"><span class="ax-card-title">${escAttr(r.title)}</span><span class="ax-card-excerpt">${escAttr(String(r.excerpt || '').slice(0, 160))}</span><span class="ax-card-meta">${escAttr(r.readTime || '')} · ${escAttr(fmtDate(r.date))}</span><span class="ax-card-action">${escAttr(A.capFirst(r.anchor))}</span></span></a>`;
   const relatedHtml = relatedCards.length
-    ? `<section class="ax-related"><h2>Related Guides</h2><div class="ax-cards">${relatedCards.map(cardHtml).join('')}</div><a class="ax-hub-line" href="${hubUrl}">More guides in ${escAttr(blog.category || 'Guides')} →</a></section>`
+    ? `<section class="ax-related"><h2>Related Guides</h2><div class="ax-cards">${relatedCards.map(cardHtml).join('')}</div><a class="ax-hub-line" href="${hubUrl}">More guides in ${escAttr(blog.category || 'Guides')} →</a> <a class="ax-hub-line" href="/all-guides">Full A–Z guide index →</a></section>`
     : '';
   const trustHtml = A.trustStripHtml({
     author: blog.author || 'GTA6mapx Editorial',
